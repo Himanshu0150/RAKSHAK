@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHERLOCK Intelligence Platform - Case Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e2e9f4",
+                        "tertiary-fixed": "#ffdbcd",
+                        "inverse-on-surface": "#eaf1fc",
+                        "primary": "#004ac6",
+                        "secondary": "#5a5f67",
+                        "surface": "#f7f9ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container": "#e8eefa",
+                        "on-secondary-fixed": "#171c23",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eeefff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-bright": "#f7f9ff",
+                        "on-surface-variant": "#434655",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#bc4800",
+                        "surface-variant": "#dce3ee",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#eef4ff",
+                        "primary-fixed": "#dbe1ff",
+                        "secondary-container": "#dbe0ea",
+                        "on-background": "#151c24",
+                        "tertiary": "#943700",
+                        "surface-dim": "#d4dae5",
+                        "on-secondary-fixed-variant": "#42474f",
+                        "secondary-fixed": "#dee2ec",
+                        "surface-tint": "#0053db",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-highest": "#dce3ee",
+                        "on-surface": "#151c24",
+                        "background": "#f7f9ff",
+                        "primary-container": "#2563eb",
+                        "outline": "#737686",
+                        "inverse-surface": "#2a3139",
+                        "on-secondary-container": "#5e636b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "secondary-fixed-dim": "#c2c7d0",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-fixed": "#00174b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md-mobile": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #F5F6F8; color: #1C232B; }
+        .card { background-color: #FFFFFF; border: 1px solid #DDE1E6; border-radius: 8px; }
+        .chip { padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; }
+        .chip-success { background-color: rgba(22, 132, 91, 0.1); color: #16845B; }
+        .chip-warning { background-color: rgba(183, 121, 31, 0.1); color: #B7791F; }
+        .chip-critical { background-color: rgba(197, 48, 48, 0.1); color: #C53030; }
+        .chip-neutral { background-color: rgba(90, 95, 103, 0.1); color: #5a5f67; }
+        .chip-primary { background-color: rgba(37, 99, 235, 0.1); color: #2563EB; }
+        .timeline-line { position: absolute; left: 15px; top: 24px; bottom: 0; width: 2px; background-color: #DDE1E6; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[240px] bg-[#151A21] flex flex-col h-full py-lg px-md z-50">
+<div class="flex items-center gap-3 mb-8 px-2">
+<span class="material-symbols-outlined text-primary text-3xl">policy</span>
+<div>
+<div class="font-headline-md text-headline-md font-bold text-on-primary">SHERLOCK</div>
+<div class="text-[10px] text-gray-400 uppercase tracking-widest">Intelligence Platform</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container rounded-lg opacity-80 duration-150" href="#">
+<span class="material-symbols-outlined">folder_shared</span>
+<span class="font-body-md text-body-md">Cases</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Entities</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-body-md text-body-md">Knowledge Graph</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-body-md text-body-md">Timeline</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Evidence Vault</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-body-md text-body-md">AI Copilot</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-lg z-40">
+<div class="flex items-center flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-1.5 border border-outline-variant rounded-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all bg-white" placeholder="Search evidence, entities, CDRs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of an intelligence investigator in a well-lit modern office environment. High quality, realistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMFTtdUwqoPRsVsqaWe25JchZfVvGA2ppaDfLbGGRQqOzOLAXgPsZ5p-jdL5OvUDoDdKxJ2KMW0dLCjpW_H-lmf6UcVgnuvSnaDeHtm1hWJDKBBVBYp_tyW7y8jllhgRlWH_KQz9XNG0TmSF69FfPT3AVsR-EzyaMeFzq7giMZ7poB4_1JgOmrEFKhkRnIR8ICphgM0fqg-txthO2cVH0ic2FI2YlT-res2voB9WSsmIFjj9CbKfsSEw"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="ml-[240px] mt-16 p-lg w-full max-w-7xl mx-auto flex flex-col gap-lg">
+<!-- Case Header -->
+<div class="flex flex-col gap-4">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="chip chip-success">ACTIVE</span>
+<h1 class="font-headline-md text-headline-md">Case #184: Organized Financial Network</h1>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 font-data-mono text-data-mono text-on-surface-variant mt-2">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">calendar_today</span> Opened: 2024-02-12</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">person</span> Case Subjects: 4</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">group</span> Observed Entities: 12</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">description</span> Evidence Items: 48</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">event</span> Events: 156</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">device_hub</span> Relationships: 89</span>
+</div>
+</div>
+<!-- Case Navigation -->
+<div class="flex border-b border-outline-variant font-label-caps text-label-caps uppercase tracking-wider">
+<a class="px-4 py-3 text-primary font-bold border-b-2 border-primary" href="#">Overview</a>
+<a class="px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">Graph</a>
+<a class="px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">Timeline</a>
+<a class="px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">Evidence</a>
+<a class="px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">CDRs</a>
+<a class="px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">Transactions</a>
+<a class="px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">Entities</a>
+</div>
+</div>
+<!-- Case Narrative -->
+<section class="card p-lg">
+<h2 class="font-headline-sm text-headline-sm mb-4 border-b border-outline-variant pb-2">Case Narrative</h2>
+<div class="font-body-lg text-body-lg text-on-background space-y-4">
+<p>Investigation #184 focuses on a suspected organized financial network operating primarily within the National Capital Region (NCR). Initial intelligence indicates a sophisticated laundering operation utilizing multiple interconnected entities to obscure the origin and destination of illicit funds.</p>
+<p>Network analysis suggests structured shell company usage for the movement of illicit funds across NCR. Recent Call Detail Record (CDR) overlaps and flagged banking transactions highlight a high degree of coordination among primary subjects and secondary observed entities.</p>
+</div>
+</section>
+<!-- Two Column Grid (Subjects vs. Observed) -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-lg">
+<!-- Left Column: Case Subjects -->
+<section class="card p-lg">
+<div class="flex justify-between items-center border-b border-outline-variant pb-2 mb-4">
+<h2 class="font-headline-sm text-headline-sm">CASE SUBJECTS</h2>
+<span class="font-label-caps text-label-caps text-primary">OFFICIALLY ASSOCIATED</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Subject Card 1 -->
+<div class="flex items-start gap-4 p-3 border border-outline-variant rounded bg-surface hover:border-primary transition-colors">
+<div class="w-12 h-12 rounded bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Mugshot style photo of a middle-aged South Asian male. Neutral expression, plain light grey background, high resolution, professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuZPKZNTBKwA0o1No858cwzQPjrgd5X2OSnlPu_XWjE_-aMNXkdkm5No7CKJcE6WuZPfVcubWKlGhVwMaxbAOoz7jbhS87lDuFeu3q6jpW_EciRV_QGqu1Z1UcoUYIw0eARFuhV-1LTw3hKBQfZhoXImLgl5mc4p2hbh3iGYnfa0ZKhy6Y1EkvzNBlv4xvhNL3MofQyHwvClEuItzwcZX87x8rgCHOHrCK9DYdW0y_OWw75JUjUkVKyw"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg font-semibold truncate">Rajesh Patil</h3>
+<span class="chip chip-critical text-[10px]">PRIMARY SUBJECT</span>
+</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">ID: SUB-8492-A</div>
+</div>
+</div>
+<!-- Subject Card 2 -->
+<div class="flex items-start gap-4 p-3 border border-outline-variant rounded bg-surface hover:border-primary transition-colors">
+<div class="w-12 h-12 rounded bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Mugshot style photo of a younger South Asian male with short hair. Neutral expression, plain light grey background, high resolution, professional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxexDLP4MzaQOY9A1ldrU9tuhG2BSMGgiRtudn1fS6oqmXo2IRn1P7tZ-ghiVJg0HVbHrJCFInHoMz78K8exbAR9IZua9h_cvlflPA0kw_9id7PcWTESemkVnOBcUyaql_AI2fz1MKqULsE0wusCtdFkqVsQ5SKQ_vKvGk5pNKW3asReNh-LaoH3Y5ciPN7LSXDYMtOXFZqhjZXQ9-KIg0pJLtS46KY8kpdc6JShicEu80M68p0OU5rg"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg font-semibold truncate">Amit Shah</h3>
+<span class="chip chip-critical text-[10px]">PRIMARY SUBJECT</span>
+</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">ID: SUB-8493-B</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Observed Entities -->
+<section class="card p-lg">
+<div class="flex justify-between items-center border-b border-outline-variant pb-2 mb-4">
+<h2 class="font-headline-sm text-headline-sm">OBSERVED ENTITIES</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant">IN EVIDENCE</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Entity Card 1 -->
+<div class="flex items-start gap-4 p-3 border border-outline-variant rounded bg-surface hover:border-primary transition-colors">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg font-semibold truncate">Rajesh Kumar</h3>
+<span class="chip chip-neutral text-[10px]">NOT LISTED AS CASE SUBJECT</span>
+</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">ID: ENT-1120-X</div>
+</div>
+</div>
+<!-- Entity Card 2 -->
+<div class="flex items-start gap-4 p-3 border border-outline-variant rounded bg-surface hover:border-primary transition-colors">
+<div class="w-12 h-12 rounded bg-surface-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">storefront</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-body-lg text-body-lg font-semibold truncate">Metro Finance Ltd</h3>
+<span class="chip chip-neutral text-[10px]">NOT LISTED AS CASE SUBJECT</span>
+</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-1 text-xs">ID: ORG-9941-F</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Content Section: Modules -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Chronology -->
+<section class="card p-lg lg:col-span-1">
+<h2 class="font-headline-sm text-headline-sm mb-4 border-b border-outline-variant pb-2">Recent Chronology</h2>
+<div class="relative pl-8 space-y-6">
+<div class="timeline-line"></div>
+<div class="relative">
+<div class="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-warning border-2 border-white z-10"></div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-xs mb-1">2024-03-10 14:32</div>
+<div class="font-body-md text-body-md font-semibold">Suspicious Transaction recorded</div>
+<div class="text-xs text-on-surface-variant mt-1">INR 50,00,000 flagged by Metro Finance.</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-primary border-2 border-white z-10"></div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-xs mb-1">2024-03-08 09:15</div>
+<div class="font-body-md text-body-md font-semibold">CDR overlap detected</div>
+<div class="text-xs text-on-surface-variant mt-1">Multiple calls between Subject A and B near NCR boundary.</div>
+</div>
+</div>
+</section>
+<!-- Evidence Summary -->
+<section class="card p-lg lg:col-span-2">
+<div class="flex justify-between items-center mb-4 border-b border-outline-variant pb-2">
+<h2 class="font-headline-sm text-headline-sm">Evidence Summary</h2>
+<button class="text-primary font-label-caps text-label-caps hover:underline">VIEW ALL</button>
+</div>
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant">
+<th class="py-2 font-normal">ID</th>
+<th class="py-2 font-normal">Type</th>
+<th class="py-2 font-normal">Description</th>
+<th class="py-2 font-normal">Date Added</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3 font-data-mono text-data-mono text-primary group-hover:underline cursor-pointer">FIR-2024-01</td>
+<td class="py-3"><span class="chip chip-neutral text-[10px]">DOCUMENT</span></td>
+<td class="py-3 truncate max-w-[200px]">Initial complaint regarding NCR fraud</td>
+<td class="py-3 font-data-mono text-data-mono text-on-surface-variant text-xs">2024-02-13</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3 font-data-mono text-data-mono text-primary group-hover:underline cursor-pointer">CDR-B-092</td>
+<td class="py-3"><span class="chip chip-neutral text-[10px]">DATASET</span></td>
+<td class="py-3 truncate max-w-[200px]">Batch CDRs for Amit Shah (Feb 1-28)</td>
+<td class="py-3 font-data-mono text-data-mono text-on-surface-variant text-xs">2024-03-01</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-3 font-data-mono text-data-mono text-primary group-hover:underline cursor-pointer">BNK-STM-12</td>
+<td class="py-3"><span class="chip chip-neutral text-[10px]">FINANCIAL</span></td>
+<td class="py-3 truncate max-w-[200px]">Metro Finance Ltd statements Q1</td>
+<td class="py-3 font-data-mono text-data-mono text-on-surface-variant text-xs">2024-03-12</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+<!-- Bottom Section: Intelligence Semantics -->
+<section class="card p-lg mb-8">
+<h2 class="font-headline-sm text-headline-sm mb-4 border-b border-outline-variant pb-2">Intelligence Semantics</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg divide-y md:divide-y-0 md:divide-x divide-outline-variant">
+<!-- Verified Facts -->
+<div class="md:pr-lg">
+<h3 class="font-label-caps text-label-caps text-success mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">verified</span> VERIFIED FACTS
+                    </h3>
+<ul class="space-y-3 font-body-md text-body-md">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success text-[18px] mt-0.5">check_circle</span>
+<div>
+                                Direct transfer from Subject A to Entity C documented on 2024-02-15.
+                                <a class="text-primary font-data-mono text-[11px] ml-2 hover:underline" href="#">[BNK-STM-12]</a>
+</div>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-success text-[18px] mt-0.5">check_circle</span>
+<div>
+                                Shared phone usage detected at NCR boundary cell tower.
+                                <a class="text-primary font-data-mono text-[11px] ml-2 hover:underline" href="#">[CDR-B-092]</a>
+</div>
+</li>
+</ul>
+</div>
+<!-- Analytical Inferences -->
+<div class="md:pl-lg pt-4 md:pt-0">
+<h3 class="font-label-caps text-label-caps text-warning mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">lightbulb</span> ANALYTICAL INFERENCES
+                    </h3>
+<ul class="space-y-3 font-body-md text-body-md">
+<li class="flex items-start gap-2 p-2 bg-surface-container rounded border border-outline-variant border-dashed">
+<span class="material-symbols-outlined text-warning text-[18px] mt-0.5">warning</span>
+<div class="w-full">
+<div class="flex justify-between">
+<span class="font-semibold">Probability of shell ownership: High</span>
+<span class="font-data-mono text-xs text-on-surface-variant">AI CONF: 88%</span>
+</div>
+<div class="text-xs text-on-surface-variant mt-1">Based on corporate registry anomalies.</div>
+</div>
+</li>
+<li class="flex items-start gap-2 p-2 bg-surface-container rounded border border-outline-variant border-dashed">
+<span class="material-symbols-outlined text-warning text-[18px] mt-0.5">warning</span>
+<div class="w-full">
+<div class="flex justify-between">
+<span class="font-semibold">Suspected money laundering loop</span>
+<span class="font-data-mono text-xs text-on-surface-variant">AI CONF: 82%</span>
+</div>
+<div class="text-xs text-on-surface-variant mt-1">Circular transaction pattern identified.</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+</body></html>

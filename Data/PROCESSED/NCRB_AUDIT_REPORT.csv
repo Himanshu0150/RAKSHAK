@@ -1,0 +1,7 @@
+﻿file,table_id,status,rows,columns,duplicate_rows,missing_cells,encoding,processed_file
+NCRB_CII_2023_Table_19A.6_0.csv,19A.6,OK,39,22,0,0,utf-8-sig,PROCESSED\audited\19A.6_NCRB_CII_2023_Table_19A.6_0_cleaned.csv
+NCRB_CII_2023_Table_1A.4_0.csv,1A.4,OK,39,424,0,0,utf-8-sig,PROCESSED\audited\1A.4_NCRB_CII_2023_Table_1A.4_0_cleaned.csv
+NCRB_CII_2023_Table_9B.2_0.csv,9B.2,OK,20,51,0,0,utf-8-sig,PROCESSED\audited\9B.2_NCRB_CII_2023_Table_9B.2_0_cleaned.csv
+NCRB_CII_2023_Table_3A.5_0.csv,3A.5,OK,54,24,0,0,utf-8-sig,PROCESSED\audited\3A.5_NCRB_CII_2023_Table_3A.5_0_cleaned.csv
+NCRB_CII_2023_Table_1A.5_1.csv,1A.5,OK,39,214,0,18,utf-8-sig,PROCESSED\audited\1A.5_NCRB_CII_2023_Table_1A.5_1_cleaned.csv
+NCRB_CII_2023_Table_4A.2_0.csv,4A.2,OK,39,209,0,0,utf-8-sig,PROCESSED\audited\4A.2_NCRB_CII_2023_Table_4A.2_0_cleaned.csv

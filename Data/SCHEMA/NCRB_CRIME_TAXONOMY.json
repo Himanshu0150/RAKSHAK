@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "source_basis": "NCRB 2023 schema report",
+  "categories": [
+    "MURDER",
+    "ATTEMPTED_MURDER",
+    "CULPABLE_HOMICIDE",
+    "RAPE",
+    "ATTEMPTED_RAPE",
+    "KIDNAPPING",
+    "KIDNAPPING_FOR_RANSOM",
+    "HUMAN_TRAFFICKING",
+    "CHILD_RELATED_CRIME",
+    "CRUELTY_BY_HUSBAND_OR_RELATIVES",
+    "NARCOTICS_NDPS",
+    "NARCOTICS_TRAFFICKING",
+    "ROBBERY",
+    "DACOITY",
+    "THEFT",
+    "BURGLARY",
+    "VEHICLE_THEFT",
+    "EXTORTION",
+    "ASSAULT",
+    "FINANCIAL_FRAUD",
+    "CYBERCRIME",
+    "FORGERY",
+    "OTHER_SPECIAL_LOCAL_LAWS"
+  ]
+}

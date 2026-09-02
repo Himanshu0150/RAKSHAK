@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SHERLOCK - Entity Search &amp; Normalization</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b4c5ff",
+                        "surface-dim": "#d4dae5",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed": "#dee2ec",
+                        "background": "#f7f9ff",
+                        "on-secondary-fixed-variant": "#42474f",
+                        "surface-bright": "#f7f9ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-container": "#bc4800",
+                        "on-secondary-container": "#5e636b",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "tertiary": "#943700",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf1fc",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed": "#171c23",
+                        "surface-container-high": "#e2e9f4",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-background": "#151c24",
+                        "secondary-container": "#dbe0ea",
+                        "surface-container": "#e8eefa",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface": "#f7f9ff",
+                        "secondary": "#5a5f67",
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#151c24",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2a3139",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#eef4ff",
+                        "on-surface-variant": "#434655",
+                        "outline": "#737686",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed-dim": "#c2c7d0",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "primary-container": "#2563eb",
+                        "surface-container-highest": "#dce3ee",
+                        "surface-variant": "#dce3ee",
+                        "on-tertiary-container": "#ffede6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md-mobile": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="w-[240px] h-screen fixed left-0 top-0 bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col py-lg z-50">
+<!-- Brand Header -->
+<div class="px-md mb-xl flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined filled text-xl">policy</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-primary-container tracking-tight">SHERLOCK</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Investigation Intel</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md">Cases</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-primary dark:text-inverse-primary font-bold border-r-2 border-primary bg-surface-variant/10 opacity-90 transition-all" href="#">
+<span class="material-symbols-outlined filled">groups</span>
+<span class="font-body-md">Entities</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-body-md">Knowledge Graph</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-body-md">Timeline</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md">Evidence Vault</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-body-md">AI Copilot</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">System</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">database</span>
+<span class="font-body-md">Data Sources</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-body-md">Data Quality</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-body-md">Security &amp; Audit</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-[240px] w-[calc(100%-240px)] h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-16 sticky top-0 z-40 bg-surface dark:bg-background border-b border-outline-variant flex items-center justify-between px-lg shrink-0">
+<div class="flex items-center gap-md w-full max-w-3xl">
+<h2 class="font-headline-md text-headline-md font-bold text-on-background mr-lg shrink-0">Entity Search &amp; Normalization</h2>
+<!-- Search Bar -->
+<div class="relative w-full flex-1">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-10 pl-10 pr-sm bg-surface-container-low border border-outline-variant rounded-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" placeholder="Search person, location, phone, vehicle, organization or account..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant ml-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of an intelligence analyst in a modern office, softly lit, sharp focus, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_FHF0hKYrhCFOUtLPBhqb8TgZNVWlo2MaJGRxUNWqH_PA4q8wqiF-_V2STZwmXsuaGHxVeg5sIYTDqQKar484vuCnvYJc_3LGsSIJvkAW_fVIXVjIU7HsG08NoTgNhOXqDWl0HiNfl_3XfS4epTKgfQ_CG5KTyOu3zUd1udpktTLQkMGRNdy00oK8MG4dvuFMTKLHFpO6d8KF87-L2jdPaL9fRyfQl6k3sqjh4nIu3GxOKMKwfsSAwA"/>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col overflow-hidden p-lg gap-md bg-surface-container-lowest">
+<!-- Filters Bar -->
+<div class="flex items-center gap-sm p-sm bg-surface-container rounded-lg border border-outline-variant shrink-0">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded-md cursor-pointer hover:border-primary transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Entity Type:</span>
+<span class="font-body-md text-on-surface">All</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded-md cursor-pointer hover:border-primary transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Source:</span>
+<span class="font-body-md text-on-surface">All Sources</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded-md cursor-pointer hover:border-primary transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Case:</span>
+<span class="font-body-md text-on-surface">Global</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded-md cursor-pointer hover:border-primary transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Date:</span>
+<span class="font-body-md text-on-surface">Last 30 Days</span>
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded-md cursor-pointer hover:border-primary transition-colors">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Status:</span>
+<span class="font-body-md text-on-surface">Any</span>
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+</div>
+<div class="flex-1"></div>
+<button class="px-4 py-2 bg-primary-container text-on-primary rounded-md font-body-md hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                    Apply Filters
+                </button>
+</div>
+<!-- Content Split (Table & Panel) -->
+<div class="flex-1 flex gap-md overflow-hidden">
+<!-- Results Table Area -->
+<div class="flex-1 flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-md py-sm border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Search Results</h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-variant px-2 py-1 rounded">2,401 Found</span>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low border-b border-outline-variant z-10">
+<tr>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Raw Value</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Normalized Value</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Canonical ID</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Type</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Source</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Status</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Conf.</th>
+<th class="p-sm font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors bg-primary-fixed/20 cursor-pointer">
+<td class="p-sm font-body-md text-on-surface line-through text-on-surface-variant/70">"R. Patil"</td>
+<td class="p-sm font-body-md font-semibold text-primary">Rajesh Patil</td>
+<td class="p-sm font-data-mono text-data-mono text-secondary">CID-8842-X</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-variant text-on-surface font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">person</span> Person
+                                        </span>
+</td>
+<td class="p-sm font-body-md text-on-surface-variant text-sm truncate max-w-[120px]">FIR / Police Reports</td>
+<td class="p-sm">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-[#16845B]"></div>
+<span class="font-body-md text-sm text-[#16845B]">Normalized</span>
+</div>
+</td>
+<td class="p-sm font-data-mono text-data-mono text-[#16845B]">92%</td>
+<td class="p-sm text-right whitespace-nowrap">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">compare_arrows</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">done_all</span></button>
+<button class="p-1 text-primary"><span class="material-symbols-outlined text-sm">folder_open</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-sm font-body-md text-on-surface">"Rajesh K. Patil"</td>
+<td class="p-sm font-body-md text-on-surface">Rajesh Patil</td>
+<td class="p-sm font-data-mono text-data-mono text-secondary">CID-8842-X</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-variant text-on-surface font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">person</span> Person
+                                        </span>
+</td>
+<td class="p-sm font-body-md text-on-surface-variant text-sm truncate max-w-[120px]">CDR Records</td>
+<td class="p-sm">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-[#B7791F]"></div>
+<span class="font-body-md text-sm text-[#B7791F]">Pending Review</span>
+</div>
+</td>
+<td class="p-sm font-data-mono text-data-mono text-[#B7791F]">88%</td>
+<td class="p-sm text-right whitespace-nowrap">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">compare_arrows</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">check</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-sm font-body-md text-on-surface">"+91 98XXX XXXXX"</td>
+<td class="p-sm font-body-md text-on-surface">98XXXXXXXX</td>
+<td class="p-sm font-data-mono text-data-mono text-secondary">PH-4421-A</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-variant text-on-surface font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">call</span> Phone
+                                        </span>
+</td>
+<td class="p-sm font-body-md text-on-surface-variant text-sm truncate max-w-[120px]">Financial Transactions</td>
+<td class="p-sm">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-[#16845B]"></div>
+<span class="font-body-md text-sm text-[#16845B]">Normalized</span>
+</div>
+</td>
+<td class="p-sm font-data-mono text-data-mono text-[#16845B]">100%</td>
+<td class="p-sm text-right whitespace-nowrap">
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">compare_arrows</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Dossier / Summary Panel (Right Side) -->
+<aside class="w-[320px] shrink-0 bg-surface border border-outline-variant rounded-xl overflow-y-auto shadow-sm flex flex-col">
+<div class="p-md border-b border-outline-variant bg-surface-container-low flex items-start justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-primary mb-1 block">Entity Profile</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Rajesh Patil</h3>
+<span class="font-data-mono text-data-mono text-on-surface-variant text-xs">CID-8842-X</span>
+</div>
+<button class="p-1 text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="p-md flex-1 space-y-md">
+<!-- Identity Resolution Graph (Decorative) -->
+<div class="w-full h-32 rounded-lg bg-surface-container border border-outline-variant relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 pattern-dots"></div>
+<span class="material-symbols-outlined text-4xl text-primary/30">hub</span>
+</div>
+<!-- Aliases -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Known Aliases</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-variant rounded text-sm font-body-md">"R. Patil"</span>
+<span class="px-2 py-1 bg-surface-variant rounded text-sm font-body-md">"Rajesh K. Patil"</span>
+<span class="px-2 py-1 bg-surface-variant rounded text-sm font-body-md">"R.K. Patil"</span>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<!-- Metrics Grid -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-3">Intelligence Metrics</h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-3 bg-surface-container rounded-lg border border-outline-variant text-center">
+<span class="block font-headline-md text-headline-md font-bold text-primary">4</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Sources</span>
+</div>
+<div class="p-3 bg-surface-container rounded-lg border border-outline-variant text-center">
+<span class="block font-headline-md text-headline-md font-bold text-on-surface">12</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Relationships</span>
+</div>
+<div class="p-3 bg-surface-container rounded-lg border border-outline-variant text-center col-span-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Evidence Items</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">3</span>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<!-- Actions -->
+<div class="space-y-2 pt-2">
+<button class="w-full py-2 bg-primary-container text-on-primary rounded-md font-body-md font-semibold hover:bg-primary transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">open_in_new</span> Open Full Dossier
+                            </button>
+<button class="w-full py-2 bg-surface text-on-surface border border-outline-variant rounded-md font-body-md hover:border-primary transition-colors">
+                                Add Note / Flag
+                            </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>

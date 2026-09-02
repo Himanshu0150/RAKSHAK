@@ -1,0 +1,6 @@
+{
+  "name": "SHERLOCK — Investigation Intelligence Platform",
+  "description": "Professional criminal network analysis, forensic investigation intelligence, C3PL cryptographic evidence chain of custody, and multi-source entity resolution platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

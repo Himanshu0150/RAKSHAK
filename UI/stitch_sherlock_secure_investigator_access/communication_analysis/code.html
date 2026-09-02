@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Communication Analysis - Sherlock Intelligence Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#dbe0ea",
+                        "on-surface-variant": "#434655",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#5e636b",
+                        "surface-container-highest": "#dce3ee",
+                        "secondary-fixed": "#dee2ec",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-low": "#eef4ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5a5f67",
+                        "surface-variant": "#dce3ee",
+                        "on-primary-fixed": "#00174b",
+                        "on-primary-container": "#eeefff",
+                        "on-background": "#151c24",
+                        "surface-bright": "#f7f9ff",
+                        "secondary-fixed-dim": "#c2c7d0",
+                        "on-secondary-fixed": "#171c23",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-container": "#e8eefa",
+                        "inverse-surface": "#2a3139",
+                        "surface": "#f7f9ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffdbcd",
+                        "inverse-primary": "#b4c5ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-error": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-tint": "#0053db",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "surface-container-high": "#e2e9f4",
+                        "inverse-on-surface": "#eaf1fc",
+                        "on-surface": "#151c24",
+                        "on-secondary-fixed-variant": "#42474f",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d4dae5",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#ffede6",
+                        "primary": "#004ac6",
+                        "tertiary": "#943700",
+                        "tertiary-container": "#bc4800",
+                        "error": "#ba1a1a",
+                        "background": "#f7f9ff",
+                        "warning": "#B7791F"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md-mobile": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F5F6F8] text-on-surface font-body-md h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[240px] bg-[#151A21] flex flex-col h-full py-lg px-md z-50">
+<div class="flex items-center gap-sm mb-xl">
+<span class="material-symbols-outlined text-primary text-3xl font-bold" data-icon="hub">hub</span>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">SHERLOCK</h1>
+<p class="font-label-caps text-label-caps text-surface-variant/70 uppercase">Intelligence Platform</p>
+</div>
+</div>
+<ul class="flex flex-col gap-sm flex-grow overflow-y-auto">
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>Dashboard</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>Cases</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="group">group</span>Entities</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="hub">hub</span>Knowledge Graph</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="timeline">timeline</span>Timeline</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>Evidence Vault</a></li>
+<li><a class="flex items-center gap-sm p-sm bg-primary-container text-on-primary-container rounded-lg font-body-md text-body-md opacity-80 duration-150" href="#"><span class="material-symbols-outlined" data-icon="analytics">analytics</span>Analytics</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>AI Copilot</a></li>
+<li class="mt-auto"><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="settings">settings</span>System</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="database">database</span>Data Sources</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>Data Quality</a></li>
+<li><a class="flex items-center gap-sm p-sm text-surface-variant hover:text-surface-bright hover:bg-surface-variant/10 transition-colors font-body-md text-body-md rounded" href="#"><span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>Security &amp; Audit</a></li>
+</ul>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] bg-surface dark:bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center h-16 px-lg ml-[240px] z-40">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">SHERLOCK</h2>
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-xl pr-sm py-xs border border-[#DDE1E6] rounded focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 transition-all font-body-md bg-transparent text-on-surface" placeholder="Search entity, case, ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary/10 transition-all p-xs rounded-full"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary/10 transition-all p-xs rounded-full"><span class="material-symbols-outlined" data-icon="help">help</span></button>
+<div class="w-8 h-8 rounded-full bg-secondary-container border border-outline-variant flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="A small, professional portrait photograph of an investigator used as a profile avatar. The subject is well-lit with soft, neutral lighting against a minimalist gray background, conveying a sense of authority and competence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCaiDKmIVgSFV1kPliTbDlPhyFFXHBCMq0O9FlrS1GMyG8hJPGUmbPuSKXcrJ0e3ZkDOlEfJoxwlfy4dsIrFXy-S0GnV4Ttcrz-C8Iv3wYZmCbO5FMLshV62vbO2fgyuNJVuwkBbv3aOUDFFeO-GX88rHcOl3pvrbNk5Czg6mQdDKJPEUqW-e2SPsB854yUf4dkOSTdoHcJOObpPofMQ0Yl7xZZKwPcaGoMbLLgSKjwWEeXcsqSqf8tQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] mt-16 p-lg h-[calc(100vh-64px)] overflow-y-auto flex gap-lg">
+<!-- Left Panel: Filters -->
+<aside class="w-72 flex-shrink-0 flex flex-col gap-md">
+<div class="bg-surface-container-lowest border border-[#DDE1E6] rounded-lg p-md shadow-[0px_4px_12px_rgba(28,35,43,0.08)] h-full overflow-y-auto">
+<div class="mb-md">
+<h3 class="font-headline-sm text-headline-sm mb-xs text-on-surface">Communication Analysis</h3>
+<p class="font-body-md text-body-md text-secondary">Case #184 - Organized Financial Network</p>
+</div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm border-b border-outline-variant pb-xs">Filters</h4>
+<div class="flex flex-col gap-sm">
+<div>
+<label class="block font-label-caps text-label-caps mb-xs text-on-surface">Target Identifier</label>
+<input class="w-full border border-[#DDE1E6] rounded p-xs font-data-mono text-data-mono focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 transition-all" placeholder="Phone, IMSI, IMEI" type="text"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps mb-xs text-on-surface">Date Range</label>
+<input class="w-full border border-[#DDE1E6] rounded p-xs font-body-md text-body-md focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 transition-all" type="date"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps mb-xs text-on-surface">Call Type</label>
+<select class="w-full border border-[#DDE1E6] rounded p-xs font-body-md text-body-md focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/10 transition-all">
+<option>All Types</option>
+<option>Incoming</option>
+<option>Outgoing</option>
+<option>SMS</option>
+<option>Data</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps mb-xs text-on-surface">Risk Level</label>
+<div class="flex gap-sm">
+<button class="flex-1 py-xs border border-[#DDE1E6] rounded bg-surface hover:border-[#2563EB] transition-colors font-label-caps text-label-caps text-on-surface">NORMAL</button>
+<button class="flex-1 py-xs border border-warning rounded bg-warning/10 text-warning font-label-caps text-label-caps font-bold">UNUSUAL</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-md bg-[#2563EB] text-white py-sm rounded font-label-caps text-label-caps hover:bg-primary-fixed-variant transition-colors flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span> Apply Filters
+                </button>
+</div>
+</aside>
+<!-- Center & Right Canvas -->
+<div class="flex-1 flex flex-col gap-md h-full overflow-hidden">
+<!-- Metrics Bar -->
+<div class="grid grid-cols-5 gap-sm flex-shrink-0">
+<div class="bg-surface-container-lowest border border-[#DDE1E6] rounded-lg p-sm shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Total Calls</span>
+<span class="font-headline-md text-headline-md text-on-surface">1,428</span>
+</div>
+<div class="bg-surface-container-lowest border border-[#DDE1E6] rounded-lg p-sm shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Unique Contacts</span>
+<span class="font-headline-md text-headline-md text-on-surface">42</span>
+</div>
+<div class="bg-surface-container-lowest border border-[#DDE1E6] rounded-lg p-sm shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Avg Duration</span>
+<span class="font-headline-md text-headline-md text-on-surface">1m 42s</span>
+</div>
+<div class="bg-surface-container-lowest border border-[#DDE1E6] rounded-lg p-sm shadow-sm flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Peak Activity</span>
+<span class="font-headline-md text-headline-md text-on-surface">14:00 - 16:00</span>
+</div>
+<div class="bg-surface-container-lowest border border-warning rounded-lg p-sm shadow-sm flex flex-col justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-warning/5"></div>
+<span class="font-label-caps text-label-caps text-warning uppercase relative z-10 flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]" data-icon="priority_high">priority_high</span> New Connections</span>
+<span class="font-headline-md text-headline-md text-on-surface relative z-10">5 <span class="font-body-md text-body-md text-secondary ml-xs font-normal">(48h)</span></span>
+</div>
+</div>
+<!-- Bento Workspace -->
+<div class="flex-1 grid grid-cols-3 gap-md min-h-0 overflow-hidden">
+<!-- Graph & Timeline Area -->
+<div class="col-span-2 flex flex-col gap-md h-full overflow-hidden">
+<!-- Network Graph -->
+<div class="flex-1 bg-surface-container-lowest border border-[#DDE1E6] rounded-lg shadow-sm relative overflow-hidden flex flex-col">
+<div class="p-sm border-b border-[#DDE1E6] bg-surface flex justify-between items-center z-10">
+<span class="font-label-caps text-label-caps text-on-surface uppercase flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="device_hub">device_hub</span> Network Topology</span>
+<div class="flex gap-xs">
+<button class="p-xs hover:bg-surface-variant/50 rounded transition-colors"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="zoom_in">zoom_in</span></button>
+<button class="p-xs hover:bg-surface-variant/50 rounded transition-colors"><span class="material-symbols-outlined text-[16px] text-secondary" data-icon="zoom_out">zoom_out</span></button>
+</div>
+</div>
+<div class="flex-1 relative bg-[#F8FAFC]">
+<!-- Graph Placeholder -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+<span class="material-symbols-outlined text-[120px] text-outline-variant" data-icon="hub">hub</span>
+</div>
+<!-- Mock Nodes -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary rounded-full ring-4 ring-primary/20 flex items-center justify-center shadow-lg z-20 cursor-pointer">
+<span class="material-symbols-outlined text-[16px] text-white" data-icon="person">person</span>
+</div>
+<div class="absolute top-[30%] left-[30%] w-6 h-6 bg-warning rounded-full ring-4 ring-warning/20 flex items-center justify-center shadow-lg z-20 cursor-pointer animate-pulse">
+<span class="material-symbols-outlined text-[14px] text-white" data-icon="warning">warning</span>
+</div>
+<div class="absolute top-[70%] left-[60%] w-5 h-5 bg-secondary-container rounded-full flex items-center justify-center shadow-md z-20 cursor-pointer border border-[#DDE1E6]">
+</div>
+<!-- SVG Edges -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
+<line stroke="#B7791F" stroke-dasharray="4" stroke-width="2" x1="50%" x2="30%" y1="50%" y2="30%"></line>
+<line stroke="#DDE1E6" stroke-width="1" x1="50%" x2="60%" y1="50%" y2="70%"></line>
+</svg>
+</div>
+</div>
+<!-- Chronology -->
+<div class="h-48 bg-surface-container-lowest border border-[#DDE1E6] rounded-lg shadow-sm flex flex-col flex-shrink-0">
+<div class="p-sm border-b border-[#DDE1E6] bg-surface flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface uppercase flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="show_chart">show_chart</span> Communication Chronology</span>
+</div>
+<div class="flex-1 p-sm relative">
+<!-- Bar chart mock -->
+<div class="absolute bottom-sm left-md right-md top-md flex items-end gap-[2px]">
+<div class="w-full h-[20%] bg-secondary-container/50 hover:bg-primary/50 transition-colors cursor-pointer rounded-t-sm"></div>
+<div class="w-full h-[40%] bg-secondary-container/50 hover:bg-primary/50 transition-colors cursor-pointer rounded-t-sm"></div>
+<div class="w-full h-[30%] bg-secondary-container/50 hover:bg-primary/50 transition-colors cursor-pointer rounded-t-sm"></div>
+<div class="w-full h-[90%] bg-warning/60 hover:bg-warning transition-colors cursor-pointer rounded-t-sm relative group">
+<!-- Tooltip -->
+<div class="hidden group-hover:block absolute bottom-full mb-xs left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface font-data-mono text-[10px] p-xs rounded whitespace-nowrap z-30">
+                                        Spike: 14:15
+                                     </div>
+</div>
+<div class="w-full h-[50%] bg-secondary-container/50 hover:bg-primary/50 transition-colors cursor-pointer rounded-t-sm"></div>
+<div class="w-full h-[10%] bg-secondary-container/50 hover:bg-primary/50 transition-colors cursor-pointer rounded-t-sm"></div>
+<div class="w-full h-[15%] bg-primary/40 hover:bg-primary transition-colors cursor-pointer rounded-t-sm border-t-2 border-primary"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel (CDR & Insight) -->
+<div class="flex flex-col gap-md h-full overflow-hidden">
+<!-- AI Insight -->
+<div class="bg-surface-container-lowest border border-warning rounded-lg p-sm shadow-sm flex-shrink-0 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-warning"></div>
+<div class="pl-sm">
+<span class="font-label-caps text-[10px] text-warning uppercase flex items-center gap-xs mb-xs font-bold tracking-wider">
+<span class="material-symbols-outlined text-[14px]" data-icon="auto_awesome">auto_awesome</span> Analytical Inference
+                            </span>
+<p class="font-body-md text-[13px] text-on-surface leading-snug">
+                                Unusual call frequency detected between <span class="font-data-mono text-warning">+91 98XXX</span> and <span class="font-data-mono text-warning">+91 87XXX</span> at 03:15 AM.
+                            </p>
+</div>
+</div>
+<!-- CDR Table -->
+<div class="flex-1 bg-surface-container-lowest border border-[#DDE1E6] rounded-lg shadow-sm flex flex-col overflow-hidden min-h-0">
+<div class="p-sm border-b border-[#DDE1E6] bg-surface flex justify-between items-center z-10">
+<span class="font-label-caps text-label-caps text-on-surface uppercase flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]" data-icon="list_alt">list_alt</span> CDR Records</span>
+</div>
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface border-b border-[#DDE1E6] shadow-sm z-20">
+<tr>
+<th class="p-xs font-label-caps text-[10px] text-secondary uppercase">Time</th>
+<th class="p-xs font-label-caps text-[10px] text-secondary uppercase">Caller</th>
+<th class="p-xs font-label-caps text-[10px] text-secondary uppercase">Dur.</th>
+<th class="p-xs font-label-caps text-[10px] text-secondary uppercase">Evid ID</th>
+</tr>
+</thead>
+<tbody class="font-data-mono text-[11px] text-on-surface divide-y divide-[#DDE1E6]">
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer group">
+<td class="p-xs whitespace-nowrap">03:15:02</td>
+<td class="p-xs text-warning group-hover:text-warning-dark">+91 98XXX</td>
+<td class="p-xs">12m</td>
+<td class="p-xs text-secondary">#EV-0922</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer">
+<td class="p-xs whitespace-nowrap">02:45:10</td>
+<td class="p-xs">+44 77XXX</td>
+<td class="p-xs">45s</td>
+<td class="p-xs text-secondary">#EV-0921</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer">
+<td class="p-xs whitespace-nowrap">01:10:00</td>
+<td class="p-xs">+1 202XX</td>
+<td class="p-xs">1m 10s</td>
+<td class="p-xs text-secondary">#EV-0920</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer">
+<td class="p-xs whitespace-nowrap">23:55:00</td>
+<td class="p-xs">+91 87XXX</td>
+<td class="p-xs">5m</td>
+<td class="p-xs text-secondary">#EV-0919</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors cursor-pointer">
+<td class="p-xs whitespace-nowrap">22:30:15</td>
+<td class="p-xs">+44 77XXX</td>
+<td class="p-xs">10s</td>
+<td class="p-xs text-secondary">#EV-0918</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

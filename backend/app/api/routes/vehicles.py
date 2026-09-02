@@ -1,0 +1,14 @@
+from fastapi import APIRouter, Query
+from typing import List
+from app.db.mongodb import get_database
+from app.core.demo_subset import get_demo_filter
+
+router = APIRouter(prefix="/api/vehicles", tags=["Vehicles"])
+
+@router.get("", response_model=List[dict])
+async def get_vehicles(limit: int = Query(50, ge=1, le=1000), skip: int = Query(0, ge=0)):
+    db = get_database()
+    query = {}
+    query.update(get_demo_filter("vehicles", "vehicle_id"))
+    cursor = db.vehicles.find(query, {"_id": 0}).skip(skip).limit(limit)
+    return await cursor.to_list(length=limit)

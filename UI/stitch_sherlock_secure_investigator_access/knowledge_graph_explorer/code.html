@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Knowledge Graph Explorer | SHERLOCK Intelligence Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "outline-variant": "#c3c6d7",
+                        "surface-container-highest": "#dce3ee",
+                        "surface-tint": "#0053db",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e9f4",
+                        "tertiary-container": "#bc4800",
+                        "surface-dim": "#d4dae5",
+                        "primary": "#004ac6",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#151c24",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dbe0ea",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-secondary-fixed": "#171c23",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-surface": "#151c24",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface": "#f7f9ff",
+                        "inverse-on-surface": "#eaf1fc",
+                        "secondary": "#5a5f67",
+                        "on-secondary-fixed-variant": "#42474f",
+                        "outline": "#737686",
+                        "primary-container": "#2563eb",
+                        "surface-container-low": "#eef4ff",
+                        "on-primary-container": "#eeefff",
+                        "background": "#f7f9ff",
+                        "inverse-surface": "#2a3139",
+                        "surface-container": "#e8eefa",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-tertiary-container": "#ffede6",
+                        "primary-fixed": "#dbe1ff",
+                        "secondary-fixed-dim": "#c2c7d0",
+                        "inverse-primary": "#b4c5ff",
+                        "on-secondary-container": "#5e636b",
+                        "on-primary-fixed": "#00174b",
+                        "surface-bright": "#f7f9ff",
+                        "secondary-fixed": "#dee2ec",
+                        "surface-variant": "#dce3ee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "unit": "4px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"],
+                        "headline-md-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "data-mono": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9ff; }
+        .node-circle {
+            transition: all 0.2s ease;
+        }
+        .node-circle:hover {
+            stroke: #2563eb;
+            stroke-width: 2px;
+            filter: drop-shadow(0px 0px 8px rgba(37, 99, 235, 0.4));
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen overflow-hidden flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="w-[240px] h-screen fixed left-0 top-0 bg-inverse-surface border-r border-outline-variant flex flex-col py-lg z-50">
+<div class="px-md mb-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container text-headline-md">shield</span>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-bold text-on-primary-container tracking-tight">SHERLOCK</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant opacity-70">Investigation Intel</span>
+</div>
+</div>
+<ul class="flex-1 overflow-y-auto space-y-xs px-sm">
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md text-body-md">Cases</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-md text-body-md">Entities</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-primary font-bold border-r-2 border-primary bg-surface-variant/10 opacity-90 transition-all" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="font-body-md text-body-md">Knowledge Graph</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">timeline</span>
+<span class="font-body-md text-body-md">Timeline</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-variant/10 hover:text-primary transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Evidence Vault</span>
+</a>
+</li>
+<!-- ... other tabs omitted for brevity, focusing on requested UI -->
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-[240px] flex-1 flex flex-col h-full relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="h-16 sticky top-0 z-40 bg-surface border-b border-outline-variant flex items-center justify-between px-lg">
+<div class="flex items-center gap-sm">
+<span class="font-headline-md text-headline-md font-bold text-on-background">Workspace</span>
+<div class="h-4 w-px bg-outline-variant mx-sm"></div>
+<div class="flex items-center text-on-surface-variant font-body-md text-body-md">
+<span class="hover:text-primary cursor-pointer transition-all">Intelligence Graph</span>
+<span class="material-symbols-outlined text-sm mx-xs">chevron_right</span>
+<span class="text-primary font-medium">Case #184</span>
+</div>
+</div>
+<div class="flex flex-1 max-w-md mx-lg">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-md pl-10 pr-4 py-2 text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search nodes, relationships, IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="ml-sm h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of an intelligence analyst in a modern office setting. Sharp focus, corporate lighting, minimalist background. 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChhQsuuImn1PSQ3nz4byRTVAfjC3th6yYQVzF1HgSjbO9hJkFsfVnw-WHMNW_zbaE9gBZEJUobRp_hTC--1d7g9YmvDOGUpfs2Rv4B_X_KsY9_jnZiis7ZWOzjT_E1ScBb3uNgff4HHnPqmnR1JEQRDkgsXJ25bf0u54_KegL84XrNM1sYb6o-uVBjL0WnTq3EBscxnC-gweAcLH_nzzEld5NgDLclbmlKmM5-I6aAn4VCPuFu5ABWYw"/>
+</div>
+</div>
+</header>
+<!-- Workspace Layout -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Graph Workspace (Center) -->
+<main class="flex-1 relative bg-surface-container-lowest overflow-hidden">
+<!-- Shader Background -->
+
+<!-- Graph SVG Mockup -->
+<svg class="absolute inset-0 w-full h-full" id="graph-canvas">
+<defs>
+<marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="25" refy="3.5">
+<polygon fill="#737686" points="0 0, 10 3.5, 0 7"></polygon>
+</marker>
+<marker id="arrowhead-highlight" markerheight="7" markerwidth="10" orient="auto" refx="25" refy="3.5">
+<polygon fill="#2563eb" points="0 0, 10 3.5, 0 7"></polygon>
+</marker>
+<filter height="140%" id="node-shadow" width="140%" x="-20%" y="-20%">
+<fedropshadow dx="0" dy="2" flood-color="#1C232B" flood-opacity="0.08" stddeviation="4"></fedropshadow>
+</filter>
+</defs>
+<!-- Edges -->
+<!-- Standard Edges -->
+<line marker-end="url(#arrowhead)" opacity="0.6" stroke="#737686" stroke-width="1.5" x1="300" x2="150" y1="300" y2="200"></line>
+<text fill="#434655" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0.05em" text-anchor="middle" transform="rotate(-33, 200, 240)" x="200" y="240">CONTACTED</text>
+<line marker-end="url(#arrowhead)" opacity="0.6" stroke="#737686" stroke-width="1.5" x1="300" x2="450" y1="300" y2="150"></line>
+<text fill="#434655" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0.05em" text-anchor="middle" transform="rotate(-45, 360, 210)" x="360" y="210">PART_OF_CASE</text>
+<!-- Highlighted Path -->
+<path d="M 300 300 Q 400 400 500 350" fill="none" marker-end="url(#arrowhead-highlight)" stroke="#2563eb" stroke-dasharray="4,4" stroke-width="2.5"></path>
+<text fill="#2563eb" font-family="Inter" font-size="10" font-weight="600" letter-spacing="0.05em" text-anchor="middle" x="400" y="380">TRANSFERRED_TO</text>
+<!-- Nodes -->
+<!-- Node 1: Rajesh Patil (Selected) -->
+<g class="cursor-pointer" transform="translate(300, 300)">
+<circle class="node-circle" cx="0" cy="0" fill="#ffffff" filter="url(#node-shadow)" r="24" stroke="#2563eb" stroke-width="2"></circle>
+<text fill="#2563eb" font-family="Material Symbols Outlined" font-size="20" text-anchor="middle" x="0" y="6">person</text>
+<rect fill="#ffffff" height="20" rx="4" stroke="#dce3ee" stroke-width="1" width="80" x="-40" y="30"></rect>
+<text fill="#151c24" font-family="Inter" font-size="12" font-weight="600" text-anchor="middle" x="0" y="44">Rajesh Patil</text>
+</g>
+<!-- Node 2: Phone -->
+<g class="cursor-pointer" transform="translate(150, 200)">
+<circle class="node-circle" cx="0" cy="0" fill="#ffffff" filter="url(#node-shadow)" r="20" stroke="#dce3ee" stroke-width="1"></circle>
+<text fill="#5a5f67" font-family="Material Symbols Outlined" font-size="18" text-anchor="middle" x="0" y="6">smartphone</text>
+<rect fill="#ffffff" height="18" rx="4" stroke="#dce3ee" stroke-width="1" width="90" x="-45" y="26"></rect>
+<text fill="#434655" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="0" y="39">+91 98200 12345</text>
+</g>
+<!-- Node 3: Case -->
+<g class="cursor-pointer" transform="translate(450, 150)">
+<circle class="node-circle" cx="0" cy="0" fill="#ffffff" filter="url(#node-shadow)" r="20" stroke="#dce3ee" stroke-width="1"></circle>
+<text fill="#bc4800" font-family="Material Symbols Outlined" font-size="18" text-anchor="middle" x="0" y="6">folder_open</text>
+<rect fill="#ffffff" height="18" rx="4" stroke="#dce3ee" stroke-width="1" width="70" x="-35" y="26"></rect>
+<text fill="#151c24" font-family="Inter" font-size="10" font-weight="600" text-anchor="middle" x="0" y="39">Case #184</text>
+</g>
+<!-- Node 4: Account (Highlighted Path) -->
+<g class="cursor-pointer" transform="translate(500, 350)">
+<circle class="node-circle" cx="0" cy="0" fill="#ffffff" filter="url(#node-shadow)" r="20" stroke="#2563eb" stroke-width="1.5"></circle>
+<text fill="#2563eb" font-family="Material Symbols Outlined" font-size="18" text-anchor="middle" x="0" y="6">account_balance</text>
+<rect fill="#ffffff" height="18" rx="4" stroke="#dce3ee" stroke-width="1" width="90" x="-45" y="26"></rect>
+<text fill="#151c24" font-family="JetBrains Mono" font-size="10" text-anchor="middle" x="0" y="39">HDFC-0982734</text>
+</g>
+</svg>
+<!-- Floating Controls -->
+<div class="absolute bottom-lg left-lg flex flex-col gap-sm bg-surface rounded-lg shadow-[0_4px_12px_rgba(28,35,43,0.08)] border border-outline-variant p-1">
+<button class="p-2 text-on-surface hover:text-primary rounded hover:bg-surface-variant transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+<button class="p-2 text-on-surface hover:text-primary rounded hover:bg-surface-variant transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<div class="w-full h-px bg-outline-variant my-1"></div>
+<button class="p-2 text-on-surface hover:text-primary rounded hover:bg-surface-variant transition-colors" title="Re-center">
+<span class="material-symbols-outlined text-sm">my_location</span>
+</button>
+</div>
+<div class="absolute top-lg right-lg flex gap-sm bg-surface rounded-lg shadow-[0_4px_12px_rgba(28,35,43,0.08)] border border-outline-variant p-1">
+<button class="px-3 py-1.5 flex items-center gap-xs text-on-surface hover:text-primary rounded hover:bg-surface-variant transition-colors font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Labels
+                    </button>
+<div class="w-px h-full bg-outline-variant mx-1"></div>
+<button class="px-3 py-1.5 flex items-center gap-xs text-primary font-bold rounded bg-primary-fixed-dim/20 transition-colors font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[16px]">route</span> Path
+                    </button>
+</div>
+</main>
+<!-- Right Sidebar (Node Inspector) -->
+<aside class="w-[320px] bg-surface border-l border-outline-variant flex flex-col h-full shadow-[-4px_0_12px_rgba(28,35,43,0.03)] z-10">
+<div class="p-md border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A passport style photo of an adult male. Neutral expression, professional attire. Studio lighting, clean white background. High resolution, clear facial features." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACBobyHnmQemkxjarb-Oepo6Vt_DBxwZcPBzSYogdCtD3Nct337zTWUftS9mc1g-6PzlryWElui5kfrC73Qn6sKMZm3Y50iRkcaQPcXkx-DHFUhostwCs4GFve2AnkWt16TZDh0kXBGBKTcL-dBmu9gIrnaVcGrEFPim0R4yAwBPrXQasI2ITU1M3xD2Yh3XX-xvoyS5bkKlSykm5q3oUQZqItuEdpzSxz0iLo2dqSZT9U4IfstMKaxg"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-background">Rajesh Patil</h3>
+<div class="flex items-center gap-xs mt-1">
+<span class="px-2 py-0.5 bg-primary-container/10 text-primary rounded-full font-label-caps text-[10px]">PERSON</span>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div class="bg-surface-container-high rounded p-2 border border-outline-variant/50">
+<div class="font-label-caps text-[10px] text-on-surface-variant mb-1">ID</div>
+<div class="font-data-mono text-data-mono text-on-background">P-8923-B</div>
+</div>
+<div class="bg-surface-container-high rounded p-2 border border-outline-variant/50">
+<div class="font-label-caps text-[10px] text-on-surface-variant mb-1">CONFIDENCE</div>
+<div class="font-data-mono text-data-mono text-on-background flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span> 94%
+                            </div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary-container text-on-primary py-2 rounded font-label-caps text-label-caps hover:bg-surface-tint transition-colors text-center">
+                            Dossier
+                        </button>
+<button class="flex-1 bg-surface-container-lowest border border-outline-variant text-on-background py-2 rounded font-label-caps text-label-caps hover:border-primary transition-colors text-center">
+                            Pivot
+                        </button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-md">
+<!-- Stats Section -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm border-b border-outline-variant pb-1">SUMMARY</h4>
+<div class="space-y-2">
+<div class="flex justify-between items-center py-1">
+<span class="font-body-md text-body-md text-on-surface">Cases</span>
+<span class="font-data-mono text-data-mono font-medium">4</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-md text-body-md text-on-surface">Relationships</span>
+<span class="font-data-mono text-data-mono font-medium">89</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="font-body-md text-body-md text-on-surface">Evidence Items</span>
+<span class="font-data-mono text-data-mono font-medium">12</span>
+</div>
+</div>
+</div>
+<!-- Connections Section -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm border-b border-outline-variant pb-1">KEY CONNECTIONS</h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-3 p-2 hover:bg-surface-container-highest rounded-md cursor-pointer transition-colors border border-transparent hover:border-outline-variant/50">
+<div class="w-8 h-8 rounded-full bg-surface-dim flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">account_balance</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-md text-body-md font-medium text-on-background truncate">HDFC-0982734</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">TRANSFERRED_TO</div>
+</div>
+</li>
+<li class="flex items-center gap-3 p-2 hover:bg-surface-container-highest rounded-md cursor-pointer transition-colors border border-transparent hover:border-outline-variant/50">
+<div class="w-8 h-8 rounded-full bg-surface-dim flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-md text-body-md font-medium text-on-background truncate">Amit Shah</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">KNOWN_ASSOCIATE</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</body></html>
