@@ -1,3 +1,4 @@
+import asyncio
 from typing import List, Optional
 from fastapi import APIRouter, Query
 from app.db.mongodb import get_database
@@ -12,40 +13,70 @@ async def get_analytics_summary(case_id: Optional[str] = None):
     cid_str = case_id if isinstance(case_id, str) and case_id.strip() else None
 
     if is_demo_enabled():
-        cases_cnt = await db.cases.count_documents(get_demo_filter("cases", "case_id"))
-        persons_cnt = await db.persons.count_documents(get_demo_filter("persons", "person_id"))
-        orgs_cnt = await db.organizations.count_documents(get_demo_filter("organizations", "organization_id"))
-        phones_cnt = await db.phones.count_documents(get_demo_filter("phones", "phone_id"))
-        accounts_cnt = await db.accounts.count_documents(get_demo_filter("accounts", "account_id"))
-        vehicles_cnt = await db.vehicles.count_documents(get_demo_filter("vehicles", "vehicle_id"))
-        evidence_cnt = await db.evidence.count_documents(get_demo_filter("evidence", "evidence_id"))
-        cdrs_cnt = await db.cdrs.count_documents(get_demo_filter("cdrs", "cdr_id"))
-        txns_cnt = await db.transactions.count_documents(get_demo_filter("transactions", "transaction_id"))
-        events_cnt = await db.events.count_documents(get_demo_filter("events", "event_id"))
-        rels_cnt = await db.relationships.count_documents(get_demo_filter("relationships", "relationship_id"))
-
         crit_q = {"$and": [get_demo_filter("cases", "case_id"), {"$or": [{"severity": "CRITICAL"}, {"priority": "CRITICAL"}]}]}
-        critical_cases = await db.cases.count_documents(crit_q)
+        (
+            cases_cnt,
+            persons_cnt,
+            orgs_cnt,
+            phones_cnt,
+            accounts_cnt,
+            vehicles_cnt,
+            evidence_cnt,
+            cdrs_cnt,
+            txns_cnt,
+            events_cnt,
+            rels_cnt,
+            critical_cases,
+            anoms
+        ) = await asyncio.gather(
+            db.cases.count_documents(get_demo_filter("cases", "case_id")),
+            db.persons.count_documents(get_demo_filter("persons", "person_id")),
+            db.organizations.count_documents(get_demo_filter("organizations", "organization_id")),
+            db.phones.count_documents(get_demo_filter("phones", "phone_id")),
+            db.accounts.count_documents(get_demo_filter("accounts", "account_id")),
+            db.vehicles.count_documents(get_demo_filter("vehicles", "vehicle_id")),
+            db.evidence.count_documents(get_demo_filter("evidence", "evidence_id")),
+            db.cdrs.count_documents(get_demo_filter("cdrs", "cdr_id")),
+            db.transactions.count_documents(get_demo_filter("transactions", "transaction_id")),
+            db.events.count_documents(get_demo_filter("events", "event_id")),
+            db.relationships.count_documents(get_demo_filter("relationships", "relationship_id")),
+            db.cases.count_documents(crit_q),
+            get_scoped_anomalies(case_id=cid_str, limit=200)
+        )
     else:
-        cases_cnt = await db.cases.count_documents({})
-        persons_cnt = await db.persons.count_documents({})
-        orgs_cnt = await db.organizations.count_documents({})
-        phones_cnt = await db.phones.count_documents({})
-        accounts_cnt = await db.accounts.count_documents({})
-        vehicles_cnt = await db.vehicles.count_documents({})
-        evidence_cnt = await db.evidence.count_documents({})
-        cdrs_cnt = await db.cdrs.count_documents({})
-        txns_cnt = await db.transactions.count_documents({})
-        events_cnt = await db.events.count_documents({})
-        rels_cnt = await db.relationships.count_documents({})
-
-        critical_cases = await db.cases.count_documents({"$or": [{"severity": "CRITICAL"}, {"priority": "CRITICAL"}]})
+        crit_q = {"$or": [{"severity": "CRITICAL"}, {"priority": "CRITICAL"}]}
+        (
+            cases_cnt,
+            persons_cnt,
+            orgs_cnt,
+            phones_cnt,
+            accounts_cnt,
+            vehicles_cnt,
+            evidence_cnt,
+            cdrs_cnt,
+            txns_cnt,
+            events_cnt,
+            rels_cnt,
+            critical_cases,
+            anoms
+        ) = await asyncio.gather(
+            db.cases.count_documents({}),
+            db.persons.count_documents({}),
+            db.organizations.count_documents({}),
+            db.phones.count_documents({}),
+            db.accounts.count_documents({}),
+            db.vehicles.count_documents({}),
+            db.evidence.count_documents({}),
+            db.cdrs.count_documents({}),
+            db.transactions.count_documents({}),
+            db.events.count_documents({}),
+            db.relationships.count_documents({}),
+            db.cases.count_documents(crit_q),
+            get_scoped_anomalies(case_id=cid_str, limit=200)
+        )
 
     entities_total = persons_cnt + orgs_cnt + phones_cnt + accounts_cnt + vehicles_cnt
     total_records = cases_cnt + entities_total + evidence_cnt + cdrs_cnt + txns_cnt + events_cnt + rels_cnt
-
-    # Dynamic anomalies count from un-scoped demo subset or case-scoped subset
-    anoms = await get_scoped_anomalies(case_id=cid_str, limit=200)
 
     return {
         "totalRecords": total_records if not cid_str else (len(anoms) + 1),
