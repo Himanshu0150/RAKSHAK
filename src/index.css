@@ -13,19 +13,24 @@
 
 @layer base {
   :root {
-    --color-bg-base: #F8FAFC;
+    --color-bg-base: #F8F7F3;
     --color-bg-surface: #FFFFFF;
-    --color-bg-elevated: #F1F5F9;
-    --color-sidebar-bg: #0F172A;
-    --color-sidebar-hover: #1E293B;
-    --color-sidebar-active: #2563EB;
-    --color-border-subtle: #E2E8F0;
-    --color-border-strong: #CBD5E1;
-    --color-text-primary: #0F172A;
-    --color-text-secondary: #475569;
-    --color-text-muted: #94A3B8;
-    --color-primary: #2563EB;
-    --color-primary-hover: #1D4ED8;
+    --color-bg-elevated: #F8F7F3;
+    --color-sidebar-bg: #202833;
+    --color-sidebar-hover: #303945;
+    --color-sidebar-active: #303945;
+    --color-sidebar-text: #FFFFFF;
+    --color-sidebar-secondary: #B8BEC7;
+    --color-sidebar-active-text: #EAE0C8;
+    --color-border-subtle: #E4E5E7;
+    --color-border-strong: #E4E5E7;
+    --color-text-primary: #17191F;
+    --color-text-secondary: #667085;
+    --color-text-muted: #667085;
+    --color-primary: #283593;
+    --color-primary-hover: #202833;
+    --color-accent: #B56A45;
+    --color-pearl: #EAE0C8;
     --color-accent-green: #10B981;
     --color-accent-amber: #D97706;
     --color-accent-red: #DC2626;
@@ -51,13 +56,13 @@
 /* Subtle background grid pattern */
 .tactical-grid-bg {
   background-color: var(--color-bg-base);
-  background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+  background-image: radial-gradient(#E4E5E7 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .tactical-grid-dark {
-  background-color: #0F172A;
-  background-image: radial-gradient(#334155 1px, transparent 1px);
+  background-color: #202833;
+  background-image: radial-gradient(#303945 1px, transparent 1px);
   background-size: 24px 24px;
 }
 

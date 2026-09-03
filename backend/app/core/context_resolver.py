@@ -49,6 +49,14 @@ class ResolvedContext:
         }
 
 
+def _in_demo_set(collection: str, item_id: str) -> bool:
+    if not item_id:
+        return False
+    s = get_demo_id_set(collection)
+    if s is None:
+        return True
+    return item_id in s
+
 def _filter_by_demo(entity_id: str, demo_enabled: bool) -> bool:
     if not demo_enabled:
         return True
@@ -56,21 +64,21 @@ def _filter_by_demo(entity_id: str, demo_enabled: bool) -> bool:
         return False
     u = entity_id.upper()
     if u.startswith("PERSON"):
-        return entity_id in get_demo_id_set("persons")
+        return _in_demo_set("persons", entity_id)
     if u.startswith("PHONE"):
-        return entity_id in get_demo_id_set("phones")
+        return _in_demo_set("phones", entity_id)
     if u.startswith("ACCT"):
-        return entity_id in get_demo_id_set("accounts")
+        return _in_demo_set("accounts", entity_id)
     if u.startswith("VEH"):
-        return entity_id in get_demo_id_set("vehicles")
+        return _in_demo_set("vehicles", entity_id)
     if u.startswith("DEVICE"):
-        return entity_id in get_demo_id_set("devices")
+        return _in_demo_set("devices", entity_id)
     if u.startswith("ORG"):
-        return entity_id in get_demo_id_set("organizations")
+        return _in_demo_set("organizations", entity_id)
     if u.startswith("CASE"):
-        return entity_id in get_demo_id_set("cases")
+        return _in_demo_set("cases", entity_id)
     if u.startswith("LOC"):
-        return entity_id in get_demo_id_set("locations")
+        return _in_demo_set("locations", entity_id)
     return True
 
 
@@ -131,13 +139,13 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
         for r in rels:
             rid = r.get("relationship_id")
             if rid:
-                if not demo_on or rid in get_demo_id_set("relationships"):
+                if not demo_on or _in_demo_set("relationships", rid):
                     ctx.relationship_ids.add(rid)
             if r.get("case_id"):
-                if not demo_on or r["case_id"] in get_demo_id_set("cases"):
+                if not demo_on or _in_demo_set("cases", r["case_id"]):
                     ctx.case_ids.add(r["case_id"])
             if r.get("evidence_id"):
-                if not demo_on or r["evidence_id"] in get_demo_id_set("evidence"):
+                if not demo_on or _in_demo_set("evidence", r["evidence_id"]):
                     ctx.evidence_ids.add(r["evidence_id"])
             for f in ("source_entity_id", "target_entity_id"):
                 v = r.get(f)
@@ -164,10 +172,10 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
         for ev in evis:
             eid = ev.get("evidence_id")
             if eid:
-                if not demo_on or eid in get_demo_id_set("evidence"):
+                if not demo_on or _in_demo_set("evidence", eid):
                     ctx.evidence_ids.add(eid)
             if ev.get("case_id"):
-                if not demo_on or ev["case_id"] in get_demo_id_set("cases"):
+                if not demo_on or _in_demo_set("cases", ev["case_id"]):
                     ctx.case_ids.add(ev["case_id"])
             for f in ("person_id", "related_person_id"):
                 pid = ev.get(f)
@@ -193,13 +201,13 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
         for e in evts:
             ev_id = e.get("event_id")
             if ev_id:
-                if not demo_on or ev_id in get_demo_id_set("events"):
+                if not demo_on or _in_demo_set("events", ev_id):
                     ctx.event_ids.add(ev_id)
             if e.get("case_id"):
-                if not demo_on or e["case_id"] in get_demo_id_set("cases"):
+                if not demo_on or _in_demo_set("cases", e["case_id"]):
                     ctx.case_ids.add(e["case_id"])
             if e.get("evidence_id"):
-                if not demo_on or e["evidence_id"] in get_demo_id_set("evidence"):
+                if not demo_on or _in_demo_set("evidence", e["evidence_id"]):
                     ctx.evidence_ids.add(e["evidence_id"])
             for f in ("person_id", "phone_id", "vehicle_id", "location_id"):
                 v = e.get(f)
@@ -248,7 +256,7 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
 
         for r in hop2_rels:
             rid = r.get("relationship_id")
-            if rid and (not demo_on or rid in get_demo_id_set("relationships")):
+            if rid and (not demo_on or _in_demo_set("relationships", rid)):
                 ctx.relationship_ids.add(rid)
             for f in ("source_entity_id", "target_entity_id"):
                 v = r.get(f)

@@ -115,12 +115,15 @@ export async function fetchHealthStatus() {
   }
 }
 
-export async function fetchAnalyticsSummary() {
+export async function fetchAnalyticsSummary(caseId?: string, signal?: AbortSignal) {
   try {
-    const res = await fetch(`${API_BASE}/analytics/summary`);
+    let url = `${API_BASE}/analytics/summary`;
+    if (caseId) url += `?case_id=${encodeURIComponent(caseId)}`;
+    const res = await fetch(url, { signal });
     if (!res.ok) throw new Error(`Analytics fetch failed: ${res.statusText}`);
     return await res.json();
-  } catch (err) {
+  } catch (err: any) {
+    if (err?.name === 'AbortError') return null;
     console.error('Failed to fetch real analytics summary:', err);
     return null;
   }
@@ -210,11 +213,12 @@ export async function fetchEvidenceList(limit = 100, caseId?: string, evidenceTy
   }
 }
 
-export async function fetchGraphTopology(limit = 150, focusId?: string, caseId?: string, signal?: AbortSignal) {
+export async function fetchGraphTopology(limit = 150, focusId?: string, caseId?: string, relationType?: string, signal?: AbortSignal) {
   try {
     let url = `${API_BASE}/graph/topology?limit=${limit}`;
     if (focusId) url += `&focus_id=${encodeURIComponent(focusId)}`;
     if (caseId) url += `&case_id=${encodeURIComponent(caseId)}`;
+    if (relationType && relationType !== 'ALL') url += `&type=${encodeURIComponent(relationType)}`;
     const res = await fetch(url, { signal });
     if (!res.ok) throw new Error(`Graph topology fetch failed: ${res.statusText}`);
     return await res.json();
@@ -222,6 +226,45 @@ export async function fetchGraphTopology(limit = 150, focusId?: string, caseId?:
     if (err.name === 'AbortError') return { nodes: [], edges: [], totalNodes: 0, totalEdges: 0 };
     console.error('Failed to fetch graph topology:', err);
     return { nodes: [], edges: [], totalNodes: 0, totalEdges: 0 };
+  }
+}
+
+export async function fetchCaseRelatedPersons(caseId?: string, focusId?: string, signal?: AbortSignal): Promise<Array<{ id: string; person_id: string; name: string; displayName: string; role?: string }>> {
+  try {
+    let url = `${API_BASE}/graph/persons`;
+    const params = new URLSearchParams();
+    if (caseId) params.append('case_id', caseId);
+    if (focusId) params.append('focus_id', focusId);
+    if (params.toString()) url += `?${params.toString()}`;
+
+    const res = await fetch(url, { signal });
+    if (!res.ok) throw new Error(`Fetch case persons failed: ${res.statusText}`);
+    return await res.json();
+  } catch (err: any) {
+    if (err.name === 'AbortError') return [];
+    console.error('Failed to fetch case related persons:', err);
+    return [];
+  }
+}
+
+export async function traceGraphPath(sourcePersonId: string, targetPersonId: string, caseId?: string, signal?: AbortSignal) {
+  try {
+    const res = await fetch(`${API_BASE}/graph/trace`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source_person_id: sourcePersonId,
+        target_person_id: targetPersonId,
+        case_id: caseId
+      }),
+      signal
+    });
+    if (!res.ok) throw new Error(`Graph trace failed: ${res.statusText}`);
+    return await res.json();
+  } catch (err: any) {
+    if (err.name === 'AbortError') return null;
+    console.error('Failed to trace graph path:', err);
+    return { found: false, message: 'No verified relationship path found for this case.', pathNodeIds: [], pathNodes: [], pathLinks: [] };
   }
 }
 

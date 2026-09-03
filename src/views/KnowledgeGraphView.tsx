@@ -39,7 +39,7 @@ import {
   findShortestPathWithEvidence
 } from '../services/graphEngine';
 import { Entity, Relationship } from '../types/investigation';
-import { fetchGraphTopology, fetchEntityDossier } from '../services/apiService';
+import { fetchGraphTopology, fetchEntityDossier, fetchCaseRelatedPersons, traceGraphPath } from '../services/apiService';
 
 interface KnowledgeGraphViewProps {
   dataset: InvestigationDataset;
@@ -73,9 +73,10 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
 
   const [highlightBridges, setHighlightBridges] = useState<boolean>(false);
   const [colorByCommunity, setColorByCommunity] = useState<boolean>(false);
+  const [selectedRelationType, setSelectedRelationType] = useState<string>('ALL');
   
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(
-    focusedEntityId || dataset.entities[0]?.id || 'PERSON-000001'
+    focusedEntityId || null
   );
   
   const [graphData, setGraphData] = useState<{ nodes: Entity[]; relationships: Relationship[] }>({
@@ -91,7 +92,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     }
   }, [focusedEntityId]);
 
-  // Dynamic API fetch whenever focus_id / selectedNodeId / selectedCaseId changes
+  // Dynamic API fetch whenever focus_id / selectedNodeId / selectedCaseId / selectedRelationType changes
   useEffect(() => {
     const controller = new AbortController();
     setIsLoadingGraph(true);
@@ -101,7 +102,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     setDossierData(null);
 
     Promise.all([
-      fetchGraphTopology(150, selectedNodeId || undefined, selectedCaseId || undefined, controller.signal),
+      fetchGraphTopology(150, selectedNodeId || undefined, selectedCaseId || undefined, selectedRelationType !== 'ALL' ? selectedRelationType : undefined, controller.signal),
       selectedNodeId ? fetchEntityDossier(selectedNodeId, selectedCaseId || undefined, controller.signal) : Promise.resolve(null)
     ]).then(([topologyRes, dossierRes]) => {
       if (controller.signal.aborted) return;
@@ -143,23 +144,100 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     return () => {
       controller.abort();
     };
-  }, [selectedNodeId, selectedCaseId]);
+  }, [selectedNodeId, selectedCaseId, selectedRelationType]);
 
-  // Active dataset for D3 graph
+  // Available relation types extracted dynamically
+  const availableRelationTypes = useMemo(() => {
+    const typesSet = new Set<string>();
+    graphData.relationships.forEach(r => {
+      const t = r.relationType || (r as any).type || (r as any).relationship_type;
+      if (t) typesSet.add(t.toUpperCase());
+    });
+    ['CALLED', 'TRANSFERRED_FUNDS', 'ASSOCIATE_OF', 'MEMBER_OF', 'SIGHTED_AT', 'OWNER_OF', 'FAMILY'].forEach(t => typesSet.add(t));
+    return Array.from(typesSet).sort();
+  }, [graphData.relationships]);
+
+  // Active dataset for D3 graph - strictly from real API response (Requirements 1, 2, 4, 15)
   const activeEntities = useMemo(() => {
-    if (graphData.nodes.length > 0) return graphData.nodes;
-    return dataset.entities || [];
-  }, [graphData.nodes, dataset.entities]);
+    return graphData.nodes;
+  }, [graphData.nodes]);
 
   const activeRelationships = useMemo(() => {
-    if (graphData.nodes.length > 0) return graphData.relationships;
-    return dataset.relationships || [];
-  }, [graphData.nodes, graphData.relationships, dataset.relationships]);
+    const rawRels = graphData.relationships;
+    if (!selectedRelationType || selectedRelationType === 'ALL') return rawRels;
+    return rawRels.filter(r => {
+      const t = (r.relationType || (r as any).type || (r as any).relationship_type || '').toUpperCase();
+      return t === selectedRelationType.toUpperCase();
+    });
+  }, [graphData.relationships, selectedRelationType]);
 
-  // Pathfinding state
-  const [pathSourceId, setPathSourceId] = useState<string>(activeEntities[0]?.id || 'PERSON-000001');
-  const [pathTargetId, setPathTargetId] = useState<string>(activeEntities[1]?.id || 'PERSON-000047');
+  // Case-Scoped Persons State (Requirements 1-13)
+  const [casePersons, setCasePersons] = useState<Array<{ id: string; person_id: string; name: string; displayName: string }>>([]);
+  const [pathSourceId, setPathSourceId] = useState<string>('');
+  const [pathTargetId, setPathTargetId] = useState<string>('');
   const [activePath, setActivePath] = useState<{ pathNodeIds: string[]; pathLinks: Relationship[] } | null>(null);
+  const [isTracing, setIsTracing] = useState<boolean>(false);
+  const [traceStatusMessage, setTraceStatusMessage] = useState<string | null>(null);
+
+  // Target person options MUST exclude the currently selected pathSourceId (Requirement 7)
+  const targetOptions = useMemo(() => {
+    if (!pathSourceId) return casePersons;
+    return casePersons.filter(p => p.id !== pathSourceId);
+  }, [casePersons, pathSourceId]);
+
+  // Immediate reset when selectedCaseId changes (Requirement 10, 12)
+  const prevCaseIdRef = useRef<string | null>(selectedCaseId || null);
+
+  useEffect(() => {
+    if (prevCaseIdRef.current !== selectedCaseId) {
+      prevCaseIdRef.current = selectedCaseId || null;
+      setSelectedNodeId(null);
+      setPathSourceId('');
+      setPathTargetId('');
+      setActivePath(null);
+      setTraceStatusMessage(null);
+      setCasePersons([]);
+      setGraphData({ nodes: [], relationships: [] });
+    }
+  }, [selectedCaseId]);
+
+  // Fetch case/person-scoped related persons from real MongoDB relationships (Requirements 1-13)
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchCaseRelatedPersons(selectedCaseId || undefined, selectedNodeId || undefined, controller.signal)
+      .then(personsList => {
+        if (controller.signal.aborted) return;
+        setCasePersons(personsList);
+
+        if (personsList.length > 0) {
+          const isSelectedValid = selectedNodeId && personsList.some(p => p.id === selectedNodeId);
+          if (!isSelectedValid) {
+            setSelectedNodeId(personsList[0].id);
+          }
+
+          const srcId = pathSourceId && personsList.some(p => p.id === pathSourceId) ? pathSourceId : personsList[0].id;
+          setPathSourceId(srcId);
+
+          const validTargets = personsList.filter(p => p.id !== srcId);
+          const tgtId = pathTargetId && validTargets.some(p => p.id === pathTargetId) ? pathTargetId : (validTargets[0]?.id || '');
+          setPathTargetId(tgtId);
+        } else {
+          setPathSourceId('');
+          setPathTargetId('');
+        }
+      })
+      .catch(err => {
+        if (!controller.signal.aborted) {
+          console.error('Error fetching case related persons:', err);
+          setCasePersons([]);
+          setPathSourceId('');
+          setPathTargetId('');
+          setActivePath(null);
+        }
+      });
+
+    return () => controller.abort();
+  }, [selectedCaseId, selectedNodeId]);
 
   // Zoom reference
   const zoomRef = useRef<any>(null);
@@ -180,17 +258,36 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
       } : null);
   }, [activeEntities, selectedNodeId, dossierData]);
 
-  // Find Path handler
-  const handleFindPath = () => {
+  // Real Backend Path Trace Handler (Requirement 5, 6, 7, 8, 9, 10)
+  const handleFindPath = async () => {
     if (!pathSourceId || !pathTargetId) return;
-    const result = findShortestPathWithEvidence(activeEntities, activeRelationships, pathSourceId, pathTargetId);
-    if (result) {
-      setActivePath({
-        pathNodeIds: result.pathNodeIds,
-        pathLinks: result.pathLinks
-      });
-    } else {
+    setIsTracing(true);
+    setTraceStatusMessage(null);
+
+    try {
+      const res = await traceGraphPath(pathSourceId, pathTargetId, selectedCaseId || undefined);
+      if (res && res.found) {
+        setActivePath({
+          pathNodeIds: res.pathNodeIds || [],
+          pathLinks: (res.pathLinks || []).map((l: any) => ({
+            id: l.id,
+            source: l.source,
+            target: l.target,
+            relationType: l.relationType || 'LINKED',
+            confidence: l.confidence || 0.95
+          }))
+        });
+        setTraceStatusMessage(null);
+      } else {
+        setActivePath(null);
+        // Requirement 8: "No verified relationship path found for this case."
+        setTraceStatusMessage(res?.message || 'No verified relationship path found for this case.');
+      }
+    } catch (err) {
       setActivePath(null);
+      setTraceStatusMessage('No verified relationship path found for this case.');
+    } finally {
+      setIsTracing(false);
     }
   };
 
@@ -503,13 +600,33 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
               onChange={(e) => setSelectedNodeId(e.target.value)}
               className="bg-transparent font-bold text-blue-600 focus:outline-none text-xs"
             >
-              {['PERSON-000001', 'PERSON-000047', 'PERSON-000009', ...(dataset.entities || []).map(e => e.id)]
-                .filter((v, i, a) => a.indexOf(v) === i)
-                .map(id => (
-                  <option key={id} value={id}>
-                    {id}
+              {casePersons.length > 0 ? (
+                casePersons.map(p => (
+                  <option key={p.id} value={p.id}>
+                    {p.displayName || `${p.name} — ${p.id}`}
                   </option>
-                ))}
+                ))
+              ) : (
+                <option value="">No related persons</option>
+              )}
+            </select>
+          </div>
+
+          {/* Relationship Type Filter Dropdown */}
+          <div className="flex items-center gap-1.5 bg-white border border-slate-300 px-2.5 py-1 rounded-lg text-xs font-mono">
+            <Filter className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+            <span className="text-slate-500 font-sans text-[11px]">Rel Type:</span>
+            <select
+              value={selectedRelationType}
+              onChange={(e) => setSelectedRelationType(e.target.value)}
+              className="bg-transparent font-bold text-blue-600 focus:outline-none text-xs"
+            >
+              <option value="ALL">All Relationships</option>
+              {availableRelationTypes.map(type => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -581,34 +698,76 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
             </div>
 
             {/* Path Tracing Quick Action in Top Right */}
-            <div className="absolute top-3 right-3 z-10 hidden sm:flex items-center gap-2 bg-white/90 backdrop-blur-xs px-2 py-1 rounded-lg border border-slate-300 shadow-sm text-xs font-mono">
-              <span className="text-slate-500 text-[10px] uppercase">Path:</span>
-              <select
-                value={pathSourceId}
-                onChange={(e) => setPathSourceId(e.target.value)}
-                className="py-0.5 px-1 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800"
-              >
-                {(activeEntities || []).slice(0, 8).map(e => (
-                  <option key={e.id} value={e.id}>{e.name}</option>
-                ))}
-              </select>
-              <span className="text-slate-400">➔</span>
-              <select
-                value={pathTargetId}
-                onChange={(e) => setPathTargetId(e.target.value)}
-                className="py-0.5 px-1 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800"
-              >
-                {(activeEntities || []).slice(0, 8).map(e => (
-                  <option key={e.id} value={e.id}>{e.name}</option>
-                ))}
-              </select>
-              <button
-                onClick={handleFindPath}
-                className="px-2 py-0.5 bg-blue-600 hover:bg-blue-500 text-white rounded text-[10px] font-bold"
-              >
-                Trace
-              </button>
+            <div className="absolute top-3 right-3 z-10 hidden sm:flex flex-col items-end gap-1.5">
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs px-2.5 py-1.5 rounded-lg border border-slate-300 shadow-sm text-xs font-mono">
+                <span className="text-slate-500 text-[10px] uppercase font-semibold">Path:</span>
+                <select
+                  value={pathSourceId}
+                  onChange={(e) => {
+                    setPathSourceId(e.target.value);
+                    setTraceStatusMessage(null);
+                  }}
+                  className="py-0.5 px-1.5 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800 max-w-[150px] truncate focus:outline-none font-sans"
+                >
+                  {casePersons.length > 0 ? (
+                    casePersons.map(p => (
+                      <option key={p.id} value={p.id}>{p.displayName || `${p.name} — ${p.id}`}</option>
+                    ))
+                  ) : (
+                    <option value="">No verified person connections found for this case.</option>
+                  )}
+                </select>
+                <span className="text-slate-400">➔</span>
+                <select
+                  value={pathTargetId}
+                  onChange={(e) => {
+                    setPathTargetId(e.target.value);
+                    setTraceStatusMessage(null);
+                  }}
+                  className="py-0.5 px-1.5 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800 max-w-[150px] truncate focus:outline-none font-sans"
+                >
+                  {targetOptions.length > 0 ? (
+                    targetOptions.map(p => (
+                      <option key={p.id} value={p.id}>{p.displayName || `${p.name} — ${p.id}`}</option>
+                    ))
+                  ) : (
+                    <option value="">No valid target</option>
+                  )}
+                </select>
+                <button
+                  onClick={handleFindPath}
+                  disabled={isTracing || !pathSourceId || !pathTargetId || pathSourceId === pathTargetId}
+                  className="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white rounded text-[11px] font-bold transition-colors flex items-center gap-1 font-sans cursor-pointer disabled:cursor-not-allowed"
+                >
+                  {isTracing ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Trace'}
+                </button>
+              </div>
+
+              {/* Empty state message when no verified connections exist */}
+              {casePersons.length === 0 && !traceStatusMessage && (
+                <div className="px-3 py-1 bg-slate-100 border border-slate-300 text-slate-600 rounded-lg text-[11px] font-sans shadow-sm flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <span>No verified person connections found for this case.</span>
+                </div>
+              )}
+
+              {/* Requirement 8: Empty state message if no path found */}
+              {traceStatusMessage && (
+                <div className="px-3 py-1.5 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-sans shadow-sm flex items-center gap-1.5 animate-in fade-in">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                  <span>{traceStatusMessage}</span>
+                </div>
+              )}
             </div>
+
+            {/* Empty state overlay when no topology edges/nodes exist for selected case */}
+            {!isLoadingGraph && activeEntities.length === 0 && (
+              <div className="absolute inset-0 bg-slate-50 flex flex-col items-center justify-center gap-2 z-10 text-slate-500 font-sans">
+                <Info className="w-8 h-8 text-slate-400" />
+                <span className="text-sm font-semibold">No verified network topology relationships found for this case.</span>
+                <span className="text-xs text-slate-400 font-mono">Graph nodes and edges are derived directly from real MongoDB records.</span>
+              </div>
+            )}
 
             <svg ref={svgRef} className="w-full h-[580px] block" />
 
