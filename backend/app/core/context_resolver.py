@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from typing import Dict, List, Optional, Set, Tuple, Any
 from app.db.mongodb import get_database
@@ -121,7 +122,7 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
     if entity_id:
         add_entity(entity_id)
 
-    # Step 2: Traverse Relationships
+    # Steps 2, 3, 4: Build queries for Relationships, Evidence, Events
     rel_or_list = []
     if case_id:
         rel_or_list.append({"case_id": case_id})
@@ -130,29 +131,6 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
         rel_or_list.append({"source_entity_id": {"$in": entity_list}})
         rel_or_list.append({"target_entity_id": {"$in": entity_list}})
 
-    if rel_or_list:
-        rel_query = {"$or": rel_or_list}
-        if demo_on:
-            rel_query = {"$and": [rel_query, get_demo_filter("relationships", "relationship_id")]}
-
-        rels = await db.relationships.find(rel_query, {"_id": 0}).to_list(length=500)
-        for r in rels:
-            rid = r.get("relationship_id")
-            if rid:
-                if not demo_on or _in_demo_set("relationships", rid):
-                    ctx.relationship_ids.add(rid)
-            if r.get("case_id"):
-                if not demo_on or _in_demo_set("cases", r["case_id"]):
-                    ctx.case_ids.add(r["case_id"])
-            if r.get("evidence_id"):
-                if not demo_on or _in_demo_set("evidence", r["evidence_id"]):
-                    ctx.evidence_ids.add(r["evidence_id"])
-            for f in ("source_entity_id", "target_entity_id"):
-                v = r.get(f)
-                if v:
-                    add_entity(v)
-
-    # Step 3: Traverse Evidence
     evi_or_list = []
     if case_id:
         evi_or_list.append({"case_id": case_id})
@@ -163,26 +141,6 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
         evi_or_list.append({"related_vehicle_id": {"$in": entity_list}})
         evi_or_list.append({"related_device_id": {"$in": entity_list}})
 
-    if evi_or_list:
-        evi_query = {"$or": evi_or_list}
-        if demo_on:
-            evi_query = {"$and": [evi_query, get_demo_filter("evidence", "evidence_id")]}
-
-        evis = await db.evidence.find(evi_query, {"_id": 0}).to_list(length=300)
-        for ev in evis:
-            eid = ev.get("evidence_id")
-            if eid:
-                if not demo_on or _in_demo_set("evidence", eid):
-                    ctx.evidence_ids.add(eid)
-            if ev.get("case_id"):
-                if not demo_on or _in_demo_set("cases", ev["case_id"]):
-                    ctx.case_ids.add(ev["case_id"])
-            for f in ("person_id", "related_person_id"):
-                pid = ev.get(f)
-                if pid:
-                    add_entity(pid)
-
-    # Step 4: Traverse Events
     evt_or_list = []
     if case_id:
         evt_or_list.append({"case_id": case_id})
@@ -192,53 +150,107 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
         evt_or_list.append({"phone_id": {"$in": entity_list}})
         evt_or_list.append({"vehicle_id": {"$in": entity_list}})
 
-    if evt_or_list:
+    async def _fetch_rels():
+        if not rel_or_list:
+            return []
+        rel_query = {"$or": rel_or_list}
+        if demo_on:
+            rel_query = {"$and": [rel_query, get_demo_filter("relationships", "relationship_id")]}
+        return await db.relationships.find(rel_query, {"_id": 0}).to_list(length=500)
+
+    async def _fetch_evis():
+        if not evi_or_list:
+            return []
+        evi_query = {"$or": evi_or_list}
+        if demo_on:
+            evi_query = {"$and": [evi_query, get_demo_filter("evidence", "evidence_id")]}
+        return await db.evidence.find(evi_query, {"_id": 0}).to_list(length=300)
+
+    async def _fetch_evts():
+        if not evt_or_list:
+            return []
         evt_query = {"$or": evt_or_list}
         if demo_on:
             evt_query = {"$and": [evt_query, get_demo_filter("events", "event_id")]}
+        return await db.events.find(evt_query, {"_id": 0}).to_list(length=300)
 
-        evts = await db.events.find(evt_query, {"_id": 0}).to_list(length=300)
-        for e in evts:
-            ev_id = e.get("event_id")
-            if ev_id:
-                if not demo_on or _in_demo_set("events", ev_id):
-                    ctx.event_ids.add(ev_id)
-            if e.get("case_id"):
-                if not demo_on or _in_demo_set("cases", e["case_id"]):
-                    ctx.case_ids.add(e["case_id"])
-            if e.get("evidence_id"):
-                if not demo_on or _in_demo_set("evidence", e["evidence_id"]):
-                    ctx.evidence_ids.add(e["evidence_id"])
-            for f in ("person_id", "phone_id", "vehicle_id", "location_id"):
-                v = e.get(f)
-                if v:
-                    add_entity(v)
+    # Parallelize Steps 2, 3, 4 DB queries
+    rels, evis, evts = await asyncio.gather(_fetch_rels(), _fetch_evis(), _fetch_evts())
 
-    # Step 5: Query asset mappings for resolved person IDs
+    for r in rels:
+        rid = r.get("relationship_id")
+        if rid:
+            if not demo_on or _in_demo_set("relationships", rid):
+                ctx.relationship_ids.add(rid)
+        if r.get("case_id"):
+            if not demo_on or _in_demo_set("cases", r["case_id"]):
+                ctx.case_ids.add(r["case_id"])
+        if r.get("evidence_id"):
+            if not demo_on or _in_demo_set("evidence", r["evidence_id"]):
+                ctx.evidence_ids.add(r["evidence_id"])
+        for f in ("source_entity_id", "target_entity_id"):
+            v = r.get(f)
+            if v:
+                add_entity(v)
+
+    for ev in evis:
+        eid = ev.get("evidence_id")
+        if eid:
+            if not demo_on or _in_demo_set("evidence", eid):
+                ctx.evidence_ids.add(eid)
+        if ev.get("case_id"):
+            if not demo_on or _in_demo_set("cases", ev["case_id"]):
+                ctx.case_ids.add(ev["case_id"])
+        for f in ("person_id", "related_person_id"):
+            pid = ev.get(f)
+            if pid:
+                add_entity(pid)
+
+    for e in evts:
+        ev_id = e.get("event_id")
+        if ev_id:
+            if not demo_on or _in_demo_set("events", ev_id):
+                ctx.event_ids.add(ev_id)
+        if e.get("case_id"):
+            if not demo_on or _in_demo_set("cases", e["case_id"]):
+                ctx.case_ids.add(e["case_id"])
+        if e.get("evidence_id"):
+            if not demo_on or _in_demo_set("evidence", e["evidence_id"]):
+                ctx.evidence_ids.add(e["evidence_id"])
+        for f in ("person_id", "phone_id", "vehicle_id", "location_id"):
+            v = e.get(f)
+            if v:
+                add_entity(v)
+
+    # Step 5: Query asset mappings for resolved person IDs (Parallelized)
     if ctx.person_ids:
         pids = list(ctx.person_ids)
-        
+
         ph_q = {"person_id": {"$in": pids}}
         if demo_on: ph_q = {"$and": [ph_q, get_demo_filter("phones", "phone_id")]}
-        phones = await db.phones.find(ph_q, {"phone_id": 1, "_id": 0}).to_list(length=200)
-        for p in phones:
-            if p.get("phone_id"): add_entity(p["phone_id"])
 
         acc_q = {"person_id": {"$in": pids}}
         if demo_on: acc_q = {"$and": [acc_q, get_demo_filter("accounts", "account_id")]}
-        accounts = await db.accounts.find(acc_q, {"account_id": 1, "_id": 0}).to_list(length=200)
-        for a in accounts:
-            if a.get("account_id"): add_entity(a["account_id"])
 
         veh_q = {"owner_person_id": {"$in": pids}}
         if demo_on: veh_q = {"$and": [veh_q, get_demo_filter("vehicles", "vehicle_id")]}
-        vehicles = await db.vehicles.find(veh_q, {"vehicle_id": 1, "_id": 0}).to_list(length=200)
-        for v in vehicles:
-            if v.get("vehicle_id"): add_entity(v["vehicle_id"])
 
         dev_q = {"person_id": {"$in": pids}}
         if demo_on: dev_q = {"$and": [dev_q, get_demo_filter("devices", "device_id")]}
-        devices = await db.devices.find(dev_q, {"device_id": 1, "_id": 0}).to_list(length=200)
+
+        phones, accounts, vehicles, devices = await asyncio.gather(
+            db.phones.find(ph_q, {"phone_id": 1, "_id": 0}).to_list(length=200),
+            db.accounts.find(acc_q, {"account_id": 1, "_id": 0}).to_list(length=200),
+            db.vehicles.find(veh_q, {"vehicle_id": 1, "_id": 0}).to_list(length=200),
+            db.devices.find(dev_q, {"device_id": 1, "_id": 0}).to_list(length=200)
+        )
+
+        for p in phones:
+            if p.get("phone_id"): add_entity(p["phone_id"])
+        for a in accounts:
+            if a.get("account_id"): add_entity(a["account_id"])
+        for v in vehicles:
+            if v.get("vehicle_id"): add_entity(v["vehicle_id"])
         for d in devices:
             if d.get("device_id"): add_entity(d["device_id"])
 
@@ -268,13 +280,14 @@ async def resolve_context(case_id: Optional[str] = None, entity_id: Optional[str
 
 # Helper Feature Query Functions
 
-async def get_scoped_cdrs(case_id: Optional[str] = None, phone_id: Optional[str] = None, limit: int = 100, skip: int = 0) -> List[dict]:
+async def get_scoped_cdrs(case_id: Optional[str] = None, phone_id: Optional[str] = None, limit: int = 100, skip: int = 0, ctx: Optional[ResolvedContext] = None) -> List[dict]:
     db = get_database()
     if db is None:
         return []
 
     demo_on = is_demo_enabled()
-    ctx = await resolve_context(case_id=case_id, entity_id=phone_id)
+    if ctx is None:
+        ctx = await resolve_context(case_id=case_id, entity_id=phone_id)
 
     if ctx.is_scoped:
         query_list = []
@@ -315,13 +328,14 @@ async def get_scoped_cdrs(case_id: Optional[str] = None, phone_id: Optional[str]
     return raw
 
 
-async def get_scoped_transactions(case_id: Optional[str] = None, account_id: Optional[str] = None, limit: int = 100, skip: int = 0) -> List[dict]:
+async def get_scoped_transactions(case_id: Optional[str] = None, account_id: Optional[str] = None, limit: int = 100, skip: int = 0, ctx: Optional[ResolvedContext] = None) -> List[dict]:
     db = get_database()
     if db is None:
         return []
 
     demo_on = is_demo_enabled()
-    ctx = await resolve_context(case_id=case_id, entity_id=account_id)
+    if ctx is None:
+        ctx = await resolve_context(case_id=case_id, entity_id=account_id)
 
     if ctx.is_scoped:
         query_list = []
@@ -357,13 +371,14 @@ async def get_scoped_transactions(case_id: Optional[str] = None, account_id: Opt
     return raw
 
 
-async def get_scoped_events(case_id: Optional[str] = None, entity_id: Optional[str] = None, limit: int = 100, skip: int = 0) -> List[dict]:
+async def get_scoped_events(case_id: Optional[str] = None, entity_id: Optional[str] = None, limit: int = 100, skip: int = 0, ctx: Optional[ResolvedContext] = None) -> List[dict]:
     db = get_database()
     if db is None:
         return []
 
     demo_on = is_demo_enabled()
-    ctx = await resolve_context(case_id=case_id, entity_id=entity_id)
+    if ctx is None:
+        ctx = await resolve_context(case_id=case_id, entity_id=entity_id)
 
     if ctx.is_scoped:
         query_list = []
@@ -398,13 +413,14 @@ async def get_scoped_events(case_id: Optional[str] = None, entity_id: Optional[s
     return raw
 
 
-async def get_scoped_evidence(case_id: Optional[str] = None, evidence_type: Optional[str] = None, limit: int = 100, skip: int = 0) -> List[dict]:
+async def get_scoped_evidence(case_id: Optional[str] = None, evidence_type: Optional[str] = None, limit: int = 100, skip: int = 0, ctx: Optional[ResolvedContext] = None) -> List[dict]:
     db = get_database()
     if db is None:
         return []
 
     demo_on = is_demo_enabled()
-    ctx = await resolve_context(case_id=case_id)
+    if ctx is None:
+        ctx = await resolve_context(case_id=case_id)
 
     if ctx.is_scoped:
         query_list = []
@@ -444,13 +460,14 @@ async def get_scoped_evidence(case_id: Optional[str] = None, evidence_type: Opti
     return raw
 
 
-async def get_scoped_relationships(case_id: Optional[str] = None, entity_id: Optional[str] = None, limit: int = 100, skip: int = 0) -> List[dict]:
+async def get_scoped_relationships(case_id: Optional[str] = None, entity_id: Optional[str] = None, limit: int = 100, skip: int = 0, ctx: Optional[ResolvedContext] = None) -> List[dict]:
     db = get_database()
     if db is None:
         return []
 
     demo_on = is_demo_enabled()
-    ctx = await resolve_context(case_id=case_id, entity_id=entity_id)
+    if ctx is None:
+        ctx = await resolve_context(case_id=case_id, entity_id=entity_id)
 
     if ctx.is_scoped:
         query_list = []
@@ -484,16 +501,26 @@ async def get_scoped_relationships(case_id: Optional[str] = None, entity_id: Opt
     return raw
 
 
-async def get_scoped_anomalies(case_id: Optional[str] = None, category: Optional[str] = None, severity: Optional[str] = None, limit: int = 200) -> List[dict]:
+async def get_scoped_anomalies(case_id: Optional[str] = None, category: Optional[str] = None, severity: Optional[str] = None, limit: int = 200, ctx: Optional[ResolvedContext] = None) -> List[dict]:
     db = get_database()
     if db is None:
         return []
 
+    if ctx is None and case_id:
+        ctx = await resolve_context(case_id=case_id)
+
+    # Concurrently fetch scoped resources reusing the single resolved context
+    cdrs_task = get_scoped_cdrs(case_id=case_id, limit=100, ctx=ctx) if (not category or category.upper() in ["ALL", "TELECOM"]) else asyncio.sleep(0, result=[])
+    txns_task = get_scoped_transactions(case_id=case_id, limit=100, ctx=ctx) if (not category or category.upper() in ["ALL", "FINANCIAL"]) else asyncio.sleep(0, result=[])
+    rels_task = get_scoped_relationships(case_id=case_id, limit=80, ctx=ctx) if (not category or category.upper() in ["ALL", "BEHAVIORAL"]) else asyncio.sleep(0, result=[])
+    evts_task = get_scoped_events(case_id=case_id, limit=80, ctx=ctx) if (not category or category.upper() in ["ALL", "GEOGRAPHIC"]) else asyncio.sleep(0, result=[])
+
+    cdrs, txns, rels, events = await asyncio.gather(cdrs_task, txns_task, rels_task, evts_task)
+
     anomalies = []
 
     # 1. Telecom Anomalies (CDRs)
-    if not category or category.upper() in ["ALL", "TELECOM"]:
-        cdrs = await get_scoped_cdrs(case_id=case_id, limit=100)
+    if cdrs:
         for c in cdrs:
             dur = int(float(c.get("duration_seconds", 0) or 0))
             ts = str(c.get("timestamp", ""))
@@ -517,8 +544,7 @@ async def get_scoped_anomalies(case_id: Optional[str] = None, category: Optional
                 })
 
     # 2. Financial Anomalies (Transactions)
-    if not category or category.upper() in ["ALL", "FINANCIAL"]:
-        txns = await get_scoped_transactions(case_id=case_id, limit=100)
+    if txns:
         for t in txns:
             amt = float(t.get("amount", 0) or 0)
             ttype = str(t.get("transaction_type", "TRANSFER")).upper()
@@ -539,8 +565,7 @@ async def get_scoped_anomalies(case_id: Optional[str] = None, category: Optional
             })
 
     # 3. Behavioral / Relationship Anomalies
-    if not category or category.upper() in ["ALL", "BEHAVIORAL"]:
-        rels = await get_scoped_relationships(case_id=case_id, limit=80)
+    if rels:
         for r in rels:
             src = r.get("source_entity_id")
             tgt = r.get("target_entity_id")
@@ -560,8 +585,7 @@ async def get_scoped_anomalies(case_id: Optional[str] = None, category: Optional
                 })
 
     # 4. Geographic Anomalies (Events)
-    if not category or category.upper() in ["ALL", "GEOGRAPHIC"]:
-        events = await get_scoped_events(case_id=case_id, limit=80)
+    if events:
         for ev in events:
             pid = ev.get("person_id")
             vid = ev.get("vehicle_id")

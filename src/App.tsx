@@ -73,6 +73,15 @@ function MainAppContent() {
     fetchAnalyticsSummary(selectedCaseId || undefined, controller.signal).then(summary => {
       if (!controller.signal.aborted && summary) {
         setSummaryData(summary);
+        if (summary.totalRecords) {
+          setDataset(prev => ({
+            ...prev,
+            healthReport: {
+              ...prev.healthReport,
+              totalRecords: summary.totalRecords,
+            },
+          }));
+        }
       }
     });
     return () => {
@@ -80,7 +89,7 @@ function MainAppContent() {
     };
   }, [isAuthenticated, selectedCaseId]);
 
-  // Initial demo dataset loading on login
+  // Initial case and entity dataset loading on login
   React.useEffect(() => {
     if (!isAuthenticated) return;
     fetchRealCases(150).then(realCases => {
@@ -91,42 +100,6 @@ function MainAppContent() {
     fetchRealEntities(200).then(realEntities => {
       if (realEntities?.length) {
         setDataset(prev => ({ ...prev, entities: realEntities }));
-      }
-    });
-    fetchAnalyticsSummary().then(analytics => {
-      if (analytics?.totalRecords) {
-        setDataset(prev => ({
-          ...prev,
-          healthReport: {
-            ...prev.healthReport,
-            totalRecords: analytics.totalRecords,
-          },
-        }));
-      }
-    });
-    fetchAnomalies(200).then(anoms => {
-      if (anoms?.length) {
-        setDataset(prev => ({ ...prev, anomalies: anoms }));
-      }
-    });
-    fetchEvidenceList(200).then(evis => {
-      if (evis?.length) {
-        setDataset(prev => ({ ...prev, evidenceRecords: evis }));
-      }
-    });
-    fetchCDRs(200).then(cdrs => {
-      if (cdrs?.length) {
-        setDataset(prev => ({ ...prev, cdrRecords: cdrs }));
-      }
-    });
-    fetchTransactions(200).then(txns => {
-      if (txns?.length) {
-        setDataset(prev => ({ ...prev, transactions: txns }));
-      }
-    });
-    fetchTimelineEvents(200).then(evts => {
-      if (evts?.length) {
-        setDataset(prev => ({ ...prev, timelineEvents: evts }));
       }
     });
   }, [isAuthenticated]);

@@ -9,7 +9,7 @@ class MongoDBManager:
 db_manager = MongoDBManager()
 
 async def connect_to_mongo():
-    is_prod = os.getenv("NODE_ENV") == "production" or os.getenv("ENVIRONMENT") == "production" or "mongodb+srv" in settings.mongodb_uri
+    is_prod = os.getenv("NODE_ENV") == "production" or os.getenv("ENVIRONMENT") == "production"
     try:
         db_manager.client = AsyncMongoClient(
             settings.mongodb_uri,
