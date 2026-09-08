@@ -228,7 +228,7 @@ export async function fetchEvidenceList(limit = 100, caseId?: string, evidenceTy
     let url = `${API_BASE}/evidence?limit=${limit}`;
     if (caseId) url += `&case_id=${encodeURIComponent(caseId)}`;
     if (evidenceType && evidenceType !== 'ALL') url += `&evidence_type=${encodeURIComponent(evidenceType)}`;
-    const res = await fetch(url, { signal });
+    const res = await fetch(url, { headers: getAuthHeaders(), signal });
     if (!res.ok) throw new Error(`Evidence fetch failed: ${res.statusText}`);
     return await res.json();
   } catch (err: any) {
@@ -360,10 +360,13 @@ export async function createEvidenceApi(evidenceData: {
   try {
     const res = await fetch(`${API_BASE}/evidence`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(evidenceData)
     });
-    if (!res.ok) throw new Error(`Create evidence failed: ${res.statusText}`);
+    if (!res.ok) {
+      const errJson = await res.json().catch(() => null);
+      throw new Error((errJson && (errJson.detail || errJson.message)) || `Create evidence failed: ${res.statusText}`);
+    }
     return await res.json();
   } catch (err: any) {
     console.error('Error creating evidence:', err);

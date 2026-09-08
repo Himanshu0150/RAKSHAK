@@ -150,6 +150,12 @@ function MainAppContent() {
     }
   }, [isAuthenticated, user]);
 
+  const handleRefreshEvidence = () => {
+    fetchEvidenceList(200).then(data => {
+      if (data?.length) setDataset(prev => ({ ...prev, evidenceRecords: data }));
+    });
+  };
+
   const handleSelectCaseId = (caseId: string | null) => {
     if (caseId && !checkCaseAuth(caseId)) {
       return;
@@ -427,6 +433,7 @@ function MainAppContent() {
           onSelectCaseId={handleSelectCaseId}
           tamperSimulated={tamperSimulated}
           onToggleTamper={handleToggleTamper}
+          onRefreshEvidence={handleRefreshEvidence}
         />
       )}
 

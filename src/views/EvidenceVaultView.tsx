@@ -40,6 +40,8 @@ import {
   exportCaseEvidencePdfApi
 } from '../services/apiService';
 
+import { useAuth, isCaseAuthorized } from '../context/AuthContext';
+
 interface EvidenceVaultViewProps {
   dataset: InvestigationDataset;
   tamperSimulated: boolean;
@@ -57,6 +59,7 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
   selectedCaseId,
   onSelectCaseId
 }) => {
+  const { user } = useAuth();
   const activeCaseId = selectedCaseId || dataset.cases[0]?.id || 'CASE-000001';
   const [selectedEvidenceId, setSelectedEvidenceId] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -184,6 +187,12 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
       return;
     }
 
+    const targetCaseId = newCaseId.trim() || activeCaseId;
+    if (targetCaseId && !isCaseAuthorized(user, targetCaseId)) {
+      setSubmitError(`Access Denied: You are not authorized to ingest evidence for case '${targetCaseId}'.`);
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -191,37 +200,50 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
       const created = await createEvidenceApi({
         description: newDesc.trim(),
         evidence_type: newType,
-        case_id: newCaseId.trim() || undefined,
+        case_id: targetCaseId || undefined,
         source: newSource.trim() || undefined
       });
 
       const formattedRecord: EvidenceRecord = {
         id: created.id || created.evidence_id,
         evidenceNumber: created.evidence_id || created.id,
-        title: created.title || created.description,
+        title: created.title || created.description || newDesc.trim(),
         evidenceType: (created.evidenceType || created.evidence_type || 'SURVEILLANCE') as any,
-        caseId: created.caseId || created.case_id || 'CASE-000001',
+        caseId: created.caseId || created.case_id || targetCaseId,
         sha256Hash: created.sha256Hash || created.integrity_sha256,
-        sourceDeviceOrMedium: created.source || 'Law Enforcement Intercept',
-        collectionTimestamp: created.collectedAt || created.collected_at || new Date().toISOString(),
-        collectedBy: 'Lead Investigator',
-        chainOfCustodyLocation: 'Precinct-7 Secure Bay',
-        rawPayload: created.description,
+        sourceDeviceOrMedium: created.sourceDeviceOrMedium || created.source || newSource.trim() || 'Law Enforcement Intercept',
+        collectionTimestamp: created.collectionTimestamp || created.collectedAt || created.collected_at || new Date().toISOString(),
+        collectedBy: created.collectedBy || user?.full_name || 'Lead Investigator',
+        chainOfCustodyLocation: created.chainOfCustodyLocation || 'Precinct-7 Secure Bay',
+        rawPayload: created.rawPayload || created.description || newDesc.trim(),
         verified: true,
         tampered: false,
-        custodyLogs: [
+        custodyLogs: created.custodyLogs || created.chainOfCustody || [
           {
             id: `LOG-${Date.now()}`,
             timestamp: new Date().toISOString(),
             action: 'EVIDENCE_INGESTED',
-            actor: 'Lead Investigator',
+            actor: user?.full_name || 'Lead Investigator',
+            custodianName: user?.full_name || 'Lead Investigator',
             verificationHash: created.sha256Hash || created.integrity_sha256,
-            status: 'VERIFIED'
+            status: 'VERIFIED',
+            notes: `Ingested & Anchored. SHA-256: ${(created.sha256Hash || created.integrity_sha256 || '').slice(0, 16)}...`
+          }
+        ],
+        chainOfCustody: created.chainOfCustody || created.custodyLogs || [
+          {
+            custodianName: user?.full_name || 'Lead Investigator',
+            action: 'EVIDENCE_INGESTED',
+            timestamp: new Date().toISOString(),
+            notes: `Ingested & Anchored. SHA-256: ${(created.sha256Hash || created.integrity_sha256 || '').slice(0, 16)}...`
           }
         ]
-      };
+      } as any;
 
-      setLocalEvidence(prev => [formattedRecord, ...prev]);
+      setLocalEvidence(prev => {
+        const exists = prev.some(item => (item.id === formattedRecord.id || item.evidenceNumber === formattedRecord.evidenceNumber));
+        return exists ? prev : [formattedRecord, ...prev];
+      });
       setSelectedEvidenceId(formattedRecord.id);
       setShowUploadModal(false);
       setNewDesc('');

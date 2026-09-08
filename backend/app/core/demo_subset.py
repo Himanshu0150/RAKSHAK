@@ -375,3 +375,13 @@ def get_demo_id_set(collection: str) -> Optional[Set[str]]:
     if not settings.demo_dataset_enabled or not _initialized:
         return None
     return _demo_ids.get(collection)
+
+
+def register_demo_id(collection: str, item_id: str):
+    """
+    Dynamically registers a newly created item ID into the cached demo ID set
+    so that newly created records remain queryable when DEMO_DATASET_ENABLED=true.
+    """
+    if collection in _demo_ids and isinstance(_demo_ids[collection], set):
+        _demo_ids[collection].add(item_id)
+
