@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import * as d3 from 'd3';
 import { 
   GitBranch, 
@@ -29,7 +30,16 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
-  Loader2
+  Loader2,
+  User,
+  Car,
+  Smartphone,
+  Briefcase,
+  Calendar,
+  Fingerprint,
+  ShieldAlert,
+  Copy,
+  XCircle
 } from 'lucide-react';
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { 
@@ -48,18 +58,41 @@ interface KnowledgeGraphViewProps {
   onSelectEntity: (entityId: string) => void;
 }
 
-function getEntityTypeFromId(id: string): any {
+function getEntityTypeFromId(id: string): string {
   if (!id) return 'person';
   const u = id.toUpperCase();
-  if (u.startsWith('PHONE-')) return 'phone';
-  if (u.startsWith('PERSON-')) return 'person';
-  if (u.startsWith('ACCT-')) return 'account';
-  if (u.startsWith('VEH-')) return 'vehicle';
-  if (u.startsWith('ORG-')) return 'organization';
-  if (u.startsWith('CASE-')) return 'case';
-  if (u.startsWith('DEVICE-')) return 'device';
-  if (u.startsWith('LOC-')) return 'location';
+  if (u.startsWith('PHONE-') || u.startsWith('PH')) return 'phone';
+  if (u.startsWith('PERSON-') || (u.startsWith('P') && !u.startsWith('PH') && !u.startsWith('PERM'))) return 'person';
+  if (u.startsWith('ACCT-') || u.startsWith('ACC')) return 'account';
+  if (u.startsWith('VEH-') || u.startsWith('V')) return 'vehicle';
+  if (u.startsWith('ORG-') || (u.startsWith('O') && !u.startsWith('EV'))) return 'organization';
+  if (u.startsWith('CASE-') || u.startsWith('C')) return 'case';
+  if (u.startsWith('DEVICE-') || u.startsWith('D')) return 'device';
+  if (u.startsWith('LOC-') || u.startsWith('L')) return 'location';
+  if (u.startsWith('EVENT-') || u.startsWith('EV')) return 'event';
+  if (u.startsWith('EVID-') || (u.startsWith('E') && !u.startsWith('EV'))) return 'evidence';
+  if (u.startsWith('CRIME')) return 'crime';
   return 'person';
+}
+
+function renderNodeIconMarkup(type: string): string {
+  const iconProps = { size: 16, color: '#FFFFFF', strokeWidth: 2.2 };
+  let iconEl = <User {...iconProps} />;
+  switch ((type || '').toLowerCase()) {
+    case 'person': iconEl = <User {...iconProps} />; break;
+    case 'organization': iconEl = <Building2 {...iconProps} />; break;
+    case 'phone': iconEl = <Phone {...iconProps} />; break;
+    case 'account': iconEl = <CreditCard {...iconProps} />; break;
+    case 'vehicle': iconEl = <Car {...iconProps} />; break;
+    case 'device': iconEl = <Smartphone {...iconProps} />; break;
+    case 'location': iconEl = <MapPin {...iconProps} />; break;
+    case 'case': iconEl = <Fingerprint {...iconProps} />; break;
+    case 'event': iconEl = <Activity {...iconProps} />; break;
+    case 'evidence': iconEl = <FileText {...iconProps} />; break;
+    case 'crime': iconEl = <ShieldAlert {...iconProps} />; break;
+    default: iconEl = <User {...iconProps} />; break;
+  }
+  return renderToStaticMarkup(iconEl);
 }
 
 export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
@@ -95,15 +128,22 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
   // Dynamic API fetch whenever focus_id / selectedNodeId / selectedCaseId / selectedRelationType changes
   useEffect(() => {
     const controller = new AbortController();
-    setIsLoadingGraph(true);
-
+    
     // Clear old graph state and intelligence state while loading new context
     setGraphData({ nodes: [], relationships: [] });
     setDossierData(null);
 
+    // Requirement 4 & 15: If no case is selected, do NOT fetch global graph!
+    if (!selectedCaseId) {
+      setIsLoadingGraph(false);
+      return;
+    }
+
+    setIsLoadingGraph(true);
+
     Promise.all([
-      fetchGraphTopology(150, selectedNodeId || undefined, selectedCaseId || undefined, selectedRelationType !== 'ALL' ? selectedRelationType : undefined, controller.signal),
-      selectedNodeId ? fetchEntityDossier(selectedNodeId, selectedCaseId || undefined, controller.signal) : Promise.resolve(null)
+      fetchGraphTopology(150, selectedNodeId || undefined, selectedCaseId, selectedRelationType !== 'ALL' ? selectedRelationType : undefined, controller.signal),
+      selectedNodeId ? fetchEntityDossier(selectedNodeId, selectedCaseId, controller.signal) : Promise.resolve(null)
     ]).then(([topologyRes, dossierRes]) => {
       if (controller.signal.aborted) return;
 
@@ -258,6 +298,10 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
       } : null);
   }, [activeEntities, selectedNodeId, dossierData]);
 
+  // Hover Tooltip State (PART 4)
+  const [hoveredNode, setHoveredNode] = useState<any | null>(null);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null);
+
   // Real Backend Path Trace Handler (Requirement 5, 6, 7, 8, 9, 10)
   const handleFindPath = async () => {
     if (!pathSourceId || !pathTargetId) return;
@@ -274,18 +318,20 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
             source: l.source,
             target: l.target,
             relationType: l.relationType || 'LINKED',
-            confidence: l.confidence || 0.95
+            confidence: l.confidence || 0.95,
+            evidenceId: l.evidenceId,
+            timestamp: l.timestamp
           }))
         });
         setTraceStatusMessage(null);
       } else {
         setActivePath(null);
-        // Requirement 8: "No verified relationship path found for this case."
-        setTraceStatusMessage(res?.message || 'No verified relationship path found for this case.');
+        // Requirement 8: Useful explanation when path not found
+        setTraceStatusMessage(res?.message || `No valid path found between ${pathSourceId} and ${pathTargetId} within Case ${selectedCaseId || ''}.`);
       }
     } catch (err) {
       setActivePath(null);
-      setTraceStatusMessage('No verified relationship path found for this case.');
+      setTraceStatusMessage(`No valid path found between ${pathSourceId} and ${pathTargetId} within Case ${selectedCaseId || ''}.`);
     } finally {
       setIsTracing(false);
     }
@@ -310,13 +356,23 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     }
   };
 
-  // Node styling helper
+  // Node styling helper (PART 1)
   const getNodeColor = (entity: Entity) => {
     if (entity.flaggedRisk === 'CRITICAL') return '#DC2626'; // Red
     if (entity.flaggedRisk === 'HIGH') return '#EA580C'; // Orange
-    if (entity.type === 'account' || entity.type === 'organization') return '#2563EB'; // Blue
-    if (entity.type === 'phone') return '#0284C7'; // Cyan
-    return '#475569'; // Slate
+    switch ((entity.type || '').toLowerCase()) {
+      case 'person': return '#2563EB'; // Royal Blue
+      case 'organization': return '#4F46E5'; // Indigo
+      case 'phone': return '#0284C7'; // Cyan/Teal
+      case 'account': return '#059669'; // Emerald
+      case 'vehicle': return '#D97706'; // Amber
+      case 'device': return '#9333EA'; // Purple
+      case 'location': return '#E11D48'; // Rose
+      case 'case': return '#334155'; // Dark Slate
+      case 'event': return '#0284C7'; // Sky
+      case 'evidence': return '#7C3AED'; // Violet
+      default: return '#475569'; // Slate
+    }
   };
 
   // D3 Graph Simulation
@@ -358,7 +414,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
         rawEntities.push({
           id: src,
           name: src,
-          type: src.startsWith('PHONE') ? 'phone' : src.startsWith('VEH') ? 'vehicle' : src.startsWith('ACCT') ? 'account' : 'person',
+          type: getEntityTypeFromId(src),
           flaggedRisk: 'LOW',
           attributes: { id: src }
         });
@@ -368,7 +424,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
         rawEntities.push({
           id: tgt,
           name: tgt,
-          type: tgt.startsWith('PHONE') ? 'phone' : tgt.startsWith('VEH') ? 'vehicle' : tgt.startsWith('ACCT') ? 'account' : 'person',
+          type: getEntityTypeFromId(tgt),
           flaggedRisk: 'LOW',
           attributes: { id: tgt }
         });
@@ -452,7 +508,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
       .attr('text-anchor', 'middle')
       .text((d: any) => d.relationType);
 
-    // Draw Nodes
+    // Draw Nodes with Lucide SVG Icons & Hover Tooltips (PART 1 & PART 4)
     const node = g.append('g')
       .attr('class', 'nodes')
       .selectAll('g')
@@ -477,57 +533,78 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
       )
       .on('click', (event, d: any) => {
         setSelectedNodeId(d.id);
+      })
+      .on('mouseover', (event, d: any) => {
+        setHoveredNode(d);
+        const containerRect = containerRef.current?.getBoundingClientRect();
+        if (containerRect) {
+          setTooltipPos({
+            x: event.clientX - containerRect.left + 15,
+            y: event.clientY - containerRect.top - 15
+          });
+        }
+      })
+      .on('mousemove', (event) => {
+        const containerRect = containerRef.current?.getBoundingClientRect();
+        if (containerRect) {
+          setTooltipPos({
+            x: event.clientX - containerRect.left + 15,
+            y: event.clientY - containerRect.top - 15
+          });
+        }
+      })
+      .on('mouseout', () => {
+        setHoveredNode(null);
+        setTooltipPos(null);
       });
 
-    // Node shapes: Rect for Targets, Circles for standard, rounded rect for orgs
+    // Node container shapes + icon injection (PART 1)
     node.each(function(d: any) {
       const el = d3.select(this);
       const isTarget = d.flaggedRisk === 'CRITICAL';
       const isSelected = d.id === selectedNodeId;
+      const containerColor = getNodeColor(d);
 
-      if (isTarget) {
-        // Red Target Box with targeting ring
+      if (d.type === 'organization' || d.type === 'account' || d.type === 'evidence') {
         el.append('rect')
-          .attr('x', -16)
-          .attr('y', -16)
-          .attr('width', 32)
-          .attr('height', 32)
-          .attr('rx', 4)
-          .attr('fill', '#DC2626')
-          .attr('stroke', isSelected ? '#1E293B' : '#991B1B')
+          .attr('x', -18)
+          .attr('y', -18)
+          .attr('width', 36)
+          .attr('height', 36)
+          .attr('rx', 8)
+          .attr('fill', containerColor)
+          .attr('stroke', isSelected ? '#0F172A' : (isTarget ? '#EF4444' : '#FFFFFF'))
           .attr('stroke-width', isSelected ? 3 : 1.5)
           .attr('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))');
-
-        el.append('circle')
-          .attr('r', 22)
-          .attr('fill', 'none')
-          .attr('stroke', '#DC2626')
-          .attr('stroke-width', 1)
-          .attr('stroke-dasharray', '3 3')
-          .attr('opacity', 0.8);
-      } else if (d.type === 'organization' || d.type === 'account') {
-        el.append('rect')
-          .attr('x', -14)
-          .attr('y', -14)
-          .attr('width', 28)
-          .attr('height', 28)
-          .attr('rx', 6)
-          .attr('fill', '#2563EB')
-          .attr('stroke', isSelected ? '#0F172A' : '#1D4ED8')
-          .attr('stroke-width', isSelected ? 3 : 1.5);
       } else {
         el.append('circle')
-          .attr('r', 14)
-          .attr('fill', getNodeColor(d))
-          .attr('stroke', isSelected ? '#0F172A' : '#FFFFFF')
+          .attr('r', 18)
+          .attr('fill', containerColor)
+          .attr('stroke', isSelected ? '#0F172A' : (isTarget ? '#EF4444' : '#FFFFFF'))
           .attr('stroke-width', isSelected ? 3 : 1.5)
-          .attr('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))');
+          .attr('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))');
       }
+
+      if (isTarget) {
+        el.append('circle')
+          .attr('r', 24)
+          .attr('fill', 'none')
+          .attr('stroke', '#DC2626')
+          .attr('stroke-width', 1.5)
+          .attr('stroke-dasharray', '3 3');
+      }
+
+      // Inject SVG Icon from Lucide React
+      const iconSvg = renderNodeIconMarkup(d.type || getEntityTypeFromId(d.id));
+      const iconG = el.append('g')
+        .attr('transform', 'translate(-8, -8)')
+        .attr('pointer-events', 'none');
+      iconG.html(iconSvg);
     });
 
     // Node Text Labels
     node.append('text')
-      .attr('dy', 26)
+      .attr('dy', 30)
       .attr('text-anchor', 'middle')
       .attr('font-size', '10px')
       .attr('font-weight', '700')
@@ -535,9 +612,9 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
       .attr('fill', (d: any) => (d.id === selectedNodeId ? '#1E3A8A' : '#1E293B'))
       .text((d: any) => d.name);
 
-    // Node Type Subtext
+    // Node ID Subtext
     node.append('text')
-      .attr('dy', 37)
+      .attr('dy', 41)
       .attr('text-anchor', 'middle')
       .attr('font-size', '8px')
       .attr('font-family', 'ui-monospace, monospace')
@@ -672,6 +749,33 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
               </div>
             )}
 
+            {/* Initial State: No Case Selected (Requirement 4, 15) */}
+            {!selectedCaseId ? (
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center bg-[#0F172A]/90 text-white backdrop-blur-xs">
+                <Shield className="w-12 h-12 text-blue-400 mb-3 animate-pulse" />
+                <h3 className="text-lg font-bold font-heading mb-1 text-white">
+                  Select a case to view the investigation trace graph.
+                </h3>
+                <p className="text-xs text-slate-400 font-mono mb-4">
+                  No case selected
+                </p>
+                <div className="px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-lg text-xs font-mono text-blue-300">
+                  Case-scoped graph topology mode active. Please select a case from Case Selection.
+                </div>
+              </div>
+            ) : !isLoadingGraph && activeEntities.length === 0 ? (
+              /* Empty Case: Case selected but 0 relationships (Requirement 10) */
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center bg-[#0F172A]/85 text-white backdrop-blur-xs">
+                <AlertTriangle className="w-12 h-12 text-amber-400 mb-3" />
+                <h3 className="text-lg font-bold font-heading mb-1 text-white">
+                  No trace relationships available for this case.
+                </h3>
+                <p className="text-xs text-slate-400 font-mono">
+                  Try selecting an entity with available relationships.
+                </p>
+              </div>
+            ) : null}
+
             {/* Top Tactical Overlay Controls */}
             <div className="absolute top-3 left-3 z-10 flex items-center gap-1 bg-white/90 backdrop-blur-xs p-1 rounded-lg border border-slate-300 shadow-sm">
               <button
@@ -697,6 +801,32 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
               </button>
             </div>
 
+            {/* Interactive Node Hover Tooltip (PART 4) */}
+            {hoveredNode && tooltipPos && (
+              <div 
+                className="absolute z-30 pointer-events-none bg-slate-900/95 text-white border border-slate-700 rounded-lg p-3 shadow-xl backdrop-blur-md text-xs w-56 font-sans space-y-1.5 animate-in fade-in zoom-in-95 duration-100"
+                style={{ left: `${tooltipPos.x}px`, top: `${tooltipPos.y}px` }}
+              >
+                <div className="flex items-center justify-between border-b border-slate-800 pb-1 font-mono text-[10px]">
+                  <span className="uppercase text-blue-400 font-bold">{hoveredNode.type || getEntityTypeFromId(hoveredNode.id)}</span>
+                  <span className="text-slate-400">{hoveredNode.id}</span>
+                </div>
+                <div className="font-bold text-sm text-slate-100 font-heading truncate">
+                  {hoveredNode.name}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[11px] pt-1 border-t border-slate-800 font-mono">
+                  <div>
+                    <span className="text-slate-400 block text-[9px] uppercase">Case</span>
+                    <span className="text-blue-300 font-semibold">{selectedCaseId || 'N/A'}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-400 block text-[9px] uppercase">Connections</span>
+                    <span className="text-emerald-400 font-semibold">{hoveredNode.degree || degreeMap.get(hoveredNode.id) || 0}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Path Tracing Quick Action in Top Right */}
             <div className="absolute top-3 right-3 z-10 hidden sm:flex flex-col items-end gap-1.5">
               <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs px-2.5 py-1.5 rounded-lg border border-slate-300 shadow-sm text-xs font-mono">
@@ -707,7 +837,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
                     setPathSourceId(e.target.value);
                     setTraceStatusMessage(null);
                   }}
-                  className="py-0.5 px-1.5 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800 max-w-[150px] truncate focus:outline-none font-sans"
+                  className="py-0.5 px-1.5 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800 max-w-[150px] truncate focus:outline-none font-sans cursor-pointer"
                 >
                   {casePersons.length > 0 ? (
                     casePersons.map(p => (
@@ -724,7 +854,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
                     setPathTargetId(e.target.value);
                     setTraceStatusMessage(null);
                   }}
-                  className="py-0.5 px-1.5 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800 max-w-[150px] truncate focus:outline-none font-sans"
+                  className="py-0.5 px-1.5 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-800 max-w-[150px] truncate focus:outline-none font-sans cursor-pointer"
                 >
                   {targetOptions.length > 0 ? (
                     targetOptions.map(p => (
@@ -796,6 +926,80 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
               </div>
             </div>
           </div>
+
+          {/* Trace Result Card (PART 3) */}
+          {activePath && (
+            <div className="bg-white border border-slate-300 rounded-xl p-4 shadow-sm space-y-3 font-sans animate-in fade-in">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                <div className="flex items-center gap-2">
+                  <GitBranch className="w-4 h-4 text-emerald-600" />
+                  <h3 className="font-bold text-sm text-slate-900 font-heading uppercase tracking-wide">
+                    TRACE RESULT
+                  </h3>
+                  <span className="px-2.5 py-0.5 text-xs font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-full">
+                    {activePath.pathLinks.length} Hop{activePath.pathLinks.length > 1 ? 's' : ''} • Case {selectedCaseId}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => {
+                      const pathStr = activePath.pathNodeIds.join(' ➔ ');
+                      navigator.clipboard.writeText(pathStr);
+                      alert('Path copied to clipboard!');
+                    }}
+                    className="px-2.5 py-1 text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 rounded border border-slate-300 font-semibold transition-colors flex items-center gap-1 cursor-pointer"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy Path</span>
+                  </button>
+                  <button
+                    onClick={() => setActivePath(null)}
+                    className="p-1 text-slate-400 hover:text-slate-700 rounded hover:bg-slate-100 cursor-pointer"
+                    title="Clear Trace"
+                  >
+                    <XCircle className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Hop Chain Progression */}
+              <div className="flex flex-wrap items-center gap-2 py-2 px-3 bg-slate-50 border border-slate-200 rounded-lg overflow-x-auto">
+                {activePath.pathNodeIds.map((nid, idx) => {
+                  const nodeObj = activeEntities.find(e => e.id === nid) || { id: nid, name: nid, type: getEntityTypeFromId(nid) };
+                  const linkObj = activePath.pathLinks[idx];
+                  return (
+                    <React.Fragment key={nid}>
+                      <div className="flex items-center gap-1.5 bg-white border border-slate-300 px-3 py-1.5 rounded-lg shadow-2xs font-mono text-xs">
+                        <span className="w-2 h-2 rounded-full bg-blue-600" />
+                        <span className="font-bold text-slate-900">{nodeObj.name || nid}</span>
+                        <span className="text-[10px] text-slate-400">({nid})</span>
+                      </div>
+                      {linkObj && (
+                        <div className="flex flex-col items-center px-1 font-mono text-[10px] text-emerald-700">
+                          <span className="font-bold uppercase tracking-tighter bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                            {linkObj.relationType}
+                          </span>
+                          <span className="text-slate-400">➔</span>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+
+              {/* Supporting Evidence References */}
+              {activePath.pathLinks.some((l: any) => l.evidenceId) && (
+                <div className="flex items-center gap-2 pt-1 font-mono text-xs text-slate-600">
+                  <span className="font-bold text-slate-700">Supporting Evidence:</span>
+                  {Array.from(new Set(activePath.pathLinks.map((l: any) => l.evidenceId).filter(Boolean))).map((evId: any) => (
+                    <span key={evId} className="px-2 py-0.5 bg-blue-50 border border-blue-200 text-blue-700 rounded font-semibold text-[11px]">
+                      {evId}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Bottom Processing Cards Drawer */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

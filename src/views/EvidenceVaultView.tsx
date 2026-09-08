@@ -31,7 +31,13 @@ import {
 } from 'lucide-react';
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { EvidenceRecord } from '../types/investigation';
-import { fetchEvidenceList, createEvidenceApi } from '../services/apiService';
+import { 
+  fetchEvidenceList, 
+  createEvidenceApi, 
+  fetchBSACertificate, 
+  generateBSACertificate, 
+  getBSACertificateDownloadUrl 
+} from '../services/apiService';
 
 interface EvidenceVaultViewProps {
   dataset: InvestigationDataset;
@@ -67,6 +73,36 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const [localEvidence, setLocalEvidence] = useState<EvidenceRecord[]>([]);
+
+  // Section 63 BSA Certificate Modal State
+  const [showBsaModal, setShowBsaModal] = useState<boolean>(false);
+  const [bsaCertData, setBsaCertData] = useState<any>(null);
+  const [bsaCertLoading, setBsaCertLoading] = useState<boolean>(false);
+  const [bsaCertError, setBsaCertError] = useState<string | null>(null);
+
+  const handleExportSec63BSA = async (evId?: string) => {
+    const targetId = evId || selectedEvidenceId || selectedEvidence?.id;
+    if (!targetId) return;
+
+    setShowBsaModal(true);
+    setBsaCertLoading(true);
+    setBsaCertError(null);
+
+    if (tamperSimulated) {
+      setBsaCertError('Evidence verification required. Record is flagged as tampered and cannot be certified.');
+      setBsaCertLoading(false);
+      return;
+    }
+
+    try {
+      const data = await generateBSACertificate(targetId);
+      setBsaCertData(data);
+    } catch (err: any) {
+      setBsaCertError(err.message || 'Evidence verification required before certificate export.');
+    } finally {
+      setBsaCertLoading(false);
+    }
+  };
 
   // Fetch case-specific evidence when activeCaseId or typeFilter changes
   React.useEffect(() => {
@@ -262,11 +298,11 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
           </div>
 
           <button
-            onClick={handleExportCert}
-            className="px-3.5 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-lg text-xs font-medium flex items-center gap-2 transition-colors shadow-xs"
+            onClick={() => handleExportSec63BSA()}
+            className="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors shadow-xs"
           >
-            <Download className="w-4 h-4 text-slate-600" />
-            <span>Export Cert</span>
+            <Download className="w-4 h-4 text-blue-600" />
+            <span>Export Sec 63 BSA Certificate (PDF)</span>
           </button>
           <button
             onClick={() => setShowUploadModal(true)}
@@ -499,10 +535,136 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
                   </div>
                 ))}
               </div>
+
+              {/* BSA Certificate Action Bar */}
+              <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+                <div className="text-[11px] text-slate-500 font-mono">
+                  SHA-256 Digest: <span className="font-bold text-slate-800">{selectedEvidence.sha256Hash?.slice(0, 16)}...</span>
+                </div>
+                <button
+                  onClick={() => handleExportSec63BSA(selectedEvidence.id)}
+                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Export Sec 63 BSA Certificate (PDF)</span>
+                </button>
+              </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Section 63 BSA Certificate Modal */}
+      {showBsaModal && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-in fade-in">
+          <div className="bg-white border border-slate-300 rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden font-sans">
+            <div className="p-4 bg-slate-900 text-white flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                <h3 className="font-bold text-sm tracking-tight font-mono">
+                  Section 63 BSA Digital Evidence Certificate
+                </h3>
+              </div>
+              <button 
+                onClick={() => setShowBsaModal(false)}
+                className="text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {bsaCertLoading && (
+                <div className="text-center py-8 space-y-3">
+                  <Loader2 className="w-8 h-8 text-blue-600 animate-spin mx-auto" />
+                  <p className="text-xs font-semibold text-slate-700 font-mono">
+                    Generating Official Section 63 BSA Certificate PDF via ReportLab...
+                  </p>
+                </div>
+              )}
+
+              {bsaCertError && (
+                <div className="p-4 bg-amber-50 border border-amber-200 text-amber-900 rounded-xl text-xs space-y-2">
+                  <div className="flex items-center gap-2 font-bold text-amber-800 font-mono">
+                    <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                    <span>EVIDENCE VERIFICATION REQUIRED</span>
+                  </div>
+                  <p className="text-amber-900 leading-relaxed font-medium">
+                    {bsaCertError}
+                  </p>
+                  <p className="text-[11px] text-amber-800 italic">
+                    Unverified or tampered evidence records cannot be certified under Section 63 BSA. Please verify SHA-256 integrity first.
+                  </p>
+                </div>
+              )}
+
+              {bsaCertData && !bsaCertLoading && (
+                <div className="space-y-4">
+                  {/* Status Banner */}
+                  <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span className="text-xs font-bold text-emerald-900 font-mono">CERTIFICATE GENERATED & PERSISTED IN MONGODB</span>
+                    </div>
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold font-mono bg-emerald-600 text-white rounded">
+                      {bsaCertData.verification_status || 'VERIFIED'}
+                    </span>
+                  </div>
+
+                  {/* Cert Details Grid */}
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3 text-xs font-mono">
+                    <div className="grid grid-cols-2 gap-3 border-b border-slate-200 pb-2">
+                      <div>
+                        <span className="text-slate-400 block text-[10px]">CERTIFICATE ID</span>
+                        <span className="font-bold text-slate-900">{bsaCertData.certificate_id}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 block text-[10px]">GENERATED AT</span>
+                        <span className="font-semibold text-slate-800">{new Date(bsaCertData.generated_at).toLocaleString()}</span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 border-b border-slate-200 pb-2">
+                      <div>
+                        <span className="text-slate-400 block text-[10px]">CUSTODIAL OFFICER</span>
+                        <span className="font-semibold text-slate-800">{bsaCertData.officer_name} ({bsaCertData.officer_role})</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 block text-[10px]">EVIDENCE TYPE</span>
+                        <span className="font-semibold text-slate-800">{bsaCertData.evidence_type}</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <span className="text-slate-400 block text-[10px]">EVIDENCE SHA-256 DIGEST</span>
+                      <span className="font-bold text-blue-700 block truncate">{bsaCertData.evidence_sha256}</span>
+                    </div>
+                  </div>
+
+                  {/* Download Action */}
+                  <div className="flex items-center justify-end gap-3 pt-2">
+                    <button
+                      onClick={() => setShowBsaModal(false)}
+                      className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition-colors"
+                    >
+                      Close
+                    </button>
+                    <a
+                      href={getBSACertificateDownloadUrl(bsaCertData.evidence_id || selectedEvidence?.id)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold flex items-center gap-2 shadow-xs transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Download Certificate (PDF)</span>
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* New Evidence Modal */}
       {showUploadModal && (

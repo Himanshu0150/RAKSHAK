@@ -1,0 +1,310 @@
+organization_id,name,organization_type,address,city,state,registration_id,status,case_id
+O0001,Sunrise Trading Co,Construction,"904, College Road, Coimbatore",Coimbatore,Tamil Nadu,REG8082717605,Active,C0001
+O0002,Cobalt Services LLP,Trading,"740, Park Street, Thane",Thane,Maharashtra,REG1773014180,Active,C0003
+O0003,Greenfield Industries Pvt Ltd,Retail,"349, Airport Road, Bengaluru",Bengaluru,Karnataka,REG7594157237,Active,C0005
+O0004,Oakridge Logistics Pvt Ltd,Manufacturing,"868, Nehru Nagar, Pune",Pune,Maharashtra,REG1091034830,Active,C0007
+O0005,Pioneer Solutions Pvt Ltd,Trading,"260, Station Road, Chennai",Chennai,Tamil Nadu,REG0563957576,Active,C0008
+O0006,Maple Solutions Pvt Ltd,Transport,"251, Park Street, Kochi",Kochi,Kerala,REG2253568835,Active,C0011
+O0007,Silverline Trading Co,Technology,"61, Shivaji Nagar, Lucknow",Lucknow,Uttar Pradesh,REG9104933114,Active,C0012
+O0008,Blue Horizon Trading Co,Manufacturing,"928, Airport Road, Kochi",Kochi,Kerala,REG4385205772,Active,C0014
+O0009,Vertex Industries Pvt Ltd,Transport,"126, Ring Road, Bengaluru",Bengaluru,Karnataka,REG0286488366,Inactive,C0015
+O0010,Greenfield Infrastructure Pvt Ltd,Logistics,"343, College Road, Lucknow",Lucknow,Uttar Pradesh,REG6437798438,Active,C0018
+O0011,Oakridge Industries Pvt Ltd,Transport,"509, Shivaji Nagar, Delhi",Delhi,Delhi,REG5119737781,Active,C0023
+O0012,Cobalt Infrastructure Pvt Ltd,Manufacturing,"787, Lake View Road, Bhopal",Bhopal,Madhya Pradesh,REG5898069449,Active,C0024
+O0013,Blue Horizon Services LLP,Import/Export,"482, Station Road, Chennai",Chennai,Tamil Nadu,REG6078316271,Active,C0025
+O0014,Maple Industries Pvt Ltd,Retail,"375, Nehru Nagar, Surat",Surat,Gujarat,REG0861836187,Active,C0027
+O0015,Crescent Solutions Pvt Ltd,Technology,"395, MG Road, Lucknow",Lucknow,Uttar Pradesh,REG7440823398,Active,C0028
+O0016,Riverstone Logistics Pvt Ltd,Manufacturing,"129, College Road, Ahmedabad",Ahmedabad,Gujarat,REG4050349595,Active,C0029
+O0017,Vertex Industries Pvt Ltd,Consulting,"690, Airport Road, Chennai",Chennai,Tamil Nadu,REG0264443222,Active,C0031
+O0018,Cobalt Trading Co,Retail,"34, Park Street, Surat",Surat,Gujarat,REG3677496920,Inactive,C0033
+O0019,Greenfield Logistics Pvt Ltd,Construction,"397, Airport Road, Jaipur",Jaipur,Rajasthan,REG3518359156,Active,C0035
+O0020,Riverstone Solutions Pvt Ltd,Consulting,"690, Park Street, Noida",Noida,Uttar Pradesh,REG0034335509,Active,C0036
+O0021,Blue Horizon Services LLP,Construction,"399, Market Road, Delhi",Delhi,Delhi,REG5014631160,Active,C0037
+O0022,Silverline Infrastructure Pvt Ltd,Transport,"778, Park Street, Kolkata",Kolkata,West Bengal,REG7782223296,Inactive,C0039
+O0023,Oakridge Industries Pvt Ltd,Transport,"461, Nehru Nagar, Coimbatore",Coimbatore,Tamil Nadu,REG5888703461,Active,C0040
+O0024,Riverstone Logistics Pvt Ltd,Manufacturing,"971, Lake View Road, Chennai",Chennai,Tamil Nadu,REG5488661860,Active,C0041
+O0025,Crescent Solutions Pvt Ltd,Trading,"38, Market Road, Kolkata",Kolkata,West Bengal,REG0808195889,Active,C0044
+O0026,Crescent Infrastructure Pvt Ltd,Real Estate,"633, MG Road, Kochi",Kochi,Kerala,REG7239699976,Active,C0045
+O0027,Maple Solutions Pvt Ltd,Transport,"868, Ring Road, Chennai",Chennai,Tamil Nadu,REG3134145352,Active,C0046
+O0028,Riverstone Logistics Pvt Ltd,Finance,"166, Ring Road, Coimbatore",Coimbatore,Tamil Nadu,REG3847015603,Active,C0048
+O0029,Pioneer Services LLP,Manufacturing,"491, Market Road, Noida",Noida,Uttar Pradesh,REG0431896160,Inactive,C0051
+O0030,Cobalt Solutions Pvt Ltd,Trading,"821, Park Street, Bhopal",Bhopal,Madhya Pradesh,REG3801163135,Active,C0053
+O0031,Cobalt Trading Co,Construction,"488, Ring Road, Nagpur",Nagpur,Maharashtra,REG4127840322,Active,C0055
+O0032,Silverline Industries Pvt Ltd,Trading,"844, MG Road, Thane",Thane,Maharashtra,REG7568867923,Active,C0056
+O0033,Riverstone Solutions Pvt Ltd,Services,"863, Market Road, Delhi",Delhi,Delhi,REG2697114323,Active,C0058
+O0034,Greenfield Consultants LLP,Trading,"671, Ring Road, Chennai",Chennai,Tamil Nadu,REG3670295933,Active,C0059
+O0035,Cobalt Solutions Pvt Ltd,Logistics,"334, Ring Road, Ahmedabad",Ahmedabad,Gujarat,REG5890087826,Active,C0062
+O0036,Greenfield Industries Pvt Ltd,Import/Export,"693, Station Road, Coimbatore",Coimbatore,Tamil Nadu,REG9498384470,Active,C0063
+O0037,Oakridge Solutions Pvt Ltd,Manufacturing,"152, MG Road, Delhi",Delhi,Delhi,REG0211054988,Active,C0065
+O0038,Maple Trading Co,Technology,"456, Nehru Nagar, Lucknow",Lucknow,Uttar Pradesh,REG9918599807,Active,C0066
+O0039,Pioneer Services LLP,Technology,"846, Airport Road, Bengaluru",Bengaluru,Karnataka,REG9551834062,Active,C0067
+O0040,Sunrise Infrastructure Pvt Ltd,Consulting,"306, Airport Road, Hyderabad",Hyderabad,Telangana,REG8691389488,Active,C0070
+O0041,Crescent Consultants LLP,Technology,"328, Ring Road, Mumbai",Mumbai,Maharashtra,REG7781542697,Inactive,C0071
+O0042,Greenfield Trading Co,Logistics,"138, Park Street, Indore",Indore,Madhya Pradesh,REG8362587180,Active,C0072
+O0043,Blue Horizon Industries Pvt Ltd,Logistics,"726, Shivaji Nagar, Chennai",Chennai,Tamil Nadu,REG2353542717,Active,C0073
+O0044,Silverline Consultants LLP,Services,"218, Shivaji Nagar, Gurugram",Gurugram,Haryana,REG7477906655,Active,C0076
+O0045,Northstar Solutions Pvt Ltd,Consulting,"141, Station Road, Mumbai",Mumbai,Maharashtra,REG1983911265,Active,C0077
+O0046,Vertex Trading Co,Construction,"118, MG Road, Kolkata",Kolkata,West Bengal,REG7441605165,Active,C0078
+O0047,Crescent Consultants LLP,Technology,"966, College Road, Indore",Indore,Madhya Pradesh,REG2725050570,Active,C0081
+O0048,Cobalt Industries Pvt Ltd,Construction,"803, Nehru Nagar, Bengaluru",Bengaluru,Karnataka,REG8538225868,Active,C0083
+O0049,Greenfield Solutions Pvt Ltd,Construction,"934, Shivaji Nagar, Chennai",Chennai,Tamil Nadu,REG2364188923,Active,C0085
+O0050,Pioneer Solutions Pvt Ltd,Finance,"889, Shivaji Nagar, Pune",Pune,Maharashtra,REG0638462313,Inactive,C0088
+O0051,Greenfield Solutions Pvt Ltd,Construction,"383, Station Road, Coimbatore",Coimbatore,Tamil Nadu,REG0519793798,Active,C0089
+O0052,Oakridge Solutions Pvt Ltd,Retail,"71, Station Road, Gurugram",Gurugram,Haryana,REG4728053699,Active,C0090
+O0053,Crescent Infrastructure Pvt Ltd,Logistics,"900, Airport Road, Noida",Noida,Uttar Pradesh,REG3327777531,Active,C0093
+O0054,Cobalt Logistics Pvt Ltd,Construction,"394, Ring Road, Nagpur",Nagpur,Maharashtra,REG3465396695,Active,C0094
+O0055,Riverstone Solutions Pvt Ltd,Consulting,"860, Market Road, Pune",Pune,Maharashtra,REG2449097177,Active,C0095
+O0056,Blue Horizon Solutions Pvt Ltd,Manufacturing,"807, Lake View Road, Nashik",Nashik,Maharashtra,REG4459516680,Active,C0096
+O0057,Sunrise Logistics Pvt Ltd,Technology,"735, Park Street, Lucknow",Lucknow,Uttar Pradesh,REG4301053010,Active,C0097
+O0058,Northstar Solutions Pvt Ltd,Logistics,"213, College Road, Indore",Indore,Madhya Pradesh,REG4632763011,Inactive,C0098
+O0059,Northstar Industries Pvt Ltd,Retail,"228, College Road, Bhopal",Bhopal,Madhya Pradesh,REG2150920255,Active,C0099
+O0060,Northstar Services LLP,Trading,"828, Park Street, Thane",Thane,Maharashtra,REG5878279691,Active,C0101
+O0061,Northstar Trading Co,Construction,"250, Lake View Road, Indore",Indore,Madhya Pradesh,REG3524471934,Active,C0103
+O0062,Northstar Services LLP,Construction,"47, Lake View Road, Bengaluru",Bengaluru,Karnataka,REG5375584193,Active,C0108
+O0063,Sunrise Solutions Pvt Ltd,Transport,"164, Airport Road, Nagpur",Nagpur,Maharashtra,REG2386705058,Active,C0109
+O0064,Blue Horizon Logistics Pvt Ltd,Finance,"410, Ring Road, Chennai",Chennai,Tamil Nadu,REG4413030098,Active,C0112
+O0065,Riverstone Trading Co,Retail,"699, Shivaji Nagar, Jaipur",Jaipur,Rajasthan,REG9548864790,Active,C0113
+O0066,Pioneer Solutions Pvt Ltd,Manufacturing,"575, MG Road, Bengaluru",Bengaluru,Karnataka,REG2308329878,Active,C0114
+O0067,Vertex Infrastructure Pvt Ltd,Construction,"47, Airport Road, Lucknow",Lucknow,Uttar Pradesh,REG5652414814,Active,C0115
+O0068,Silverline Infrastructure Pvt Ltd,Construction,"695, Park Street, Mumbai",Mumbai,Maharashtra,REG8619851710,Active,C0116
+O0069,Greenfield Consultants LLP,Consulting,"353, MG Road, Surat",Surat,Gujarat,REG0176296543,Active,C0117
+O0070,Cobalt Solutions Pvt Ltd,Finance,"239, Market Road, Nagpur",Nagpur,Maharashtra,REG0877903496,Active,C0119
+O0071,Vertex Industries Pvt Ltd,Finance,"42, Market Road, Pune",Pune,Maharashtra,REG6534661119,Active,C0120
+O0072,Maple Consultants LLP,Retail,"65, Park Street, Surat",Surat,Gujarat,REG7644640142,Inactive,C0122
+O0073,Oakridge Solutions Pvt Ltd,Transport,"208, MG Road, Ahmedabad",Ahmedabad,Gujarat,REG6196193140,Active,C0124
+O0074,Pioneer Consultants LLP,Manufacturing,"114, Park Street, Gurugram",Gurugram,Haryana,REG5852627544,Active,C0127
+O0075,Vertex Trading Co,Real Estate,"587, Nehru Nagar, Surat",Surat,Gujarat,REG7260128719,Active,C0128
+O0076,Northstar Consultants LLP,Transport,"595, Station Road, Bengaluru",Bengaluru,Karnataka,REG9178481641,Active,C0129
+O0077,Sunrise Consultants LLP,Real Estate,"363, Lake View Road, Delhi",Delhi,Delhi,REG5955511272,Active,C0130
+O0078,Blue Horizon Trading Co,Transport,"412, Ring Road, Bengaluru",Bengaluru,Karnataka,REG8042355107,Active,C0131
+O0079,Maple Trading Co,Trading,"269, Ring Road, Gurugram",Gurugram,Haryana,REG4404628536,Active,C0135
+O0080,Riverstone Trading Co,Construction,"573, College Road, Gurugram",Gurugram,Haryana,REG1385919110,Active,C0138
+O0081,Sunrise Consultants LLP,Logistics,"749, Shivaji Nagar, Delhi",Delhi,Delhi,REG0057968357,Active,C0140
+O0082,Sunrise Trading Co,Consulting,"300, Ring Road, Coimbatore",Coimbatore,Tamil Nadu,REG9808994867,Active,C0142
+O0083,Northstar Services LLP,Logistics,"407, Market Road, Jaipur",Jaipur,Rajasthan,REG5733013483,Active,C0143
+O0084,Maple Industries Pvt Ltd,Trading,"879, Lake View Road, Bengaluru",Bengaluru,Karnataka,REG6416648240,Active,C0146
+O0085,Maple Services LLP,Construction,"902, Station Road, Surat",Surat,Gujarat,REG0646515522,Active,C0147
+O0086,Vertex Solutions Pvt Ltd,Transport,"678, Market Road, Pune",Pune,Maharashtra,REG0608729549,Active,C0148
+O0087,Crescent Consultants LLP,Import/Export,"895, College Road, Thane",Thane,Maharashtra,REG4815755948,Active,C0149
+O0088,Silverline Services LLP,Construction,"482, Nehru Nagar, Bhopal",Bhopal,Madhya Pradesh,REG3132041612,Inactive,C0151
+O0089,Cobalt Logistics Pvt Ltd,Finance,"940, Station Road, Delhi",Delhi,Delhi,REG6943871503,Active,C0152
+O0090,Oakridge Solutions Pvt Ltd,Finance,"56, Ring Road, Nashik",Nashik,Maharashtra,REG5353745947,Active,C0154
+O0091,Oakridge Consultants LLP,Technology,"149, MG Road, Delhi",Delhi,Delhi,REG8087042091,Active,C0155
+O0092,Crescent Consultants LLP,Services,"926, Station Road, Nashik",Nashik,Maharashtra,REG5996285972,Inactive,C0157
+O0093,Oakridge Solutions Pvt Ltd,Trading,"794, Ring Road, Jaipur",Jaipur,Rajasthan,REG0021378187,Active,C0160
+O0094,Riverstone Consultants LLP,Real Estate,"953, Lake View Road, Ahmedabad",Ahmedabad,Gujarat,REG5808332358,Active,C0161
+O0095,Riverstone Logistics Pvt Ltd,Real Estate,"302, MG Road, Hyderabad",Hyderabad,Telangana,REG5900778001,Active,C0162
+O0096,Pioneer Solutions Pvt Ltd,Trading,"615, Station Road, Kolkata",Kolkata,West Bengal,REG3529859827,Active,C0163
+O0097,Greenfield Industries Pvt Ltd,Consulting,"223, Ring Road, Ahmedabad",Ahmedabad,Gujarat,REG1044412615,Active,C0164
+O0098,Northstar Industries Pvt Ltd,Technology,"402, Lake View Road, Nagpur",Nagpur,Maharashtra,REG6492511865,Active,C0167
+O0099,Sunrise Consultants LLP,Transport,"94, Station Road, Gurugram",Gurugram,Haryana,REG7309627265,Active,C0171
+O0100,Riverstone Solutions Pvt Ltd,Construction,"109, Station Road, Nashik",Nashik,Maharashtra,REG9076067197,Active,C0172
+O0101,Cobalt Solutions Pvt Ltd,Real Estate,"630, Lake View Road, Pune",Pune,Maharashtra,REG5153752651,Active,C0174
+O0102,Oakridge Infrastructure Pvt Ltd,Logistics,"476, Park Street, Gurugram",Gurugram,Haryana,REG9589540382,Active,C0175
+O0103,Vertex Solutions Pvt Ltd,Trading,"902, Ring Road, Nashik",Nashik,Maharashtra,REG3380363141,Active,C0177
+O0104,Maple Infrastructure Pvt Ltd,Services,"404, Ring Road, Kochi",Kochi,Kerala,REG5119104639,Inactive,C0178
+O0105,Vertex Services LLP,Technology,"404, College Road, Thane",Thane,Maharashtra,REG1746459970,Active,C0180
+O0106,Maple Consultants LLP,Consulting,"380, Airport Road, Pune",Pune,Maharashtra,REG1349642871,Active,C0182
+O0107,Crescent Consultants LLP,Technology,"734, Lake View Road, Indore",Indore,Madhya Pradesh,REG8147611144,Active,C0183
+O0108,Greenfield Services LLP,Finance,"57, Shivaji Nagar, Kochi",Kochi,Kerala,REG2981679848,Inactive,C0185
+O0109,Silverline Industries Pvt Ltd,Transport,"977, Station Road, Pune",Pune,Maharashtra,REG2583885688,Active,C0188
+O0110,Vertex Logistics Pvt Ltd,Transport,"353, College Road, Nagpur",Nagpur,Maharashtra,REG8011182134,Active,C0189
+O0111,Pioneer Services LLP,Real Estate,"805, MG Road, Jaipur",Jaipur,Rajasthan,REG5711414048,Active,C0191
+O0112,Greenfield Industries Pvt Ltd,Transport,"619, Shivaji Nagar, Surat",Surat,Gujarat,REG2188508891,Inactive,C0192
+O0113,Greenfield Logistics Pvt Ltd,Finance,"458, Lake View Road, Gurugram",Gurugram,Haryana,REG7900224510,Active,C0195
+O0114,Northstar Consultants LLP,Trading,"232, College Road, Kochi",Kochi,Kerala,REG5999343435,Active,C0196
+O0115,Sunrise Trading Co,Transport,"765, Station Road, Lucknow",Lucknow,Uttar Pradesh,REG5372768782,Active,C0197
+O0116,Riverstone Industries Pvt Ltd,Trading,"135, Park Street, Mumbai",Mumbai,Maharashtra,REG7526214632,Active,C0198
+O0117,Crescent Logistics Pvt Ltd,Finance,"516, MG Road, Kochi",Kochi,Kerala,REG9466228597,Active,C0200
+O0118,Crescent Services LLP,Consulting,"831, Ring Road, Coimbatore",Coimbatore,Tamil Nadu,REG5275861439,Active,C0202
+O0119,Cobalt Trading Co,Real Estate,"552, Station Road, Kolkata",Kolkata,West Bengal,REG8766854975,Active,C0204
+O0120,Crescent Consultants LLP,Logistics,"657, Station Road, Thane",Thane,Maharashtra,REG2135028606,Inactive,C0205
+O0121,Pioneer Solutions Pvt Ltd,Manufacturing,"296, MG Road, Nagpur",Nagpur,Maharashtra,REG7441581307,Active,C0206
+O0122,Maple Solutions Pvt Ltd,Logistics,"642, Ring Road, Indore",Indore,Madhya Pradesh,REG1844376213,Active,C0207
+O0123,Oakridge Industries Pvt Ltd,Construction,"513, MG Road, Kochi",Kochi,Kerala,REG4238658174,Active,C0208
+O0124,Northstar Logistics Pvt Ltd,Finance,"572, MG Road, Ahmedabad",Ahmedabad,Gujarat,REG5777256999,Inactive,C0209
+O0125,Oakridge Services LLP,Consulting,"644, Station Road, Kochi",Kochi,Kerala,REG8252579490,Active,C0212
+O0126,Vertex Services LLP,Services,"405, Market Road, Lucknow",Lucknow,Uttar Pradesh,REG6648400867,Active,C0214
+O0127,Crescent Solutions Pvt Ltd,Trading,"209, Ring Road, Thane",Thane,Maharashtra,REG1857785385,Active,C0216
+O0128,Crescent Services LLP,Transport,"896, Park Street, Delhi",Delhi,Delhi,REG9012943820,Active,C0218
+O0129,Vertex Trading Co,Real Estate,"902, MG Road, Ahmedabad",Ahmedabad,Gujarat,REG6113451471,Active,C0219
+O0130,Riverstone Trading Co,Real Estate,"957, Airport Road, Chennai",Chennai,Tamil Nadu,REG2813225052,Active,C0220
+O0131,Vertex Services LLP,Import/Export,"380, Shivaji Nagar, Nashik",Nashik,Maharashtra,REG1750956519,Active,C0221
+O0132,Maple Infrastructure Pvt Ltd,Manufacturing,"190, Lake View Road, Surat",Surat,Gujarat,REG3570488755,Active,C0222
+O0133,Maple Services LLP,Logistics,"727, Ring Road, Mumbai",Mumbai,Maharashtra,REG0897298110,Active,C0225
+O0134,Cobalt Services LLP,Import/Export,"125, Station Road, Coimbatore",Coimbatore,Tamil Nadu,REG8970065861,Active,C0227
+O0135,Pioneer Industries Pvt Ltd,Technology,"93, MG Road, Gurugram",Gurugram,Haryana,REG9749414327,Active,C0228
+O0136,Sunrise Logistics Pvt Ltd,Transport,"501, Nehru Nagar, Ahmedabad",Ahmedabad,Gujarat,REG3708025564,Active,C0229
+O0137,Vertex Industries Pvt Ltd,Construction,"873, Lake View Road, Mumbai",Mumbai,Maharashtra,REG1638977625,Inactive,C0232
+O0138,Silverline Infrastructure Pvt Ltd,Consulting,"316, Park Street, Bengaluru",Bengaluru,Karnataka,REG7963382483,Active,C0235
+O0139,Crescent Solutions Pvt Ltd,Trading,"55, Station Road, Bhopal",Bhopal,Madhya Pradesh,REG7437784119,Active,C0236
+O0140,Riverstone Consultants LLP,Retail,"277, Airport Road, Noida",Noida,Uttar Pradesh,REG0499807375,Inactive,C0238
+O0141,Blue Horizon Industries Pvt Ltd,Logistics,"736, Park Street, Noida",Noida,Uttar Pradesh,REG2101363202,Active,C0239
+O0142,Pioneer Industries Pvt Ltd,Consulting,"772, Lake View Road, Jaipur",Jaipur,Rajasthan,REG1138061970,Inactive,C0240
+O0143,Maple Infrastructure Pvt Ltd,Manufacturing,"786, Lake View Road, Surat",Surat,Gujarat,REG4520051993,Active,C0242
+O0144,Vertex Industries Pvt Ltd,Construction,"646, Airport Road, Bhopal",Bhopal,Madhya Pradesh,REG1778575298,Inactive,C0243
+O0145,Crescent Logistics Pvt Ltd,Real Estate,"769, Lake View Road, Nagpur",Nagpur,Maharashtra,REG6602711447,Active,C0244
+O0146,Cobalt Trading Co,Technology,"582, MG Road, Kochi",Kochi,Kerala,REG1823102916,Active,C0245
+O0147,Cobalt Industries Pvt Ltd,Finance,"680, Nehru Nagar, Coimbatore",Coimbatore,Tamil Nadu,REG4191391916,Active,C0248
+O0148,Northstar Infrastructure Pvt Ltd,Logistics,"690, Nehru Nagar, Ahmedabad",Ahmedabad,Gujarat,REG4713700512,Active,C0249
+O0149,Vertex Trading Co,Import/Export,"343, Airport Road, Bhopal",Bhopal,Madhya Pradesh,REG2517018498,Active,C0250
+O0150,Vertex Consultants LLP,Real Estate,"796, MG Road, Lucknow",Lucknow,Uttar Pradesh,REG2968793941,Active,C0252
+O0151,Greenfield Consultants LLP,Real Estate,"289, Market Road, Bengaluru",Bengaluru,Karnataka,REG8651522929,Active,C0255
+O0152,Maple Logistics Pvt Ltd,Real Estate,"582, Lake View Road, Surat",Surat,Gujarat,REG4861617155,Inactive,C0256
+O0153,Riverstone Services LLP,Transport,"352, Market Road, Bengaluru",Bengaluru,Karnataka,REG5397285116,Active,C0258
+O0154,Blue Horizon Infrastructure Pvt Ltd,Finance,"416, Park Street, Hyderabad",Hyderabad,Telangana,REG0856719320,Active,C0260
+O0155,Silverline Services LLP,Logistics,"15, Station Road, Thane",Thane,Maharashtra,REG3894879456,Active,C0262
+O0156,Oakridge Consultants LLP,Retail,"473, Market Road, Mumbai",Mumbai,Maharashtra,REG0195254963,Active,C0263
+O0157,Oakridge Services LLP,Manufacturing,"501, Airport Road, Surat",Surat,Gujarat,REG0931755864,Active,C0265
+O0158,Maple Trading Co,Logistics,"758, Shivaji Nagar, Indore",Indore,Madhya Pradesh,REG0263762463,Active,C0266
+O0159,Northstar Trading Co,Manufacturing,"222, Lake View Road, Hyderabad",Hyderabad,Telangana,REG9017085585,Active,C0270
+O0160,Sunrise Trading Co,Consulting,"364, College Road, Surat",Surat,Gujarat,REG4718397421,Active,C0272
+O0161,Cobalt Logistics Pvt Ltd,Logistics,"555, Nehru Nagar, Chennai",Chennai,Tamil Nadu,REG0270913419,Active,C0274
+O0162,Silverline Infrastructure Pvt Ltd,Construction,"679, Lake View Road, Delhi",Delhi,Delhi,REG2217638823,Inactive,C0275
+O0163,Riverstone Infrastructure Pvt Ltd,Services,"893, Ring Road, Nagpur",Nagpur,Maharashtra,REG5890917856,Active,C0276
+O0164,Greenfield Trading Co,Retail,"540, Shivaji Nagar, Gurugram",Gurugram,Haryana,REG6568547827,Active,C0277
+O0165,Cobalt Logistics Pvt Ltd,Manufacturing,"705, Park Street, Mumbai",Mumbai,Maharashtra,REG4151843629,Active,C0280
+O0166,Oakridge Industries Pvt Ltd,Transport,"564, College Road, Nashik",Nashik,Maharashtra,REG2049997192,Inactive,C0283
+O0167,Greenfield Services LLP,Retail,"800, Market Road, Gurugram",Gurugram,Haryana,REG0638043629,Active,C0284
+O0168,Vertex Solutions Pvt Ltd,Import/Export,"429, Market Road, Mumbai",Mumbai,Maharashtra,REG3380497192,Active,C0285
+O0169,Northstar Consultants LLP,Technology,"472, Airport Road, Thane",Thane,Maharashtra,REG2226900020,Active,C0288
+O0170,Riverstone Infrastructure Pvt Ltd,Consulting,"634, Station Road, Surat",Surat,Gujarat,REG9481336906,Active,C0290
+O0171,Blue Horizon Industries Pvt Ltd,Import/Export,"656, College Road, Thane",Thane,Maharashtra,REG5323215465,Inactive,C0293
+O0172,Pioneer Solutions Pvt Ltd,Consulting,"898, College Road, Pune",Pune,Maharashtra,REG3919083425,Active,C0302
+O0173,Oakridge Trading Co,Import/Export,"93, MG Road, Lucknow",Lucknow,Uttar Pradesh,REG5798682536,Active,C0305
+O0174,Crescent Services LLP,Services,"727, Station Road, Gurugram",Gurugram,Haryana,REG1396273876,Inactive,C0306
+O0175,Greenfield Consultants LLP,Logistics,"823, Market Road, Lucknow",Lucknow,Uttar Pradesh,REG9344075020,Active,C0307
+O0176,Oakridge Industries Pvt Ltd,Finance,"958, Nehru Nagar, Hyderabad",Hyderabad,Telangana,REG2084200671,Active,C0308
+O0177,Sunrise Logistics Pvt Ltd,Finance,"652, College Road, Bengaluru",Bengaluru,Karnataka,REG7162734319,Active,C0309
+O0178,Greenfield Trading Co,Import/Export,"636, Airport Road, Bengaluru",Bengaluru,Karnataka,REG4791091736,Active,C0313
+O0179,Blue Horizon Trading Co,Transport,"907, Park Street, Coimbatore",Coimbatore,Tamil Nadu,REG7942282555,Active,C0316
+O0180,Vertex Industries Pvt Ltd,Logistics,"525, Ring Road, Indore",Indore,Madhya Pradesh,REG5436581694,Inactive,C0317
+O0181,Sunrise Infrastructure Pvt Ltd,Import/Export,"901, Market Road, Nashik",Nashik,Maharashtra,REG4133184887,Active,C0319
+O0182,Maple Industries Pvt Ltd,Real Estate,"45, College Road, Noida",Noida,Uttar Pradesh,REG5461630549,Active,C0322
+O0183,Crescent Trading Co,Services,"275, Airport Road, Mumbai",Mumbai,Maharashtra,REG3859449268,Active,C0324
+O0184,Riverstone Trading Co,Transport,"816, Market Road, Indore",Indore,Madhya Pradesh,REG8706068277,Active,C0325
+O0185,Silverline Services LLP,Services,"527, Lake View Road, Surat",Surat,Gujarat,REG3529349731,Active,C0327
+O0186,Cobalt Infrastructure Pvt Ltd,Finance,"783, Lake View Road, Nagpur",Nagpur,Maharashtra,REG0286103158,Active,C0329
+O0187,Cobalt Trading Co,Logistics,"412, Airport Road, Indore",Indore,Madhya Pradesh,REG2924207161,Active,C0330
+O0188,Blue Horizon Logistics Pvt Ltd,Logistics,"597, Airport Road, Jaipur",Jaipur,Rajasthan,REG6394357199,Active,C0332
+O0189,Vertex Solutions Pvt Ltd,Trading,"464, Lake View Road, Surat",Surat,Gujarat,REG1400584021,Active,C0333
+O0190,Maple Infrastructure Pvt Ltd,Import/Export,"512, Nehru Nagar, Nagpur",Nagpur,Maharashtra,REG6168821893,Active,C0335
+O0191,Maple Consultants LLP,Import/Export,"435, Ring Road, Nashik",Nashik,Maharashtra,REG7751693450,Active,C0339
+O0192,Vertex Solutions Pvt Ltd,Technology,"44, Park Street, Coimbatore",Coimbatore,Tamil Nadu,REG2181809826,Active,C0341
+O0193,Silverline Consultants LLP,Services,"140, Park Street, Indore",Indore,Madhya Pradesh,REG3121648104,Inactive,C0342
+O0194,Blue Horizon Services LLP,Logistics,"296, College Road, Chennai",Chennai,Tamil Nadu,REG1050359269,Active,C0343
+O0195,Crescent Logistics Pvt Ltd,Technology,"196, Nehru Nagar, Bhopal",Bhopal,Madhya Pradesh,REG4499744507,Active,C0344
+O0196,Greenfield Services LLP,Transport,"256, Park Street, Delhi",Delhi,Delhi,REG8375581693,Active,C0345
+O0197,Vertex Industries Pvt Ltd,Transport,"731, Airport Road, Ahmedabad",Ahmedabad,Gujarat,REG5005989078,Active,C0346
+O0198,Silverline Solutions Pvt Ltd,Transport,"56, Market Road, Jaipur",Jaipur,Rajasthan,REG4761526202,Active,C0348
+O0199,Vertex Infrastructure Pvt Ltd,Logistics,"382, Airport Road, Nashik",Nashik,Maharashtra,REG6803324206,Active,C0349
+O0200,Silverline Services LLP,Finance,"702, Market Road, Bengaluru",Bengaluru,Karnataka,REG4854364171,Active,C0351
+O0201,Cobalt Services LLP,Import/Export,"703, College Road, Pune",Pune,Maharashtra,REG4723214734,Active,C0352
+O0202,Maple Industries Pvt Ltd,Transport,"151, Shivaji Nagar, Thane",Thane,Maharashtra,REG3264722959,Inactive,C0357
+O0203,Northstar Services LLP,Transport,"720, Airport Road, Indore",Indore,Madhya Pradesh,REG9249849729,Active,C0358
+O0204,Sunrise Industries Pvt Ltd,Manufacturing,"649, Airport Road, Bhopal",Bhopal,Madhya Pradesh,REG6913793343,Active,C0360
+O0205,Vertex Logistics Pvt Ltd,Real Estate,"319, Park Street, Bengaluru",Bengaluru,Karnataka,REG4767719738,Active,C0361
+O0206,Blue Horizon Logistics Pvt Ltd,Manufacturing,"946, Ring Road, Surat",Surat,Gujarat,REG0606614545,Active,C0363
+O0207,Greenfield Consultants LLP,Technology,"199, Market Road, Surat",Surat,Gujarat,REG0501666272,Active,C0364
+O0208,Maple Consultants LLP,Logistics,"585, Shivaji Nagar, Ahmedabad",Ahmedabad,Gujarat,REG0720083175,Active,C0366
+O0209,Silverline Solutions Pvt Ltd,Transport,"252, Airport Road, Delhi",Delhi,Delhi,REG4204297737,Inactive,C0369
+O0210,Vertex Infrastructure Pvt Ltd,Finance,"517, MG Road, Ahmedabad",Ahmedabad,Gujarat,REG3079159949,Inactive,C0373
+O0211,Oakridge Solutions Pvt Ltd,Finance,"279, Airport Road, Ahmedabad",Ahmedabad,Gujarat,REG9165190509,Active,C0374
+O0212,Greenfield Services LLP,Construction,"324, Shivaji Nagar, Mumbai",Mumbai,Maharashtra,REG9215405937,Active,C0375
+O0213,Greenfield Trading Co,Logistics,"205, College Road, Kochi",Kochi,Kerala,REG5530400342,Active,C0376
+O0214,Cobalt Consultants LLP,Retail,"530, Lake View Road, Kochi",Kochi,Kerala,REG0221807187,Active,C0377
+O0215,Crescent Trading Co,Finance,"808, Lake View Road, Delhi",Delhi,Delhi,REG1397664683,Active,C0378
+O0216,Greenfield Infrastructure Pvt Ltd,Trading,"625, Shivaji Nagar, Nagpur",Nagpur,Maharashtra,REG4142714899,Active,C0379
+O0217,Oakridge Industries Pvt Ltd,Technology,"55, Ring Road, Nashik",Nashik,Maharashtra,REG2929826601,Active,C0381
+O0218,Sunrise Consultants LLP,Finance,"634, Market Road, Bhopal",Bhopal,Madhya Pradesh,REG1120771338,Active,C0382
+O0219,Crescent Infrastructure Pvt Ltd,Services,"924, Airport Road, Thane",Thane,Maharashtra,REG5299383906,Active,C0384
+O0220,Maple Services LLP,Technology,"921, Market Road, Coimbatore",Coimbatore,Tamil Nadu,REG0485376453,Active,C0385
+O0221,Blue Horizon Services LLP,Construction,"997, MG Road, Lucknow",Lucknow,Uttar Pradesh,REG4010937617,Active,C0387
+O0222,Northstar Solutions Pvt Ltd,Retail,"358, Airport Road, Coimbatore",Coimbatore,Tamil Nadu,REG5899184014,Active,C0389
+O0223,Sunrise Infrastructure Pvt Ltd,Manufacturing,"182, Shivaji Nagar, Indore",Indore,Madhya Pradesh,REG2960837550,Active,C0392
+O0224,Pioneer Consultants LLP,Manufacturing,"816, Market Road, Surat",Surat,Gujarat,REG7683906265,Active,C0393
+O0225,Riverstone Solutions Pvt Ltd,Logistics,"25, Market Road, Indore",Indore,Madhya Pradesh,REG2154761159,Active,C0394
+O0226,Maple Trading Co,Import/Export,"618, Park Street, Jaipur",Jaipur,Rajasthan,REG4883641547,Active,C0395
+O0227,Maple Infrastructure Pvt Ltd,Logistics,"213, Lake View Road, Nagpur",Nagpur,Maharashtra,REG1158176686,Active,C0398
+O0228,Greenfield Solutions Pvt Ltd,Retail,"280, Market Road, Surat",Surat,Gujarat,REG4502428212,Inactive,C0399
+O0229,Greenfield Industries Pvt Ltd,Construction,"356, Nehru Nagar, Nashik",Nashik,Maharashtra,REG5601773952,Active,C0402
+O0230,Northstar Industries Pvt Ltd,Consulting,"908, Ring Road, Jaipur",Jaipur,Rajasthan,REG5251430090,Active,C0404
+O0231,Riverstone Infrastructure Pvt Ltd,Services,"4, Lake View Road, Nagpur",Nagpur,Maharashtra,REG0621106254,Active,C0406
+O0232,Oakridge Solutions Pvt Ltd,Finance,"634, Nehru Nagar, Bengaluru",Bengaluru,Karnataka,REG6845005930,Inactive,C0410
+O0233,Vertex Consultants LLP,Finance,"704, Market Road, Pune",Pune,Maharashtra,REG3780982432,Active,C0414
+O0234,Blue Horizon Services LLP,Manufacturing,"583, Market Road, Hyderabad",Hyderabad,Telangana,REG7088314212,Active,C0417
+O0235,Sunrise Industries Pvt Ltd,Import/Export,"48, Ring Road, Bhopal",Bhopal,Madhya Pradesh,REG1472719230,Active,C0420
+O0236,Maple Infrastructure Pvt Ltd,Retail,"105, College Road, Delhi",Delhi,Delhi,REG8570562210,Active,C0422
+O0237,Riverstone Solutions Pvt Ltd,Retail,"526, Airport Road, Nashik",Nashik,Maharashtra,REG9523238231,Active,C0423
+O0238,Maple Industries Pvt Ltd,Transport,"457, Market Road, Pune",Pune,Maharashtra,REG8749927089,Active,C0426
+O0239,Pioneer Industries Pvt Ltd,Consulting,"103, Station Road, Mumbai",Mumbai,Maharashtra,REG6283767303,Active,C0427
+O0240,Northstar Logistics Pvt Ltd,Transport,"497, Station Road, Mumbai",Mumbai,Maharashtra,REG6754061787,Active,C0432
+O0241,Silverline Services LLP,Construction,"278, Lake View Road, Gurugram",Gurugram,Haryana,REG6151803259,Active,C0436
+O0242,Blue Horizon Logistics Pvt Ltd,Finance,"836, College Road, Delhi",Delhi,Delhi,REG0765434711,Active,C0437
+O0243,Blue Horizon Trading Co,Technology,"87, MG Road, Noida",Noida,Uttar Pradesh,REG3041176620,Active,C0438
+O0244,Cobalt Consultants LLP,Trading,"479, Nehru Nagar, Kochi",Kochi,Kerala,REG9795859263,Active,C0439
+O0245,Blue Horizon Trading Co,Technology,"34, Shivaji Nagar, Chennai",Chennai,Tamil Nadu,REG6703807988,Active,C0442
+O0246,Oakridge Infrastructure Pvt Ltd,Consulting,"526, Nehru Nagar, Ahmedabad",Ahmedabad,Gujarat,REG4517507879,Active,C0443
+O0247,Northstar Solutions Pvt Ltd,Finance,"108, Park Street, Chennai",Chennai,Tamil Nadu,REG5363556036,Active,C0444
+O0248,Greenfield Solutions Pvt Ltd,Services,"276, MG Road, Hyderabad",Hyderabad,Telangana,REG9508154176,Inactive,C0445
+O0249,Greenfield Trading Co,Services,"692, Shivaji Nagar, Noida",Noida,Uttar Pradesh,REG4976698666,Active,C0446
+O0250,Maple Consultants LLP,Manufacturing,"124, Lake View Road, Bhopal",Bhopal,Madhya Pradesh,REG2070865546,Active,C0450
+O0251,Blue Horizon Trading Co,Logistics,"988, MG Road, Bengaluru",Bengaluru,Karnataka,REG3836413350,Active,C0452
+O0252,Riverstone Industries Pvt Ltd,Services,"118, Park Street, Hyderabad",Hyderabad,Telangana,REG3896916188,Inactive,C0453
+O0253,Northstar Industries Pvt Ltd,Technology,"415, Station Road, Indore",Indore,Madhya Pradesh,REG7061306556,Active,C0454
+O0254,Northstar Consultants LLP,Technology,"832, Nehru Nagar, Thane",Thane,Maharashtra,REG0465362318,Active,C0457
+O0255,Silverline Services LLP,Real Estate,"749, Park Street, Chennai",Chennai,Tamil Nadu,REG1168486566,Active,C0458
+O0256,Blue Horizon Logistics Pvt Ltd,Manufacturing,"640, Market Road, Kolkata",Kolkata,West Bengal,REG0327037236,Active,C0459
+O0257,Sunrise Services LLP,Consulting,"595, Market Road, Mumbai",Mumbai,Maharashtra,REG6220936746,Active,C0461
+O0258,Oakridge Industries Pvt Ltd,Finance,"179, Market Road, Chennai",Chennai,Tamil Nadu,REG1270214987,Active,C0463
+O0259,Greenfield Infrastructure Pvt Ltd,Transport,"268, Nehru Nagar, Ahmedabad",Ahmedabad,Gujarat,REG7255852020,Active,C0464
+O0260,Blue Horizon Services LLP,Real Estate,"512, Park Street, Ahmedabad",Ahmedabad,Gujarat,REG0235242455,Active,C0467
+O0261,Oakridge Services LLP,Manufacturing,"629, Nehru Nagar, Gurugram",Gurugram,Haryana,REG2539427506,Active,C0468
+O0262,Crescent Trading Co,Consulting,"86, Airport Road, Kochi",Kochi,Kerala,REG8798491828,Active,C0469
+O0263,Northstar Industries Pvt Ltd,Construction,"348, Market Road, Mumbai",Mumbai,Maharashtra,REG0632125179,Inactive,C0470
+O0264,Vertex Industries Pvt Ltd,Manufacturing,"197, Nehru Nagar, Noida",Noida,Uttar Pradesh,REG1552575665,Active,C0473
+O0265,Blue Horizon Solutions Pvt Ltd,Real Estate,"913, College Road, Mumbai",Mumbai,Maharashtra,REG7049417938,Active,C0474
+O0266,Cobalt Solutions Pvt Ltd,Technology,"973, Lake View Road, Gurugram",Gurugram,Haryana,REG6840612905,Active,C0476
+O0267,Pioneer Industries Pvt Ltd,Finance,"289, Shivaji Nagar, Kochi",Kochi,Kerala,REG6370237254,Active,C0480
+O0268,Riverstone Trading Co,Import/Export,"452, College Road, Delhi",Delhi,Delhi,REG0484710803,Active,C0481
+O0269,Pioneer Consultants LLP,Manufacturing,"939, Airport Road, Noida",Noida,Uttar Pradesh,REG3039047554,Active,C0484
+O0270,Crescent Logistics Pvt Ltd,Transport,"283, Nehru Nagar, Pune",Pune,Maharashtra,REG9839047068,Active,C0485
+O0271,Silverline Consultants LLP,Construction,"576, Nehru Nagar, Jaipur",Jaipur,Rajasthan,REG5040073653,Active,C0486
+O0272,Sunrise Services LLP,Import/Export,"352, MG Road, Surat",Surat,Gujarat,REG9700163539,Active,C0488
+O0273,Blue Horizon Infrastructure Pvt Ltd,Services,"511, Shivaji Nagar, Coimbatore",Coimbatore,Tamil Nadu,REG4759329958,Active,C0490
+O0274,Crescent Industries Pvt Ltd,Retail,"48, Market Road, Gurugram",Gurugram,Haryana,REG6951375988,Active,C0491
+O0275,Greenfield Services LLP,Logistics,"440, Lake View Road, Pune",Pune,Maharashtra,REG5316798093,Active,C0492
+O0276,Northstar Consultants LLP,Retail,"484, Station Road, Bhopal",Bhopal,Madhya Pradesh,REG9598599017,Active,C0493
+O0277,Northstar Infrastructure Pvt Ltd,Trading,"631, Park Street, Gurugram",Gurugram,Haryana,REG7488733658,Active,C0495
+O0278,Pioneer Logistics Pvt Ltd,Services,"716, Shivaji Nagar, Mumbai",Mumbai,Maharashtra,REG0112100150,Active,C0496
+O0279,Maple Logistics Pvt Ltd,Manufacturing,"178, Lake View Road, Nagpur",Nagpur,Maharashtra,REG2989938938,Active,C0498
+O0280,Maple Industries Pvt Ltd,Finance,"258, Market Road, Nashik",Nashik,Maharashtra,REG2972210284,Active,C0499
+O0281,Maple Industries Pvt Ltd,Logistics,"874, Ring Road, Nagpur",Nagpur,Maharashtra,REG3054844923,Inactive,C0500
+O0282,Greenfield Services LLP,Logistics,"79, Market Road, Gurugram",Gurugram,Haryana,REG4745151541,Inactive,C0501
+O0283,Crescent Consultants LLP,Logistics,"122, Airport Road, Bengaluru",Bengaluru,Karnataka,REG7381129740,Active,C0502
+O0284,Pioneer Infrastructure Pvt Ltd,Trading,"654, Market Road, Pune",Pune,Maharashtra,REG0558846565,Active,C0503
+O0285,Vertex Consultants LLP,Technology,"442, Lake View Road, Ahmedabad",Ahmedabad,Gujarat,REG7169308902,Active,C0505
+O0286,Crescent Consultants LLP,Technology,"420, MG Road, Thane",Thane,Maharashtra,REG4415041746,Active,C0507
+O0287,Greenfield Solutions Pvt Ltd,Trading,"791, MG Road, Indore",Indore,Madhya Pradesh,REG2490069524,Active,C0508
+O0288,Cobalt Consultants LLP,Trading,"991, Park Street, Indore",Indore,Madhya Pradesh,REG3025979093,Active,C0510
+O0289,Oakridge Consultants LLP,Manufacturing,"565, MG Road, Gurugram",Gurugram,Haryana,REG4886552553,Active,C0512
+O0290,Maple Infrastructure Pvt Ltd,Real Estate,"831, Lake View Road, Thane",Thane,Maharashtra,REG2092692020,Inactive,C0513
+O0291,Sunrise Consultants LLP,Finance,"454, Market Road, Lucknow",Lucknow,Uttar Pradesh,REG9097633912,Active,C0514
+O0292,Northstar Logistics Pvt Ltd,Construction,"231, Park Street, Mumbai",Mumbai,Maharashtra,REG9497456305,Inactive,C0518
+O0293,Greenfield Services LLP,Real Estate,"122, Market Road, Pune",Pune,Maharashtra,REG4000342027,Active,C0520
+O0294,Oakridge Industries Pvt Ltd,Logistics,"776, MG Road, Mumbai",Mumbai,Maharashtra,REG8237838504,Inactive,C0522
+O0295,Crescent Trading Co,Retail,"56, Station Road, Mumbai",Mumbai,Maharashtra,REG7285467845,Active,C0523
+O0296,Greenfield Logistics Pvt Ltd,Services,"104, MG Road, Kochi",Kochi,Kerala,REG6706769269,Inactive,C0525
+O0297,Blue Horizon Logistics Pvt Ltd,Services,"597, Station Road, Gurugram",Gurugram,Haryana,REG1966975282,Active,C0526
+O0298,Greenfield Consultants LLP,Finance,"563, Ring Road, Kochi",Kochi,Kerala,REG9819079246,Active,C0527
+O0299,Northstar Solutions Pvt Ltd,Real Estate,"858, Ring Road, Ahmedabad",Ahmedabad,Gujarat,REG1293005478,Active,C0528
+O0300,Blue Horizon Trading Co,Trading,"665, Airport Road, Thane",Thane,Maharashtra,REG9299595086,Active,C0532
+O0301,Cobalt Logistics Pvt Ltd,Transport,"648, Airport Road, Nagpur",Nagpur,Maharashtra,REG8945035198,Inactive,C0535
+O0302,Blue Horizon Trading Co,Construction,"549, College Road, Nagpur",Nagpur,Maharashtra,REG4032930629,Active,C0541
+O0303,Blue Horizon Trading Co,Retail,"126, College Road, Gurugram",Gurugram,Haryana,REG1326269651,Active,C0542
+O0304,Blue Horizon Trading Co,Real Estate,"397, Lake View Road, Delhi",Delhi,Delhi,REG6839432845,Active,C0544
+O0305,Pioneer Infrastructure Pvt Ltd,Consulting,"119, Park Street, Noida",Noida,Uttar Pradesh,REG5204829981,Inactive,C0547
+O0306,Crescent Trading Co,Manufacturing,"468, Market Road, Coimbatore",Coimbatore,Tamil Nadu,REG1508661400,Active,C0549
+O0307,Greenfield Trading Co,Real Estate,"35, Park Street, Indore",Indore,Madhya Pradesh,REG9204267137,Active,C0550
+O0308,Cobalt Consultants LLP,Manufacturing,"317, Airport Road, Gurugram",Gurugram,Haryana,REG2648627486,Active,C0551
+O0309,Riverstone Industries Pvt Ltd,Consulting,"837, Airport Road, Noida",Noida,Uttar Pradesh,REG4234673780,Active,C0552

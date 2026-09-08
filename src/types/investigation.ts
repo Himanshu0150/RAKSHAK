@@ -213,3 +213,37 @@ export interface GraphLink {
   evidenceId?: string;
   weight?: number;
 }
+
+export interface InvestigationStoryItem {
+  story_item_id: string;
+  story_id: string;
+  case_id: string;
+  sequence: number;
+  timestamp: string;
+  observation: string;
+  source_type: 'CDR' | 'TRANSACTION' | 'EVENT' | 'EVIDENCE' | 'OSINT' | 'RELATIONSHIP' | 'LOCATION';
+  source_record_id: string;
+  entity_ids: string[];
+  relationship_ids?: string[];
+  evidence_ids?: string[];
+  supporting_evidence: string;
+  hypothesis: string;
+  confidence: number;
+  confidence_type: 'HIGH' | 'MEDIUM' | 'VERY_HIGH' | 'CRITICAL';
+  contradicting_evidence: string;
+  next_investigative_action: string;
+  fact_or_inference: 'FACT / OBSERVATION' | 'INFERENCE / HYPOTHESIS' | string;
+}
+
+export interface InvestigationStory {
+  story_id: string;
+  case_id: string;
+  generated_at: string;
+  generated_by: string;
+  title: string;
+  summary: string;
+  status: string;
+  items: InvestigationStoryItem[];
+  source_record_ids: string[];
+  version: number;
+}

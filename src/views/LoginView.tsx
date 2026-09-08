@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
-  Shield, 
   Lock, 
   CheckCircle2, 
   BadgeCheck, 
@@ -13,8 +12,13 @@ import {
   Building2, 
   AlertCircle, 
   Loader2,
-  Share2
+  Share2,
+  Activity,
+  ShieldCheck,
+  Network,
+  Cpu
 } from 'lucide-react';
+import { RakshakIntelligenceAnimation } from '../components/RakshakIntelligenceAnimation';
 
 export const LoginView: React.FC = () => {
   const { login } = useAuth();
@@ -69,13 +73,13 @@ export const LoginView: React.FC = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex bg-[#F8F7F3] text-[#17191F] font-sans selection:bg-[#283593]/20 selection:text-[#283593] overflow-hidden">
-      <div className="flex w-full min-h-screen">
+    <div className="w-full min-h-screen flex bg-[#F8F7F3] text-[#17191F] font-sans selection:bg-[#283593]/20 selection:text-[#283593] overflow-x-hidden">
+      <div className="flex flex-col lg:flex-row w-full min-h-screen">
         
-        {/* Left Panel: Brand & Intelligence Aesthetics */}
-        <div className="hidden lg:flex w-[45%] bg-[#202833] text-white flex-col justify-between p-12 relative overflow-hidden">
+        {/* Left Panel: RAKSHAK Branding & Three.js 3D Intelligence Matrix */}
+        <div className="w-full lg:w-[50%] bg-[#151A21] text-white flex flex-col justify-between p-6 sm:p-8 lg:p-12 relative overflow-hidden shrink-0 border-b lg:border-b-0 lg:border-r border-[#2A3139]">
           
-          {/* Background Grid & Abstract Network Nodes */}
+          {/* Background Grid & Abstract Lines */}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -94,70 +98,119 @@ export const LoginView: React.FC = () => {
             </svg>
           </div>
 
-          {/* Top Brand Header */}
+          {/* Top RAKSHAK Brand Header */}
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-6">
-              <img src="/rakshak_logo.png" alt="RAKSHAK Logo" className="w-16 h-16 object-contain filter drop-shadow-md" />
-              <h1 className="font-bold text-4xl tracking-tight text-white font-mono">RAKSHAK</h1>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/rakshak_logo.png" alt="RAKSHAK Logo" className="w-12 h-12 sm:w-14 sm:h-14 object-contain filter drop-shadow-md" />
+              <div>
+                <h1 className="font-bold text-3xl sm:text-4xl tracking-tight text-white font-mono">RAKSHAK</h1>
+                <span className="text-[10px] font-mono text-[#3B82F6] tracking-widest uppercase bg-[#2563EB]/10 px-2 py-0.5 rounded border border-[#2563EB]/30 inline-block mt-0.5">
+                  INTELLIGENCE MATRIX
+                </span>
+              </div>
             </div>
-            <h2 className="text-xl font-semibold text-[#EAE0C8]">
+            <h2 className="text-lg sm:text-xl font-semibold text-[#EAE0C8]">
               National Crime Intelligence Platform
             </h2>
-          </div>
-
-          {/* Core Mission Quote */}
-          <div className="relative z-10 max-w-md space-y-2">
-            <p className="text-2xl font-semibold text-white/90 leading-relaxed font-sans">
-              Connect evidence. <br />
-              Resolve identities. <br />
-              Understand networks.
+            <p className="text-xs text-[#94A3B8] mt-1 font-sans">
+              Connect evidence. Resolve identities. Reconstruct networks.
             </p>
           </div>
 
-          {/* Bottom Accreditation */}
-          <div className="relative z-10 flex justify-between items-end">
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#B8BEC7] font-sans">
+          {/* Center: Direct 3D Three.js Intelligence Matrix Animation Container */}
+          <div className="relative z-10 my-6 lg:my-8 w-full max-w-lg mx-auto">
+            <div className="relative rounded-xl overflow-hidden border border-[#2A3139] bg-[#0E1318]/90 backdrop-blur-md shadow-2xl group transition-all duration-300">
+              
+              {/* Radar scanline animation */}
+              <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden opacity-30 group-hover:opacity-50 transition-opacity">
+                <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent animate-pulse" />
+              </div>
+
+              {/* Status Header */}
+              <div className="relative z-10 p-3 sm:p-4 pb-0">
+                <div className="flex items-center justify-between pb-2 border-b border-[#2A3139]/80 text-[11px] font-mono text-[#94A3B8]">
+                  <div className="flex items-center gap-1.5 text-[#3B82F6]">
+                    <Activity className="w-3.5 h-3.5 animate-pulse text-[#3B82F6]" />
+                    <span className="font-semibold text-white uppercase tracking-wider">LIVE INVESTIGATION MATRIX</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex items-center gap-1 text-[10px] text-emerald-400">
+                      <ShieldCheck className="w-3 h-3" /> SECURE
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Actual Three.js Animation Canvas Rendered Directly */}
+              <div className="relative z-10 w-full min-h-[260px] sm:min-h-[300px]">
+                <RakshakIntelligenceAnimation />
+              </div>
+
+              {/* True Non-Numeric System Status Footer */}
+              <div className="relative z-10 p-3 sm:p-4 pt-0">
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-white/90">
+                  <div className="flex items-center gap-1.5 bg-[#0E1318]/90 border border-[#2A3139] px-2.5 py-1.5 rounded">
+                    <Cpu className="w-3 h-3 text-[#3B82F6] shrink-0" />
+                    <span className="truncate text-[#94A3B8] uppercase">ENTITY RESOLUTION ACTIVE</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-[#0E1318]/90 border border-[#2A3139] px-2.5 py-1.5 rounded">
+                    <Network className="w-3 h-3 text-emerald-400 shrink-0" />
+                    <span className="truncate text-emerald-400 font-medium uppercase">INVESTIGATION GRAPH READY</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Bottom Accreditation Footer */}
+          <div className="relative z-10 flex justify-between items-end pt-2">
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#B8BEC7] font-sans">
                 SMART INDIA HACKATHON 2026
               </span>
-              <span className="text-xs font-mono text-[#B8BEC7]/80">
-                SIH26189
+              <span className="text-[10px] font-mono text-[#94A3B8]">
+                PROBLEM STATEMENT ID: SIH26189
               </span>
             </div>
             <div className="text-[#B8BEC7]">
-              <Share2 className="w-5 h-5" />
+              <Share2 className="w-4 h-4" />
             </div>
           </div>
+
         </div>
 
         {/* Right Panel: Authentication Form */}
-        <div className="w-full lg:w-[55%] bg-[#FFFFFF] flex flex-col justify-center items-center p-8 lg:p-24 relative">
-          <div className="w-full max-w-[440px] space-y-8">
+        <div className="w-full lg:w-[50%] bg-[#FFFFFF] flex flex-col justify-center items-center p-6 sm:p-10 lg:p-16 relative">
+          <div className="w-full max-w-[440px] space-y-6">
             
-            {/* Mobile Logo */}
-            <div className="lg:hidden flex items-center gap-3 mb-6">
+            {/* Mobile RAKSHAK Header */}
+            <div className="lg:hidden flex items-center gap-3 mb-4">
               <img src="/rakshak_logo.png" alt="RAKSHAK Logo" className="w-10 h-10 object-contain" />
-              <h1 className="text-2xl font-bold font-mono tracking-tight text-[#17191F]">RAKSHAK</h1>
+              <div>
+                <h1 className="text-2xl font-bold font-mono tracking-tight text-[#17191F]">RAKSHAK</h1>
+                <p className="text-[10px] font-mono text-[#283593]">National Crime Intelligence Platform</p>
+              </div>
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold text-[#17191F] mb-2 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#17191F] mb-1.5 tracking-tight">
                 Secure Investigator Access
               </h2>
-              <p className="text-base text-[#667085]">
-                Authorized investigative personnel only.
+              <p className="text-sm text-[#667085]">
+                Authorized law enforcement and investigative personnel only.
               </p>
             </div>
 
             {/* Security Status Badges */}
-            <div className="flex flex-wrap gap-3 mb-2">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#F8F7F3] rounded-full border border-[#E4E5E7]">
+            <div className="flex flex-wrap gap-2.5 mb-1">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-[#F8F7F3] rounded-full border border-[#E4E5E7]">
                 <Lock className="w-3.5 h-3.5 text-[#283593]" />
                 <span className="text-[10px] uppercase tracking-wider text-[#283593] font-semibold font-mono">
                   Secure Connection
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#F8F7F3] rounded-full border border-[#E4E5E7]">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-[#F8F7F3] rounded-full border border-[#E4E5E7]">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#283593]" />
                 <span className="text-[10px] uppercase tracking-wider text-[#283593] font-semibold font-mono">
                   Session Protected
@@ -174,7 +227,7 @@ export const LoginView: React.FC = () => {
             )}
 
             {/* Login Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               
               {/* Investigator ID Input */}
               <div className="space-y-1.5">
@@ -244,7 +297,7 @@ export const LoginView: React.FC = () => {
               </div>
 
               {/* Remember Device & Password Reset Options */}
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center justify-between pt-1">
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <input
                     type="checkbox"
@@ -266,7 +319,7 @@ export const LoginView: React.FC = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 space-y-3">
+              <div className="pt-3 space-y-3">
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -303,7 +356,7 @@ export const LoginView: React.FC = () => {
             </form>
 
             {/* Security Warning Notice */}
-            <div className="mt-8 pt-6 border-t border-[#E4E5E7] text-center">
+            <div className="mt-6 pt-4 border-t border-[#E4E5E7] text-center">
               <p className="font-mono text-[10px] text-[#667085] uppercase tracking-wider">
                 UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED AND MONITORED.
               </p>
@@ -316,3 +369,6 @@ export const LoginView: React.FC = () => {
     </div>
   );
 };
+
+
+

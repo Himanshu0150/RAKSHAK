@@ -23,6 +23,7 @@ import { FinancialView } from './views/FinancialView';
 import { AnomalyRadarView } from './views/AnomalyRadarView';
 import { DataHealthView } from './views/DataHealthView';
 import { AiCopilotView } from './views/AiCopilotView';
+import { InvestigationStoryView } from './views/InvestigationStoryView';
 
 // Modals
 import { EntityDossierModal } from './components/modals/EntityDossierModal';
@@ -92,7 +93,7 @@ function MainAppContent() {
   // Initial case and entity dataset loading on login
   React.useEffect(() => {
     if (!isAuthenticated) return;
-    fetchRealCases(150).then(realCases => {
+    fetchRealCases(1000).then(realCases => {
       if (realCases?.length) {
         setDataset(prev => ({ ...prev, cases: realCases }));
       }
@@ -417,6 +418,15 @@ function MainAppContent() {
           selectedCaseId={selectedCaseId}
           onSelectCaseId={handleSelectCaseId}
           onSelectEntity={handleSelectEntity}
+        />
+      )}
+
+      {currentTab === 'investigation_story' && (
+        <InvestigationStoryView
+          selectedCaseId={selectedCaseId}
+          cases={dataset.cases || []}
+          onSelectCaseId={handleSelectCaseId}
+          onOpenEntityDossier={(entityId) => setSelectedEntityIdForDossier(entityId)}
         />
       )}
 

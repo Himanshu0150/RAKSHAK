@@ -1,0 +1,1396 @@
+alias_id,person_id,alias,alias_type,source,evidence_id,confidence
+A00001,P00003,diya20,Business Alias,Social Platform,nan,0.97
+A00002,P00005,karan84,Nickname,Business Listing,nan,0.76
+A00003,P00007,pranav64,Business Alias,Business Listing,nan,0.63
+A00004,P00009,pooja10,Business Alias,Business Listing,E00007,0.67
+A00005,P00018,isha36,Nickname,Public Directory,nan,0.85
+A00006,P00022,tara29,Business Alias,Business Listing,E00013,0.97
+A00007,P00030,nikhil67,Nickname,Social Platform,nan,0.88
+A00008,P00032,kabir88,Nickname,Social Platform,nan,0.81
+A00009,P00036,yash97,Social Media Username,Public Directory,nan,0.73
+A00010,P00037,dev68,Business Alias,Social Platform,E00021,0.94
+A00011,P00041,siddharth25,Social Media Username,Public Directory,E00024,0.63
+A00012,P00052,varun32,Nickname,Business Listing,nan,0.83
+A00013,P00056,aditi54,Business Alias,Public Directory,nan,0.97
+A00014,P00058,dhruv98,Business Alias,Public Directory,E00033,0.59
+A00015,P00059,avni63,Social Media Username,Social Platform,nan,0.88
+A00016,P00068,aarav59,Business Alias,Public Directory,E00039,0.97
+A00017,P00069,mohit80,Nickname,Social Platform,E00041,0.88
+A00018,P00070,raj36,Business Alias,Business Listing,nan,0.64
+A00019,P00074,manav97,Nickname,Social Platform,E00044,0.74
+A00020,P00080,diya66,Social Media Username,Social Platform,nan,0.9
+A00021,P00083,raj97,Business Alias,Social Platform,E00053,0.72
+A00022,P00085,simran83,Nickname,Public Directory,nan,0.56
+A00023,P00092,kunal24,Social Media Username,Business Listing,E00062,0.72
+A00024,P00093,manav37,Social Media Username,Social Platform,E00064,0.65
+A00025,P00108,simran95,Nickname,Social Platform,nan,0.66
+A00026,P00120,aarav81,Nickname,Social Platform,nan,0.55
+A00027,P00125,akash95,Social Media Username,Social Platform,E00087,0.91
+A00028,P00133,dev10,Nickname,Social Platform,nan,0.94
+A00029,P00137,akash53,Social Media Username,Business Listing,nan,0.75
+A00030,P00144,raj62,Nickname,Public Directory,nan,0.85
+A00031,P00145,arjun34,Social Media Username,Public Directory,nan,0.69
+A00032,P00157,mohit42,Social Media Username,Social Platform,E00111,0.74
+A00033,P00158,ishita17,Nickname,Business Listing,nan,0.73
+A00034,P00172,aanya15,Nickname,Business Listing,nan,0.87
+A00035,P00177,pranav89,Business Alias,Public Directory,E00122,0.58
+A00036,P00180,arnav35,Business Alias,Business Listing,E00123,0.79
+A00037,P00188,mohit81,Nickname,Business Listing,nan,0.92
+A00038,P00191,aniket89,Business Alias,Business Listing,E00129,0.85
+A00039,P00192,raj54,Nickname,Business Listing,nan,0.59
+A00040,P00195,rahul62,Social Media Username,Public Directory,E00134,0.79
+A00041,P00198,manav73,Social Media Username,Public Directory,nan,0.85
+A00042,P00211,rohan63,Social Media Username,Business Listing,nan,0.93
+A00043,P00213,aditya71,Nickname,Business Listing,E00147,0.66
+A00044,P00219,kiara46,Social Media Username,Public Directory,nan,0.68
+A00045,P00220,karan73,Business Alias,Social Platform,nan,0.9
+A00046,P00229,kabir83,Social Media Username,Social Platform,nan,0.76
+A00047,P00232,karan85,Nickname,Public Directory,nan,0.81
+A00048,P00238,rhea93,Nickname,Public Directory,nan,0.78
+A00049,P00240,akash36,Business Alias,Public Directory,E00164,0.59
+A00050,P00241,harsh82,Social Media Username,Social Platform,E00165,0.87
+A00051,P00247,avni95,Nickname,Business Listing,E00169,0.63
+A00052,P00248,simran26,Business Alias,Public Directory,nan,0.79
+A00053,P00253,naveen63,Nickname,Business Listing,nan,0.93
+A00054,P00257,aniket19,Nickname,Business Listing,nan,0.73
+A00055,P00262,naina72,Nickname,Public Directory,nan,0.81
+A00056,P00266,kunal59,Social Media Username,Business Listing,E00181,0.63
+A00057,P00270,mohit74,Business Alias,Public Directory,E00184,0.63
+A00058,P00277,karan66,Social Media Username,Social Platform,nan,0.81
+A00059,P00280,yamini17,Business Alias,Public Directory,E00195,0.55
+A00060,P00281,diya66,Nickname,Business Listing,nan,0.98
+A00061,P00290,tanvi90,Business Alias,Business Listing,nan,0.66
+A00062,P00294,akash74,Nickname,Business Listing,E00203,0.83
+A00063,P00301,ananya63,Business Alias,Public Directory,nan,0.7
+A00064,P00306,aman24,Social Media Username,Public Directory,nan,0.68
+A00065,P00309,vikram54,Nickname,Business Listing,nan,0.64
+A00066,P00311,rohan77,Business Alias,Business Listing,E00210,0.61
+A00067,P00312,sneha99,Business Alias,Public Directory,E00211,0.7
+A00068,P00313,varun22,Social Media Username,Social Platform,nan,0.58
+A00069,P00318,pranav90,Business Alias,Social Platform,nan,0.65
+A00070,P00325,mohit32,Nickname,Business Listing,nan,0.74
+A00071,P00328,tanvi45,Nickname,Social Platform,nan,0.69
+A00072,P00330,siddharth95,Social Media Username,Business Listing,E00227,0.97
+A00073,P00340,sana44,Nickname,Public Directory,nan,0.59
+A00074,P00342,ishaan64,Social Media Username,Public Directory,E00244,0.58
+A00075,P00346,pranav13,Nickname,Business Listing,E00247,0.9
+A00076,P00356,siddharth61,Nickname,Public Directory,nan,0.71
+A00077,P00374,naina40,Nickname,Public Directory,nan,0.8
+A00078,P00404,aniket69,Business Alias,Public Directory,nan,0.92
+A00079,P00414,zoya90,Business Alias,Public Directory,nan,0.62
+A00080,P00420,aniket58,Nickname,Business Listing,nan,0.67
+A00081,P00438,sana29,Social Media Username,Public Directory,nan,0.85
+A00082,P00442,tanvi60,Business Alias,Public Directory,E00311,0.75
+A00083,P00443,harsh16,Social Media Username,Business Listing,E00313,0.79
+A00084,P00447,avni95,Nickname,Business Listing,nan,0.85
+A00085,P00448,shreya65,Nickname,Business Listing,E00318,0.74
+A00086,P00449,rohan93,Social Media Username,Business Listing,nan,0.75
+A00087,P00453,tanvi54,Nickname,Social Platform,E00321,0.66
+A00088,P00460,avni84,Social Media Username,Social Platform,nan,0.73
+A00089,P00461,harsh63,Social Media Username,Business Listing,E00332,0.96
+A00090,P00466,sneha39,Social Media Username,Public Directory,E00334,0.84
+A00091,P00471,avni58,Social Media Username,Public Directory,E00337,0.88
+A00092,P00479,aditya76,Social Media Username,Business Listing,nan,0.89
+A00093,P00481,manav21,Nickname,Social Platform,E00348,0.87
+A00094,P00482,riya64,Nickname,Social Platform,nan,0.59
+A00095,P00487,raj11,Social Media Username,Business Listing,nan,0.71
+A00096,P00490,nisha63,Nickname,Public Directory,nan,0.93
+A00097,P00492,naveen50,Social Media Username,Business Listing,nan,0.59
+A00098,P00495,karan70,Social Media Username,Business Listing,nan,0.6
+A00099,P00505,mahi78,Nickname,Social Platform,E00365,0.83
+A00100,P00513,pallavi55,Nickname,Public Directory,nan,0.62
+A00101,P00515,isha57,Social Media Username,Social Platform,nan,0.87
+A00102,P00522,yamini41,Social Media Username,Social Platform,nan,0.63
+A00103,P00528,siddharth29,Social Media Username,Business Listing,E00376,0.84
+A00104,P00531,aditi12,Social Media Username,Public Directory,nan,0.83
+A00105,P00535,sana44,Social Media Username,Public Directory,nan,0.73
+A00106,P00538,mohit89,Social Media Username,Public Directory,nan,0.63
+A00107,P00539,karan69,Nickname,Social Platform,nan,0.86
+A00108,P00544,simran34,Social Media Username,Business Listing,E00390,0.93
+A00109,P00550,manav35,Nickname,Public Directory,E00396,0.92
+A00110,P00555,ishaan37,Business Alias,Social Platform,nan,0.85
+A00111,P00557,ishaan54,Business Alias,Public Directory,E00402,0.76
+A00112,P00566,avni15,Social Media Username,Social Platform,nan,0.76
+A00113,P00572,kiara44,Business Alias,Social Platform,nan,0.97
+A00114,P00576,aditya51,Business Alias,Public Directory,nan,0.56
+A00115,P00582,tara44,Nickname,Business Listing,nan,0.56
+A00116,P00591,pranav93,Social Media Username,Public Directory,E00431,0.82
+A00117,P00592,manav76,Business Alias,Public Directory,E00432,0.65
+A00118,P00599,diya31,Nickname,Business Listing,nan,0.84
+A00119,P00603,kabir32,Business Alias,Public Directory,nan,0.62
+A00120,P00605,tara81,Business Alias,Public Directory,nan,0.89
+A00121,P00607,sneha76,Business Alias,Business Listing,E00445,0.58
+A00122,P00615,ishita70,Social Media Username,Social Platform,E00453,0.88
+A00123,P00621,saurabh43,Nickname,Social Platform,nan,0.83
+A00124,P00622,aniket12,Nickname,Social Platform,nan,0.67
+A00125,P00623,saurabh15,Social Media Username,Social Platform,nan,0.85
+A00126,P00629,kabir55,Nickname,Social Platform,nan,0.67
+A00127,P00633,vanya69,Business Alias,Public Directory,nan,0.82
+A00128,P00635,vidhi12,Social Media Username,Business Listing,nan,0.59
+A00129,P00649,pooja19,Nickname,Social Platform,E00478,0.81
+A00130,P00654,rohan75,Business Alias,Social Platform,E00481,0.57
+A00131,P00658,kabir67,Business Alias,Business Listing,E00485,0.86
+A00132,P00659,aman43,Business Alias,Social Platform,E00486,0.74
+A00133,P00661,raj72,Social Media Username,Social Platform,E00489,0.9
+A00134,P00671,ishita79,Business Alias,Public Directory,nan,0.83
+A00135,P00683,mahi53,Business Alias,Business Listing,E00507,0.58
+A00136,P00684,nisha82,Social Media Username,Social Platform,E00508,0.76
+A00137,P00685,simran41,Nickname,Business Listing,E00509,0.82
+A00138,P00688,arjun71,Social Media Username,Public Directory,E00514,0.72
+A00139,P00689,rhea37,Nickname,Business Listing,E00515,0.6
+A00140,P00695,vanya14,Business Alias,Social Platform,nan,0.57
+A00141,P00701,rhea21,Social Media Username,Business Listing,E00526,0.56
+A00142,P00705,karan84,Business Alias,Public Directory,E00530,0.83
+A00143,P00706,saurabh73,Social Media Username,Public Directory,E00531,0.68
+A00144,P00708,mahi26,Nickname,Business Listing,nan,0.9
+A00145,P00728,isha22,Nickname,Business Listing,nan,0.84
+A00146,P00732,arnav97,Business Alias,Social Platform,E00548,0.82
+A00147,P00738,mahi74,Nickname,Public Directory,E00553,0.6
+A00148,P00743,tara64,Business Alias,Business Listing,E00560,0.72
+A00149,P00744,simran88,Nickname,Business Listing,nan,0.97
+A00150,P00749,raj60,Business Alias,Business Listing,E00568,0.74
+A00151,P00764,ritesh98,Social Media Username,Public Directory,nan,0.93
+A00152,P00768,mohit24,Social Media Username,Public Directory,nan,0.82
+A00153,P00772,rhea40,Social Media Username,Public Directory,nan,0.75
+A00154,P00776,aman92,Business Alias,Public Directory,E00585,0.55
+A00155,P00783,naina99,Business Alias,Social Platform,E00590,0.87
+A00156,P00785,arnav90,Social Media Username,Business Listing,nan,0.87
+A00157,P00787,rahul78,Nickname,Public Directory,E00595,0.88
+A00158,P00791,rhea37,Nickname,Business Listing,nan,0.64
+A00159,P00793,sneha33,Social Media Username,Business Listing,nan,0.88
+A00160,P00795,vanya51,Social Media Username,Public Directory,nan,0.61
+A00161,P00797,raj32,Business Alias,Public Directory,nan,0.62
+A00162,P00804,tara17,Nickname,Social Platform,nan,0.55
+A00163,P00809,shreya86,Business Alias,Business Listing,nan,0.63
+A00164,P00819,kunal38,Nickname,Business Listing,nan,0.61
+A00165,P00820,ishita79,Nickname,Business Listing,nan,0.89
+A00166,P00829,aniket72,Social Media Username,Public Directory,E00626,0.76
+A00167,P00838,pallavi32,Social Media Username,Social Platform,E00629,0.94
+A00168,P00843,sneha76,Business Alias,Social Platform,nan,0.94
+A00169,P00846,nisha94,Social Media Username,Social Platform,nan,0.68
+A00170,P00855,ishita94,Nickname,Public Directory,E00645,0.68
+A00171,P00871,aarav97,Nickname,Public Directory,nan,0.76
+A00172,P00878,aanya38,Business Alias,Social Platform,nan,0.7
+A00173,P00885,shreya53,Social Media Username,Public Directory,E00660,0.78
+A00174,P00891,karan49,Business Alias,Social Platform,E00666,0.87
+A00175,P00896,kiara22,Social Media Username,Business Listing,E00670,0.61
+A00176,P00897,ananya34,Social Media Username,Business Listing,E00671,0.68
+A00177,P00900,shreya13,Nickname,Public Directory,nan,0.82
+A00178,P00909,raj69,Social Media Username,Social Platform,E00681,0.75
+A00179,P00910,aditi38,Nickname,Public Directory,nan,0.64
+A00180,P00911,raj92,Nickname,Public Directory,E00684,0.89
+A00181,P00919,tara89,Nickname,Social Platform,nan,0.94
+A00182,P00922,rahul96,Business Alias,Social Platform,nan,0.64
+A00183,P00924,aarav17,Social Media Username,Business Listing,nan,0.7
+A00184,P00925,ishaan65,Nickname,Business Listing,E00691,0.93
+A00185,P00932,kiara78,Business Alias,Business Listing,E00695,0.65
+A00186,P00933,pooja75,Nickname,Business Listing,E00697,0.79
+A00187,P00937,rahul94,Social Media Username,Business Listing,nan,0.82
+A00188,P00939,sameer46,Social Media Username,Social Platform,E00705,0.56
+A00189,P00942,aniket32,Social Media Username,Public Directory,nan,0.83
+A00190,P00946,pranav57,Nickname,Business Listing,E00709,0.94
+A00191,P00959,kiara68,Business Alias,Business Listing,nan,0.61
+A00192,P00961,avni77,Business Alias,Public Directory,E00719,0.69
+A00193,P00966,aditya13,Social Media Username,Public Directory,nan,0.75
+A00194,P00972,avni29,Nickname,Business Listing,nan,0.72
+A00195,P00978,tara40,Nickname,Business Listing,E00732,0.57
+A00196,P00980,pooja91,Social Media Username,Public Directory,nan,0.73
+A00197,P00982,akash33,Social Media Username,Business Listing,nan,0.83
+A00198,P00988,kunal51,Business Alias,Public Directory,E00738,0.76
+A00199,P00990,manav48,Nickname,Public Directory,nan,0.79
+A00200,P00995,riya86,Social Media Username,Public Directory,E00747,0.84
+A00201,P01001,meera60,Social Media Username,Public Directory,E00751,0.57
+A00202,P01005,siddharth51,Social Media Username,Social Platform,nan,0.91
+A00203,P01012,anushka65,Business Alias,Social Platform,E00755,0.86
+A00204,P01013,pranav23,Business Alias,Business Listing,E00756,0.74
+A00205,P01015,akash96,Social Media Username,Public Directory,E00757,0.8
+A00206,P01019,avni86,Social Media Username,Business Listing,E00761,0.62
+A00207,P01023,dhruv96,Nickname,Public Directory,E00763,0.97
+A00208,P01027,aditya66,Business Alias,Public Directory,E00769,0.58
+A00209,P01036,manav87,Nickname,Business Listing,nan,0.82
+A00210,P01042,kiara99,Nickname,Social Platform,nan,0.76
+A00211,P01054,dev70,Business Alias,Social Platform,nan,0.85
+A00212,P01056,pallavi13,Business Alias,Social Platform,E00787,0.9
+A00213,P01062,diya90,Nickname,Public Directory,nan,0.69
+A00214,P01066,kabir78,Business Alias,Social Platform,nan,0.91
+A00215,P01077,siddharth49,Nickname,Social Platform,E00807,0.97
+A00216,P01080,vikram87,Business Alias,Public Directory,nan,0.67
+A00217,P01083,pallavi39,Social Media Username,Public Directory,nan,0.91
+A00218,P01089,diya11,Nickname,Public Directory,nan,0.9
+A00219,P01093,manav80,Social Media Username,Social Platform,nan,0.84
+A00220,P01096,kavya46,Nickname,Social Platform,E00818,0.74
+A00221,P01101,vivek46,Business Alias,Business Listing,nan,0.95
+A00222,P01105,vikram77,Social Media Username,Social Platform,E00822,0.69
+A00223,P01109,tara94,Business Alias,Business Listing,nan,0.66
+A00224,P01118,dhruv46,Social Media Username,Business Listing,nan,0.77
+A00225,P01119,trisha18,Nickname,Business Listing,nan,0.65
+A00226,P01126,pallavi83,Business Alias,Public Directory,E00838,0.61
+A00227,P01134,mohit76,Nickname,Business Listing,nan,0.88
+A00228,P01135,mohit96,Nickname,Public Directory,nan,0.57
+A00229,P01137,ishita51,Nickname,Public Directory,nan,0.58
+A00230,P01138,kabir22,Social Media Username,Social Platform,E00847,0.74
+A00231,P01148,yash80,Social Media Username,Public Directory,nan,0.63
+A00232,P01159,anushka39,Nickname,Public Directory,nan,0.96
+A00233,P01166,manav80,Social Media Username,Business Listing,nan,0.79
+A00234,P01170,saurabh70,Nickname,Public Directory,E00857,0.83
+A00235,P01173,karan72,Business Alias,Public Directory,E00859,0.65
+A00236,P01174,mahi65,Business Alias,Business Listing,nan,0.67
+A00237,P01180,siddharth50,Business Alias,Business Listing,nan,0.74
+A00238,P01190,aniket29,Business Alias,Business Listing,nan,0.7
+A00239,P01202,shreya57,Business Alias,Business Listing,E00884,0.87
+A00240,P01204,naina59,Nickname,Public Directory,nan,0.83
+A00241,P01205,tara51,Nickname,Public Directory,nan,0.96
+A00242,P01212,tara16,Business Alias,Business Listing,E00895,0.85
+A00243,P01218,mohit25,Nickname,Business Listing,nan,0.6
+A00244,P01220,kabir83,Business Alias,Business Listing,nan,0.91
+A00245,P01226,tara49,Nickname,Business Listing,nan,0.79
+A00246,P01232,isha95,Nickname,Social Platform,nan,0.58
+A00247,P01237,tara43,Social Media Username,Public Directory,E00911,0.74
+A00248,P01238,rhea67,Social Media Username,Business Listing,nan,0.83
+A00249,P01241,rahul88,Social Media Username,Public Directory,nan,0.64
+A00250,P01244,kunal14,Nickname,Social Platform,E00917,0.67
+A00251,P01245,dev38,Social Media Username,Public Directory,nan,0.87
+A00252,P01249,akash41,Business Alias,Social Platform,E00922,0.66
+A00253,P01264,sana58,Business Alias,Social Platform,nan,0.81
+A00254,P01267,aman90,Business Alias,Public Directory,E00933,0.6
+A00255,P01274,yash29,Nickname,Business Listing,nan,0.87
+A00256,P01278,diya14,Business Alias,Social Platform,nan,0.82
+A00257,P01281,zoya22,Business Alias,Business Listing,nan,0.86
+A00258,P01283,kabir59,Business Alias,Social Platform,E00941,0.87
+A00259,P01299,tanvi20,Business Alias,Business Listing,nan,0.86
+A00260,P01305,ananya20,Social Media Username,Social Platform,E00958,0.94
+A00261,P01308,dev60,Social Media Username,Social Platform,nan,0.58
+A00262,P01311,arjun36,Social Media Username,Social Platform,nan,0.77
+A00263,P01317,aniket77,Business Alias,Public Directory,nan,0.6
+A00264,P01324,dev86,Business Alias,Social Platform,nan,0.78
+A00265,P01335,pranav64,Nickname,Public Directory,nan,0.92
+A00266,P01336,vanya63,Nickname,Social Platform,nan,0.59
+A00267,P01338,naina35,Business Alias,Business Listing,nan,0.89
+A00268,P01340,pranav92,Social Media Username,Public Directory,nan,0.57
+A00269,P01346,kavya12,Social Media Username,Social Platform,nan,0.67
+A00270,P01356,kiara42,Nickname,Public Directory,E00991,0.55
+A00271,P01361,tara91,Business Alias,Social Platform,E00994,0.6
+A00272,P01364,sneha73,Business Alias,Public Directory,nan,0.83
+A00273,P01365,dhruv77,Business Alias,Public Directory,nan,0.83
+A00274,P01376,zoya15,Social Media Username,Business Listing,nan,0.89
+A00275,P01378,siddharth81,Business Alias,Social Platform,nan,0.72
+A00276,P01382,sana19,Nickname,Social Platform,nan,0.96
+A00277,P01385,akash27,Social Media Username,Public Directory,nan,0.55
+A00278,P01390,ritesh28,Social Media Username,Social Platform,nan,0.84
+A00279,P01394,sneha52,Business Alias,Public Directory,nan,0.67
+A00280,P01398,isha90,Business Alias,Social Platform,nan,0.69
+A00281,P01404,arjun29,Social Media Username,Business Listing,nan,0.88
+A00282,P01411,aarav86,Social Media Username,Social Platform,nan,0.72
+A00283,P01446,raj76,Social Media Username,Social Platform,nan,0.59
+A00284,P01455,saurabh17,Business Alias,Social Platform,nan,0.86
+A00285,P01467,rohan63,Nickname,Business Listing,nan,0.62
+A00286,P01477,dev11,Social Media Username,Social Platform,nan,0.81
+A00287,P01490,saurabh69,Social Media Username,Public Directory,nan,0.6
+A00288,P01498,raj91,Business Alias,Social Platform,nan,0.89
+A00289,P01499,arjun17,Social Media Username,Social Platform,E01087,0.76
+A00290,P01518,avni70,Business Alias,Public Directory,nan,0.91
+A00291,P01536,tanvi33,Nickname,Business Listing,nan,0.75
+A00292,P01541,anushka21,Nickname,Social Platform,nan,0.78
+A00293,P01544,ishaan41,Business Alias,Social Platform,E01118,0.65
+A00294,P01548,aarav17,Social Media Username,Social Platform,nan,0.79
+A00295,P01564,kunal83,Social Media Username,Public Directory,E01126,0.85
+A00296,P01567,aditi20,Business Alias,Public Directory,nan,0.76
+A00297,P01579,sameer83,Nickname,Business Listing,nan,0.86
+A00298,P01581,rhea80,Social Media Username,Social Platform,E01142,0.71
+A00299,P01604,raj62,Social Media Username,Social Platform,nan,0.77
+A00300,P01608,mahi35,Nickname,Business Listing,E01170,0.88
+A00301,P01617,arnav29,Social Media Username,Public Directory,nan,0.69
+A00302,P01619,ritesh20,Social Media Username,Public Directory,E01175,0.7
+A00303,P01620,kabir70,Social Media Username,Public Directory,nan,0.7
+A00304,P01621,arnav17,Social Media Username,Social Platform,E01177,0.67
+A00305,P01623,mohit49,Social Media Username,Business Listing,nan,0.98
+A00306,P01624,vivek76,Nickname,Business Listing,E01181,0.87
+A00307,P01628,diya86,Nickname,Public Directory,nan,0.77
+A00308,P01629,rahul75,Nickname,Business Listing,nan,0.77
+A00309,P01632,karan11,Business Alias,Business Listing,E01188,0.93
+A00310,P01634,sneha14,Nickname,Business Listing,E01190,0.79
+A00311,P01637,anushka19,Social Media Username,Social Platform,nan,0.59
+A00312,P01645,simran95,Nickname,Business Listing,nan,0.63
+A00313,P01649,vivek39,Social Media Username,Public Directory,nan,0.62
+A00314,P01657,saurabh38,Social Media Username,Social Platform,nan,0.84
+A00315,P01661,kabir91,Business Alias,Social Platform,E01209,0.82
+A00316,P01666,yamini56,Nickname,Public Directory,E01212,0.64
+A00317,P01681,karan43,Business Alias,Business Listing,nan,0.56
+A00318,P01699,simran74,Social Media Username,Social Platform,E01239,0.72
+A00319,P01701,simran60,Business Alias,Social Platform,E01242,0.92
+A00320,P01702,naina93,Nickname,Business Listing,nan,0.82
+A00321,P01706,manav37,Nickname,Social Platform,nan,0.89
+A00322,P01707,aniket30,Social Media Username,Public Directory,E01248,0.65
+A00323,P01716,vivek58,Business Alias,Business Listing,E01256,0.79
+A00324,P01727,simran15,Nickname,Social Platform,E01265,0.67
+A00325,P01734,saurabh17,Social Media Username,Public Directory,E01271,0.69
+A00326,P01735,raj87,Social Media Username,Social Platform,E01272,0.62
+A00327,P01756,arnav98,Nickname,Business Listing,nan,0.66
+A00328,P01767,ishaan19,Social Media Username,Business Listing,E01298,0.57
+A00329,P01775,kiara86,Nickname,Social Platform,E01305,0.9
+A00330,P01780,tanvi18,Business Alias,Business Listing,nan,0.84
+A00331,P01781,akash70,Social Media Username,Business Listing,nan,0.61
+A00332,P01784,aanya52,Social Media Username,Social Platform,E01312,0.92
+A00333,P01793,ishita43,Business Alias,Business Listing,nan,0.61
+A00334,P01797,ishaan79,Business Alias,Business Listing,E01323,0.56
+A00335,P01808,avni63,Social Media Username,Social Platform,E01329,0.61
+A00336,P01811,rhea32,Business Alias,Business Listing,nan,0.84
+A00337,P01843,kabir92,Nickname,Public Directory,nan,0.93
+A00338,P01857,arnav30,Social Media Username,Public Directory,E01368,0.92
+A00339,P01859,isha87,Business Alias,Business Listing,E01370,0.81
+A00340,P01861,anushka53,Business Alias,Public Directory,nan,0.96
+A00341,P01865,akash20,Nickname,Public Directory,nan,0.95
+A00342,P01869,raj38,Social Media Username,Social Platform,nan,0.59
+A00343,P01878,anushka22,Nickname,Business Listing,nan,0.91
+A00344,P01887,manav44,Social Media Username,Public Directory,nan,0.63
+A00345,P01888,harsh53,Nickname,Social Platform,E01387,0.81
+A00346,P01893,sana53,Business Alias,Business Listing,nan,0.72
+A00347,P01896,zoya43,Nickname,Business Listing,nan,0.85
+A00348,P01898,harsh16,Social Media Username,Business Listing,E01393,0.69
+A00349,P01902,yamini77,Nickname,Business Listing,E01396,0.97
+A00350,P01906,mohit48,Business Alias,Business Listing,E01401,0.61
+A00351,P01909,arnav14,Nickname,Business Listing,E01405,0.56
+A00352,P01926,anushka87,Social Media Username,Social Platform,E01421,0.61
+A00353,P01927,mahi86,Social Media Username,Social Platform,nan,0.89
+A00354,P01937,kiara46,Social Media Username,Business Listing,nan,0.66
+A00355,P01941,avni52,Business Alias,Business Listing,nan,0.81
+A00356,P01946,vivek71,Nickname,Business Listing,nan,0.92
+A00357,P01950,vidhi12,Social Media Username,Business Listing,E01443,0.73
+A00358,P01952,aditi55,Nickname,Public Directory,nan,0.57
+A00359,P01969,simran50,Business Alias,Public Directory,nan,0.76
+A00360,P01970,naina34,Business Alias,Business Listing,E01455,0.72
+A00361,P01979,aniket57,Social Media Username,Social Platform,nan,0.93
+A00362,P01986,rhea19,Nickname,Social Platform,E01473,0.88
+A00363,P01987,kiara33,Business Alias,Social Platform,nan,0.74
+A00364,P01995,rhea59,Social Media Username,Business Listing,E01477,0.89
+A00365,P01997,simran53,Nickname,Social Platform,E01479,0.71
+A00366,P01998,anushka70,Social Media Username,Public Directory,nan,0.77
+A00367,P02012,vivek95,Business Alias,Business Listing,E01490,0.9
+A00368,P02016,anushka39,Nickname,Social Platform,E01493,0.91
+A00369,P02018,ananya10,Nickname,Business Listing,nan,0.95
+A00370,P02027,ritesh80,Business Alias,Social Platform,nan,0.61
+A00371,P02033,manav52,Nickname,Business Listing,nan,0.81
+A00372,P02041,karan23,Nickname,Business Listing,nan,0.85
+A00373,P02046,ananya12,Business Alias,Social Platform,E01515,0.76
+A00374,P02053,kiara62,Nickname,Business Listing,E01521,0.65
+A00375,P02055,naveen53,Nickname,Business Listing,nan,0.95
+A00376,P02060,nikhil94,Business Alias,Business Listing,nan,0.56
+A00377,P02062,kiara57,Nickname,Public Directory,nan,0.86
+A00378,P02066,mahi23,Social Media Username,Public Directory,nan,0.57
+A00379,P02069,aniket95,Nickname,Social Platform,E01535,0.66
+A00380,P02070,vanya56,Social Media Username,Social Platform,nan,0.61
+A00381,P02072,isha62,Nickname,Social Platform,nan,0.82
+A00382,P02081,vidhi82,Nickname,Social Platform,nan,0.71
+A00383,P02094,sana64,Nickname,Business Listing,nan,0.79
+A00384,P02105,kavya46,Social Media Username,Social Platform,E01565,0.85
+A00385,P02110,nikhil62,Business Alias,Public Directory,nan,0.91
+A00386,P02122,avni53,Nickname,Business Listing,E01579,0.81
+A00387,P02125,aarav66,Social Media Username,Social Platform,nan,0.93
+A00388,P02129,aanya15,Business Alias,Public Directory,nan,0.7
+A00389,P02133,simran81,Business Alias,Public Directory,E01588,0.72
+A00390,P02141,yash10,Business Alias,Public Directory,nan,0.89
+A00391,P02144,vivek41,Nickname,Social Platform,nan,0.71
+A00392,P02148,tanvi24,Nickname,Public Directory,nan,0.93
+A00393,P02155,vidhi98,Social Media Username,Business Listing,E01597,0.77
+A00394,P02159,riya65,Business Alias,Business Listing,E01602,0.88
+A00395,P02161,aniket54,Social Media Username,Public Directory,E01605,0.96
+A00396,P02164,naveen84,Social Media Username,Social Platform,nan,0.92
+A00397,P02178,kiara89,Social Media Username,Public Directory,E01618,0.71
+A00398,P02193,sameer90,Business Alias,Social Platform,E01632,0.7
+A00399,P02198,naveen46,Social Media Username,Social Platform,nan,0.94
+A00400,P02204,vanya25,Nickname,Business Listing,E01638,0.66
+A00401,P02209,yamini17,Business Alias,Public Directory,E01644,0.65
+A00402,P02213,arjun89,Business Alias,Public Directory,E01646,0.8
+A00403,P02226,shreya53,Social Media Username,Social Platform,nan,0.77
+A00404,P02227,ishita62,Nickname,Public Directory,E01659,0.57
+A00405,P02240,rhea98,Business Alias,Social Platform,E01670,0.87
+A00406,P02242,vanya69,Social Media Username,Social Platform,nan,0.86
+A00407,P02243,rohan84,Business Alias,Public Directory,E01673,0.68
+A00408,P02259,mahi11,Nickname,Business Listing,E01685,0.95
+A00409,P02261,karan52,Social Media Username,Public Directory,E01690,0.79
+A00410,P02274,sneha92,Business Alias,Public Directory,E01703,0.6
+A00411,P02286,aanya76,Social Media Username,Social Platform,nan,0.71
+A00412,P02288,nisha52,Social Media Username,Social Platform,nan,0.8
+A00413,P02295,mahi37,Social Media Username,Social Platform,nan,0.9
+A00414,P02310,yamini24,Social Media Username,Public Directory,nan,0.62
+A00415,P02318,vanya81,Business Alias,Business Listing,nan,0.65
+A00416,P02325,kiara17,Nickname,Social Platform,nan,0.98
+A00417,P02331,rahul83,Nickname,Public Directory,nan,0.76
+A00418,P02333,nisha82,Nickname,Public Directory,E01739,0.61
+A00419,P02335,rohan77,Business Alias,Social Platform,nan,0.75
+A00420,P02345,rahul18,Social Media Username,Business Listing,nan,0.7
+A00421,P02348,isha53,Business Alias,Public Directory,nan,0.82
+A00422,P02352,meera89,Business Alias,Public Directory,nan,0.73
+A00423,P02355,saurabh12,Business Alias,Business Listing,nan,0.63
+A00424,P02361,vidhi85,Social Media Username,Public Directory,nan,0.59
+A00425,P02363,kiara41,Nickname,Public Directory,E01755,0.76
+A00426,P02364,yamini66,Social Media Username,Business Listing,E01756,0.92
+A00427,P02369,zoya14,Social Media Username,Social Platform,nan,0.86
+A00428,P02372,sneha25,Nickname,Public Directory,nan,0.91
+A00429,P02378,tara30,Social Media Username,Business Listing,E01768,0.91
+A00430,P02395,naveen65,Nickname,Business Listing,nan,0.93
+A00431,P02396,kiara30,Nickname,Social Platform,E01785,0.96
+A00432,P02405,kiara41,Business Alias,Social Platform,E01792,0.92
+A00433,P02408,naveen52,Business Alias,Social Platform,nan,0.89
+A00434,P02413,pooja71,Business Alias,Social Platform,nan,0.93
+A00435,P02422,ritesh57,Social Media Username,Business Listing,nan,0.93
+A00436,P02443,aanya82,Business Alias,Social Platform,nan,0.77
+A00437,P02449,aman95,Nickname,Public Directory,nan,0.75
+A00438,P02452,raj23,Social Media Username,Business Listing,nan,0.64
+A00439,P02454,mahi39,Business Alias,Business Listing,E01828,0.62
+A00440,P02461,mahi43,Social Media Username,Public Directory,nan,0.76
+A00441,P02463,naveen43,Social Media Username,Public Directory,E01836,0.76
+A00442,P02468,vanya48,Social Media Username,Social Platform,E01842,0.72
+A00443,P02493,aanya35,Nickname,Public Directory,E01860,0.85
+A00444,P02501,sameer88,Business Alias,Business Listing,nan,0.93
+A00445,P02503,naveen75,Social Media Username,Public Directory,nan,0.77
+A00446,P02508,simran40,Nickname,Social Platform,E01869,0.89
+A00447,P02512,riya76,Social Media Username,Social Platform,E01874,0.85
+A00448,P02513,arjun54,Business Alias,Social Platform,nan,0.7
+A00449,P02515,manav36,Business Alias,Business Listing,nan,0.92
+A00450,P02517,vanya95,Business Alias,Business Listing,nan,0.8
+A00451,P02520,ishita21,Nickname,Business Listing,E01880,0.8
+A00452,P02522,ishaan66,Social Media Username,Business Listing,nan,0.63
+A00453,P02523,diya75,Business Alias,Social Platform,nan,0.71
+A00454,P02529,kiara82,Nickname,Social Platform,E01893,0.73
+A00455,P02535,aniket94,Social Media Username,Social Platform,nan,0.91
+A00456,P02537,ishita25,Nickname,Public Directory,nan,0.56
+A00457,P02541,kabir97,Business Alias,Social Platform,nan,0.66
+A00458,P02546,avni33,Social Media Username,Business Listing,E01904,0.79
+A00459,P02548,ishaan85,Business Alias,Social Platform,nan,0.59
+A00460,P02550,akash92,Nickname,Social Platform,E01908,0.62
+A00461,P02566,dhruv81,Nickname,Public Directory,nan,0.68
+A00462,P02569,simran96,Business Alias,Public Directory,E01919,0.7
+A00463,P02570,pranav67,Business Alias,Public Directory,nan,0.73
+A00464,P02574,kabir40,Business Alias,Business Listing,nan,0.61
+A00465,P02578,karan47,Social Media Username,Social Platform,nan,0.69
+A00466,P02583,sana49,Social Media Username,Business Listing,nan,0.77
+A00467,P02586,arnav15,Social Media Username,Social Platform,nan,0.56
+A00468,P02588,kunal62,Nickname,Social Platform,nan,0.78
+A00469,P02601,naina78,Nickname,Social Platform,nan,0.69
+A00470,P02606,rahul39,Business Alias,Social Platform,nan,0.86
+A00471,P02607,arjun38,Business Alias,Business Listing,E01946,0.64
+A00472,P02608,kunal60,Business Alias,Public Directory,nan,0.6
+A00473,P02615,aniket65,Business Alias,Business Listing,nan,0.91
+A00474,P02619,diya36,Social Media Username,Business Listing,E01954,0.75
+A00475,P02620,saurabh89,Social Media Username,Social Platform,E01955,0.55
+A00476,P02633,avni61,Business Alias,Business Listing,nan,0.94
+A00477,P02634,dhruv15,Nickname,Social Platform,E01968,0.88
+A00478,P02644,arnav10,Social Media Username,Social Platform,nan,0.68
+A00479,P02648,isha77,Nickname,Business Listing,nan,0.76
+A00480,P02651,rohan44,Social Media Username,Business Listing,nan,0.9
+A00481,P02655,naveen19,Business Alias,Social Platform,nan,0.6
+A00482,P02657,rohan34,Business Alias,Public Directory,E01983,0.61
+A00483,P02668,sana87,Business Alias,Business Listing,nan,0.94
+A00484,P02683,mahi80,Business Alias,Business Listing,nan,0.79
+A00485,P02689,naina84,Nickname,Business Listing,nan,0.9
+A00486,P02698,karan26,Nickname,Social Platform,nan,0.64
+A00487,P02702,karan19,Social Media Username,Business Listing,nan,0.84
+A00488,P02706,arjun95,Nickname,Social Platform,E02017,0.92
+A00489,P02707,sameer61,Social Media Username,Social Platform,E02018,0.9
+A00490,P02719,aarav11,Nickname,Social Platform,nan,0.6
+A00491,P02726,siddharth49,Business Alias,Public Directory,nan,0.63
+A00492,P02734,tanvi75,Social Media Username,Social Platform,nan,0.89
+A00493,P02738,mahi59,Business Alias,Public Directory,E02040,0.8
+A00494,P02741,ishaan23,Social Media Username,Public Directory,E02044,0.6
+A00495,P02746,aditi74,Nickname,Business Listing,nan,0.95
+A00496,P02750,nikhil11,Social Media Username,Social Platform,nan,0.96
+A00497,P02754,ishaan96,Nickname,Public Directory,nan,0.77
+A00498,P02756,ishaan40,Business Alias,Business Listing,nan,0.6
+A00499,P02758,karan25,Social Media Username,Business Listing,E02056,0.64
+A00500,P02762,avni27,Social Media Username,Social Platform,E02060,0.56
+A00501,P02763,diya33,Nickname,Business Listing,E02062,0.74
+A00502,P02771,avni41,Business Alias,Business Listing,nan,0.88
+A00503,P02778,aman42,Nickname,Public Directory,E02072,0.93
+A00504,P02784,karan77,Social Media Username,Business Listing,E02075,0.57
+A00505,P02785,arjun62,Nickname,Social Platform,nan,0.87
+A00506,P02791,avni32,Business Alias,Social Platform,E02080,0.85
+A00507,P02794,yash12,Social Media Username,Business Listing,E02082,0.74
+A00508,P02795,aniket56,Social Media Username,Public Directory,E02084,0.82
+A00509,P02798,manav89,Social Media Username,Social Platform,nan,0.92
+A00510,P02826,diya50,Business Alias,Public Directory,nan,0.66
+A00511,P02834,neha67,Business Alias,Social Platform,nan,0.85
+A00512,P02860,avni30,Nickname,Public Directory,E02136,0.62
+A00513,P02861,varun25,Business Alias,Public Directory,nan,0.79
+A00514,P02866,pooja16,Social Media Username,Business Listing,nan,0.62
+A00515,P02867,tara57,Social Media Username,Public Directory,E02147,0.89
+A00516,P02880,kunal58,Nickname,Public Directory,E02157,0.83
+A00517,P02884,aniket32,Business Alias,Social Platform,nan,0.75
+A00518,P02891,arjun22,Social Media Username,Public Directory,nan,0.9
+A00519,P02905,avni61,Business Alias,Business Listing,nan,0.76
+A00520,P02908,pallavi79,Business Alias,Social Platform,nan,0.97
+A00521,P02911,dev75,Social Media Username,Business Listing,nan,0.63
+A00522,P02913,kabir16,Business Alias,Business Listing,nan,0.8
+A00523,P02915,pranav81,Social Media Username,Business Listing,E02180,0.82
+A00524,P02925,avni56,Nickname,Social Platform,E02186,0.82
+A00525,P02926,diya89,Nickname,Business Listing,nan,0.71
+A00526,P02932,tara62,Nickname,Public Directory,nan,0.67
+A00527,P02933,kunal31,Nickname,Public Directory,nan,0.71
+A00528,P02947,neha70,Nickname,Public Directory,nan,0.63
+A00529,P02965,aditya65,Nickname,Public Directory,nan,0.9
+A00530,P02974,aniket38,Nickname,Social Platform,nan,0.96
+A00531,P02980,ishita33,Business Alias,Public Directory,E02228,0.67
+A00532,P02985,tara76,Business Alias,Business Listing,E02233,0.79
+A00533,P02993,vidhi28,Nickname,Social Platform,nan,0.61
+A00534,P03006,manav47,Business Alias,Social Platform,nan,0.79
+A00535,P03008,isha73,Nickname,Public Directory,nan,0.71
+A00536,P03013,aniket52,Nickname,Business Listing,E02248,0.86
+A00537,P03016,neha12,Social Media Username,Public Directory,nan,0.89
+A00538,P03018,aniket77,Business Alias,Public Directory,nan,0.89
+A00539,P03019,rahul11,Social Media Username,Business Listing,E02253,0.6
+A00540,P03026,simran60,Social Media Username,Social Platform,E02258,0.77
+A00541,P03033,kiara53,Business Alias,Social Platform,E02265,0.94
+A00542,P03035,mahi15,Social Media Username,Social Platform,nan,0.63
+A00543,P03040,naina95,Nickname,Public Directory,E02268,0.91
+A00544,P03042,tara76,Social Media Username,Social Platform,nan,0.91
+A00545,P03054,raj28,Business Alias,Social Platform,nan,0.79
+A00546,P03060,aanya16,Social Media Username,Business Listing,nan,0.91
+A00547,P03062,ishaan40,Social Media Username,Public Directory,nan,0.64
+A00548,P03075,sameer59,Nickname,Business Listing,E02288,0.96
+A00549,P03078,dev80,Nickname,Public Directory,nan,0.87
+A00550,P03079,vanya46,Social Media Username,Business Listing,nan,0.59
+A00551,P03088,pallavi34,Business Alias,Business Listing,nan,0.82
+A00552,P03089,dhruv83,Social Media Username,Business Listing,nan,0.67
+A00553,P03095,ishaan86,Nickname,Public Directory,nan,0.57
+A00554,P03099,mahi97,Nickname,Business Listing,nan,0.89
+A00555,P03108,pranav33,Business Alias,Public Directory,nan,0.96
+A00556,P03129,diya59,Nickname,Public Directory,E02324,0.61
+A00557,P03130,dev42,Business Alias,Business Listing,nan,0.92
+A00558,P03152,neha81,Business Alias,Public Directory,nan,0.67
+A00559,P03173,dev14,Social Media Username,Social Platform,nan,0.59
+A00560,P03178,vikram27,Nickname,Social Platform,E02356,0.65
+A00561,P03179,shreya59,Nickname,Business Listing,E02357,0.75
+A00562,P03181,ananya57,Business Alias,Social Platform,E02367,0.82
+A00563,P03183,siddharth94,Nickname,Business Listing,nan,0.75
+A00564,P03185,neha27,Nickname,Public Directory,E02371,0.87
+A00565,P03187,ishita89,Business Alias,Public Directory,E02373,0.91
+A00566,P03196,sana15,Social Media Username,Social Platform,E02380,0.93
+A00567,P03207,aarav76,Business Alias,Public Directory,nan,0.62
+A00568,P03214,pooja19,Business Alias,Business Listing,E02395,0.69
+A00569,P03223,avni62,Social Media Username,Public Directory,nan,0.97
+A00570,P03235,rhea92,Social Media Username,Social Platform,nan,0.6
+A00571,P03237,pallavi64,Business Alias,Social Platform,E02415,0.74
+A00572,P03241,rohan12,Social Media Username,Public Directory,E02418,0.58
+A00573,P03243,raj35,Business Alias,Public Directory,nan,0.68
+A00574,P03251,neha51,Nickname,Public Directory,E02425,0.85
+A00575,P03259,rohan50,Business Alias,Business Listing,E02429,0.76
+A00576,P03266,arjun66,Social Media Username,Business Listing,E02436,0.75
+A00577,P03274,avni24,Social Media Username,Public Directory,nan,0.58
+A00578,P03276,sameer92,Business Alias,Public Directory,nan,0.69
+A00579,P03280,pallavi26,Nickname,Public Directory,nan,0.67
+A00580,P03284,siddharth26,Social Media Username,Social Platform,E02444,0.71
+A00581,P03288,rohan20,Nickname,Public Directory,nan,0.92
+A00582,P03294,pranav56,Business Alias,Business Listing,E02449,0.86
+A00583,P03304,rohan48,Nickname,Business Listing,E02458,0.87
+A00584,P03306,vidhi43,Social Media Username,Business Listing,nan,0.78
+A00585,P03308,tara71,Social Media Username,Social Platform,nan,0.74
+A00586,P03312,tara68,Nickname,Public Directory,nan,0.81
+A00587,P03324,vanya65,Social Media Username,Business Listing,nan,0.73
+A00588,P03331,vidhi95,Nickname,Business Listing,E02478,0.77
+A00589,P03332,vanya57,Social Media Username,Public Directory,E02479,0.89
+A00590,P03335,akash81,Social Media Username,Public Directory,nan,0.81
+A00591,P03338,arjun23,Social Media Username,Public Directory,nan,0.66
+A00592,P03340,saurabh28,Social Media Username,Public Directory,nan,0.74
+A00593,P03347,arjun13,Nickname,Business Listing,E02487,0.68
+A00594,P03348,arjun49,Business Alias,Business Listing,nan,0.82
+A00595,P03352,ritesh93,Social Media Username,Social Platform,nan,0.82
+A00596,P03353,kabir82,Social Media Username,Public Directory,E02493,0.77
+A00597,P03354,yamini41,Social Media Username,Social Platform,nan,0.89
+A00598,P03356,simran77,Nickname,Business Listing,E02496,0.89
+A00599,P03357,simran84,Business Alias,Public Directory,nan,0.96
+A00600,P03392,sana31,Business Alias,Public Directory,nan,0.81
+A00601,P03403,karan45,Nickname,Public Directory,nan,0.68
+A00602,P03408,vidhi77,Nickname,Social Platform,nan,0.87
+A00603,P03412,rohan29,Social Media Username,Public Directory,E02527,0.83
+A00604,P03413,isha25,Business Alias,Business Listing,E02528,0.83
+A00605,P03426,karan86,Nickname,Public Directory,E02540,0.82
+A00606,P03428,sneha59,Nickname,Social Platform,E02544,0.95
+A00607,P03432,naina71,Nickname,Business Listing,nan,0.89
+A00608,P03433,dhruv57,Nickname,Business Listing,E02550,0.71
+A00609,P03437,sana57,Nickname,Business Listing,nan,0.72
+A00610,P03443,kunal24,Social Media Username,Business Listing,E02558,0.93
+A00611,P03448,rahul17,Social Media Username,Public Directory,nan,0.69
+A00612,P03453,karan24,Social Media Username,Business Listing,nan,0.9
+A00613,P03457,vikram40,Nickname,Social Platform,nan,0.62
+A00614,P03461,avni29,Business Alias,Social Platform,E02574,0.88
+A00615,P03462,aanya19,Social Media Username,Public Directory,nan,0.8
+A00616,P03464,pranav93,Nickname,Business Listing,nan,0.84
+A00617,P03469,tanvi51,Social Media Username,Social Platform,nan,0.55
+A00618,P03476,nisha25,Business Alias,Business Listing,E02586,0.87
+A00619,P03478,zoya79,Business Alias,Business Listing,nan,0.93
+A00620,P03479,kiara77,Nickname,Business Listing,nan,0.85
+A00621,P03485,arnav82,Business Alias,Business Listing,nan,0.88
+A00622,P03492,ananya34,Nickname,Business Listing,E02598,0.75
+A00623,P03495,raj50,Nickname,Business Listing,E02601,0.89
+A00624,P03514,kavya86,Nickname,Business Listing,nan,0.86
+A00625,P03524,karan78,Nickname,Business Listing,E02620,0.65
+A00626,P03526,avni73,Social Media Username,Social Platform,nan,0.69
+A00627,P03529,yash16,Social Media Username,Public Directory,nan,0.74
+A00628,P03531,sana79,Nickname,Social Platform,E02624,0.92
+A00629,P03532,nikhil67,Business Alias,Social Platform,nan,0.81
+A00630,P03535,kiara81,Social Media Username,Public Directory,nan,0.92
+A00631,P03536,harsh93,Social Media Username,Public Directory,E02626,0.69
+A00632,P03538,rhea42,Nickname,Business Listing,nan,0.56
+A00633,P03561,vidhi83,Business Alias,Public Directory,nan,0.81
+A00634,P03568,rohan60,Business Alias,Business Listing,nan,0.67
+A00635,P03573,pooja36,Nickname,Business Listing,nan,0.62
+A00636,P03576,kabir58,Nickname,Social Platform,nan,0.85
+A00637,P03581,mahi53,Nickname,Business Listing,nan,0.56
+A00638,P03600,raj86,Social Media Username,Public Directory,nan,0.56
+A00639,P03602,yash98,Business Alias,Public Directory,nan,0.92
+A00640,P03603,ananya95,Social Media Username,Business Listing,nan,0.78
+A00641,P03610,manav57,Social Media Username,Public Directory,nan,0.72
+A00642,P03612,pooja86,Business Alias,Public Directory,E02683,0.86
+A00643,P03615,kiara71,Social Media Username,Social Platform,nan,0.89
+A00644,P03616,kabir83,Social Media Username,Public Directory,nan,0.69
+A00645,P03618,sameer23,Nickname,Social Platform,E02685,0.85
+A00646,P03620,pooja62,Nickname,Business Listing,nan,0.59
+A00647,P03623,rohan91,Business Alias,Public Directory,nan,0.87
+A00648,P03630,riya76,Business Alias,Business Listing,E02691,0.96
+A00649,P03645,mahi78,Business Alias,Business Listing,E02698,0.78
+A00650,P03653,ananya73,Social Media Username,Public Directory,nan,0.57
+A00651,P03658,rhea89,Social Media Username,Public Directory,E02707,0.66
+A00652,P03660,dhruv52,Nickname,Social Platform,nan,0.66
+A00653,P03662,nisha23,Social Media Username,Social Platform,nan,0.9
+A00654,P03663,diya67,Business Alias,Public Directory,E02714,0.62
+A00655,P03669,aman75,Nickname,Social Platform,nan,0.61
+A00656,P03672,vidhi80,Social Media Username,Public Directory,E02721,0.96
+A00657,P03693,vikram56,Social Media Username,Business Listing,E02743,0.93
+A00658,P03700,siddharth39,Business Alias,Business Listing,nan,0.73
+A00659,P03705,tara45,Nickname,Public Directory,E02752,0.56
+A00660,P03710,trisha91,Social Media Username,Social Platform,E02755,0.59
+A00661,P03711,aniket58,Social Media Username,Public Directory,nan,0.63
+A00662,P03717,akash85,Social Media Username,Social Platform,nan,0.92
+A00663,P03720,tara53,Nickname,Social Platform,nan,0.88
+A00664,P03723,rohan61,Nickname,Social Platform,nan,0.87
+A00665,P03725,vivek25,Social Media Username,Public Directory,nan,0.56
+A00666,P03727,aanya96,Social Media Username,Public Directory,nan,0.85
+A00667,P03730,rhea55,Nickname,Public Directory,E02772,0.55
+A00668,P03731,ananya81,Social Media Username,Business Listing,nan,0.85
+A00669,P03746,anushka31,Business Alias,Public Directory,nan,0.63
+A00670,P03753,arjun37,Business Alias,Business Listing,nan,0.64
+A00671,P03758,pooja64,Nickname,Business Listing,nan,0.96
+A00672,P03760,sneha97,Social Media Username,Public Directory,E02789,0.75
+A00673,P03764,pooja37,Nickname,Public Directory,nan,0.59
+A00674,P03765,dhruv77,Business Alias,Social Platform,E02793,0.94
+A00675,P03781,ishita61,Business Alias,Social Platform,nan,0.84
+A00676,P03789,sameer97,Social Media Username,Business Listing,nan,0.62
+A00677,P03790,vanya54,Social Media Username,Business Listing,nan,0.92
+A00678,P03791,avni70,Nickname,Social Platform,nan,0.65
+A00679,P03798,rahul34,Business Alias,Social Platform,nan,0.94
+A00680,P03802,manav80,Nickname,Public Directory,E02812,0.79
+A00681,P03804,rahul12,Nickname,Social Platform,nan,0.56
+A00682,P03807,mahi66,Business Alias,Social Platform,nan,0.81
+A00683,P03812,simran48,Nickname,Social Platform,E02818,0.67
+A00684,P03813,pooja17,Business Alias,Business Listing,E02819,0.74
+A00685,P03820,manav41,Business Alias,Business Listing,E02827,0.79
+A00686,P03824,naina98,Nickname,Business Listing,nan,0.82
+A00687,P03825,riya15,Nickname,Public Directory,E02834,0.56
+A00688,P03828,pranav62,Nickname,Public Directory,nan,0.82
+A00689,P03829,sana70,Business Alias,Business Listing,nan,0.68
+A00690,P03842,akash65,Nickname,Business Listing,nan,0.67
+A00691,P03845,manav74,Social Media Username,Business Listing,nan,0.66
+A00692,P03846,aniket96,Nickname,Public Directory,E02847,0.84
+A00693,P03847,kiara22,Nickname,Social Platform,nan,0.76
+A00694,P03857,yamini62,Social Media Username,Public Directory,E02857,0.83
+A00695,P03867,shreya74,Nickname,Business Listing,nan,0.92
+A00696,P03873,kavya24,Social Media Username,Social Platform,nan,0.73
+A00697,P03875,diya32,Social Media Username,Public Directory,E02872,0.63
+A00698,P03876,raj52,Social Media Username,Public Directory,nan,0.82
+A00699,P03878,saurabh26,Social Media Username,Social Platform,E02873,0.95
+A00700,P03880,pranav44,Social Media Username,Social Platform,E02877,0.57
+A00701,P03884,tara59,Business Alias,Social Platform,nan,0.73
+A00702,P03896,aanya46,Business Alias,Public Directory,nan,0.8
+A00703,P03897,raj90,Social Media Username,Social Platform,nan,0.81
+A00704,P03899,aanya27,Business Alias,Public Directory,E02893,0.55
+A00705,P03903,vikram27,Business Alias,Social Platform,E02895,0.74
+A00706,P03905,nikhil89,Business Alias,Social Platform,E02897,0.76
+A00707,P03913,akash88,Nickname,Business Listing,nan,0.72
+A00708,P03920,diya33,Social Media Username,Business Listing,nan,0.75
+A00709,P03921,aanya56,Nickname,Public Directory,E02914,0.8
+A00710,P03927,saurabh37,Nickname,Business Listing,nan,0.8
+A00711,P03930,aanya61,Business Alias,Business Listing,E02918,0.88
+A00712,P03933,zoya91,Nickname,Social Platform,E02920,0.68
+A00713,P03935,vanya54,Nickname,Business Listing,nan,0.56
+A00714,P03942,aanya88,Social Media Username,Public Directory,nan,0.75
+A00715,P03948,sana87,Nickname,Business Listing,nan,0.63
+A00716,P03951,naveen82,Social Media Username,Public Directory,E02941,0.84
+A00717,P03956,avni87,Nickname,Public Directory,nan,0.72
+A00718,P03958,nikhil79,Nickname,Public Directory,nan,0.63
+A00719,P03968,ishaan83,Nickname,Social Platform,nan,0.73
+A00720,P03974,anushka42,Nickname,Business Listing,E02955,0.62
+A00721,P03978,sana70,Social Media Username,Social Platform,E02956,0.89
+A00722,P03979,pooja68,Business Alias,Social Platform,nan,0.72
+A00723,P03983,isha76,Nickname,Public Directory,nan,0.62
+A00724,P04001,mohit34,Nickname,Business Listing,E02973,0.7
+A00725,P04005,mahi28,Social Media Username,Business Listing,E02977,0.93
+A00726,P04007,dhruv49,Social Media Username,Business Listing,nan,0.78
+A00727,P04027,aman21,Business Alias,Social Platform,E02997,0.98
+A00728,P04029,ishaan85,Nickname,Business Listing,E02999,0.98
+A00729,P04030,raj23,Social Media Username,Public Directory,nan,0.89
+A00730,P04033,dev85,Nickname,Public Directory,nan,0.74
+A00731,P04035,aditi82,Nickname,Business Listing,E03003,0.91
+A00732,P04036,mahi99,Business Alias,Business Listing,E03005,0.6
+A00733,P04044,akash52,Nickname,Social Platform,E03013,0.98
+A00734,P04045,riya10,Nickname,Business Listing,nan,0.61
+A00735,P04067,arnav16,Business Alias,Business Listing,E03030,0.73
+A00736,P04073,saurabh32,Business Alias,Business Listing,nan,0.71
+A00737,P04078,sameer24,Nickname,Social Platform,nan,0.66
+A00738,P04098,aanya69,Nickname,Business Listing,nan,0.63
+A00739,P04107,tanvi19,Nickname,Public Directory,nan,0.97
+A00740,P04113,ishita56,Nickname,Public Directory,E03071,0.94
+A00741,P04115,rhea78,Social Media Username,Social Platform,nan,0.71
+A00742,P04118,kiara20,Business Alias,Business Listing,E03076,0.96
+A00743,P04119,manav35,Social Media Username,Social Platform,nan,0.68
+A00744,P04120,rohan64,Social Media Username,Public Directory,E03079,0.73
+A00745,P04124,sana70,Business Alias,Business Listing,nan,0.72
+A00746,P04127,raj74,Social Media Username,Social Platform,E03083,0.76
+A00747,P04134,ritesh77,Business Alias,Business Listing,nan,0.92
+A00748,P04135,kiara48,Nickname,Business Listing,E03092,0.9
+A00749,P04136,trisha24,Social Media Username,Business Listing,E03093,0.79
+A00750,P04138,yash30,Nickname,Public Directory,nan,0.95
+A00751,P04140,avni32,Social Media Username,Business Listing,nan,0.8
+A00752,P04141,kabir66,Nickname,Social Platform,nan,0.92
+A00753,P04146,trisha69,Social Media Username,Business Listing,E03102,0.69
+A00754,P04148,anushka76,Business Alias,Public Directory,nan,0.65
+A00755,P04156,manav65,Business Alias,Social Platform,nan,0.6
+A00756,P04158,tanvi47,Business Alias,Business Listing,E03108,0.86
+A00757,P04166,raj15,Business Alias,Social Platform,nan,0.73
+A00758,P04169,kiara19,Business Alias,Social Platform,nan,0.85
+A00759,P04172,vidhi53,Business Alias,Business Listing,nan,0.82
+A00760,P04175,dhruv13,Nickname,Business Listing,E03125,0.79
+A00761,P04177,arnav50,Social Media Username,Social Platform,E03127,0.77
+A00762,P04197,meera96,Social Media Username,Social Platform,E03144,0.84
+A00763,P04205,yamini14,Nickname,Social Platform,nan,0.88
+A00764,P04225,raj29,Nickname,Social Platform,nan,0.79
+A00765,P04229,kabir52,Business Alias,Public Directory,E03174,0.9
+A00766,P04234,rahul22,Business Alias,Social Platform,nan,0.58
+A00767,P04251,kunal96,Nickname,Social Platform,E03187,0.86
+A00768,P04256,pooja67,Business Alias,Social Platform,E03190,0.77
+A00769,P04257,harsh51,Nickname,Social Platform,E03192,0.66
+A00770,P04262,raj32,Social Media Username,Business Listing,nan,0.9
+A00771,P04269,nisha66,Social Media Username,Business Listing,E03203,0.92
+A00772,P04270,naveen94,Social Media Username,Business Listing,E03205,0.63
+A00773,P04271,simran27,Business Alias,Public Directory,E03206,0.97
+A00774,P04283,raj55,Nickname,Public Directory,nan,0.89
+A00775,P04288,dev10,Social Media Username,Public Directory,E03220,0.79
+A00776,P04291,mahi52,Business Alias,Public Directory,nan,0.67
+A00777,P04295,simran49,Nickname,Social Platform,nan,0.76
+A00778,P04304,ananya87,Social Media Username,Business Listing,nan,0.58
+A00779,P04306,ananya28,Social Media Username,Social Platform,nan,0.66
+A00780,P04308,isha63,Business Alias,Social Platform,nan,0.67
+A00781,P04312,nikhil84,Nickname,Social Platform,E03236,0.85
+A00782,P04315,diya48,Nickname,Social Platform,E03238,0.88
+A00783,P04316,ritesh67,Social Media Username,Business Listing,E03239,0.77
+A00784,P04317,anushka35,Business Alias,Social Platform,nan,0.7
+A00785,P04318,pooja13,Nickname,Social Platform,nan,0.92
+A00786,P04319,arnav42,Business Alias,Business Listing,nan,0.83
+A00787,P04320,ishaan94,Nickname,Public Directory,E03240,0.56
+A00788,P04326,ishita89,Social Media Username,Social Platform,E03246,0.6
+A00789,P04330,yamini77,Nickname,Business Listing,E03247,0.66
+A00790,P04339,diya80,Nickname,Public Directory,nan,0.63
+A00791,P04343,aman72,Business Alias,Social Platform,E03266,0.71
+A00792,P04349,sneha40,Nickname,Social Platform,nan,0.92
+A00793,P04350,kiara94,Social Media Username,Public Directory,E03273,0.65
+A00794,P04351,aman71,Business Alias,Social Platform,nan,0.97
+A00795,P04352,kiara45,Social Media Username,Social Platform,nan,0.77
+A00796,P04357,yash67,Nickname,Public Directory,E03279,0.66
+A00797,P04372,sana37,Social Media Username,Business Listing,E03287,0.77
+A00798,P04380,mohit76,Social Media Username,Business Listing,E03291,0.68
+A00799,P04382,trisha42,Social Media Username,Business Listing,nan,0.96
+A00800,P04385,vanya60,Business Alias,Business Listing,nan,0.72
+A00801,P04392,dev78,Social Media Username,Public Directory,nan,0.83
+A00802,P04395,vanya59,Nickname,Business Listing,nan,0.62
+A00803,P04404,kavya11,Business Alias,Business Listing,E03307,0.92
+A00804,P04410,rhea78,Social Media Username,Business Listing,E03312,0.81
+A00805,P04411,varun17,Nickname,Public Directory,nan,0.65
+A00806,P04415,akash54,Nickname,Business Listing,nan,0.84
+A00807,P04418,avni59,Business Alias,Public Directory,nan,0.68
+A00808,P04430,tanvi42,Social Media Username,Public Directory,nan,0.74
+A00809,P04434,aditya17,Nickname,Business Listing,E03332,0.87
+A00810,P04439,dhruv33,Business Alias,Business Listing,E03340,0.73
+A00811,P04442,kabir34,Business Alias,Business Listing,E03344,0.84
+A00812,P04443,pooja66,Nickname,Business Listing,E03346,0.62
+A00813,P04445,aniket11,Social Media Username,Public Directory,nan,0.89
+A00814,P04448,raj16,Business Alias,Business Listing,nan,0.74
+A00815,P04455,sana41,Nickname,Business Listing,E03357,0.8
+A00816,P04459,meera88,Business Alias,Business Listing,nan,0.9
+A00817,P04470,akash27,Social Media Username,Social Platform,nan,0.85
+A00818,P04475,diya66,Nickname,Public Directory,E03368,0.83
+A00819,P04476,naveen57,Business Alias,Business Listing,nan,0.78
+A00820,P04493,kiara21,Business Alias,Public Directory,nan,0.91
+A00821,P04496,varun62,Social Media Username,Social Platform,E03382,0.87
+A00822,P04501,ishaan50,Social Media Username,Public Directory,E03385,0.68
+A00823,P04507,aanya51,Business Alias,Public Directory,E03394,0.88
+A00824,P04508,vivek59,Social Media Username,Public Directory,nan,0.75
+A00825,P04513,aditi88,Business Alias,Public Directory,E03400,0.55
+A00826,P04514,ishaan68,Social Media Username,Social Platform,nan,0.63
+A00827,P04517,kabir11,Business Alias,Social Platform,E03403,0.57
+A00828,P04521,vidhi66,Nickname,Social Platform,nan,0.98
+A00829,P04536,kavya91,Business Alias,Public Directory,E03428,0.7
+A00830,P04539,aarav37,Nickname,Public Directory,nan,0.7
+A00831,P04542,kunal58,Social Media Username,Social Platform,nan,0.6
+A00832,P04548,ishita72,Business Alias,Public Directory,E03434,0.67
+A00833,P04550,vivek11,Business Alias,Business Listing,nan,0.69
+A00834,P04551,aditya35,Social Media Username,Social Platform,nan,0.95
+A00835,P04572,riya21,Business Alias,Business Listing,E03454,0.76
+A00836,P04577,manav12,Social Media Username,Social Platform,nan,0.76
+A00837,P04586,zoya82,Nickname,Public Directory,nan,0.73
+A00838,P04587,rahul92,Nickname,Social Platform,nan,0.6
+A00839,P04592,varun62,Social Media Username,Business Listing,nan,0.83
+A00840,P04599,karan45,Social Media Username,Public Directory,E03472,0.7
+A00841,P04601,kunal26,Social Media Username,Business Listing,E03474,0.82
+A00842,P04603,akash35,Social Media Username,Business Listing,E03477,0.88
+A00843,P04606,sneha55,Social Media Username,Public Directory,nan,0.75
+A00844,P04609,arnav88,Business Alias,Social Platform,E03482,0.79
+A00845,P04611,riya60,Business Alias,Social Platform,nan,0.6
+A00846,P04634,kabir65,Nickname,Business Listing,nan,0.86
+A00847,P04636,trisha76,Business Alias,Business Listing,nan,0.84
+A00848,P04638,rahul16,Social Media Username,Business Listing,E03511,0.95
+A00849,P04640,vivek19,Nickname,Business Listing,E03515,0.62
+A00850,P04642,pranav24,Business Alias,Public Directory,nan,0.68
+A00851,P04643,manav34,Business Alias,Social Platform,nan,0.8
+A00852,P04646,arnav99,Social Media Username,Social Platform,E03517,0.93
+A00853,P04660,rhea89,Social Media Username,Business Listing,nan,0.69
+A00854,P04668,tanvi41,Nickname,Business Listing,nan,0.92
+A00855,P04671,vanya25,Social Media Username,Business Listing,nan,0.63
+A00856,P04676,rhea67,Nickname,Public Directory,nan,0.56
+A00857,P04677,siddharth16,Social Media Username,Social Platform,nan,0.79
+A00858,P04680,isha95,Social Media Username,Social Platform,nan,0.85
+A00859,P04691,manav97,Nickname,Business Listing,nan,0.81
+A00860,P04696,vivek48,Nickname,Social Platform,nan,0.75
+A00861,P04699,karan83,Business Alias,Social Platform,E03550,0.63
+A00862,P04701,vikram20,Business Alias,Business Listing,nan,0.59
+A00863,P04704,akash22,Social Media Username,Public Directory,nan,0.85
+A00864,P04707,akash97,Nickname,Social Platform,E03558,0.58
+A00865,P04708,sameer39,Nickname,Business Listing,E03559,0.94
+A00866,P04718,rohan40,Social Media Username,Public Directory,nan,0.68
+A00867,P04721,varun72,Nickname,Public Directory,nan,0.57
+A00868,P04731,sneha13,Business Alias,Public Directory,E03572,0.72
+A00869,P04739,rhea33,Nickname,Business Listing,nan,0.72
+A00870,P04740,rohan63,Social Media Username,Public Directory,nan,0.64
+A00871,P04741,diya42,Business Alias,Social Platform,nan,0.76
+A00872,P04742,aanya68,Nickname,Business Listing,E03580,0.91
+A00873,P04747,nisha95,Nickname,Public Directory,E03583,0.96
+A00874,P04753,ishita65,Social Media Username,Business Listing,nan,0.65
+A00875,P04757,rhea69,Business Alias,Public Directory,E03591,0.67
+A00876,P04758,kabir43,Nickname,Public Directory,nan,0.8
+A00877,P04766,raj32,Business Alias,Social Platform,E03597,0.62
+A00878,P04769,meera56,Nickname,Social Platform,nan,0.97
+A00879,P04770,arnav46,Business Alias,Social Platform,E03601,0.6
+A00880,P04786,dev96,Business Alias,Business Listing,nan,0.72
+A00881,P04787,sneha13,Business Alias,Social Platform,nan,0.84
+A00882,P04788,meera24,Social Media Username,Business Listing,nan,0.98
+A00883,P04789,vivek81,Business Alias,Public Directory,E03613,0.71
+A00884,P04799,rahul44,Nickname,Public Directory,nan,0.66
+A00885,P04802,aniket89,Social Media Username,Business Listing,E03627,0.67
+A00886,P04808,manav76,Business Alias,Public Directory,nan,0.58
+A00887,P04829,shreya28,Nickname,Public Directory,nan,0.69
+A00888,P04833,vanya16,Business Alias,Business Listing,nan,0.85
+A00889,P04834,manav40,Nickname,Public Directory,nan,0.56
+A00890,P04850,dhruv18,Social Media Username,Business Listing,E03665,0.81
+A00891,P04855,kiara15,Social Media Username,Social Platform,E03670,0.81
+A00892,P04862,ishita30,Social Media Username,Social Platform,E03673,0.82
+A00893,P04864,aniket96,Business Alias,Business Listing,nan,0.62
+A00894,P04868,vivek16,Nickname,Public Directory,nan,0.63
+A00895,P04872,pooja19,Social Media Username,Social Platform,nan,0.75
+A00896,P04874,pooja25,Business Alias,Business Listing,nan,0.77
+A00897,P04881,meera99,Social Media Username,Business Listing,nan,0.62
+A00898,P04882,varun78,Business Alias,Public Directory,nan,0.79
+A00899,P04895,akash86,Social Media Username,Public Directory,nan,0.9
+A00900,P04897,tara67,Nickname,Public Directory,E03697,0.81
+A00901,P04898,aman79,Business Alias,Public Directory,E03699,0.67
+A00902,P04901,sameer81,Social Media Username,Business Listing,nan,0.9
+A00903,P04907,akash36,Nickname,Social Platform,E03704,0.87
+A00904,P04909,akash10,Nickname,Public Directory,E03706,0.75
+A00905,P04912,dev25,Nickname,Business Listing,E03708,0.63
+A00906,P04913,pooja81,Nickname,Business Listing,nan,0.93
+A00907,P04915,yamini42,Nickname,Social Platform,nan,0.98
+A00908,P04922,ishaan27,Business Alias,Business Listing,nan,0.77
+A00909,P04930,aditya56,Social Media Username,Business Listing,nan,0.66
+A00910,P04932,kiara64,Social Media Username,Social Platform,E03720,0.77
+A00911,P04936,harsh43,Nickname,Public Directory,nan,0.95
+A00912,P04942,pooja35,Social Media Username,Social Platform,E03730,0.58
+A00913,P04950,mahi22,Social Media Username,Business Listing,nan,0.89
+A00914,P04954,meera48,Social Media Username,Business Listing,E03736,0.76
+A00915,P04960,naina74,Nickname,Social Platform,nan,0.68
+A00916,P04962,trisha20,Social Media Username,Social Platform,nan,0.7
+A00917,P04966,naina94,Social Media Username,Business Listing,nan,0.57
+A00918,P04972,ishaan52,Business Alias,Public Directory,E03747,0.87
+A00919,P04973,mohit86,Nickname,Business Listing,E03750,0.9
+A00920,P04977,kavya49,Nickname,Business Listing,E03755,0.92
+A00921,P04998,diya90,Business Alias,Public Directory,E03769,0.96
+A00922,P04999,aanya33,Business Alias,Public Directory,nan,0.82
+A00923,P05016,harsh22,Social Media Username,Public Directory,nan,0.79
+A00924,P05020,tanvi81,Business Alias,Business Listing,nan,0.68
+A00925,P05025,vanya62,Social Media Username,Business Listing,nan,0.86
+A00926,P05027,isha81,Social Media Username,Public Directory,E03794,0.57
+A00927,P05034,tara97,Nickname,Public Directory,nan,0.66
+A00928,P05042,rhea79,Nickname,Social Platform,nan,0.69
+A00929,P05043,aman97,Nickname,Public Directory,E03805,0.77
+A00930,P05044,aniket66,Business Alias,Social Platform,E03806,0.91
+A00931,P05057,ishita80,Social Media Username,Public Directory,nan,0.84
+A00932,P05068,raj76,Business Alias,Public Directory,E03825,0.72
+A00933,P05079,avni39,Business Alias,Business Listing,E03830,0.94
+A00934,P05083,naina32,Business Alias,Public Directory,nan,0.56
+A00935,P05095,ishita32,Social Media Username,Business Listing,E03841,0.71
+A00936,P05098,yamini92,Business Alias,Public Directory,nan,0.92
+A00937,P05102,kiara75,Nickname,Public Directory,nan,0.62
+A00938,P05109,arnav75,Social Media Username,Public Directory,E03854,0.7
+A00939,P05116,arnav28,Business Alias,Business Listing,E03861,0.9
+A00940,P05119,ananya70,Nickname,Social Platform,nan,0.64
+A00941,P05127,diya77,Business Alias,Public Directory,nan,0.81
+A00942,P05134,aditi32,Business Alias,Business Listing,nan,0.65
+A00943,P05137,avni64,Business Alias,Social Platform,E03884,0.92
+A00944,P05140,zoya76,Business Alias,Social Platform,nan,0.63
+A00945,P05142,yash30,Nickname,Business Listing,nan,0.67
+A00946,P05144,meera55,Nickname,Business Listing,nan,0.79
+A00947,P05145,kiara29,Social Media Username,Public Directory,nan,0.92
+A00948,P05159,akash68,Business Alias,Business Listing,nan,0.64
+A00949,P05165,nikhil29,Business Alias,Public Directory,nan,0.76
+A00950,P05178,vikram75,Nickname,Public Directory,nan,0.92
+A00951,P05189,aditya60,Nickname,Public Directory,E03912,0.84
+A00952,P05195,anushka25,Nickname,Business Listing,nan,0.83
+A00953,P05196,mohit62,Social Media Username,Social Platform,E03921,0.57
+A00954,P05197,tara54,Business Alias,Social Platform,nan,0.93
+A00955,P05202,riya96,Business Alias,Business Listing,E03923,0.62
+A00956,P05209,aniket29,Social Media Username,Public Directory,E03928,0.88
+A00957,P05210,riya39,Business Alias,Social Platform,nan,0.73
+A00958,P05220,simran43,Nickname,Business Listing,nan,0.71
+A00959,P05223,mohit14,Social Media Username,Business Listing,nan,0.89
+A00960,P05226,simran37,Nickname,Public Directory,E03943,0.69
+A00961,P05227,avni84,Nickname,Social Platform,E03946,0.78
+A00962,P05240,dev50,Business Alias,Public Directory,nan,0.76
+A00963,P05261,raj43,Business Alias,Public Directory,E03969,0.72
+A00964,P05265,vikram24,Nickname,Business Listing,nan,0.78
+A00965,P05269,anushka93,Social Media Username,Social Platform,nan,0.92
+A00966,P05271,diya45,Nickname,Business Listing,E03981,0.94
+A00967,P05275,tanvi52,Social Media Username,Public Directory,nan,0.82
+A00968,P05276,arnav99,Business Alias,Business Listing,nan,0.95
+A00969,P05290,nikhil68,Business Alias,Public Directory,nan,0.59
+A00970,P05295,zoya94,Nickname,Business Listing,nan,0.9
+A00971,P05297,vikram75,Social Media Username,Business Listing,nan,0.92
+A00972,P05303,ishita28,Business Alias,Social Platform,E04002,0.66
+A00973,P05304,riya76,Social Media Username,Business Listing,nan,0.73
+A00974,P05311,aanya37,Social Media Username,Social Platform,nan,0.95
+A00975,P05312,raj22,Nickname,Business Listing,E04013,0.97
+A00976,P05318,aanya22,Business Alias,Social Platform,nan,0.9
+A00977,P05324,kiara29,Business Alias,Business Listing,nan,0.89
+A00978,P05332,sana36,Nickname,Social Platform,nan,0.9
+A00979,P05340,kunal12,Business Alias,Social Platform,nan,0.63
+A00980,P05343,sneha34,Social Media Username,Business Listing,E04032,0.78
+A00981,P05344,sana65,Social Media Username,Business Listing,nan,0.66
+A00982,P05346,vivek80,Nickname,Social Platform,nan,0.63
+A00983,P05347,vidhi99,Nickname,Social Platform,nan,0.71
+A00984,P05357,vikram46,Nickname,Public Directory,E04045,0.86
+A00985,P05358,harsh80,Nickname,Business Listing,E04046,0.76
+A00986,P05374,kiara96,Nickname,Social Platform,nan,0.58
+A00987,P05389,dhruv60,Business Alias,Business Listing,nan,0.97
+A00988,P05399,nisha87,Business Alias,Public Directory,nan,0.61
+A00989,P05411,tara44,Social Media Username,Public Directory,nan,0.65
+A00990,P05414,kabir81,Nickname,Business Listing,nan,0.65
+A00991,P05417,naveen47,Social Media Username,Business Listing,E04085,0.88
+A00992,P05418,neha42,Nickname,Business Listing,E04086,0.63
+A00993,P05424,nikhil19,Business Alias,Public Directory,nan,0.76
+A00994,P05428,riya18,Business Alias,Social Platform,nan,0.95
+A00995,P05431,pallavi59,Nickname,Public Directory,nan,0.77
+A00996,P05432,nisha65,Social Media Username,Business Listing,nan,0.63
+A00997,P05439,dev15,Nickname,Public Directory,nan,0.94
+A00998,P05443,nisha93,Nickname,Business Listing,E04105,0.85
+A00999,P05450,vidhi39,Business Alias,Social Platform,nan,0.98
+A01000,P05459,aman81,Social Media Username,Public Directory,E04116,0.84
+A01001,P05464,aniket29,Social Media Username,Business Listing,nan,0.83
+A01002,P05470,kabir55,Nickname,Social Platform,nan,0.6
+A01003,P05483,meera81,Social Media Username,Social Platform,E04136,0.97
+A01004,P05485,nikhil19,Social Media Username,Business Listing,nan,0.96
+A01005,P05486,ritesh28,Business Alias,Public Directory,nan,0.59
+A01006,P05490,vidhi67,Social Media Username,Public Directory,nan,0.89
+A01007,P05493,dev41,Business Alias,Public Directory,E04146,0.8
+A01008,P05494,ishaan45,Nickname,Public Directory,nan,0.9
+A01009,P05513,shreya97,Nickname,Social Platform,nan,0.68
+A01010,P05526,raj93,Social Media Username,Business Listing,E04176,0.68
+A01011,P05528,tara40,Business Alias,Business Listing,nan,0.78
+A01012,P05531,tara21,Social Media Username,Social Platform,nan,0.68
+A01013,P05532,mahi48,Nickname,Social Platform,E04182,0.7
+A01014,P05541,kunal67,Nickname,Business Listing,nan,0.94
+A01015,P05542,neha74,Nickname,Business Listing,nan,0.63
+A01016,P05544,rohan62,Social Media Username,Social Platform,E04186,0.63
+A01017,P05549,mahi78,Social Media Username,Public Directory,nan,0.76
+A01018,P05551,kunal62,Social Media Username,Social Platform,E04191,0.82
+A01019,P05555,rahul83,Nickname,Public Directory,E04196,0.92
+A01020,P05556,karan42,Nickname,Business Listing,nan,0.82
+A01021,P05559,dev40,Nickname,Social Platform,nan,0.77
+A01022,P05560,isha28,Business Alias,Social Platform,nan,0.89
+A01023,P05561,rohan68,Nickname,Social Platform,nan,0.63
+A01024,P05568,trisha19,Nickname,Business Listing,nan,0.57
+A01025,P05569,kiara22,Social Media Username,Social Platform,E04207,0.82
+A01026,P05574,rohan16,Social Media Username,Business Listing,E04209,0.92
+A01027,P05579,avni96,Nickname,Social Platform,E04214,0.83
+A01028,P05585,ishita55,Social Media Username,Public Directory,nan,0.77
+A01029,P05586,tanvi62,Nickname,Public Directory,nan,0.79
+A01030,P05589,yamini62,Nickname,Social Platform,E04219,0.68
+A01031,P05590,pranav25,Nickname,Public Directory,nan,0.95
+A01032,P05599,rahul10,Nickname,Public Directory,nan,0.69
+A01033,P05600,isha80,Business Alias,Business Listing,E04227,0.92
+A01034,P05604,mohit97,Nickname,Social Platform,E04232,0.91
+A01035,P05618,tara48,Nickname,Business Listing,E04243,0.57
+A01036,P05631,pooja46,Social Media Username,Social Platform,E04250,0.72
+A01037,P05657,ishaan86,Social Media Username,Social Platform,nan,0.95
+A01038,P05660,nikhil80,Business Alias,Business Listing,nan,0.95
+A01039,P05661,shreya70,Business Alias,Public Directory,nan,0.6
+A01040,P05663,dhruv98,Business Alias,Business Listing,nan,0.76
+A01041,P05671,avni31,Social Media Username,Public Directory,E04277,0.79
+A01042,P05675,sameer22,Social Media Username,Business Listing,nan,0.75
+A01043,P05691,aman85,Social Media Username,Business Listing,nan,0.59
+A01044,P05694,dev53,Nickname,Social Platform,E04288,0.76
+A01045,P05703,rahul75,Business Alias,Public Directory,nan,0.87
+A01046,P05704,pooja78,Nickname,Business Listing,nan,0.57
+A01047,P05707,siddharth63,Nickname,Public Directory,nan,0.85
+A01048,P05710,pooja37,Business Alias,Social Platform,nan,0.74
+A01049,P05718,ritesh35,Business Alias,Social Platform,nan,0.6
+A01050,P05719,mahi39,Social Media Username,Public Directory,E04310,0.96
+A01051,P05722,neha70,Business Alias,Business Listing,E04314,0.59
+A01052,P05725,sameer65,Social Media Username,Business Listing,E04318,0.72
+A01053,P05733,naveen60,Social Media Username,Social Platform,nan,0.91
+A01054,P05757,sana76,Nickname,Business Listing,E04338,0.98
+A01055,P05758,tara47,Social Media Username,Public Directory,E04339,0.75
+A01056,P05767,kunal69,Nickname,Social Platform,nan,0.84
+A01057,P05769,tanvi97,Nickname,Business Listing,E04347,0.71
+A01058,P05793,raj41,Social Media Username,Public Directory,nan,0.74
+A01059,P05795,pooja99,Social Media Username,Public Directory,nan,0.92
+A01060,P05799,kiara35,Business Alias,Social Platform,nan,0.77
+A01061,P05822,kabir93,Social Media Username,Public Directory,E04386,0.87
+A01062,P05823,avni88,Nickname,Business Listing,nan,0.69
+A01063,P05827,rohan49,Business Alias,Business Listing,nan,0.88
+A01064,P05829,manav93,Business Alias,Social Platform,E04389,0.8
+A01065,P05832,saurabh40,Nickname,Public Directory,nan,0.83
+A01066,P05838,anushka27,Business Alias,Public Directory,nan,0.74
+A01067,P05840,vivek95,Nickname,Business Listing,nan,0.71
+A01068,P05846,anushka47,Business Alias,Business Listing,E04403,0.72
+A01069,P05849,rhea93,Business Alias,Public Directory,nan,0.87
+A01070,P05850,manav65,Social Media Username,Public Directory,E04407,0.58
+A01071,P05856,sameer13,Social Media Username,Business Listing,E04411,0.82
+A01072,P05863,dhruv13,Nickname,Social Platform,E04418,0.61
+A01073,P05872,karan11,Business Alias,Business Listing,E04422,0.87
+A01074,P05874,aanya92,Nickname,Business Listing,nan,0.64
+A01075,P05885,vidhi74,Social Media Username,Business Listing,nan,0.59
+A01076,P05888,aarav73,Nickname,Business Listing,E04437,0.96
+A01077,P05892,kunal16,Business Alias,Business Listing,E04441,0.79
+A01078,P05898,vivek67,Business Alias,Business Listing,nan,0.85
+A01079,P05904,saurabh19,Business Alias,Public Directory,E04452,0.89
+A01080,P05906,naina56,Business Alias,Public Directory,nan,0.85
+A01081,P05907,anushka40,Social Media Username,Business Listing,E04455,0.56
+A01082,P05910,kiara66,Business Alias,Public Directory,E04458,0.58
+A01083,P05920,vivek84,Business Alias,Social Platform,E04465,0.61
+A01084,P05924,neha85,Social Media Username,Public Directory,nan,0.76
+A01085,P05927,rhea14,Nickname,Social Platform,nan,0.7
+A01086,P05932,manav65,Nickname,Social Platform,nan,0.89
+A01087,P05937,simran35,Social Media Username,Business Listing,E04481,0.58
+A01088,P05939,aanya29,Business Alias,Social Platform,E04484,0.78
+A01089,P05953,arnav58,Business Alias,Public Directory,nan,0.75
+A01090,P05956,naveen36,Business Alias,Business Listing,nan,0.71
+A01091,P05957,avni98,Business Alias,Social Platform,E04504,0.81
+A01092,P05965,ishaan53,Nickname,Public Directory,nan,0.68
+A01093,P05970,aarav71,Nickname,Business Listing,E04512,0.79
+A01094,P05973,manav36,Social Media Username,Social Platform,E04515,0.6
+A01095,P05974,avni20,Nickname,Public Directory,nan,0.92
+A01096,P05978,avni97,Nickname,Social Platform,E04520,0.77
+A01097,P05989,nikhil97,Nickname,Business Listing,nan,0.88
+A01098,P05990,rahul43,Nickname,Public Directory,E04535,0.63
+A01099,P05993,saurabh11,Business Alias,Business Listing,E04537,0.94
+A01100,P06001,tanvi57,Business Alias,Social Platform,nan,0.72
+A01101,P06006,raj24,Business Alias,Business Listing,nan,0.86
+A01102,P06009,aman41,Business Alias,Public Directory,nan,0.87
+A01103,P06013,anushka55,Nickname,Public Directory,nan,0.75
+A01104,P06014,siddharth47,Social Media Username,Business Listing,E04548,0.93
+A01105,P06018,kabir71,Business Alias,Public Directory,nan,0.84
+A01106,P06023,simran47,Nickname,Business Listing,nan,0.74
+A01107,P06028,naina70,Business Alias,Business Listing,E04564,0.95
+A01108,P06029,kiara74,Nickname,Business Listing,E04566,0.68
+A01109,P06031,kabir37,Nickname,Business Listing,E04568,0.81
+A01110,P06033,aditya32,Social Media Username,Public Directory,E04571,0.68
+A01111,P06042,pranav67,Business Alias,Social Platform,nan,0.78
+A01112,P06046,aman49,Social Media Username,Social Platform,nan,0.57
+A01113,P06058,siddharth92,Social Media Username,Public Directory,E04582,0.64
+A01114,P06060,aditi12,Nickname,Social Platform,nan,0.79
+A01115,P06078,varun17,Nickname,Public Directory,E04590,0.68
+A01116,P06079,kiara15,Business Alias,Business Listing,nan,0.83
+A01117,P06085,sameer29,Business Alias,Business Listing,E04598,0.85
+A01118,P06096,vanya29,Nickname,Public Directory,nan,0.83
+A01119,P06100,avni90,Business Alias,Public Directory,nan,0.81
+A01120,P06101,tanvi82,Business Alias,Social Platform,nan,0.78
+A01121,P06107,siddharth56,Social Media Username,Business Listing,nan,0.7
+A01122,P06109,vikram84,Business Alias,Business Listing,nan,0.59
+A01123,P06118,sana41,Social Media Username,Social Platform,E04618,0.85
+A01124,P06129,tara78,Nickname,Business Listing,nan,0.67
+A01125,P06131,aman54,Business Alias,Social Platform,nan,0.9
+A01126,P06132,saurabh16,Business Alias,Business Listing,nan,0.9
+A01127,P06135,kavya74,Nickname,Business Listing,nan,0.87
+A01128,P06137,kabir35,Business Alias,Social Platform,E04633,0.62
+A01129,P06138,dhruv92,Nickname,Public Directory,nan,0.58
+A01130,P06142,naveen71,Nickname,Social Platform,E04637,0.69
+A01131,P06146,dhruv18,Social Media Username,Social Platform,E04640,0.6
+A01132,P06149,zoya40,Nickname,Business Listing,nan,0.58
+A01133,P06151,harsh16,Nickname,Business Listing,nan,0.83
+A01134,P06154,vanya46,Business Alias,Public Directory,E04645,0.59
+A01135,P06170,naina41,Social Media Username,Social Platform,nan,0.91
+A01136,P06176,vidhi98,Nickname,Public Directory,nan,0.92
+A01137,P06180,mohit35,Business Alias,Social Platform,nan,0.66
+A01138,P06181,siddharth44,Business Alias,Social Platform,nan,0.76
+A01139,P06182,nisha71,Social Media Username,Social Platform,nan,0.78
+A01140,P06205,mohit40,Social Media Username,Social Platform,E04674,0.82
+A01141,P06212,kiara51,Business Alias,Public Directory,nan,0.75
+A01142,P06217,dev45,Nickname,Business Listing,E04686,0.87
+A01143,P06224,kiara22,Social Media Username,Public Directory,nan,0.62
+A01144,P06225,aanya69,Social Media Username,Business Listing,nan,0.58
+A01145,P06231,raj92,Social Media Username,Social Platform,E04701,0.62
+A01146,P06233,kiara85,Social Media Username,Social Platform,E04703,0.63
+A01147,P06238,akash68,Nickname,Public Directory,E04710,0.64
+A01148,P06241,mahi73,Nickname,Public Directory,E04714,0.83
+A01149,P06244,shreya45,Business Alias,Public Directory,nan,0.83
+A01150,P06248,anushka56,Nickname,Public Directory,E04717,0.58
+A01151,P06254,avni45,Social Media Username,Public Directory,E04724,0.89
+A01152,P06268,kiara89,Nickname,Business Listing,nan,0.84
+A01153,P06275,kabir99,Social Media Username,Public Directory,E04746,0.81
+A01154,P06276,aditi55,Business Alias,Social Platform,E04748,0.83
+A01155,P06281,saurabh11,Nickname,Social Platform,E04754,0.57
+A01156,P06283,rahul50,Nickname,Business Listing,nan,0.89
+A01157,P06286,vidhi94,Business Alias,Business Listing,E04759,0.97
+A01158,P06289,ishaan79,Nickname,Social Platform,nan,0.83
+A01159,P06298,karan19,Social Media Username,Public Directory,nan,0.97
+A01160,P06300,ananya88,Business Alias,Social Platform,E04768,0.56
+A01161,P06304,varun83,Social Media Username,Public Directory,nan,0.71
+A01162,P06306,trisha69,Nickname,Social Platform,E04773,0.59
+A01163,P06308,aanya26,Business Alias,Public Directory,nan,0.56
+A01164,P06316,avni82,Business Alias,Social Platform,nan,0.62
+A01165,P06323,harsh96,Nickname,Business Listing,nan,0.73
+A01166,P06347,arjun19,Nickname,Public Directory,E04806,0.56
+A01167,P06349,kabir68,Business Alias,Social Platform,nan,0.69
+A01168,P06353,nisha81,Nickname,Social Platform,nan,0.81
+A01169,P06355,vidhi72,Nickname,Business Listing,nan,0.71
+A01170,P06359,manav61,Social Media Username,Social Platform,nan,0.88
+A01171,P06365,sameer40,Social Media Username,Business Listing,nan,0.6
+A01172,P06371,naveen23,Business Alias,Social Platform,nan,0.86
+A01173,P06377,naina49,Nickname,Social Platform,nan,0.86
+A01174,P06387,dev79,Social Media Username,Business Listing,nan,0.68
+A01175,P06393,naina94,Social Media Username,Public Directory,E04840,0.91
+A01176,P06398,vanya47,Business Alias,Business Listing,E04844,0.65
+A01177,P06402,aarav12,Business Alias,Business Listing,nan,0.93
+A01178,P06410,zoya87,Social Media Username,Social Platform,E04858,0.92
+A01179,P06428,raj92,Nickname,Business Listing,nan,0.77
+A01180,P06436,naina14,Business Alias,Public Directory,nan,0.61
+A01181,P06442,aanya46,Social Media Username,Social Platform,E04880,0.58
+A01182,P06460,rohan98,Business Alias,Social Platform,nan,0.57
+A01183,P06466,vivek86,Business Alias,Public Directory,nan,0.85
+A01184,P06470,aman60,Nickname,Social Platform,E04899,0.8
+A01185,P06472,aanya62,Business Alias,Business Listing,nan,0.94
+A01186,P06479,naina51,Business Alias,Social Platform,nan,0.94
+A01187,P06481,naveen31,Business Alias,Social Platform,E04902,0.65
+A01188,P06482,pooja93,Business Alias,Business Listing,E04903,0.68
+A01189,P06483,rhea78,Business Alias,Public Directory,nan,0.88
+A01190,P06493,isha91,Nickname,Public Directory,E04910,0.71
+A01191,P06495,varun20,Social Media Username,Public Directory,E04911,0.65
+A01192,P06503,ananya24,Nickname,Business Listing,nan,0.62
+A01193,P06504,mahi15,Nickname,Business Listing,E04920,0.9
+A01194,P06516,aanya42,Business Alias,Public Directory,E04928,0.64
+A01195,P06521,avni90,Business Alias,Public Directory,nan,0.65
+A01196,P06524,sana80,Nickname,Public Directory,nan,0.79
+A01197,P06526,yash82,Nickname,Social Platform,nan,0.62
+A01198,P06527,manav11,Nickname,Social Platform,E04937,0.74
+A01199,P06529,ishita70,Business Alias,Public Directory,E04941,0.98
+A01200,P06534,dhruv24,Business Alias,Social Platform,E04944,0.71
+A01201,P06536,neha18,Nickname,Social Platform,E04946,0.58
+A01202,P06541,pranav79,Nickname,Business Listing,nan,0.81
+A01203,P06542,naveen14,Social Media Username,Public Directory,nan,0.57
+A01204,P06546,aanya52,Nickname,Public Directory,nan,0.76
+A01205,P06549,aniket40,Social Media Username,Business Listing,E04964,0.71
+A01206,P06554,aman21,Social Media Username,Public Directory,nan,0.78
+A01207,P06558,kabir64,Business Alias,Public Directory,E04971,0.8
+A01208,P06560,vanya30,Nickname,Social Platform,nan,0.93
+A01209,P06566,aman66,Nickname,Public Directory,nan,0.82
+A01210,P06577,vidhi20,Nickname,Public Directory,E04991,0.89
+A01211,P06582,vanya61,Nickname,Business Listing,nan,0.78
+A01212,P06585,arnav85,Nickname,Public Directory,nan,0.64
+A01213,P06586,rahul22,Business Alias,Social Platform,nan,0.84
+A01214,P06587,yash36,Nickname,Social Platform,E05002,0.8
+A01215,P06593,pranav88,Social Media Username,Public Directory,nan,0.7
+A01216,P06596,rhea49,Social Media Username,Social Platform,nan,0.72
+A01217,P06597,aanya75,Nickname,Public Directory,nan,0.56
+A01218,P06602,sana89,Social Media Username,Social Platform,nan,0.89
+A01219,P06604,nisha55,Social Media Username,Social Platform,nan,0.92
+A01220,P06605,rhea56,Nickname,Business Listing,E05017,0.79
+A01221,P06607,anushka88,Social Media Username,Business Listing,E05018,0.64
+A01222,P06625,manav33,Nickname,Business Listing,nan,0.67
+A01223,P06627,sana30,Social Media Username,Public Directory,nan,0.72
+A01224,P06631,aniket46,Social Media Username,Social Platform,nan,0.75
+A01225,P06639,vidhi35,Social Media Username,Public Directory,E05035,0.82
+A01226,P06642,dhruv72,Business Alias,Public Directory,nan,0.96
+A01227,P06644,nisha42,Social Media Username,Business Listing,nan,0.58
+A01228,P06648,simran10,Nickname,Social Platform,nan,0.96
+A01229,P06649,simran38,Social Media Username,Business Listing,nan,0.98
+A01230,P06657,anushka95,Business Alias,Public Directory,nan,0.6
+A01231,P06659,avni82,Social Media Username,Public Directory,nan,0.73
+A01232,P06660,saurabh26,Social Media Username,Business Listing,E05052,0.82
+A01233,P06667,sneha12,Social Media Username,Business Listing,E05058,0.87
+A01234,P06668,tara30,Business Alias,Social Platform,E05059,0.73
+A01235,P06670,manav15,Business Alias,Public Directory,nan,0.81
+A01236,P06674,diya36,Business Alias,Social Platform,E05065,0.61
+A01237,P06684,raj40,Social Media Username,Social Platform,E05076,0.92
+A01238,P06693,kabir64,Social Media Username,Business Listing,E05086,0.57
+A01239,P06700,trisha76,Business Alias,Social Platform,nan,0.69
+A01240,P06703,shreya30,Business Alias,Social Platform,nan,0.71
+A01241,P06706,varun32,Nickname,Social Platform,nan,0.9
+A01242,P06708,manav86,Social Media Username,Social Platform,nan,0.66
+A01243,P06709,saurabh51,Social Media Username,Social Platform,nan,0.9
+A01244,P06710,yamini10,Nickname,Social Platform,nan,0.79
+A01245,P06712,mohit42,Social Media Username,Public Directory,E05103,0.63
+A01246,P06722,aanya42,Nickname,Business Listing,nan,0.8
+A01247,P06726,simran96,Nickname,Public Directory,nan,0.92
+A01248,P06733,kavya39,Social Media Username,Business Listing,nan,0.61
+A01249,P06734,akash99,Business Alias,Social Platform,nan,0.73
+A01250,P06738,harsh83,Business Alias,Business Listing,nan,0.94
+A01251,P06753,tara60,Business Alias,Social Platform,nan,0.65
+A01252,P06762,vidhi64,Business Alias,Business Listing,E05140,0.67
+A01253,P06770,akash77,Social Media Username,Social Platform,E05148,0.93
+A01254,P06779,rohan57,Social Media Username,Business Listing,nan,0.77
+A01255,P06783,kabir17,Nickname,Business Listing,E05160,0.8
+A01256,P06784,aanya46,Business Alias,Public Directory,nan,0.88
+A01257,P06792,tara81,Business Alias,Public Directory,E05164,0.62
+A01258,P06801,vidhi16,Business Alias,Business Listing,nan,0.92
+A01259,P06802,naveen66,Business Alias,Social Platform,nan,0.59
+A01260,P06811,riya43,Business Alias,Social Platform,nan,0.6
+A01261,P06813,zoya71,Business Alias,Business Listing,nan,0.79
+A01262,P06816,vidhi27,Social Media Username,Social Platform,nan,0.78
+A01263,P06817,anushka71,Business Alias,Public Directory,nan,0.89
+A01264,P06822,ananya33,Business Alias,Business Listing,E05188,0.86
+A01265,P06823,simran84,Social Media Username,Public Directory,nan,0.9
+A01266,P06825,akash12,Business Alias,Public Directory,nan,0.61
+A01267,P06827,aanya40,Nickname,Public Directory,nan,0.88
+A01268,P06829,ritesh21,Social Media Username,Business Listing,E05194,0.62
+A01269,P06830,raj67,Nickname,Business Listing,nan,0.81
+A01270,P06836,rohan89,Business Alias,Public Directory,E05199,0.86
+A01271,P06840,simran89,Nickname,Social Platform,nan,0.74
+A01272,P06847,nikhil71,Business Alias,Public Directory,E05209,0.86
+A01273,P06848,pooja23,Social Media Username,Business Listing,E05210,0.97
+A01274,P06851,karan90,Social Media Username,Social Platform,nan,0.56
+A01275,P06853,saurabh48,Social Media Username,Business Listing,nan,0.75
+A01276,P06857,kiara84,Social Media Username,Business Listing,E05217,0.79
+A01277,P06862,rhea25,Nickname,Business Listing,nan,0.98
+A01278,P06863,meera25,Business Alias,Social Platform,E05224,0.8
+A01279,P06865,diya43,Business Alias,Business Listing,E05226,0.81
+A01280,P06866,saurabh49,Social Media Username,Public Directory,E05227,0.95
+A01281,P06869,kiara52,Business Alias,Social Platform,nan,0.69
+A01282,P06872,aniket16,Business Alias,Business Listing,E05233,0.65
+A01283,P06886,vidhi52,Social Media Username,Social Platform,nan,0.74
+A01284,P06891,dev45,Social Media Username,Social Platform,nan,0.92
+A01285,P06896,saurabh98,Nickname,Social Platform,nan,0.94
+A01286,P06897,vanya65,Social Media Username,Business Listing,E05246,0.6
+A01287,P06909,vidhi99,Nickname,Business Listing,nan,0.64
+A01288,P06911,sana95,Business Alias,Social Platform,E05258,0.68
+A01289,P06923,ishaan28,Nickname,Social Platform,E05264,0.89
+A01290,P06925,pranav48,Social Media Username,Business Listing,nan,0.57
+A01291,P06926,anushka33,Business Alias,Business Listing,nan,0.56
+A01292,P06939,isha57,Social Media Username,Business Listing,E05274,0.74
+A01293,P06951,kavya64,Social Media Username,Business Listing,E05284,0.55
+A01294,P06964,varun20,Nickname,Public Directory,nan,0.91
+A01295,P06970,sana73,Social Media Username,Public Directory,E05299,0.72
+A01296,P06980,aniket41,Social Media Username,Social Platform,nan,0.95
+A01297,P06985,mahi51,Social Media Username,Public Directory,E05307,0.85
+A01298,P06986,simran89,Business Alias,Business Listing,nan,0.68
+A01299,P06989,tanvi25,Social Media Username,Business Listing,nan,0.7
+A01300,P07002,trisha69,Social Media Username,Business Listing,nan,0.9
+A01301,P07011,aanya83,Nickname,Public Directory,nan,0.66
+A01302,P07024,vanya74,Social Media Username,Public Directory,nan,0.75
+A01303,P07027,ishaan51,Nickname,Business Listing,E05340,0.57
+A01304,P07030,raj36,Business Alias,Social Platform,nan,0.68
+A01305,P07041,vidhi38,Business Alias,Social Platform,nan,0.85
+A01306,P07046,rahul48,Social Media Username,Public Directory,E05352,0.68
+A01307,P07047,diya17,Business Alias,Social Platform,nan,0.9
+A01308,P07064,avni93,Business Alias,Business Listing,nan,0.77
+A01309,P07088,vikram27,Social Media Username,Business Listing,E05380,0.73
+A01310,P07089,akash62,Nickname,Social Platform,nan,0.82
+A01311,P07091,saurabh32,Social Media Username,Social Platform,nan,0.67
+A01312,P07092,vidhi31,Social Media Username,Public Directory,nan,0.72
+A01313,P07095,tanvi66,Social Media Username,Public Directory,nan,0.72
+A01314,P07115,siddharth26,Business Alias,Social Platform,E05401,0.75
+A01315,P07124,manav88,Social Media Username,Public Directory,nan,0.6
+A01316,P07137,pranav70,Social Media Username,Public Directory,nan,0.89
+A01317,P07140,ishaan22,Nickname,Public Directory,E05423,0.58
+A01318,P07146,saurabh79,Social Media Username,Business Listing,nan,0.93
+A01319,P07150,kabir93,Social Media Username,Business Listing,nan,0.85
+A01320,P07151,avni34,Social Media Username,Social Platform,nan,0.73
+A01321,P07155,aditya54,Business Alias,Social Platform,E05429,0.86
+A01322,P07158,raj70,Nickname,Business Listing,E05433,0.97
+A01323,P07160,ishaan78,Social Media Username,Public Directory,nan,0.8
+A01324,P07162,riya89,Social Media Username,Business Listing,nan,0.94
+A01325,P07165,nisha45,Social Media Username,Social Platform,nan,0.91
+A01326,P07174,mohit57,Social Media Username,Public Directory,nan,0.66
+A01327,P07180,vidhi35,Business Alias,Public Directory,nan,0.92
+A01328,P07189,mohit95,Social Media Username,Business Listing,nan,0.96
+A01329,P07195,sana62,Nickname,Business Listing,E05461,0.7
+A01330,P07197,ishita46,Nickname,Business Listing,nan,0.55
+A01331,P07203,nisha85,Business Alias,Public Directory,E05467,0.64
+A01332,P07214,kiara96,Nickname,Business Listing,nan,0.78
+A01333,P07217,rahul38,Social Media Username,Public Directory,nan,0.59
+A01334,P07218,nisha91,Nickname,Social Platform,nan,0.58
+A01335,P07224,ishita43,Nickname,Social Platform,E05482,0.56
+A01336,P07225,diya58,Social Media Username,Business Listing,nan,0.94
+A01337,P07227,raj92,Social Media Username,Public Directory,nan,0.87
+A01338,P07230,aanya87,Social Media Username,Business Listing,E05486,0.7
+A01339,P07231,aniket61,Business Alias,Social Platform,nan,0.9
+A01340,P07238,shreya88,Nickname,Business Listing,E05492,0.63
+A01341,P07249,vidhi29,Social Media Username,Public Directory,nan,0.55
+A01342,P07252,aman41,Social Media Username,Business Listing,nan,0.58
+A01343,P07262,tara88,Nickname,Social Platform,nan,0.63
+A01344,P07269,saurabh91,Nickname,Social Platform,E05512,0.64
+A01345,P07278,nisha93,Nickname,Business Listing,nan,0.95
+A01346,P07284,aanya41,Social Media Username,Public Directory,E05522,0.95
+A01347,P07289,kabir62,Nickname,Public Directory,nan,0.62
+A01348,P07292,nikhil94,Nickname,Social Platform,nan,0.82
+A01349,P07303,nisha51,Business Alias,Public Directory,nan,0.68
+A01350,P07308,simran77,Nickname,Public Directory,E05541,0.92
+A01351,P07310,karan88,Business Alias,Public Directory,nan,0.93
+A01352,P07314,aarav75,Business Alias,Public Directory,nan,0.89
+A01353,P07324,aanya93,Nickname,Public Directory,nan,0.76
+A01354,P07327,aditya60,Nickname,Business Listing,nan,0.62
+A01355,P07340,harsh91,Nickname,Business Listing,nan,0.61
+A01356,P07342,aarav84,Social Media Username,Social Platform,nan,0.67
+A01357,P07343,varun66,Business Alias,Public Directory,nan,0.72
+A01358,P07349,avni59,Business Alias,Public Directory,nan,0.96
+A01359,P07355,naina25,Social Media Username,Business Listing,nan,0.74
+A01360,P07358,shreya73,Nickname,Public Directory,E05571,0.76
+A01361,P07364,ishita13,Business Alias,Public Directory,E05578,0.82
+A01362,P07368,sameer70,Business Alias,Public Directory,E05581,0.75
+A01363,P07373,kavya60,Nickname,Business Listing,nan,0.8
+A01364,P07374,simran36,Nickname,Social Platform,E05585,0.64
+A01365,P07375,vanya48,Social Media Username,Public Directory,nan,0.72
+A01366,P07380,aniket76,Social Media Username,Public Directory,nan,0.82
+A01367,P07386,arnav85,Business Alias,Public Directory,nan,0.78
+A01368,P07387,mohit54,Social Media Username,Social Platform,E05595,0.84
+A01369,P07399,aditya68,Social Media Username,Public Directory,E05602,0.59
+A01370,P07410,nikhil49,Business Alias,Public Directory,E05615,0.84
+A01371,P07414,isha75,Nickname,Public Directory,E05619,0.68
+A01372,P07424,vikram32,Nickname,Public Directory,nan,0.6
+A01373,P07431,harsh42,Nickname,Public Directory,E05628,0.89
+A01374,P07435,akash43,Social Media Username,Social Platform,E05631,0.61
+A01375,P07441,ishita78,Business Alias,Social Platform,nan,0.9
+A01376,P07461,kabir40,Social Media Username,Public Directory,nan,0.75
+A01377,P07463,pallavi64,Business Alias,Business Listing,E05652,0.74
+A01378,P07464,mahi64,Social Media Username,Social Platform,nan,0.7
+A01379,P07479,avni73,Business Alias,Business Listing,nan,0.86
+A01380,P07493,tanvi78,Business Alias,Social Platform,nan,0.6
+A01381,P07499,karan18,Nickname,Public Directory,nan,0.91
+A01382,P07500,sameer38,Social Media Username,Public Directory,nan,0.79
+A01383,P07505,saurabh55,Social Media Username,Public Directory,E05684,0.56
+A01384,P07516,avni70,Business Alias,Business Listing,nan,0.78
+A01385,P07532,anushka78,Nickname,Public Directory,nan,0.97
+A01386,P07543,akash39,Business Alias,Social Platform,nan,0.65
+A01387,P07557,nikhil97,Nickname,Business Listing,E05715,0.88
+A01388,P07558,simran80,Business Alias,Business Listing,E05716,0.74
+A01389,P07569,raj35,Social Media Username,Business Listing,nan,0.86
+A01390,P07575,vivek82,Social Media Username,Business Listing,nan,0.69
+A01391,P07584,anushka93,Nickname,Social Platform,E05729,0.94
+A01392,P07594,tara86,Business Alias,Business Listing,nan,0.87
+A01393,P07601,rahul54,Business Alias,Social Platform,nan,0.83
+A01394,P07611,naveen91,Business Alias,Public Directory,E05750,0.74
+A01395,P07616,anushka47,Nickname,Business Listing,nan,0.63

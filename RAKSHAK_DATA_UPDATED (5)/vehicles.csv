@@ -1,0 +1,1623 @@
+vehicle_id,registration_number,vehicle_type,owner_person_id,make_model,color,status,case_id,evidence_id
+V00001,DL-39-B-5038,Car,P00003,Toyota Glanza,Grey,Active,C0001,E00004
+V00002,MH-38-B-5927,Truck,P00011,Kia Sonet,White,Active,C0002,nan
+V00003,TN-27-X-1361,Car,P00025,Toyota Glanza,Maroon,Inactive,C0002,nan
+V00004,HR-40-Z-3524,Commercial Vehicle,P00030,Kia Sonet,Green,Inactive,C0002,nan
+V00005,MP-71-J-2027,Motorcycle,P00031,Bajaj Pulsar,Grey,Active,C0002,nan
+V00006,TN-57-H-5028,Van,P00037,Hyundai i20,Red,Active,C0003,nan
+V00007,MH-89-H-5193,SUV,P00041,Tata Nexon,White,Active,C0003,E00031
+V00008,MP-12-S-4086,SUV,P00048,Bajaj Pulsar,Blue,Active,C0003,E00032
+V00009,MH-47-F-4165,Commercial Vehicle,P00050,Hyundai i20,Red,Active,C0003,nan
+V00010,MP-63-E-3979,Van,P00056,Mahindra XUV300,Blue,Active,C0003,nan
+V00011,MP-37-Y-4402,Truck,P00057,Maruti Swift,Black,Inactive,C0003,nan
+V00012,GJ-19-P-6462,Van,P00059,Bajaj Pulsar,Silver,Active,C0004,E00045
+V00013,UP-80-B-7646,Car,P00061,Mahindra XUV300,Silver,Active,C0004,E00046
+V00014,DL-49-F-2062,Truck,P00063,Bajaj Pulsar,White,Active,C0004,nan
+V00015,UP-94-X-9346,SUV,P00079,Maruti Swift,Grey,Active,C0005,nan
+V00016,DL-38-U-3680,SUV,P00085,Maruti Swift,Green,Active,C0006,E00077
+V00017,DL-99-T-9741,Commercial Vehicle,P00089,Tata Nexon,Red,Active,C0006,nan
+V00018,TN-54-Y-4890,Motorcycle,P00091,Maruti Swift,Blue,Active,C0006,nan
+V00019,TS-55-B-6992,Motorcycle,P00098,Kia Sonet,Maroon,Active,C0006,E00078
+V00020,GJ-29-F-7730,Truck,P00106,Toyota Glanza,White,Active,C0006,nan
+V00021,KL-12-O-7482,Motorcycle,P00116,Toyota Glanza,Blue,Active,C0007,nan
+V00022,MH-74-L-5876,SUV,P00118,Bajaj Pulsar,Grey,Active,C0007,nan
+V00023,MP-53-I-2467,Car,P00126,Mahindra XUV300,Silver,Active,C0008,nan
+V00024,UP-20-G-4177,Car,P00129,Toyota Glanza,Red,Active,C0008,E00097
+V00025,HR-84-E-3104,Car,P00143,Maruti Swift,Blue,Inactive,C0009,nan
+V00026,GJ-43-L-3273,Commercial Vehicle,P00144,Mahindra XUV300,Blue,Active,C0009,nan
+V00027,MP-58-Y-7355,Truck,P00146,Honda City,Green,Active,C0009,E00105
+V00028,UP-19-V-5278,Truck,P00147,Hyundai i20,Blue,Active,C0009,nan
+V00029,KA-79-R-2719,SUV,P00148,Bajaj Pulsar,Maroon,Active,C0009,nan
+V00030,UP-11-X-7621,Car,P00154,Tata Nexon,White,Active,C0010,nan
+V00031,MP-32-M-1880,Truck,P00168,Tata Nexon,Blue,Active,C0011,nan
+V00032,DL-11-W-9679,Truck,P00171,Honda City,Green,Active,C0011,nan
+V00033,TS-10-O-5182,SUV,P00173,Hyundai i20,Green,Active,C0011,nan
+V00034,MP-83-X-9379,Truck,P00181,Mahindra XUV300,Maroon,Active,C0012,nan
+V00035,UP-70-V-8051,Car,P00185,Toyota Glanza,Black,Active,C0012,E00130
+V00036,HR-61-W-5246,Motorcycle,P00190,Toyota Glanza,Silver,Active,C0012,E00131
+V00037,GJ-91-G-4865,Truck,P00193,Toyota Glanza,Silver,Active,C0013,nan
+V00038,UP-24-D-2725,Van,P00153,Toyota Glanza,Blue,Active,C0014,nan
+V00039,MP-21-N-8091,Truck,P00198,Mahindra XUV300,Maroon,Active,C0014,nan
+V00040,MH-90-A-8128,Truck,P00199,Tata Nexon,White,Active,C0014,E00149
+V00041,WB-08-A-2525,Car,P00201,Maruti Swift,White,Active,C0014,nan
+V00042,TS-08-J-2848,SUV,P00203,Mahindra XUV300,Red,Active,C0014,E00150
+V00043,TS-51-K-6457,Motorcycle,P00205,Honda City,Grey,Active,C0014,nan
+V00044,TN-04-G-3202,Motorcycle,P00206,Tata Nexon,Maroon,Active,C0014,nan
+V00045,TS-34-A-5977,Truck,P00211,Kia Sonet,White,Active,C0014,nan
+V00046,MH-89-H-7531,Truck,P00215,Tata Nexon,Green,Active,C0014,E00151
+V00047,MP-09-K-6625,Commercial Vehicle,P00219,Honda City,Blue,Active,C0015,nan
+V00048,GJ-60-N-2214,Motorcycle,P00223,Tata Nexon,Green,Active,C0015,nan
+V00049,KA-12-H-6831,Truck,P00226,Kia Sonet,Blue,Active,C0015,nan
+V00050,KL-09-J-7646,Van,P00228,Toyota Glanza,Blue,Active,C0015,E00159
+V00051,KA-42-Q-1547,Car,P00230,Honda City,Red,Active,C0015,E00160
+V00052,GJ-54-W-6515,Van,P00234,Mahindra XUV300,Grey,Active,C0015,E00161
+V00053,MH-14-O-4114,Motorcycle,P00239,Maruti Swift,Green,Inactive,C0016,E00178
+V00054,DL-88-T-4543,Motorcycle,P00243,Hyundai i20,Silver,Active,C0016,nan
+V00055,HR-98-P-1699,SUV,P00246,Tata Nexon,Green,Active,C0016,nan
+V00056,MH-77-J-3444,Motorcycle,P00250,Maruti Swift,Silver,Active,C0016,nan
+V00057,TN-56-M-6381,Van,P00257,Hyundai i20,Blue,Active,C0016,nan
+V00058,RJ-17-D-5386,Motorcycle,P00275,Hyundai i20,Silver,Active,C0018,nan
+V00059,MH-97-S-2161,Truck,P00281,Kia Sonet,Maroon,Active,C0018,nan
+V00060,TS-95-S-1177,Commercial Vehicle,P00286,Maruti Swift,Black,Active,C0018,nan
+V00061,KL-44-A-9750,Truck,P00288,Hyundai i20,White,Active,C0018,E00201
+V00062,KL-45-Y-8927,Commercial Vehicle,P00296,Hyundai i20,Silver,Active,C0019,nan
+V00063,TS-01-E-4974,Car,P00298,Toyota Glanza,Grey,Active,C0019,E00207
+V00064,UP-89-J-2423,SUV,P00147,Maruti Swift,Red,Active,C0020,E00208
+V00065,TS-15-F-6638,Car,P00302,Hyundai i20,Grey,Active,C0020,nan
+V00066,TN-83-B-8320,Van,P00304,Tata Nexon,Black,Active,C0020,E00232
+V00067,GJ-50-K-2739,Car,P00312,Bajaj Pulsar,Green,Active,C0020,E00233
+V00068,TN-40-Y-2140,Van,P00313,Bajaj Pulsar,Black,Active,C0020,E00234
+V00069,TN-20-U-6222,Commercial Vehicle,P00324,Maruti Swift,White,Inactive,C0020,nan
+V00070,TN-62-L-7833,Commercial Vehicle,P00328,Bajaj Pulsar,Silver,Active,C0020,nan
+V00071,MH-03-M-2435,Van,P00334,Kia Sonet,Black,Inactive,C0020,nan
+V00072,RJ-68-L-5764,Commercial Vehicle,P00336,Honda City,White,Active,C0021,nan
+V00073,WB-89-R-6209,Commercial Vehicle,P00338,Maruti Swift,Green,Active,C0021,nan
+V00074,GJ-16-Q-9166,Car,P00339,Toyota Glanza,White,Active,C0021,E00242
+V00075,MH-33-A-6176,Commercial Vehicle,P00343,Hyundai i20,Silver,Active,C0022,E00248
+V00076,TN-66-Q-2973,Truck,P00066,Kia Sonet,Maroon,Active,C0023,nan
+V00077,TN-37-C-8050,Commercial Vehicle,P00363,Honda City,Grey,Inactive,C0024,nan
+V00078,MH-18-K-3532,Truck,P00364,Toyota Glanza,Blue,Active,C0024,nan
+V00079,MH-22-N-6165,Van,P00366,Honda City,Grey,Inactive,C0024,E00268
+V00080,TN-67-J-9661,Commercial Vehicle,P00367,Tata Nexon,Black,Active,C0024,E00269
+V00081,GJ-49-R-4314,Motorcycle,P00369,Maruti Swift,Silver,Active,C0024,nan
+V00082,WB-64-B-2129,Car,P00376,Toyota Glanza,Red,Active,C0025,nan
+V00083,TS-93-H-5377,SUV,P00379,Honda City,Green,Active,C0025,E00281
+V00084,WB-80-J-6210,Car,P00380,Maruti Swift,Blue,Inactive,C0025,nan
+V00085,MH-85-V-2228,Van,P00382,Bajaj Pulsar,Grey,Active,C0025,nan
+V00086,MH-49-Q-8225,SUV,P00281,Bajaj Pulsar,Green,Active,C0026,nan
+V00087,TN-64-C-6697,Commercial Vehicle,P00399,Toyota Glanza,Black,Active,C0028,E00289
+V00088,KA-91-U-3632,Van,P00404,Toyota Glanza,Silver,Active,C0029,nan
+V00089,TN-83-G-4790,Commercial Vehicle,P00405,Hyundai i20,Silver,Active,C0029,nan
+V00090,GJ-73-A-6106,Commercial Vehicle,P00410,Maruti Swift,Silver,Active,C0029,nan
+V00091,TS-04-I-1445,Car,P00412,Honda City,White,Active,C0029,E00323
+V00092,MP-90-J-2474,Commercial Vehicle,P00426,Kia Sonet,Black,Active,C0029,nan
+V00093,MH-31-L-8937,SUV,P00431,Toyota Glanza,Red,Active,C0029,nan
+V00094,MP-50-E-6297,Car,P00435,Honda City,Grey,Active,C0029,E00324
+V00095,TN-93-V-7956,Truck,P00441,Mahindra XUV300,Red,Active,C0029,E00325
+V00096,WB-04-A-1334,SUV,P00443,Mahindra XUV300,Maroon,Active,C0029,nan
+V00097,DL-12-P-2590,Commercial Vehicle,P00447,Bajaj Pulsar,Red,Active,C0029,E00326
+V00098,GJ-40-E-8759,Van,P00176,Toyota Glanza,Grey,Active,C0030,nan
+V00099,DL-69-Y-1398,Car,P00466,Maruti Swift,Green,Active,C0031,nan
+V00100,TN-91-K-7797,Commercial Vehicle,P00472,Kia Sonet,Red,Active,C0031,nan
+V00101,DL-10-S-8818,Car,P00477,Kia Sonet,Grey,Active,C0031,nan
+V00102,HR-05-A-6414,Van,P00478,Honda City,Blue,Active,C0031,nan
+V00103,GJ-45-V-6360,Truck,P00479,Mahindra XUV300,Blue,Active,C0031,nan
+V00104,MH-85-J-1883,SUV,P00485,Honda City,White,Active,C0031,nan
+V00105,KL-59-V-6363,SUV,P00488,Mahindra XUV300,Red,Active,C0032,E00354
+V00106,RJ-26-Y-8858,SUV,P00499,Hyundai i20,Grey,Active,C0035,nan
+V00107,MH-41-U-8460,Car,P00503,Hyundai i20,Silver,Active,C0035,nan
+V00108,MP-94-K-6801,Motorcycle,P00511,Hyundai i20,Grey,Active,C0035,nan
+V00109,TS-77-J-6713,Motorcycle,P00520,Hyundai i20,Silver,Inactive,C0035,E00374
+V00110,MH-55-X-3851,SUV,P00525,Bajaj Pulsar,Black,Active,C0036,nan
+V00111,WB-63-O-5306,SUV,P00527,Kia Sonet,Grey,Active,C0036,nan
+V00112,UP-12-G-6155,SUV,P00529,Honda City,Silver,Active,C0036,E00377
+V00113,UP-52-U-6039,Car,P00535,Toyota Glanza,Red,Active,C0037,E00400
+V00114,KA-14-H-1000,Motorcycle,P00547,Kia Sonet,Silver,Active,C0037,nan
+V00115,MP-93-X-2295,Van,P00550,Tata Nexon,Maroon,Active,C0037,nan
+V00116,DL-31-M-5440,Van,P00556,Hyundai i20,Blue,Active,C0038,nan
+V00117,KA-15-E-2611,Commercial Vehicle,P00557,Bajaj Pulsar,Black,Active,C0038,E00419
+V00118,TN-23-C-6994,Van,P00568,Tata Nexon,Green,Active,C0038,nan
+V00119,GJ-87-F-7489,Van,P00569,Bajaj Pulsar,Maroon,Active,C0038,nan
+V00120,MP-83-L-6670,Commercial Vehicle,P00574,Mahindra XUV300,Red,Active,C0039,E00425
+V00121,KA-73-B-8519,Truck,P00579,Toyota Glanza,Maroon,Active,C0039,nan
+V00122,RJ-05-G-5642,Commercial Vehicle,P00580,Kia Sonet,Silver,Active,C0039,nan
+V00123,MH-32-X-4042,SUV,P00589,Kia Sonet,White,Active,C0040,E00433
+V00124,MH-69-E-1135,Car,P00592,Toyota Glanza,Maroon,Active,C0040,nan
+V00125,MH-62-N-7459,Truck,P00594,Mahindra XUV300,Silver,Inactive,C0040,nan
+V00126,MP-59-G-8196,Car,P00532,Maruti Swift,Green,Active,C0041,E00434
+V00127,MH-01-B-9814,Van,P00595,Tata Nexon,Maroon,Active,C0041,E00436
+V00128,TN-15-N-8669,Car,P00164,Toyota Glanza,Maroon,Active,C0042,E00437
+V00129,HR-66-H-3249,Commercial Vehicle,P00064,Bajaj Pulsar,Blue,Active,C0043,nan
+V00130,GJ-06-G-4760,Van,P00223,Tata Nexon,Red,Active,C0045,E00450
+V00131,MH-28-W-1199,Commercial Vehicle,P00629,Toyota Glanza,Green,Inactive,C0045,E00474
+V00132,MP-16-J-2707,SUV,P00630,Kia Sonet,Silver,Active,C0045,nan
+V00133,TS-41-D-2266,SUV,P00635,Hyundai i20,Grey,Active,C0045,nan
+V00134,MH-63-N-3997,Car,P00638,Maruti Swift,Maroon,Active,C0045,E00475
+V00135,WB-75-M-9595,Truck,P00643,Hyundai i20,Green,Active,C0046,nan
+V00136,RJ-86-E-6309,Van,P00648,Toyota Glanza,Green,Active,C0046,nan
+V00137,MP-45-O-8750,Motorcycle,P00652,Hyundai i20,Red,Inactive,C0046,E00493
+V00138,TS-80-Q-5046,Motorcycle,P00655,Toyota Glanza,Maroon,Active,C0046,E00494
+V00139,MH-23-Y-6038,Truck,P00656,Tata Nexon,White,Active,C0046,nan
+V00140,WB-15-R-2454,Truck,P00657,Maruti Swift,White,Active,C0046,nan
+V00141,KL-17-O-5906,SUV,P00241,Bajaj Pulsar,Maroon,Active,C0049,E00500
+V00142,HR-76-N-9576,SUV,P00672,Toyota Glanza,Blue,Active,C0049,E00501
+V00143,TN-09-H-5938,Commercial Vehicle,P00677,Honda City,Grey,Inactive,C0050,E00518
+V00144,RJ-05-S-8283,Car,P00679,Hyundai i20,Blue,Active,C0050,nan
+V00145,UP-05-V-2346,Car,P00680,Bajaj Pulsar,White,Active,C0050,nan
+V00146,MH-77-P-7074,Car,P00683,Kia Sonet,Green,Active,C0050,E00519
+V00147,WB-68-X-9197,Motorcycle,P00689,Honda City,Maroon,Active,C0050,nan
+V00148,KA-99-K-6368,Motorcycle,P00285,Bajaj Pulsar,Blue,Active,C0051,E00520
+V00149,GJ-83-K-7208,Van,P00697,Maruti Swift,Silver,Active,C0051,nan
+V00150,KL-87-H-1613,Motorcycle,P00709,Honda City,Black,Active,C0052,nan
+V00151,RJ-94-U-4083,SUV,P00711,Kia Sonet,Black,Active,C0052,nan
+V00152,MH-56-Q-4958,Van,P00712,Toyota Glanza,Maroon,Active,C0052,nan
+V00153,MH-66-M-5148,Truck,P00719,Mahindra XUV300,Black,Active,C0052,nan
+V00154,HR-96-V-3293,Truck,P00725,Toyota Glanza,Blue,Active,C0052,E00541
+V00155,KA-95-W-1080,Truck,P00738,Kia Sonet,Red,Active,C0054,nan
+V00156,GJ-24-W-1289,Motorcycle,P00739,Mahindra XUV300,Maroon,Active,C0054,nan
+V00157,KL-98-A-4960,Motorcycle,P00741,Hyundai i20,Green,Active,C0054,E00562
+V00158,MH-59-Q-1340,Motorcycle,P00742,Maruti Swift,Blue,Active,C0054,E00563
+V00159,KL-50-O-2653,Commercial Vehicle,P00753,Honda City,Maroon,Inactive,C0055,nan
+V00160,MH-97-G-8253,Car,P00759,Mahindra XUV300,White,Active,C0056,nan
+V00161,UP-66-B-6087,Car,P00760,Tata Nexon,Grey,Active,C0056,nan
+V00162,DL-01-E-5191,Car,P00764,Hyundai i20,Green,Active,C0056,nan
+V00163,MH-04-U-5783,Van,P00774,Hyundai i20,White,Inactive,C0057,E00604
+V00164,KA-69-Z-1947,Commercial Vehicle,P00776,Bajaj Pulsar,Silver,Active,C0057,E00605
+V00165,MH-94-I-7330,Car,P00795,Hyundai i20,Green,Active,C0057,E00606
+V00166,TS-45-K-5779,Van,P00797,Mahindra XUV300,Grey,Active,C0057,nan
+V00167,KA-08-G-4113,Van,P00801,Kia Sonet,Maroon,Active,C0057,E00607
+V00168,KA-90-D-3957,Van,P00802,Bajaj Pulsar,Maroon,Active,C0057,E00608
+V00169,UP-11-H-9870,Truck,P00803,Honda City,Maroon,Active,C0057,E00609
+V00170,UP-99-J-8555,Truck,P00804,Bajaj Pulsar,White,Active,C0057,E00610
+V00171,MP-42-E-8437,SUV,P00806,Toyota Glanza,Red,Active,C0058,nan
+V00172,TN-01-H-5430,Van,P00815,Hyundai i20,Silver,Active,C0058,E00621
+V00173,MP-84-W-3115,Car,P00819,Mahindra XUV300,Grey,Inactive,C0058,E00622
+V00174,DL-96-L-7097,Commercial Vehicle,P00823,Tata Nexon,Red,Active,C0058,nan
+V00175,MH-37-K-7541,Commercial Vehicle,P00825,Mahindra XUV300,Blue,Active,C0059,E00639
+V00176,MH-66-Z-5569,Truck,P00835,Tata Nexon,Red,Active,C0059,nan
+V00177,GJ-95-X-6413,Truck,P00850,Hyundai i20,White,Active,C0060,nan
+V00178,UP-96-Z-9323,Van,P00853,Mahindra XUV300,Grey,Active,C0060,E00653
+V00179,MP-18-Y-5891,Truck,P00854,Toyota Glanza,White,Inactive,C0060,nan
+V00180,TN-13-D-4774,Motorcycle,P00855,Honda City,Black,Active,C0060,nan
+V00181,MH-99-E-9838,Car,P00858,Mahindra XUV300,Red,Active,C0060,E00654
+V00182,RJ-36-E-8197,Truck,P00863,Honda City,Grey,Active,C0060,E00655
+V00183,MP-67-M-1835,SUV,P00869,Toyota Glanza,Silver,Active,C0060,E00656
+V00184,UP-74-T-8521,Motorcycle,P00876,Honda City,Maroon,Active,C0061,E00667
+V00185,WB-64-S-4668,Commercial Vehicle,P00881,Honda City,Red,Active,C0061,nan
+V00186,UP-60-E-1017,Car,P00885,Mahindra XUV300,Blue,Active,C0061,nan
+V00187,GJ-45-D-5538,SUV,P00886,Maruti Swift,Green,Active,C0061,nan
+V00188,GJ-62-I-1992,Truck,P00891,Hyundai i20,Black,Active,C0061,E00668
+V00189,TN-31-Q-7716,Truck,P00893,Toyota Glanza,Red,Active,C0062,E00706
+V00190,RJ-42-T-1612,SUV,P00910,Kia Sonet,Grey,Active,C0062,nan
+V00191,TS-99-Z-2501,Truck,P00923,Maruti Swift,Silver,Active,C0062,nan
+V00192,MH-82-B-2654,Commercial Vehicle,P00931,Hyundai i20,Grey,Active,C0062,E00707
+V00193,HR-84-D-4111,Commercial Vehicle,P00944,Kia Sonet,Green,Active,C0063,E00716
+V00194,GJ-21-L-8471,Commercial Vehicle,P00948,Toyota Glanza,Black,Inactive,C0063,nan
+V00195,TN-59-T-8216,Van,P00951,Mahindra XUV300,Green,Inactive,C0063,nan
+V00196,TS-80-Q-7504,Commercial Vehicle,P00953,Honda City,White,Active,C0063,nan
+V00197,MH-35-J-1986,Car,P00661,Mahindra XUV300,Grey,Active,C0065,E00720
+V00198,GJ-27-P-8885,Car,P00965,Kia Sonet,Red,Inactive,C0065,nan
+V00199,RJ-88-D-1486,Truck,P00970,Tata Nexon,Red,Active,C0066,E00741
+V00200,UP-32-Y-4023,Car,P00984,Tata Nexon,White,Active,C0066,E00742
+V00201,GJ-41-Y-4109,Van,P00991,Toyota Glanza,Green,Active,C0067,E00745
+V00202,RJ-48-O-6838,Car,P00994,Bajaj Pulsar,Green,Inactive,C0067,nan
+V00203,TN-40-L-7961,Car,P00995,Kia Sonet,Red,Active,C0068,E00764
+V00204,TN-65-R-6146,Van,P00999,Bajaj Pulsar,Blue,Active,C0068,nan
+V00205,KL-19-Q-1765,Commercial Vehicle,P01014,Kia Sonet,Red,Active,C0068,E00765
+V00206,MP-83-L-6342,Commercial Vehicle,P01021,Tata Nexon,Blue,Active,C0068,E00766
+V00207,GJ-38-S-3996,Car,P01024,Bajaj Pulsar,Blue,Active,C0069,nan
+V00208,MH-10-N-3049,Car,P01029,Mahindra XUV300,Maroon,Active,C0069,E00771
+V00209,UP-69-V-9378,Motorcycle,P00217,Hyundai i20,Green,Active,C0070,E00772
+V00210,HR-24-Y-8335,Van,P01034,Kia Sonet,Red,Active,C0070,E00780
+V00211,MH-36-L-5262,Commercial Vehicle,P01038,Bajaj Pulsar,Black,Active,C0070,nan
+V00212,MH-68-O-7957,Truck,P01039,Honda City,Red,Active,C0070,E00781
+V00213,UP-79-M-3460,Commercial Vehicle,P01044,Toyota Glanza,Blue,Active,C0071,E00783
+V00214,MH-10-H-8384,Van,P01058,Kia Sonet,White,Active,C0072,nan
+V00215,WB-01-L-1559,Van,P01064,Bajaj Pulsar,Maroon,Inactive,C0072,nan
+V00216,MH-38-W-7727,Car,P01071,Maruti Swift,White,Active,C0072,E00801
+V00217,MH-71-M-3657,Commercial Vehicle,P01076,Kia Sonet,Green,Active,C0073,nan
+V00218,GJ-71-U-5814,Truck,P01078,Toyota Glanza,Blue,Inactive,C0073,E00839
+V00219,KL-42-F-2433,Car,P01080,Bajaj Pulsar,Silver,Inactive,C0073,nan
+V00220,KL-90-R-3434,Truck,P01091,Bajaj Pulsar,Silver,Inactive,C0073,nan
+V00221,MH-96-Y-3033,Commercial Vehicle,P01098,Hyundai i20,Grey,Active,C0073,E00840
+V00222,MP-81-I-5086,Truck,P01108,Maruti Swift,Red,Active,C0073,E00841
+V00223,MH-99-Y-3286,Car,P01117,Toyota Glanza,Blue,Inactive,C0073,nan
+V00224,GJ-38-Z-7420,Commercial Vehicle,P01119,Bajaj Pulsar,Grey,Active,C0073,nan
+V00225,TS-85-H-6230,Commercial Vehicle,P01121,Hyundai i20,Green,Active,C0073,nan
+V00226,UP-96-R-9879,Commercial Vehicle,P01134,Bajaj Pulsar,Green,Active,C0075,nan
+V00227,MH-07-L-9552,Commercial Vehicle,P00787,Hyundai i20,Blue,Active,C0076,nan
+V00228,GJ-83-T-8080,Truck,P01142,Toyota Glanza,White,Active,C0076,E00849
+V00229,UP-25-O-5624,SUV,P01143,Mahindra XUV300,Maroon,Active,C0076,nan
+V00230,MH-40-Q-6583,Motorcycle,P01145,Honda City,White,Active,C0076,E00850
+V00231,TN-62-Q-3640,Car,P01147,Hyundai i20,Blue,Active,C0077,nan
+V00232,MH-88-E-2953,Car,P01157,Hyundai i20,Black,Active,C0077,nan
+V00233,TN-22-U-8127,Truck,P01170,Kia Sonet,Red,Inactive,C0077,nan
+V00234,KA-41-D-9614,Car,P01174,Mahindra XUV300,Green,Active,C0077,nan
+V00235,TS-79-X-2410,Truck,P01178,Toyota Glanza,Silver,Inactive,C0077,E00876
+V00236,TN-80-L-4596,Van,P01185,Mahindra XUV300,Grey,Active,C0077,E00877
+V00237,KA-68-Z-6022,Van,P01188,Maruti Swift,Green,Active,C0077,nan
+V00238,UP-10-K-8416,Motorcycle,P01191,Toyota Glanza,Silver,Active,C0077,nan
+V00239,MH-55-T-7978,Commercial Vehicle,P01199,Toyota Glanza,Grey,Active,C0078,E00882
+V00240,UP-51-U-1727,Car,P01203,Bajaj Pulsar,Black,Active,C0079,E00890
+V00241,HR-29-Q-6807,Car,P01223,Hyundai i20,Grey,Active,C0080,E00909
+V00242,KA-46-T-4259,SUV,P01226,Hyundai i20,Blue,Active,C0080,nan
+V00243,MH-49-L-8753,Van,P01238,Kia Sonet,Grey,Inactive,C0082,nan
+V00244,GJ-61-B-5740,Motorcycle,P01244,Tata Nexon,Green,Active,C0084,nan
+V00245,MP-27-V-8470,Commercial Vehicle,P01253,Hyundai i20,Black,Active,C0084,nan
+V00246,GJ-12-S-2024,Car,P01280,Bajaj Pulsar,Black,Active,C0084,nan
+V00247,MH-85-L-5852,Commercial Vehicle,P01284,Mahindra XUV300,Black,Active,C0084,nan
+V00248,MH-17-X-8378,Motorcycle,P01286,Mahindra XUV300,Grey,Active,C0084,nan
+V00249,HR-87-V-3704,Commercial Vehicle,P01287,Kia Sonet,White,Active,C0084,nan
+V00250,MP-22-C-3510,Commercial Vehicle,P01303,Hyundai i20,Silver,Active,C0085,E00955
+V00251,RJ-73-S-4357,Car,P01304,Honda City,Silver,Active,C0085,nan
+V00252,GJ-76-J-3074,Van,P00059,Toyota Glanza,Silver,Active,C0086,nan
+V00253,TN-34-J-6054,Commercial Vehicle,P01307,Honda City,Maroon,Inactive,C0086,E00969
+V00254,GJ-28-D-1062,Van,P01314,Maruti Swift,Silver,Inactive,C0086,nan
+V00255,WB-49-T-7188,Van,P01315,Hyundai i20,Silver,Active,C0086,nan
+V00256,MH-47-C-9295,Car,P01317,Toyota Glanza,Black,Active,C0086,nan
+V00257,GJ-31-H-6972,SUV,P01051,Tata Nexon,White,Active,C0088,E00979
+V00258,MH-19-W-6250,Motorcycle,P01341,Hyundai i20,Red,Active,C0088,nan
+V00259,MP-22-G-8713,Commercial Vehicle,P01354,Toyota Glanza,Maroon,Inactive,C0088,nan
+V00260,GJ-92-X-7454,Car,P01360,Bajaj Pulsar,Silver,Inactive,C0089,nan
+V00261,KA-79-G-1968,Car,P01367,Mahindra XUV300,Maroon,Active,C0089,nan
+V00262,GJ-51-U-7818,Van,P01373,Maruti Swift,Grey,Active,C0089,nan
+V00263,RJ-22-Y-7537,Commercial Vehicle,P01376,Honda City,Red,Active,C0090,E01003
+V00264,UP-58-K-5718,Car,P01377,Toyota Glanza,Maroon,Active,C0091,E01009
+V00265,MH-98-N-2959,SUV,P01378,Bajaj Pulsar,Maroon,Active,C0091,nan
+V00266,GJ-73-X-8965,Motorcycle,P01380,Maruti Swift,Green,Active,C0091,E01010
+V00267,TS-65-R-5664,Van,P01398,Kia Sonet,Silver,Active,C0092,E01036
+V00268,WB-22-O-6557,Motorcycle,P01402,Mahindra XUV300,Green,Active,C0092,E01037
+V00269,GJ-39-X-1480,Motorcycle,P01403,Hyundai i20,Green,Active,C0092,nan
+V00270,KL-75-H-9993,Motorcycle,P01419,Honda City,Maroon,Active,C0092,E01038
+V00271,MH-02-E-7374,Van,P01434,Kia Sonet,Silver,Active,C0093,nan
+V00272,MH-79-C-6789,Truck,P01435,Bajaj Pulsar,Blue,Active,C0093,E01046
+V00273,MP-15-A-5813,Van,P01443,Bajaj Pulsar,Maroon,Inactive,C0094,nan
+V00274,UP-23-Q-8661,Van,P01445,Bajaj Pulsar,Blue,Active,C0094,nan
+V00275,MH-06-D-2213,Car,P01447,Maruti Swift,Red,Active,C0094,nan
+V00276,KL-57-V-7074,Motorcycle,P01448,Tata Nexon,White,Active,C0094,E01053
+V00277,HR-10-B-3741,Motorcycle,P01453,Toyota Glanza,Green,Inactive,C0095,nan
+V00278,TS-42-P-6240,Car,P01456,Kia Sonet,Red,Active,C0095,E01058
+V00279,MH-15-F-4252,Car,P01458,Tata Nexon,Green,Active,C0096,nan
+V00280,MH-82-E-8315,Truck,P01462,Kia Sonet,White,Active,C0096,E01076
+V00281,WB-13-H-4311,Van,P01474,Hyundai i20,Maroon,Active,C0096,E01077
+V00282,TN-49-U-1254,Car,P01483,Honda City,Grey,Active,C0096,nan
+V00283,MH-99-E-7713,SUV,P00024,Kia Sonet,Maroon,Active,C0098,nan
+V00284,TN-19-U-9600,SUV,P01497,Tata Nexon,Red,Active,C0101,nan
+V00285,MH-04-G-2156,SUV,P01498,Maruti Swift,Maroon,Active,C0101,E01088
+V00286,MP-40-L-1203,Commercial Vehicle,P00484,Honda City,Grey,Active,C0102,E01089
+V00287,DL-65-F-6418,Commercial Vehicle,P01500,Toyota Glanza,Silver,Active,C0102,nan
+V00288,WB-91-C-5835,Truck,P01505,Tata Nexon,White,Inactive,C0102,nan
+V00289,TS-16-X-2422,Commercial Vehicle,P01523,Kia Sonet,Silver,Inactive,C0103,E01105
+V00290,TN-80-B-2490,SUV,P01525,Hyundai i20,Maroon,Active,C0103,nan
+V00291,MH-24-C-9244,Car,P00343,Tata Nexon,Black,Active,C0106,E01116
+V00292,MH-63-A-2225,SUV,P01545,Kia Sonet,Blue,Active,C0106,E01127
+V00293,GJ-37-T-8880,Commercial Vehicle,P01546,Tata Nexon,White,Inactive,C0106,E01128
+V00294,HR-33-U-4063,SUV,P01561,Toyota Glanza,Blue,Active,C0106,E01129
+V00295,TS-07-K-5484,SUV,P01563,Kia Sonet,White,Active,C0106,E01130
+V00296,MH-47-Z-7251,Car,P01565,Mahindra XUV300,Blue,Active,C0106,E01131
+V00297,TN-04-N-1918,Car,P01566,Honda City,Grey,Active,C0106,nan
+V00298,MH-72-S-8209,Van,P00494,Hyundai i20,Grey,Active,C0107,E01132
+V00299,HR-23-C-7971,Motorcycle,P01568,Kia Sonet,White,Active,C0107,E01135
+V00300,WB-38-C-7399,Truck,P01572,Maruti Swift,White,Active,C0108,E01147
+V00301,MH-34-Y-4193,Commercial Vehicle,P01574,Mahindra XUV300,Grey,Active,C0108,E01148
+V00302,TN-12-G-8169,Motorcycle,P01579,Tata Nexon,White,Active,C0108,E01149
+V00303,MP-40-Z-5088,Car,P01585,Kia Sonet,Black,Active,C0108,nan
+V00304,HR-01-S-8122,Car,P01586,Kia Sonet,Blue,Active,C0109,nan
+V00305,DL-99-D-9504,SUV,P01587,Maruti Swift,Silver,Active,C0109,E01155
+V00306,DL-80-C-5782,SUV,P01590,Tata Nexon,Silver,Active,C0109,E01156
+V00307,MP-55-T-2912,Truck,P01600,Maruti Swift,Black,Active,C0111,E01167
+V00308,GJ-75-F-2467,Motorcycle,P01606,Maruti Swift,Black,Active,C0112,nan
+V00309,MH-51-B-3469,Motorcycle,P01611,Tata Nexon,Black,Active,C0112,nan
+V00310,RJ-49-F-4968,Commercial Vehicle,P01613,Tata Nexon,Red,Active,C0112,nan
+V00311,MH-96-Q-7736,SUV,P01614,Bajaj Pulsar,White,Active,C0112,E01183
+V00312,TN-83-E-2460,Commercial Vehicle,P01616,Hyundai i20,Grey,Inactive,C0112,nan
+V00313,DL-67-P-3114,Truck,P01622,Honda City,Silver,Active,C0112,nan
+V00314,MP-49-M-7568,Motorcycle,P01623,Mahindra XUV300,Red,Active,C0112,nan
+V00315,KL-35-B-8624,Motorcycle,P01626,Tata Nexon,Black,Active,C0112,E01184
+V00316,UP-54-A-2928,Commercial Vehicle,P01628,Mahindra XUV300,Black,Active,C0113,E01192
+V00317,TN-42-H-9503,Car,P01631,Hyundai i20,Red,Active,C0113,nan
+V00318,GJ-44-M-7835,Motorcycle,P01637,Tata Nexon,Black,Active,C0113,nan
+V00319,GJ-98-L-7125,Van,P01638,Honda City,Blue,Active,C0113,nan
+V00320,MH-48-D-9374,Van,P01641,Maruti Swift,Maroon,Active,C0114,E01196
+V00321,RJ-78-Z-3964,Commercial Vehicle,P01642,Toyota Glanza,Maroon,Active,C0115,nan
+V00322,HR-97-Z-2358,Motorcycle,P01656,Honda City,Grey,Active,C0116,E01219
+V00323,MH-60-O-2930,Commercial Vehicle,P01661,Hyundai i20,Black,Active,C0116,nan
+V00324,RJ-12-B-3406,Van,P01664,Kia Sonet,Red,Active,C0116,nan
+V00325,WB-36-U-2382,Truck,P01670,Kia Sonet,Blue,Active,C0116,nan
+V00326,MP-29-U-3109,Car,P01671,Tata Nexon,Silver,Inactive,C0116,nan
+V00327,KL-40-E-3153,Commercial Vehicle,P01676,Mahindra XUV300,Green,Active,C0116,E01220
+V00328,WB-66-P-2950,Truck,P01687,Honda City,Grey,Active,C0117,E01232
+V00329,MP-71-E-9370,Car,P01689,Bajaj Pulsar,Red,Active,C0117,nan
+V00330,MH-67-Q-4314,SUV,P01690,Mahindra XUV300,White,Active,C0117,E01233
+V00331,MP-85-N-9202,Commercial Vehicle,P01693,Honda City,Green,Active,C0118,E01240
+V00332,TN-42-C-4045,Van,P01695,Maruti Swift,Silver,Active,C0118,nan
+V00333,GJ-50-X-1313,SUV,P01701,Maruti Swift,Silver,Active,C0119,E01243
+V00334,MH-81-E-2891,Van,P01703,Bajaj Pulsar,Grey,Active,C0120,nan
+V00335,UP-35-J-5522,Commercial Vehicle,P01706,Bajaj Pulsar,Maroon,Active,C0120,E01249
+V00336,GJ-97-P-9928,Van,P01711,Mahindra XUV300,Silver,Active,C0121,nan
+V00337,MH-24-B-2151,Car,P01712,Honda City,Blue,Active,C0121,E01253
+V00338,MH-53-C-3347,Motorcycle,P01723,Bajaj Pulsar,Maroon,Inactive,C0123,E01266
+V00339,GJ-24-S-4312,Van,P01725,Kia Sonet,Blue,Active,C0123,nan
+V00340,MH-15-U-6560,SUV,P01738,Hyundai i20,Maroon,Active,C0125,E01281
+V00341,GJ-94-L-1900,Truck,P01743,Honda City,Blue,Inactive,C0125,nan
+V00342,UP-95-L-1515,Car,P01745,Maruti Swift,Blue,Active,C0125,nan
+V00343,UP-50-W-4687,Commercial Vehicle,P01748,Tata Nexon,Maroon,Active,C0126,nan
+V00344,TN-35-A-2351,Motorcycle,P01753,Kia Sonet,Black,Active,C0127,E01289
+V00345,KL-62-Q-3514,Car,P01755,Toyota Glanza,Grey,Active,C0127,nan
+V00346,KA-70-J-3443,Truck,P01760,Toyota Glanza,Silver,Active,C0128,E01296
+V00347,MH-38-K-8198,Van,P01764,Honda City,Maroon,Active,C0129,E01300
+V00348,MH-79-J-1916,Truck,P01765,Kia Sonet,Black,Inactive,C0129,nan
+V00349,TN-28-I-6454,Truck,P01769,Mahindra XUV300,White,Active,C0129,nan
+V00350,RJ-99-H-4005,Commercial Vehicle,P01775,Honda City,Blue,Active,C0130,nan
+V00351,TN-04-X-1777,Van,P01777,Honda City,White,Active,C0130,nan
+V00352,MH-53-D-5009,Motorcycle,P01779,Toyota Glanza,Red,Active,C0130,nan
+V00353,TN-93-F-2324,Car,P01783,Maruti Swift,Black,Active,C0130,E01339
+V00354,GJ-08-T-8549,SUV,P01788,Honda City,Red,Active,C0130,E01340
+V00355,GJ-75-W-2460,SUV,P01802,Hyundai i20,White,Active,C0130,nan
+V00356,DL-23-U-5345,Commercial Vehicle,P01805,Maruti Swift,Grey,Inactive,C0130,E01341
+V00357,RJ-03-D-7090,Truck,P01806,Mahindra XUV300,Blue,Active,C0130,E01342
+V00358,MP-34-K-6495,Van,P01809,Tata Nexon,White,Active,C0130,nan
+V00359,MH-84-Q-3618,Truck,P01817,Hyundai i20,Red,Inactive,C0130,E01343
+V00360,TN-45-N-2034,Commercial Vehicle,P01824,Tata Nexon,Silver,Active,C0131,nan
+V00361,KA-42-H-4382,Commercial Vehicle,P01825,Mahindra XUV300,Green,Active,C0131,nan
+V00362,HR-35-C-2980,Car,P01840,Mahindra XUV300,White,Active,C0132,nan
+V00363,WB-40-Q-5663,Van,P01843,Tata Nexon,Green,Active,C0132,E01365
+V00364,MP-77-Z-6376,Truck,P01848,Hyundai i20,Maroon,Active,C0132,nan
+V00365,GJ-79-Q-5932,Car,P01849,Honda City,White,Active,C0132,nan
+V00366,KA-73-A-5256,Car,P01854,Mahindra XUV300,White,Active,C0132,E01366
+V00367,GJ-22-S-6345,Truck,P01859,Maruti Swift,Green,Active,C0133,nan
+V00368,MH-41-M-2920,Motorcycle,P00631,Honda City,Blue,Active,C0134,E01373
+V00369,UP-65-M-9591,Commercial Vehicle,P01865,Honda City,Black,Active,C0134,E01378
+V00370,TN-39-T-1867,Commercial Vehicle,P01867,Mahindra XUV300,Grey,Inactive,C0134,E01379
+V00371,GJ-22-T-2447,Car,P01869,Honda City,Red,Active,C0134,nan
+V00372,KA-44-K-7500,Commercial Vehicle,P01883,Toyota Glanza,Green,Active,C0136,E01399
+V00373,TN-65-B-4432,SUV,P01888,Toyota Glanza,Maroon,Active,C0136,nan
+V00374,MH-15-L-2507,Commercial Vehicle,P01889,Toyota Glanza,White,Active,C0136,nan
+V00375,KA-17-K-5729,Van,P01892,Bajaj Pulsar,Green,Active,C0136,nan
+V00376,MH-09-P-5813,Commercial Vehicle,P01898,Hyundai i20,Black,Active,C0136,nan
+V00377,MP-74-R-5132,Motorcycle,P01902,Bajaj Pulsar,Maroon,Active,C0136,nan
+V00378,GJ-93-O-3761,Motorcycle,P01903,Maruti Swift,Silver,Active,C0136,nan
+V00379,MP-79-F-8549,Truck,P01906,Mahindra XUV300,Grey,Active,C0137,nan
+V00380,UP-96-Q-3883,Commercial Vehicle,P01912,Honda City,Red,Active,C0137,E01419
+V00381,MH-79-U-3689,Truck,P00062,Mahindra XUV300,Grey,Active,C0138,nan
+V00382,MH-12-L-5530,Van,P01929,Maruti Swift,Red,Active,C0138,E01435
+V00383,MH-91-U-7200,SUV,P01931,Hyundai i20,Maroon,Active,C0138,E01436
+V00384,TN-28-G-7042,Van,P01934,Bajaj Pulsar,Red,Inactive,C0138,E01437
+V00385,RJ-20-B-5693,SUV,P01935,Tata Nexon,Grey,Active,C0138,E01438
+V00386,DL-91-O-1304,Commercial Vehicle,P00626,Mahindra XUV300,Green,Inactive,C0139,nan
+V00387,KA-87-S-7960,Truck,P01943,Toyota Glanza,Silver,Active,C0139,E01468
+V00388,MH-77-P-2700,Van,P01958,Kia Sonet,Black,Active,C0139,nan
+V00389,MP-90-Q-4196,Car,P01959,Toyota Glanza,Green,Active,C0139,nan
+V00390,MP-46-K-7308,Car,P01967,Hyundai i20,Silver,Active,C0139,nan
+V00391,MH-71-C-7257,Truck,P01974,Maruti Swift,Grey,Active,C0139,nan
+V00392,MH-32-P-1475,SUV,P01975,Maruti Swift,Black,Active,C0139,E01469
+V00393,MH-58-W-7789,Commercial Vehicle,P01976,Hyundai i20,Green,Active,C0139,nan
+V00394,UP-95-P-7969,Motorcycle,P01977,Toyota Glanza,Maroon,Active,C0139,nan
+V00395,WB-19-N-8213,Truck,P01979,Tata Nexon,Green,Active,C0139,E01470
+V00396,HR-05-T-5006,Car,P01980,Bajaj Pulsar,Maroon,Active,C0139,nan
+V00397,HR-48-H-3943,Van,P01981,Kia Sonet,Black,Active,C0139,nan
+V00398,MP-33-C-2030,Commercial Vehicle,P01985,Kia Sonet,Silver,Active,C0140,nan
+V00399,MH-87-W-8013,Van,P01986,Toyota Glanza,White,Active,C0140,nan
+V00400,RJ-60-A-1620,Truck,P01993,Hyundai i20,Silver,Active,C0140,E01483
+V00401,GJ-33-G-5962,Commercial Vehicle,P01994,Mahindra XUV300,Blue,Active,C0140,nan
+V00402,GJ-58-S-8157,SUV,P01995,Honda City,Blue,Active,C0140,E01484
+V00403,MH-54-I-3056,Motorcycle,P01999,Bajaj Pulsar,Blue,Active,C0140,E01485
+V00404,WB-07-F-5628,Car,P02007,Honda City,Maroon,Active,C0141,E01498
+V00405,DL-87-V-8477,Commercial Vehicle,P02010,Honda City,Red,Active,C0141,nan
+V00406,KL-41-C-2776,Truck,P02012,Honda City,Red,Active,C0141,nan
+V00407,MH-90-L-7988,Van,P02016,Hyundai i20,Black,Active,C0141,E01499
+V00408,UP-52-O-1352,Motorcycle,P02022,Bajaj Pulsar,Green,Active,C0141,nan
+V00409,MP-34-X-5629,Van,P02039,Tata Nexon,Silver,Active,C0144,nan
+V00410,TN-34-F-6492,SUV,P02054,Mahindra XUV300,Red,Inactive,C0144,nan
+V00411,MH-63-V-6665,SUV,P02055,Toyota Glanza,Silver,Inactive,C0144,E01527
+V00412,TS-55-H-8108,SUV,P02059,Tata Nexon,Green,Active,C0145,nan
+V00413,DL-91-I-7035,Commercial Vehicle,P02060,Kia Sonet,Blue,Active,C0145,E01548
+V00414,DL-82-K-3361,Truck,P02063,Honda City,Black,Active,C0145,nan
+V00415,KA-43-G-4335,SUV,P02066,Toyota Glanza,Red,Active,C0145,nan
+V00416,GJ-51-Z-8668,Motorcycle,P02067,Kia Sonet,Red,Active,C0145,nan
+V00417,TN-67-Y-7107,SUV,P02071,Toyota Glanza,Blue,Active,C0145,nan
+V00418,RJ-99-B-3764,Car,P02077,Honda City,Blue,Active,C0145,nan
+V00419,GJ-23-E-7965,Car,P02078,Toyota Glanza,Red,Active,C0145,E01549
+V00420,KL-05-Y-8672,Truck,P02079,Tata Nexon,Silver,Active,C0145,nan
+V00421,MP-43-T-2366,Truck,P02084,Toyota Glanza,Red,Active,C0145,nan
+V00422,MH-95-U-4292,Van,P01049,Bajaj Pulsar,Blue,Active,C0146,E01550
+V00423,TN-03-P-5081,Truck,P02099,Honda City,Black,Active,C0147,E01576
+V00424,GJ-18-E-5335,Motorcycle,P02105,Hyundai i20,Red,Active,C0147,nan
+V00425,TS-32-B-8267,Van,P02109,Kia Sonet,Silver,Active,C0147,nan
+V00426,HR-55-K-9773,Car,P02117,Maruti Swift,Maroon,Active,C0147,nan
+V00427,UP-44-K-8857,Commercial Vehicle,P02119,Tata Nexon,Maroon,Active,C0148,nan
+V00428,KL-38-K-2913,Car,P02122,Honda City,Green,Active,C0149,nan
+V00429,DL-80-N-6628,Car,P02123,Mahindra XUV300,Black,Inactive,C0149,nan
+V00430,UP-97-H-3606,SUV,P02125,Maruti Swift,Green,Active,C0149,E01584
+V00431,TN-16-W-7173,Car,P00006,Tata Nexon,Maroon,Inactive,C0150,E01585
+V00432,MP-25-Q-2566,Motorcycle,P02136,Tata Nexon,Grey,Active,C0150,nan
+V00433,TS-28-F-4496,Van,P02144,Maruti Swift,Silver,Inactive,C0150,nan
+V00434,DL-18-O-1993,Car,P02145,Toyota Glanza,Maroon,Active,C0150,nan
+V00435,TN-91-K-4570,Motorcycle,P02149,Kia Sonet,White,Active,C0150,nan
+V00436,KA-45-X-2765,Car,P02150,Mahindra XUV300,Maroon,Inactive,C0150,E01611
+V00437,MH-01-J-9698,SUV,P02166,Maruti Swift,White,Active,C0150,nan
+V00438,MH-45-U-2044,Van,P02168,Toyota Glanza,Silver,Active,C0150,nan
+V00439,KL-29-D-7787,Car,P02175,Maruti Swift,Green,Active,C0151,E01624
+V00440,WB-30-A-6967,Van,P02185,Bajaj Pulsar,Red,Active,C0151,nan
+V00441,TS-33-D-2473,Van,P00173,Kia Sonet,Silver,Inactive,C0153,E01628
+V00442,MH-84-K-5013,Motorcycle,P02195,Maruti Swift,Red,Active,C0153,E01650
+V00443,UP-26-K-8384,Commercial Vehicle,P02209,Hyundai i20,Maroon,Active,C0153,nan
+V00444,DL-77-Q-5352,Motorcycle,P02219,Kia Sonet,Grey,Active,C0154,nan
+V00445,HR-25-Y-9108,Motorcycle,P02220,Toyota Glanza,Red,Active,C0154,nan
+V00446,GJ-77-Q-2659,Van,P02230,Bajaj Pulsar,Silver,Active,C0154,E01668
+V00447,UP-70-Z-2724,Van,P02234,Kia Sonet,Red,Inactive,C0154,nan
+V00448,MH-33-C-3963,Car,P02236,Kia Sonet,Red,Active,C0154,nan
+V00449,MH-23-R-1450,Truck,P02238,Honda City,White,Active,C0154,E01669
+V00450,TN-51-P-8240,SUV,P02240,Maruti Swift,Red,Active,C0155,E01677
+V00451,TS-71-O-2036,Truck,P02241,Mahindra XUV300,White,Active,C0155,E01678
+V00452,MP-65-Q-3896,Van,P02258,Maruti Swift,Red,Active,C0156,E01687
+V00453,DL-69-X-9748,Commercial Vehicle,P01340,Mahindra XUV300,Green,Active,C0157,nan
+V00454,MH-27-M-1442,Truck,P02261,Bajaj Pulsar,Red,Active,C0157,nan
+V00455,RJ-19-G-5323,SUV,P02262,Bajaj Pulsar,Blue,Active,C0157,E01694
+V00456,MH-74-D-7039,Truck,P01098,Hyundai i20,Green,Active,C0159,nan
+V00457,GJ-50-R-6151,Truck,P02271,Maruti Swift,Grey,Active,C0159,E01701
+V00458,TS-61-G-6304,Car,P02273,Kia Sonet,White,Active,C0159,nan
+V00459,KA-78-K-6576,Truck,P02191,Bajaj Pulsar,Blue,Active,C0160,nan
+V00460,MP-40-D-9728,Truck,P02276,Toyota Glanza,Maroon,Active,C0160,E01705
+V00461,GJ-73-S-7667,Car,P02279,Kia Sonet,Green,Active,C0161,nan
+V00462,KA-45-S-4895,Truck,P02280,Bajaj Pulsar,Black,Active,C0161,E01724
+V00463,MH-28-I-8607,Car,P02286,Tata Nexon,White,Active,C0161,nan
+V00464,MH-41-S-4458,Commercial Vehicle,P02293,Tata Nexon,Blue,Active,C0161,E01725
+V00465,MP-65-G-3003,Car,P02309,Maruti Swift,Black,Active,C0161,nan
+V00466,HR-16-E-5807,Van,P01316,Mahindra XUV300,Green,Active,C0162,nan
+V00467,UP-20-K-6778,Van,P02313,Kia Sonet,Silver,Active,C0162,nan
+V00468,DL-57-F-1792,Car,P02317,Honda City,Blue,Active,C0162,nan
+V00469,MH-78-G-2346,Van,P02318,Mahindra XUV300,Silver,Active,C0162,nan
+V00470,GJ-35-M-9389,Motorcycle,P02334,Honda City,Green,Active,C0163,E01745
+V00471,GJ-39-P-6656,Motorcycle,P02340,Toyota Glanza,Silver,Active,C0163,nan
+V00472,MP-51-W-3440,Motorcycle,P02346,Tata Nexon,Blue,Active,C0165,E01776
+V00473,MH-71-S-7782,Truck,P02352,Hyundai i20,Maroon,Active,C0165,E01777
+V00474,MP-30-O-6141,Commercial Vehicle,P02354,Kia Sonet,Green,Active,C0165,E01778
+V00475,MP-17-A-2012,SUV,P02365,Hyundai i20,Maroon,Active,C0165,nan
+V00476,RJ-22-Q-3886,Van,P02366,Mahindra XUV300,Maroon,Active,C0165,E01779
+V00477,MH-90-A-6523,SUV,P02368,Bajaj Pulsar,Blue,Inactive,C0165,E01780
+V00478,MH-73-O-2560,Van,P02370,Toyota Glanza,White,Active,C0165,nan
+V00479,RJ-26-P-9184,Truck,P02379,Toyota Glanza,Grey,Active,C0165,nan
+V00480,MH-98-Y-2446,Car,P02383,Toyota Glanza,Grey,Active,C0165,nan
+V00481,MH-49-W-4278,Car,P02395,Hyundai i20,Blue,Active,C0166,nan
+V00482,TN-40-C-8219,Van,P02402,Bajaj Pulsar,Red,Active,C0166,nan
+V00483,MH-65-X-2787,Commercial Vehicle,P02403,Tata Nexon,Black,Active,C0166,nan
+V00484,GJ-52-J-8781,Car,P02408,Honda City,Blue,Active,C0166,nan
+V00485,MP-08-F-2282,Car,P02416,Honda City,Maroon,Active,C0168,E01802
+V00486,KL-72-Y-7595,Motorcycle,P02423,Bajaj Pulsar,Grey,Active,C0170,nan
+V00487,TN-91-Y-4907,Car,P02424,Tata Nexon,Red,Active,C0170,E01810
+V00488,WB-69-J-2443,Van,P02427,Tata Nexon,Blue,Active,C0170,nan
+V00489,HR-76-Y-3897,Truck,P02431,Tata Nexon,Black,Active,C0170,nan
+V00490,DL-63-B-8983,SUV,P02434,Honda City,Green,Active,C0171,nan
+V00491,RJ-58-U-5734,Motorcycle,P02435,Maruti Swift,Red,Active,C0171,E01818
+V00492,UP-54-Z-2256,SUV,P02439,Kia Sonet,Green,Inactive,C0171,E01819
+V00493,UP-32-D-5843,Truck,P02445,Kia Sonet,Black,Active,C0172,E01820
+V00494,KL-20-G-9981,Truck,P00140,Hyundai i20,Grey,Inactive,C0173,nan
+V00495,UP-08-U-4258,Truck,P02453,Hyundai i20,Silver,Active,C0174,nan
+V00496,MH-03-O-8797,Truck,P02454,Toyota Glanza,Red,Active,C0174,E01838
+V00497,TS-97-K-7530,Commercial Vehicle,P02456,Hyundai i20,Black,Active,C0174,E01839
+V00498,GJ-90-M-1024,Commercial Vehicle,P02457,Tata Nexon,Maroon,Active,C0174,nan
+V00499,RJ-34-W-5498,Truck,P02460,Mahindra XUV300,Black,Active,C0174,nan
+V00500,GJ-22-L-8085,Van,P02465,Kia Sonet,Red,Active,C0174,nan
+V00501,TN-84-V-7538,Van,P02468,Honda City,Red,Active,C0175,E01843
+V00502,TS-65-T-4722,Commercial Vehicle,P02470,Bajaj Pulsar,Silver,Inactive,C0175,nan
+V00503,MH-51-V-8062,Truck,P02472,Kia Sonet,Silver,Active,C0176,E01846
+V00504,TN-58-Y-4949,SUV,P02482,Maruti Swift,Black,Active,C0177,nan
+V00505,MH-33-J-2105,Commercial Vehicle,P02486,Tata Nexon,Silver,Active,C0177,nan
+V00506,MP-15-V-2808,Truck,P02495,Bajaj Pulsar,Silver,Active,C0177,nan
+V00507,GJ-36-E-4196,Van,P02497,Bajaj Pulsar,Blue,Active,C0177,E01885
+V00508,DL-24-K-9702,Motorcycle,P02500,Toyota Glanza,Red,Active,C0177,E01886
+V00509,RJ-15-V-4876,Truck,P02501,Toyota Glanza,Blue,Active,C0177,nan
+V00510,UP-57-J-2344,Commercial Vehicle,P02502,Mahindra XUV300,Grey,Active,C0177,E01887
+V00511,MH-93-I-2074,Car,P02504,Maruti Swift,White,Active,C0177,E01888
+V00512,KA-53-K-3287,Car,P02510,Kia Sonet,White,Active,C0177,nan
+V00513,TN-43-V-5576,Van,P02515,Tata Nexon,Maroon,Active,C0177,E01889
+V00514,MH-19-A-8141,Car,P02518,Tata Nexon,Blue,Active,C0177,E01890
+V00515,TN-83-T-1425,Van,P02519,Kia Sonet,Green,Active,C0177,nan
+V00516,RJ-02-A-9963,Van,P02521,Honda City,Green,Active,C0177,E01891
+V00517,DL-60-Y-6315,Commercial Vehicle,P02529,Bajaj Pulsar,White,Active,C0178,nan
+V00518,GJ-61-Z-5535,Car,P02538,Bajaj Pulsar,White,Active,C0178,nan
+V00519,MH-85-Q-1782,Motorcycle,P02541,Hyundai i20,White,Active,C0179,nan
+V00520,MP-25-Z-6919,Commercial Vehicle,P02542,Tata Nexon,Grey,Active,C0179,nan
+V00521,GJ-29-D-2475,SUV,P02548,Mahindra XUV300,Grey,Active,C0180,nan
+V00522,KA-85-F-1402,Van,P02553,Toyota Glanza,Grey,Active,C0181,E01925
+V00523,UP-64-G-9534,Van,P02556,Maruti Swift,Black,Active,C0181,nan
+V00524,DL-32-F-9791,Commercial Vehicle,P02557,Hyundai i20,Blue,Inactive,C0181,E01926
+V00525,UP-10-J-2856,Van,P02560,Honda City,White,Inactive,C0181,nan
+V00526,GJ-13-G-5880,Commercial Vehicle,P02563,Tata Nexon,Green,Active,C0181,nan
+V00527,UP-07-D-6154,SUV,P02567,Honda City,Maroon,Active,C0181,nan
+V00528,HR-02-J-1134,Car,P01291,Maruti Swift,Silver,Active,C0183,E01928
+V00529,MP-45-R-2518,Motorcycle,P02580,Tata Nexon,Black,Active,C0183,nan
+V00530,WB-56-N-5593,Commercial Vehicle,P02583,Kia Sonet,White,Active,C0183,nan
+V00531,UP-07-R-5484,SUV,P02586,Hyundai i20,Black,Active,C0183,nan
+V00532,MP-76-E-1790,SUV,P02587,Kia Sonet,Grey,Active,C0183,nan
+V00533,DL-38-W-6698,Truck,P02589,Kia Sonet,Blue,Active,C0183,E01939
+V00534,GJ-98-D-1412,Commercial Vehicle,P02596,Tata Nexon,Green,Active,C0183,nan
+V00535,MH-88-H-3807,Car,P02600,Maruti Swift,Blue,Active,C0185,nan
+V00536,HR-06-D-9427,Commercial Vehicle,P02602,Honda City,Silver,Active,C0185,nan
+V00537,MP-95-M-1280,SUV,P02606,Mahindra XUV300,Green,Active,C0185,nan
+V00538,TN-33-Y-3416,SUV,P02609,Maruti Swift,Blue,Active,C0185,E01958
+V00539,TS-03-Z-3344,Commercial Vehicle,P02617,Tata Nexon,Maroon,Inactive,C0185,nan
+V00540,MH-25-R-4612,SUV,P02624,Tata Nexon,Grey,Active,C0185,E01959
+V00541,MH-58-I-6217,SUV,P00276,Kia Sonet,Blue,Active,C0186,nan
+V00542,MH-87-B-2062,SUV,P02631,Maruti Swift,Black,Active,C0187,nan
+V00543,MH-66-G-6284,Commercial Vehicle,P02632,Bajaj Pulsar,Red,Active,C0187,E01969
+V00544,GJ-96-L-3773,SUV,P02637,Toyota Glanza,Black,Active,C0188,E01974
+V00545,HR-58-D-3674,Motorcycle,P02652,Hyundai i20,Grey,Active,C0189,nan
+V00546,TS-71-N-8269,Motorcycle,P02658,Hyundai i20,Silver,Active,C0189,E01990
+V00547,MP-22-B-2059,Truck,P02662,Kia Sonet,Red,Inactive,C0189,nan
+V00548,MH-08-Y-8327,Car,P02663,Bajaj Pulsar,Grey,Active,C0189,nan
+V00549,UP-47-K-7510,Van,P02665,Mahindra XUV300,White,Active,C0189,nan
+V00550,KL-39-C-6240,SUV,P00141,Toyota Glanza,Black,Active,C0191,E01991
+V00551,GJ-67-T-4837,Motorcycle,P02667,Mahindra XUV300,White,Inactive,C0191,nan
+V00552,TS-96-P-3995,Motorcycle,P02315,Bajaj Pulsar,Grey,Inactive,C0192,E01997
+V00553,MH-31-E-4038,Car,P02672,Bajaj Pulsar,Blue,Active,C0192,E02005
+V00554,RJ-21-P-4281,SUV,P02677,Tata Nexon,Green,Active,C0192,nan
+V00555,UP-85-F-1988,Car,P02682,Hyundai i20,Grey,Active,C0192,nan
+V00556,MH-51-B-3170,Truck,P02689,Mahindra XUV300,Green,Active,C0192,nan
+V00557,DL-78-H-2633,Van,P02693,Bajaj Pulsar,Green,Active,C0193,nan
+V00558,MH-67-A-3226,Commercial Vehicle,P02704,Toyota Glanza,Blue,Active,C0193,E02025
+V00559,MP-74-Z-1727,SUV,P02705,Toyota Glanza,Red,Active,C0193,nan
+V00560,RJ-05-P-3035,Motorcycle,P02707,Kia Sonet,Green,Active,C0193,E02026
+V00561,MH-60-F-9532,Motorcycle,P02714,Maruti Swift,White,Active,C0193,E02027
+V00562,HR-35-K-4211,Truck,P02717,Kia Sonet,Red,Active,C0193,nan
+V00563,HR-07-N-2407,Truck,P02576,Honda City,Maroon,Active,C0195,nan
+V00564,MH-19-R-6902,Motorcycle,P02266,Tata Nexon,Red,Active,C0195,nan
+V00565,KA-22-S-3046,Motorcycle,P02736,Mahindra XUV300,Grey,Active,C0196,nan
+V00566,GJ-21-I-7325,Commercial Vehicle,P02737,Maruti Swift,Maroon,Active,C0196,nan
+V00567,GJ-52-W-3413,SUV,P02746,Tata Nexon,Silver,Active,C0196,nan
+V00568,MH-42-V-2156,Van,P02747,Honda City,Grey,Active,C0196,nan
+V00569,HR-20-F-2168,Commercial Vehicle,P02750,Kia Sonet,Red,Active,C0196,E02057
+V00570,MP-59-E-3801,Commercial Vehicle,P02754,Toyota Glanza,Silver,Active,C0196,nan
+V00571,WB-80-S-8594,Truck,P02755,Kia Sonet,Green,Active,C0196,E02058
+V00572,RJ-37-E-1807,Commercial Vehicle,P02759,Maruti Swift,Silver,Active,C0197,nan
+V00573,MH-05-G-1870,SUV,P02761,Honda City,White,Active,C0197,E02068
+V00574,MH-43-G-3764,Motorcycle,P02778,Hyundai i20,Red,Active,C0198,nan
+V00575,MH-65-P-4458,Motorcycle,P02781,Hyundai i20,Black,Inactive,C0198,nan
+V00576,TN-81-U-4340,Commercial Vehicle,P02788,Tata Nexon,Maroon,Active,C0199,E02085
+V00577,MH-05-E-7236,Van,P02792,Maruti Swift,Maroon,Active,C0199,E02086
+V00578,GJ-96-T-7719,Van,P02793,Toyota Glanza,Black,Active,C0199,E02087
+V00579,UP-14-P-8938,Motorcycle,P02794,Toyota Glanza,White,Active,C0199,E02088
+V00580,RJ-83-I-1830,Truck,P02799,Mahindra XUV300,Red,Active,C0200,nan
+V00581,MH-26-O-6633,SUV,P02805,Mahindra XUV300,Grey,Active,C0201,E02107
+V00582,UP-04-K-3945,Truck,P02806,Honda City,Maroon,Active,C0201,nan
+V00583,TN-33-A-9870,Car,P02811,Kia Sonet,Red,Active,C0201,nan
+V00584,GJ-42-D-4475,SUV,P02818,Kia Sonet,Silver,Active,C0201,nan
+V00585,MH-89-H-1567,Van,P02819,Toyota Glanza,Black,Active,C0201,nan
+V00586,TN-08-K-6046,SUV,P00322,Tata Nexon,Silver,Active,C0202,nan
+V00587,TN-86-T-5000,Van,P00314,Bajaj Pulsar,Green,Active,C0202,nan
+V00588,KA-83-M-9071,Truck,P02825,Honda City,White,Active,C0202,nan
+V00589,TN-87-U-3491,Car,P02828,Hyundai i20,Maroon,Active,C0202,nan
+V00590,HR-39-Q-3382,Car,P02833,Hyundai i20,Red,Active,C0202,E02122
+V00591,MH-13-J-8572,Commercial Vehicle,P02835,Toyota Glanza,Green,Active,C0202,E02123
+V00592,MP-56-D-5383,Motorcycle,P02839,Tata Nexon,Silver,Inactive,C0202,E02124
+V00593,GJ-82-P-4478,SUV,P02842,Kia Sonet,Silver,Active,C0202,nan
+V00594,WB-74-W-2613,Car,P02848,Hyundai i20,Silver,Active,C0204,nan
+V00595,MH-16-I-5985,Van,P02852,Honda City,Red,Active,C0204,E02138
+V00596,GJ-66-I-5154,SUV,P02853,Toyota Glanza,Blue,Active,C0204,E02139
+V00597,MH-97-U-4301,Car,P02862,Kia Sonet,Silver,Active,C0204,E02140
+V00598,MH-96-Y-1937,Van,P02863,Honda City,Grey,Active,C0205,nan
+V00599,DL-60-E-9875,SUV,P02864,Maruti Swift,Silver,Active,C0205,nan
+V00600,RJ-54-W-5697,Motorcycle,P02868,Maruti Swift,Grey,Active,C0205,nan
+V00601,MP-07-U-5854,Car,P02871,Toyota Glanza,Black,Active,C0206,nan
+V00602,MH-53-X-1398,Van,P02876,Tata Nexon,Grey,Active,C0207,nan
+V00603,MH-31-M-7230,SUV,P02888,Toyota Glanza,Grey,Active,C0207,nan
+V00604,TN-37-V-7061,Van,P02892,Maruti Swift,Grey,Active,C0208,E02165
+V00605,UP-06-M-1846,Truck,P02643,Tata Nexon,Black,Active,C0209,E02166
+V00606,MP-02-A-1145,Car,P02899,Honda City,Red,Active,C0209,nan
+V00607,TN-51-H-1480,SUV,P02900,Honda City,Blue,Active,C0209,nan
+V00608,WB-07-Z-4163,SUV,P02902,Tata Nexon,Silver,Active,C0209,nan
+V00609,TN-59-C-1866,Car,P02906,Honda City,Red,Active,C0209,nan
+V00610,WB-76-Y-1446,Motorcycle,P02909,Honda City,White,Active,C0209,E02178
+V00611,UP-56-B-1782,SUV,P02910,Tata Nexon,Blue,Active,C0209,nan
+V00612,TN-29-R-7737,SUV,P02912,Toyota Glanza,Green,Inactive,C0209,nan
+V00613,GJ-73-J-1789,Van,P02929,Honda City,Grey,Active,C0210,E02190
+V00614,WB-94-U-5731,Car,P02931,Kia Sonet,Green,Active,C0210,E02191
+V00615,GJ-64-I-4221,Motorcycle,P02932,Bajaj Pulsar,Black,Active,C0211,nan
+V00616,UP-39-Y-4730,Commercial Vehicle,P02934,Toyota Glanza,White,Active,C0211,nan
+V00617,UP-27-M-3183,Motorcycle,P02940,Kia Sonet,Silver,Active,C0211,E02200
+V00618,UP-28-O-7208,Van,P02944,Mahindra XUV300,Blue,Active,C0212,E02207
+V00619,KL-32-M-9024,Car,P02948,Hyundai i20,Green,Active,C0212,E02208
+V00620,MH-55-Q-5736,Car,P02950,Kia Sonet,Silver,Active,C0212,nan
+V00621,MH-78-M-6754,Commercial Vehicle,P02953,Mahindra XUV300,Black,Active,C0213,nan
+V00622,KL-08-P-6229,Truck,P02955,Maruti Swift,Grey,Active,C0213,nan
+V00623,UP-57-S-2433,Van,P02960,Toyota Glanza,White,Active,C0213,nan
+V00624,TS-10-M-1968,SUV,P02963,Bajaj Pulsar,Green,Inactive,C0213,nan
+V00625,HR-05-J-4715,Car,P02966,Maruti Swift,Black,Active,C0214,nan
+V00626,MH-13-K-2202,Van,P01272,Bajaj Pulsar,Red,Active,C0216,nan
+V00627,MH-66-N-8211,Motorcycle,P01548,Bajaj Pulsar,Grey,Active,C0218,nan
+V00628,HR-38-O-8280,Commercial Vehicle,P02984,Honda City,Silver,Active,C0218,nan
+V00629,UP-27-D-2418,SUV,P02987,Toyota Glanza,Blue,Active,C0218,nan
+V00630,MH-28-H-5137,Car,P02989,Kia Sonet,Grey,Active,C0219,nan
+V00631,TN-98-D-3726,Commercial Vehicle,P02991,Mahindra XUV300,Grey,Active,C0219,nan
+V00632,MH-27-G-2914,Car,P02995,Bajaj Pulsar,Grey,Active,C0219,E02262
+V00633,MP-78-O-7706,Car,P02999,Hyundai i20,White,Active,C0219,nan
+V00634,WB-45-H-2448,Motorcycle,P03001,Tata Nexon,Blue,Inactive,C0219,E02263
+V00635,DL-15-T-8255,Truck,P03007,Kia Sonet,Red,Inactive,C0219,nan
+V00636,KA-50-K-8916,Motorcycle,P03010,Honda City,Maroon,Active,C0219,nan
+V00637,MH-56-V-4247,Commercial Vehicle,P03013,Mahindra XUV300,Maroon,Active,C0219,nan
+V00638,MP-35-K-8505,Motorcycle,P03014,Toyota Glanza,Grey,Active,C0219,E02264
+V00639,KA-47-Z-2125,Truck,P03016,Bajaj Pulsar,Green,Active,C0219,nan
+V00640,KL-79-R-4239,Motorcycle,P03018,Honda City,Black,Active,C0219,nan
+V00641,MP-03-Z-2419,Car,P03022,Kia Sonet,White,Active,C0219,nan
+V00642,KL-32-M-8189,Motorcycle,P03026,Honda City,Silver,Inactive,C0219,nan
+V00643,TN-85-L-4565,Truck,P03028,Hyundai i20,Red,Active,C0219,nan
+V00644,UP-03-V-2834,Van,P03029,Kia Sonet,Red,Active,C0220,nan
+V00645,MH-75-C-3498,Van,P03039,Bajaj Pulsar,Green,Active,C0222,E02276
+V00646,MH-71-S-4444,Truck,P03042,Honda City,Blue,Active,C0222,nan
+V00647,RJ-20-X-4081,Commercial Vehicle,P03061,Mahindra XUV300,Maroon,Active,C0223,nan
+V00648,KL-88-Q-2563,Truck,P01080,Mahindra XUV300,Red,Active,C0224,nan
+V00649,GJ-20-C-8031,Commercial Vehicle,P03066,Bajaj Pulsar,Blue,Active,C0224,nan
+V00650,HR-93-O-7739,Commercial Vehicle,P03067,Bajaj Pulsar,Red,Active,C0224,nan
+V00651,UP-66-Z-1785,Truck,P03070,Honda City,White,Active,C0224,E02285
+V00652,KL-79-X-9676,Motorcycle,P03071,Maruti Swift,Black,Active,C0224,nan
+V00653,RJ-69-D-3701,Van,P03079,Maruti Swift,Black,Inactive,C0226,E02291
+V00654,TS-44-F-2130,Car,P03082,Bajaj Pulsar,Grey,Active,C0226,nan
+V00655,MH-65-Z-7096,Motorcycle,P03088,Mahindra XUV300,Blue,Inactive,C0227,E02304
+V00656,MH-76-J-1001,Commercial Vehicle,P03089,Hyundai i20,Blue,Active,C0227,nan
+V00657,MH-52-C-4860,Motorcycle,P03094,Kia Sonet,Green,Active,C0227,E02305
+V00658,TS-82-P-5946,SUV,P03096,Tata Nexon,White,Active,C0227,nan
+V00659,WB-09-G-1353,Truck,P03108,Maruti Swift,Blue,Active,C0228,E02318
+V00660,TN-01-E-2326,Truck,P03110,Kia Sonet,Grey,Active,C0228,E02319
+V00661,TN-66-N-5351,Truck,P03111,Hyundai i20,White,Active,C0228,nan
+V00662,UP-51-G-9787,SUV,P03121,Mahindra XUV300,Red,Active,C0228,E02320
+V00663,TN-01-M-5499,Van,P03130,Toyota Glanza,Green,Active,C0229,E02359
+V00664,KL-90-D-4914,Motorcycle,P03132,Tata Nexon,Grey,Active,C0229,nan
+V00665,DL-47-Q-1456,Truck,P03133,Mahindra XUV300,Blue,Active,C0229,nan
+V00666,HR-68-A-2728,Van,P03142,Mahindra XUV300,Maroon,Active,C0229,E02360
+V00667,MH-62-C-1371,SUV,P03143,Toyota Glanza,Red,Inactive,C0229,nan
+V00668,GJ-98-B-5347,Truck,P03144,Mahindra XUV300,Green,Active,C0229,E02361
+V00669,MP-04-V-6104,Van,P03145,Kia Sonet,Blue,Active,C0229,E02362
+V00670,MP-14-D-2176,Car,P03154,Bajaj Pulsar,Green,Active,C0229,E02363
+V00671,MH-41-U-9225,Car,P03160,Tata Nexon,Red,Active,C0229,E02364
+V00672,WB-01-A-8970,Car,P03161,Tata Nexon,Blue,Active,C0229,E02365
+V00673,WB-35-L-4744,Commercial Vehicle,P03179,Toyota Glanza,Maroon,Inactive,C0229,E02366
+V00674,TN-28-J-5481,SUV,P03185,Honda City,Silver,Inactive,C0231,E02396
+V00675,UP-36-E-4816,SUV,P03193,Kia Sonet,Grey,Active,C0231,E02397
+V00676,WB-70-I-8172,Motorcycle,P03203,Hyundai i20,Silver,Active,C0231,E02398
+V00677,TN-92-B-5213,Van,P03209,Kia Sonet,Maroon,Inactive,C0231,E02399
+V00678,MH-09-T-3348,Motorcycle,P03214,Honda City,Maroon,Inactive,C0231,nan
+V00679,UP-58-X-5544,Car,P03224,Toyota Glanza,Black,Active,C0232,E02408
+V00680,MP-56-K-5215,Commercial Vehicle,P03225,Maruti Swift,Green,Inactive,C0232,E02409
+V00681,MH-24-J-4541,SUV,P03228,Mahindra XUV300,Black,Inactive,C0233,nan
+V00682,KA-45-N-6900,Commercial Vehicle,P03235,Mahindra XUV300,Green,Active,C0234,E02413
+V00683,MP-75-N-4011,Van,P03239,Tata Nexon,Blue,Inactive,C0235,nan
+V00684,HR-72-M-7997,Truck,P01874,Maruti Swift,Silver,Active,C0237,nan
+V00685,MH-75-K-2195,Commercial Vehicle,P03243,Kia Sonet,Maroon,Active,C0237,E02438
+V00686,HR-57-N-3437,Motorcycle,P03244,Honda City,Grey,Active,C0237,E02439
+V00687,UP-98-W-4711,Commercial Vehicle,P03248,Tata Nexon,Grey,Active,C0237,nan
+V00688,WB-40-N-9493,Car,P03259,Mahindra XUV300,Maroon,Active,C0237,nan
+V00689,TN-34-A-8137,Truck,P03279,Kia Sonet,Red,Active,C0238,nan
+V00690,MP-23-D-9566,SUV,P03283,Toyota Glanza,Blue,Active,C0238,E02450
+V00691,TS-42-T-7089,Truck,P03285,Bajaj Pulsar,Maroon,Active,C0238,E02451
+V00692,UP-87-S-4707,Van,P03286,Honda City,White,Active,C0238,nan
+V00693,GJ-36-P-4187,Van,P03287,Mahindra XUV300,White,Active,C0238,nan
+V00694,DL-47-E-4149,SUV,P03291,Kia Sonet,Blue,Active,C0238,nan
+V00695,TN-65-Y-5565,Van,P03292,Toyota Glanza,Silver,Active,C0238,E02452
+V00696,MH-69-Z-3263,Car,P03306,Honda City,Green,Inactive,C0239,nan
+V00697,MP-82-A-9819,SUV,P03315,Kia Sonet,White,Active,C0239,E02471
+V00698,MH-45-P-7023,Van,P03320,Mahindra XUV300,Green,Active,C0239,E02472
+V00699,MP-61-C-9549,Truck,P03331,Honda City,Red,Active,C0241,nan
+V00700,DL-35-E-5778,Motorcycle,P03332,Tata Nexon,Green,Active,C0241,E02480
+V00701,UP-65-J-3888,Car,P03341,Honda City,Grey,Active,C0242,nan
+V00702,GJ-31-Q-1959,Car,P03344,Honda City,Green,Active,C0242,nan
+V00703,MP-41-W-9911,Car,P03346,Kia Sonet,Grey,Inactive,C0242,E02497
+V00704,MP-19-Q-7901,Van,P03347,Tata Nexon,Maroon,Active,C0242,nan
+V00705,WB-48-F-2429,Truck,P03354,Bajaj Pulsar,White,Active,C0242,nan
+V00706,DL-75-T-6221,Commercial Vehicle,P03355,Tata Nexon,Green,Active,C0242,nan
+V00707,TN-88-T-1773,Commercial Vehicle,P00081,Bajaj Pulsar,Blue,Active,C0243,nan
+V00708,KA-56-P-5009,Motorcycle,P03361,Maruti Swift,White,Active,C0243,nan
+V00709,UP-88-U-8870,Truck,P03363,Kia Sonet,Maroon,Active,C0243,nan
+V00710,GJ-85-Z-9112,Motorcycle,P03378,Bajaj Pulsar,Black,Active,C0244,E02532
+V00711,MH-79-D-4894,Van,P03380,Hyundai i20,White,Active,C0244,E02533
+V00712,TN-79-O-6650,Truck,P03381,Hyundai i20,Black,Active,C0244,nan
+V00713,TN-07-I-2726,Commercial Vehicle,P03382,Kia Sonet,White,Active,C0244,E02534
+V00714,TN-95-R-3130,Car,P03392,Tata Nexon,Blue,Active,C0244,E02535
+V00715,HR-93-S-1821,SUV,P03400,Hyundai i20,Grey,Inactive,C0244,nan
+V00716,GJ-71-Q-2960,Car,P03401,Kia Sonet,Blue,Active,C0244,nan
+V00717,WB-40-Y-9590,SUV,P03403,Honda City,Maroon,Active,C0244,nan
+V00718,TN-55-U-4362,SUV,P03410,Honda City,Black,Inactive,C0244,nan
+V00719,GJ-83-U-9828,Commercial Vehicle,P03417,Bajaj Pulsar,Red,Active,C0244,nan
+V00720,MH-54-C-7224,Truck,P03427,Mahindra XUV300,Green,Active,C0245,E02556
+V00721,KA-79-S-8099,Motorcycle,P03439,Kia Sonet,Black,Active,C0245,nan
+V00722,GJ-80-T-6277,Car,P03440,Bajaj Pulsar,White,Active,C0245,nan
+V00723,RJ-71-M-4725,SUV,P03441,Honda City,Grey,Active,C0245,E02557
+V00724,TS-11-Z-7278,Van,P03450,Hyundai i20,Black,Active,C0246,nan
+V00725,GJ-12-Z-3646,Van,P03451,Hyundai i20,Black,Inactive,C0247,E02568
+V00726,TS-15-O-5986,Van,P03453,Mahindra XUV300,Black,Active,C0247,E02569
+V00727,MH-17-D-4790,Commercial Vehicle,P03457,Hyundai i20,White,Active,C0248,nan
+V00728,MH-82-Z-2594,SUV,P03459,Hyundai i20,White,Inactive,C0249,nan
+V00729,MH-40-O-9520,Motorcycle,P03461,Maruti Swift,Silver,Active,C0249,nan
+V00730,MH-89-T-9047,Car,P03467,Toyota Glanza,Black,Active,C0249,nan
+V00731,UP-78-J-1525,Motorcycle,P03471,Maruti Swift,Green,Active,C0249,nan
+V00732,TN-39-G-5925,Truck,P03479,Bajaj Pulsar,Blue,Active,C0250,nan
+V00733,TN-33-U-7387,Motorcycle,P03480,Honda City,Black,Active,C0250,nan
+V00734,RJ-86-B-7600,Motorcycle,P03483,Kia Sonet,Silver,Active,C0250,nan
+V00735,WB-78-T-8868,Truck,P03486,Bajaj Pulsar,Maroon,Active,C0250,nan
+V00736,HR-66-S-2377,Commercial Vehicle,P03493,Hyundai i20,Silver,Active,C0250,nan
+V00737,GJ-32-W-7227,Motorcycle,P03496,Toyota Glanza,Red,Active,C0250,nan
+V00738,MP-36-E-2203,Motorcycle,P03501,Tata Nexon,Silver,Active,C0251,nan
+V00739,GJ-72-K-7219,Commercial Vehicle,P03503,Maruti Swift,Black,Active,C0251,nan
+V00740,TN-50-H-8274,Commercial Vehicle,P03512,Mahindra XUV300,Blue,Active,C0251,nan
+V00741,GJ-09-E-2572,Car,P03514,Maruti Swift,White,Active,C0251,nan
+V00742,MP-50-O-9237,Motorcycle,P03517,Bajaj Pulsar,Black,Active,C0252,nan
+V00743,MP-17-G-2376,Van,P03519,Toyota Glanza,Silver,Active,C0252,nan
+V00744,KA-98-D-7936,Commercial Vehicle,P03520,Toyota Glanza,Grey,Active,C0252,nan
+V00745,UP-49-M-2493,Motorcycle,P03521,Hyundai i20,Blue,Active,C0252,E02628
+V00746,TS-44-N-3885,Motorcycle,P03545,Maruti Swift,Green,Active,C0253,nan
+V00747,MH-24-Y-1872,SUV,P03549,Toyota Glanza,Red,Active,C0253,nan
+V00748,MH-14-U-7779,Truck,P03560,Mahindra XUV300,Maroon,Active,C0254,nan
+V00749,HR-37-J-4427,Van,P03564,Maruti Swift,Maroon,Active,C0254,nan
+V00750,KA-51-L-6188,Van,P03567,Hyundai i20,Red,Active,C0254,E02652
+V00751,HR-37-V-2130,SUV,P03575,Tata Nexon,Red,Active,C0254,E02653
+V00752,MP-91-K-5073,Commercial Vehicle,P03576,Toyota Glanza,Red,Active,C0254,E02654
+V00753,MH-29-O-2570,Car,P03579,Tata Nexon,Green,Active,C0255,E02677
+V00754,MH-40-W-7100,Motorcycle,P03582,Hyundai i20,Grey,Active,C0255,nan
+V00755,MH-83-Z-3758,Truck,P03584,Mahindra XUV300,Blue,Active,C0255,nan
+V00756,TS-94-F-8120,Truck,P03587,Kia Sonet,Blue,Active,C0255,nan
+V00757,KA-74-E-1142,SUV,P03588,Honda City,Maroon,Active,C0255,nan
+V00758,DL-27-K-8717,Van,P03589,Maruti Swift,Maroon,Active,C0255,nan
+V00759,UP-01-K-7698,Commercial Vehicle,P03590,Mahindra XUV300,Maroon,Active,C0255,nan
+V00760,MH-87-W-9913,Car,P03599,Kia Sonet,Maroon,Active,C0255,nan
+V00761,UP-92-Y-4821,Truck,P03600,Honda City,Maroon,Active,C0255,nan
+V00762,DL-86-A-4859,Car,P03605,Honda City,Red,Active,C0256,E02681
+V00763,TN-64-N-8776,SUV,P03607,Toyota Glanza,Black,Active,C0256,E02682
+V00764,RJ-10-C-3040,Commercial Vehicle,P03609,Toyota Glanza,Blue,Active,C0256,nan
+V00765,TN-26-Q-6533,Motorcycle,P02828,Kia Sonet,White,Active,C0257,nan
+V00766,MP-28-D-5120,SUV,P03612,Bajaj Pulsar,Red,Inactive,C0257,nan
+V00767,DL-34-C-1222,SUV,P03614,Mahindra XUV300,Blue,Active,C0257,E02688
+V00768,MH-45-S-4585,Car,P03624,Bajaj Pulsar,Blue,Active,C0257,nan
+V00769,TN-35-W-3315,Truck,P03625,Tata Nexon,Black,Active,C0257,nan
+V00770,KL-46-A-3765,Commercial Vehicle,P03626,Bajaj Pulsar,Silver,Active,C0258,nan
+V00771,MP-32-U-7736,SUV,P03630,Toyota Glanza,Green,Active,C0259,E02730
+V00772,TN-16-I-1498,Van,P03634,Kia Sonet,Grey,Active,C0259,E02731
+V00773,GJ-54-T-7102,Van,P03637,Hyundai i20,Silver,Inactive,C0259,nan
+V00774,KA-13-D-6319,SUV,P03644,Tata Nexon,Green,Active,C0259,nan
+V00775,DL-76-K-4506,Commercial Vehicle,P03652,Hyundai i20,Blue,Active,C0259,E02732
+V00776,UP-06-L-2225,SUV,P03661,Tata Nexon,Black,Active,C0259,E02733
+V00777,MP-22-J-7112,Motorcycle,P03673,Kia Sonet,Grey,Active,C0259,E02734
+V00778,RJ-81-S-6707,Commercial Vehicle,P03674,Mahindra XUV300,Black,Active,C0259,nan
+V00779,TS-91-A-7505,Commercial Vehicle,P03677,Bajaj Pulsar,Black,Active,C0259,E02735
+V00780,UP-05-Q-3865,SUV,P03684,Kia Sonet,Black,Active,C0259,E02736
+V00781,MH-13-H-5775,Truck,P03685,Maruti Swift,Grey,Active,C0259,E02737
+V00782,KA-74-Z-4563,Motorcycle,P00188,Toyota Glanza,Silver,Active,C0260,nan
+V00783,TN-73-U-7744,Van,P03686,Tata Nexon,Grey,Active,C0260,nan
+V00784,MH-79-S-9649,Truck,P03690,Maruti Swift,Green,Active,C0261,nan
+V00785,MH-20-A-7293,Car,P03694,Toyota Glanza,Grey,Active,C0261,E02745
+V00786,MP-59-P-2108,Commercial Vehicle,P03695,Maruti Swift,Blue,Active,C0261,nan
+V00787,RJ-22-L-3126,Van,P03702,Maruti Swift,White,Active,C0262,nan
+V00788,TN-53-M-9150,Car,P03704,Tata Nexon,White,Active,C0262,nan
+V00789,HR-84-T-1675,Commercial Vehicle,P03706,Tata Nexon,Grey,Active,C0262,nan
+V00790,MH-92-F-9653,Commercial Vehicle,P03709,Tata Nexon,Silver,Active,C0262,E02764
+V00791,MH-49-J-7030,Truck,P03710,Maruti Swift,Maroon,Inactive,C0262,E02765
+V00792,UP-66-Q-1827,Truck,P03712,Hyundai i20,Blue,Active,C0262,nan
+V00793,MP-54-A-4689,SUV,P03723,Toyota Glanza,Grey,Active,C0263,nan
+V00794,GJ-81-U-1127,Truck,P03729,Mahindra XUV300,Green,Inactive,C0263,nan
+V00795,KA-40-T-6201,Car,P03731,Kia Sonet,Maroon,Active,C0263,E02777
+V00796,MH-94-U-7440,Van,P03734,Bajaj Pulsar,Green,Active,C0263,nan
+V00797,DL-15-J-9306,Commercial Vehicle,P03739,Hyundai i20,Green,Active,C0264,nan
+V00798,MH-02-H-2734,Van,P03751,Honda City,White,Active,C0264,nan
+V00799,UP-96-T-6105,Truck,P03755,Mahindra XUV300,Blue,Active,C0264,nan
+V00800,TN-94-O-3682,Truck,P03761,Tata Nexon,Red,Active,C0264,nan
+V00801,MH-07-U-9030,Commercial Vehicle,P03765,Honda City,Maroon,Active,C0264,nan
+V00802,MH-73-A-1077,Commercial Vehicle,P03771,Kia Sonet,Blue,Active,C0264,E02797
+V00803,MH-60-Y-5638,Van,P03778,Hyundai i20,Black,Inactive,C0264,E02798
+V00804,GJ-44-G-8747,Van,P03779,Toyota Glanza,Green,Active,C0264,E02799
+V00805,WB-25-B-9969,Van,P03782,Mahindra XUV300,Silver,Active,C0264,nan
+V00806,KA-64-J-8520,Commercial Vehicle,P03783,Toyota Glanza,Green,Active,C0265,nan
+V00807,MP-37-P-5640,Car,P03791,Honda City,Maroon,Active,C0267,E02803
+V00808,MH-59-C-1845,Van,P03794,Hyundai i20,Silver,Active,C0268,nan
+V00809,DL-33-R-4515,SUV,P03796,Toyota Glanza,Green,Active,C0268,nan
+V00810,TS-43-E-3907,Van,P03798,Maruti Swift,Silver,Inactive,C0268,E02828
+V00811,TS-97-Q-2519,Car,P03799,Hyundai i20,Maroon,Active,C0268,E02829
+V00812,MH-51-Q-3554,SUV,P03800,Tata Nexon,Blue,Active,C0268,nan
+V00813,TN-20-U-3826,Motorcycle,P03804,Mahindra XUV300,Red,Inactive,C0268,nan
+V00814,RJ-19-Q-2679,Truck,P03813,Toyota Glanza,Silver,Active,C0268,E02830
+V00815,WB-33-X-4738,Commercial Vehicle,P03815,Honda City,Black,Active,C0268,nan
+V00816,RJ-07-M-8499,Van,P03819,Maruti Swift,Black,Active,C0268,E02831
+V00817,MH-16-Y-5375,Truck,P01436,Mahindra XUV300,White,Inactive,C0269,E02832
+V00818,RJ-62-W-8400,Commercial Vehicle,P03828,Mahindra XUV300,Red,Active,C0269,E02838
+V00819,MH-91-R-1963,Truck,P03833,Toyota Glanza,Green,Inactive,C0270,nan
+V00820,KL-55-M-8452,Motorcycle,P03834,Hyundai i20,Black,Active,C0270,nan
+V00821,UP-24-U-9767,Van,P03846,Tata Nexon,Grey,Active,C0272,E02858
+V00822,GJ-49-G-7585,Motorcycle,P03426,Toyota Glanza,Maroon,Active,C0273,nan
+V00823,MP-95-O-2685,Motorcycle,P01348,Honda City,Maroon,Inactive,C0273,E02859
+V00824,UP-99-S-8534,Commercial Vehicle,P03858,Hyundai i20,Maroon,Active,C0273,nan
+V00825,MH-06-D-7434,Truck,P03862,Hyundai i20,Silver,Active,C0273,E02866
+V00826,MP-54-N-4902,Truck,P03863,Maruti Swift,Maroon,Active,C0273,E02867
+V00827,TN-50-A-2924,Van,P03867,Honda City,Black,Active,C0273,E02868
+V00828,MH-68-E-9305,Van,P03891,Honda City,Silver,Active,C0274,nan
+V00829,MH-29-T-4361,Motorcycle,P03894,Toyota Glanza,Silver,Inactive,C0274,E02910
+V00830,KL-34-U-9544,SUV,P03897,Honda City,Grey,Active,C0274,nan
+V00831,KL-75-Q-4884,SUV,P03899,Honda City,Green,Active,C0274,nan
+V00832,UP-51-C-7509,SUV,P03900,Maruti Swift,Black,Inactive,C0274,nan
+V00833,TS-62-K-1727,Van,P03903,Honda City,Red,Active,C0274,E02911
+V00834,TN-58-N-2154,Commercial Vehicle,P03907,Hyundai i20,Silver,Active,C0274,nan
+V00835,TN-39-U-2148,Truck,P03910,Honda City,Red,Active,C0274,nan
+V00836,WB-61-V-4839,Commercial Vehicle,P03915,Maruti Swift,Blue,Active,C0274,E02912
+V00837,GJ-29-D-2924,Commercial Vehicle,P03923,Mahindra XUV300,Blue,Active,C0275,nan
+V00838,GJ-03-D-8540,Truck,P03927,Bajaj Pulsar,Silver,Active,C0275,nan
+V00839,MH-02-H-5309,Truck,P03930,Hyundai i20,Red,Active,C0275,E02921
+V00840,UP-11-E-7559,Motorcycle,P03931,Kia Sonet,Grey,Active,C0275,E02922
+V00841,TS-40-B-1230,Commercial Vehicle,P00678,Maruti Swift,White,Active,C0276,nan
+V00842,HR-97-G-8290,Commercial Vehicle,P03934,Toyota Glanza,Maroon,Active,C0276,E02931
+V00843,KA-06-P-3455,SUV,P03936,Kia Sonet,White,Active,C0276,E02932
+V00844,MH-01-V-6821,Car,P03941,Mahindra XUV300,White,Active,C0276,nan
+V00845,MH-81-V-1098,Car,P03943,Toyota Glanza,Silver,Active,C0276,E02933
+V00846,TN-94-G-2666,SUV,P03944,Hyundai i20,Grey,Active,C0276,nan
+V00847,MH-84-H-2127,Commercial Vehicle,P03945,Mahindra XUV300,Silver,Active,C0276,nan
+V00848,GJ-59-X-1151,Truck,P03440,Maruti Swift,Grey,Active,C0277,E02934
+V00849,DL-88-E-3759,Commercial Vehicle,P03951,Honda City,White,Active,C0278,E02952
+V00850,MH-64-A-9730,Van,P03957,Maruti Swift,Blue,Active,C0278,nan
+V00851,GJ-86-F-7722,SUV,P03961,Hyundai i20,Black,Active,C0278,nan
+V00852,GJ-62-G-6681,Commercial Vehicle,P03968,Kia Sonet,Grey,Active,C0278,E02953
+V00853,GJ-26-Z-5247,SUV,P03973,Hyundai i20,White,Active,C0279,nan
+V00854,TN-60-W-8769,Commercial Vehicle,P03978,Honda City,Maroon,Active,C0279,nan
+V00855,UP-59-W-1126,Truck,P03979,Maruti Swift,Grey,Inactive,C0279,E02967
+V00856,GJ-58-H-8114,Truck,P03987,Tata Nexon,Green,Active,C0279,E02968
+V00857,MH-85-N-8114,Motorcycle,P03989,Bajaj Pulsar,Maroon,Active,C0279,nan
+V00858,GJ-47-E-9372,Car,P03993,Toyota Glanza,White,Active,C0279,nan
+V00859,TS-92-Z-4145,Truck,P03994,Bajaj Pulsar,Red,Active,C0279,nan
+V00860,MH-93-W-7254,Car,P04003,Kia Sonet,Red,Active,C0280,nan
+V00861,UP-41-O-2276,Commercial Vehicle,P04009,Bajaj Pulsar,Silver,Active,C0282,nan
+V00862,GJ-80-I-3351,Van,P04020,Maruti Swift,White,Active,C0285,nan
+V00863,DL-51-C-9684,Motorcycle,P04021,Tata Nexon,Black,Active,C0285,nan
+V00864,MP-77-Y-5572,Truck,P04025,Bajaj Pulsar,Silver,Active,C0285,nan
+V00865,GJ-12-P-1292,Car,P04029,Mahindra XUV300,Silver,Active,C0285,nan
+V00866,TN-11-R-9649,Car,P04034,Kia Sonet,Red,Active,C0285,nan
+V00867,TN-25-T-9902,Car,P04040,Bajaj Pulsar,Silver,Active,C0285,nan
+V00868,MH-73-Q-2308,Van,P02913,Hyundai i20,Maroon,Active,C0286,E03012
+V00869,GJ-68-Q-5917,Commercial Vehicle,P04052,Tata Nexon,Black,Active,C0286,nan
+V00870,MH-42-C-6542,SUV,P04059,Mahindra XUV300,Green,Active,C0286,nan
+V00871,MP-79-T-3974,Truck,P04060,Mahindra XUV300,Maroon,Active,C0286,E03025
+V00872,UP-98-E-2493,Truck,P04062,Kia Sonet,Silver,Active,C0286,E03026
+V00873,UP-86-Z-6840,Commercial Vehicle,P04067,Maruti Swift,Maroon,Active,C0287,nan
+V00874,MH-20-F-2703,Motorcycle,P04068,Kia Sonet,White,Active,C0287,E03058
+V00875,WB-52-K-7228,Truck,P04073,Maruti Swift,Grey,Active,C0287,E03059
+V00876,DL-38-F-3734,Commercial Vehicle,P04076,Bajaj Pulsar,Silver,Active,C0287,nan
+V00877,MH-25-P-5134,Motorcycle,P04079,Toyota Glanza,Green,Active,C0287,nan
+V00878,MH-54-K-2600,Van,P04084,Maruti Swift,Black,Active,C0287,nan
+V00879,UP-94-B-9213,Car,P04085,Hyundai i20,Blue,Active,C0287,nan
+V00880,DL-52-G-4873,Motorcycle,P04087,Tata Nexon,White,Inactive,C0287,E03060
+V00881,MH-15-K-7229,Truck,P04094,Toyota Glanza,Silver,Active,C0287,E03061
+V00882,MH-40-X-6431,SUV,P04100,Mahindra XUV300,Grey,Active,C0287,E03062
+V00883,WB-79-B-7628,SUV,P04103,Mahindra XUV300,Blue,Active,C0287,E03063
+V00884,MH-64-V-7070,Commercial Vehicle,P04113,Hyundai i20,Blue,Active,C0289,E03085
+V00885,TN-33-G-4218,Car,P04116,Kia Sonet,Grey,Active,C0289,E03086
+V00886,MP-74-G-9569,SUV,P04127,Mahindra XUV300,Green,Active,C0289,nan
+V00887,WB-61-W-9144,SUV,P04128,Toyota Glanza,Grey,Active,C0289,nan
+V00888,UP-94-Q-1620,SUV,P04135,Maruti Swift,Black,Active,C0290,E03096
+V00889,KL-66-V-5609,Motorcycle,P04137,Bajaj Pulsar,White,Active,C0290,E03097
+V00890,MH-67-A-3764,Car,P04139,Kia Sonet,White,Active,C0291,E03109
+V00891,MP-61-Q-4773,Truck,P04140,Toyota Glanza,Silver,Active,C0291,E03110
+V00892,MH-34-H-1922,Truck,P04155,Toyota Glanza,Silver,Active,C0291,nan
+V00893,MP-67-X-7790,Truck,P00325,Hyundai i20,Maroon,Active,C0292,E03111
+V00894,KA-79-Y-6423,Truck,P04161,Mahindra XUV300,Black,Active,C0293,E03116
+V00895,MP-38-K-8263,Commercial Vehicle,P04162,Tata Nexon,Grey,Active,C0293,E03117
+V00896,MP-65-R-5327,Car,P04166,Kia Sonet,Silver,Active,C0294,nan
+V00897,MH-92-L-1570,Car,P04171,Bajaj Pulsar,Silver,Active,C0294,nan
+V00898,MH-20-E-2773,Truck,P04178,Toyota Glanza,Blue,Active,C0294,nan
+V00899,TS-65-W-3377,SUV,P04180,Hyundai i20,White,Active,C0295,E03150
+V00900,WB-22-Z-5297,Van,P04184,Tata Nexon,Black,Active,C0295,E03151
+V00901,KA-96-M-6279,SUV,P04190,Honda City,Blue,Active,C0295,nan
+V00902,DL-23-Z-1316,Truck,P04196,Bajaj Pulsar,Blue,Active,C0295,nan
+V00903,MH-05-Z-7906,Commercial Vehicle,P04197,Toyota Glanza,Maroon,Active,C0295,E03152
+V00904,TS-77-Z-5281,Truck,P04198,Toyota Glanza,Black,Active,C0295,E03153
+V00905,MH-07-O-9467,Van,P04201,Honda City,Silver,Active,C0295,nan
+V00906,DL-42-N-2986,Motorcycle,P00823,Hyundai i20,Green,Active,C0296,E03154
+V00907,RJ-28-R-4017,Car,P04212,Toyota Glanza,Grey,Active,C0296,nan
+V00908,MH-81-Z-5708,SUV,P04215,Maruti Swift,Silver,Active,C0297,E03165
+V00909,KL-36-A-8954,Car,P04220,Toyota Glanza,Grey,Active,C0298,E03167
+V00910,MP-58-X-7221,Truck,P04221,Bajaj Pulsar,Silver,Active,C0298,E03168
+V00911,WB-72-B-4735,Commercial Vehicle,P04224,Honda City,Black,Active,C0299,nan
+V00912,DL-85-Y-7122,Van,P04229,Bajaj Pulsar,Maroon,Active,C0300,E03176
+V00913,TN-23-C-8817,Commercial Vehicle,P04233,Bajaj Pulsar,Black,Inactive,C0301,E03179
+V00914,WB-35-G-5465,SUV,P04238,Mahindra XUV300,Silver,Inactive,C0302,E03182
+V00915,MP-65-O-1665,SUV,P04239,Hyundai i20,Grey,Active,C0302,nan
+V00916,TN-74-Q-4874,SUV,P04244,Mahindra XUV300,Blue,Inactive,C0302,nan
+V00917,MH-18-D-2230,SUV,P04245,Mahindra XUV300,Silver,Active,C0303,nan
+V00918,MH-89-Q-4263,Car,P04246,Mahindra XUV300,Black,Active,C0303,nan
+V00919,DL-10-V-8420,Truck,P04252,Bajaj Pulsar,Maroon,Active,C0304,E03197
+V00920,MH-43-F-5519,Van,P04255,Tata Nexon,White,Active,C0304,nan
+V00921,UP-81-S-4553,Car,P04268,Toyota Glanza,Green,Active,C0305,nan
+V00922,TS-88-J-5974,Van,P04273,Kia Sonet,Blue,Inactive,C0306,nan
+V00923,WB-41-X-8492,Car,P04276,Hyundai i20,Green,Active,C0307,E03216
+V00924,MH-76-U-9010,Truck,P04277,Kia Sonet,Red,Active,C0307,E03217
+V00925,RJ-27-C-9681,SUV,P04283,Hyundai i20,Maroon,Active,C0307,nan
+V00926,KA-75-P-5064,Truck,P04288,Toyota Glanza,Grey,Active,C0308,E03224
+V00927,RJ-85-P-7502,Commercial Vehicle,P04289,Toyota Glanza,Black,Active,C0308,E03225
+V00928,KA-60-D-2691,Motorcycle,P04295,Mahindra XUV300,Green,Active,C0309,nan
+V00929,GJ-19-P-8440,Car,P04296,Hyundai i20,Silver,Inactive,C0309,nan
+V00930,MH-78-J-4713,Car,P04300,Toyota Glanza,Red,Active,C0310,E03230
+V00931,MP-02-T-2408,Car,P04303,Mahindra XUV300,Red,Active,C0310,E03231
+V00932,MP-75-V-2105,Van,P04304,Bajaj Pulsar,Green,Active,C0310,nan
+V00933,RJ-54-O-4835,SUV,P04315,Mahindra XUV300,Maroon,Active,C0312,E03243
+V00934,UP-72-C-3639,Car,P04321,Mahindra XUV300,Blue,Active,C0312,nan
+V00935,TN-79-P-3352,Commercial Vehicle,P04328,Maruti Swift,Silver,Active,C0313,E03259
+V00936,TN-38-I-4234,Truck,P04333,Mahindra XUV300,White,Active,C0313,E03260
+V00937,MH-79-Q-6299,Commercial Vehicle,P04339,Tata Nexon,Maroon,Active,C0313,E03261
+V00938,UP-23-N-3626,Motorcycle,P00803,Hyundai i20,Blue,Active,C0314,nan
+V00939,WB-28-W-8349,Car,P04055,Toyota Glanza,Grey,Active,C0315,E03263
+V00940,GJ-02-M-7094,Motorcycle,P04353,Mahindra XUV300,Grey,Active,C0316,nan
+V00941,TN-65-F-1153,Car,P04380,Kia Sonet,Green,Active,C0317,E03334
+V00942,MH-57-U-5256,Motorcycle,P04384,Bajaj Pulsar,White,Active,C0317,E03335
+V00943,MH-71-C-4413,Commercial Vehicle,P04398,Tata Nexon,Black,Active,C0317,nan
+V00944,UP-53-O-3148,Motorcycle,P04399,Hyundai i20,Grey,Active,C0317,E03336
+V00945,HR-24-R-9912,Car,P04407,Maruti Swift,Red,Active,C0317,nan
+V00946,DL-49-F-9695,Truck,P04417,Maruti Swift,White,Active,C0317,nan
+V00947,MP-62-C-2429,Van,P04418,Tata Nexon,Black,Active,C0317,nan
+V00948,TN-80-L-6496,Truck,P04427,Mahindra XUV300,Silver,Active,C0317,nan
+V00949,MP-39-T-8724,SUV,P04436,Mahindra XUV300,Red,Inactive,C0318,E03341
+V00950,MH-30-L-5438,Truck,P00888,Toyota Glanza,Maroon,Active,C0319,nan
+V00951,MH-71-W-2908,Motorcycle,P04441,Hyundai i20,Red,Active,C0319,nan
+V00952,HR-18-N-3051,Van,P04448,Toyota Glanza,Grey,Active,C0319,nan
+V00953,MH-48-H-6617,Van,P04451,Kia Sonet,Green,Active,C0319,nan
+V00954,MH-36-F-7849,Commercial Vehicle,P04452,Toyota Glanza,Grey,Active,C0319,nan
+V00955,TN-32-W-6579,Commercial Vehicle,P04465,Maruti Swift,Grey,Active,C0319,E03364
+V00956,WB-99-S-3962,Motorcycle,P04467,Hyundai i20,Maroon,Active,C0319,E03365
+V00957,MH-55-L-2447,SUV,P04469,Kia Sonet,Blue,Active,C0319,nan
+V00958,GJ-31-M-2098,Van,P04486,Kia Sonet,Green,Active,C0320,nan
+V00959,HR-83-Z-7317,Motorcycle,P04487,Toyota Glanza,Green,Active,C0320,E03412
+V00960,KA-99-S-2851,Car,P04498,Tata Nexon,Green,Active,C0320,nan
+V00961,KL-90-X-3566,Van,P04502,Honda City,Blue,Active,C0320,E03413
+V00962,UP-07-A-3846,Commercial Vehicle,P04510,Honda City,Green,Active,C0320,E03414
+V00963,MH-43-M-9874,Van,P04517,Hyundai i20,Black,Active,C0320,E03415
+V00964,TS-69-V-5391,Car,P04526,Tata Nexon,Silver,Active,C0321,E03426
+V00965,MP-02-F-7834,Commercial Vehicle,P04527,Kia Sonet,Grey,Active,C0321,nan
+V00966,TS-44-F-1051,Van,P04532,Maruti Swift,Grey,Active,C0321,nan
+V00967,KL-88-N-5734,Van,P04537,Honda City,Maroon,Active,C0322,nan
+V00968,DL-26-B-7720,Motorcycle,P04542,Kia Sonet,Red,Active,C0323,nan
+V00969,WB-76-V-9378,Commercial Vehicle,P04544,Bajaj Pulsar,Grey,Active,C0323,nan
+V00970,MH-89-G-7696,Motorcycle,P04547,Tata Nexon,Black,Active,C0324,nan
+V00971,MP-43-N-6555,Truck,P04548,Maruti Swift,Black,Active,C0324,nan
+V00972,WB-55-S-4071,Van,P04550,Tata Nexon,Silver,Active,C0324,E03445
+V00973,HR-19-C-3716,Motorcycle,P04551,Bajaj Pulsar,Black,Active,C0324,nan
+V00974,MP-90-W-3390,Motorcycle,P04552,Tata Nexon,Blue,Active,C0324,nan
+V00975,UP-98-U-3190,Motorcycle,P04554,Hyundai i20,Black,Active,C0324,nan
+V00976,TS-38-F-7888,Commercial Vehicle,P04558,Honda City,Silver,Active,C0324,nan
+V00977,MH-57-K-6709,Motorcycle,P04566,Maruti Swift,Grey,Active,C0325,nan
+V00978,MH-53-G-1312,Truck,P04567,Kia Sonet,Maroon,Active,C0325,nan
+V00979,MH-96-C-3051,Van,P04582,Bajaj Pulsar,Black,Active,C0325,nan
+V00980,MH-24-K-2401,Truck,P04583,Honda City,Red,Inactive,C0325,nan
+V00981,MP-23-D-8336,Van,P04584,Tata Nexon,Silver,Active,C0326,nan
+V00982,UP-19-E-5210,Van,P04591,Maruti Swift,Red,Active,C0327,nan
+V00983,MH-27-K-7962,Motorcycle,P04597,Toyota Glanza,Black,Active,C0328,E03504
+V00984,KA-92-I-3787,Commercial Vehicle,P04602,Maruti Swift,White,Active,C0328,nan
+V00985,WB-31-O-7414,Van,P04605,Kia Sonet,White,Active,C0328,E03505
+V00986,MP-28-B-6661,Van,P04607,Toyota Glanza,Blue,Active,C0328,nan
+V00987,GJ-43-O-9081,Commercial Vehicle,P04611,Tata Nexon,Green,Active,C0328,nan
+V00988,MH-19-Q-5312,Commercial Vehicle,P04612,Mahindra XUV300,Maroon,Active,C0328,E03506
+V00989,TS-18-F-4490,Van,P04619,Mahindra XUV300,Silver,Active,C0328,E03507
+V00990,MH-37-K-7958,Commercial Vehicle,P04626,Hyundai i20,Black,Active,C0328,E03508
+V00991,MP-87-F-5615,Van,P04631,Maruti Swift,Silver,Inactive,C0328,nan
+V00992,DL-27-Y-3619,Car,P04633,Mahindra XUV300,Grey,Inactive,C0328,nan
+V00993,GJ-81-J-8840,Commercial Vehicle,P04635,Mahindra XUV300,Red,Active,C0328,E03509
+V00994,MP-11-I-2881,Motorcycle,P04648,Mahindra XUV300,Red,Active,C0332,E03529
+V00995,MP-73-R-3250,SUV,P04655,Bajaj Pulsar,Red,Active,C0332,nan
+V00996,DL-12-K-5570,Van,P04656,Hyundai i20,Black,Active,C0332,nan
+V00997,MH-74-O-9139,Commercial Vehicle,P04668,Bajaj Pulsar,Maroon,Active,C0332,nan
+V00998,KA-56-T-4816,Van,P04669,Kia Sonet,Silver,Active,C0332,nan
+V00999,GJ-50-N-2490,Van,P04676,Hyundai i20,Black,Active,C0333,E03534
+V01000,UP-58-I-9563,SUV,P04677,Hyundai i20,Green,Active,C0333,nan
+V01001,UP-77-Q-3903,Truck,P04678,Bajaj Pulsar,Maroon,Active,C0333,E03535
+V01002,GJ-16-Y-4414,Car,P04679,Mahindra XUV300,Black,Active,C0333,nan
+V01003,UP-68-S-7754,Truck,P03008,Tata Nexon,Maroon,Active,C0334,nan
+V01004,UP-19-J-4383,Truck,P03329,Kia Sonet,Green,Active,C0336,E03541
+V01005,GJ-47-M-1595,Motorcycle,P04702,Honda City,White,Active,C0337,nan
+V01006,MH-23-Z-7840,Motorcycle,P04703,Honda City,White,Active,C0337,nan
+V01007,RJ-84-A-8120,Van,P04704,Maruti Swift,White,Active,C0337,nan
+V01008,GJ-12-H-6452,Car,P04717,Maruti Swift,Black,Active,C0337,nan
+V01009,MP-63-I-6275,SUV,P04720,Honda City,Red,Inactive,C0338,E03573
+V01010,HR-85-U-1510,Motorcycle,P04724,Tata Nexon,White,Active,C0338,E03574
+V01011,MH-74-T-4278,Commercial Vehicle,P04727,Toyota Glanza,Grey,Active,C0338,nan
+V01012,MP-04-W-8027,SUV,P04746,Honda City,Blue,Active,C0341,nan
+V01013,TN-39-Z-3643,SUV,P04748,Mahindra XUV300,Silver,Inactive,C0341,E03587
+V01014,WB-48-D-8521,Truck,P04764,Hyundai i20,Black,Active,C0342,E03604
+V01015,KL-68-M-4813,Motorcycle,P04771,Bajaj Pulsar,Silver,Active,C0342,nan
+V01016,MP-66-M-4559,SUV,P04773,Bajaj Pulsar,White,Active,C0342,nan
+V01017,UP-14-Q-3839,SUV,P02333,Hyundai i20,Red,Active,C0343,nan
+V01018,MH-64-N-8362,Car,P04774,Maruti Swift,Silver,Active,C0343,nan
+V01019,TN-83-E-7611,SUV,P04787,Mahindra XUV300,Blue,Inactive,C0343,nan
+V01020,HR-53-V-8771,Commercial Vehicle,P04792,Honda City,Silver,Inactive,C0343,nan
+V01021,MP-71-O-7777,Commercial Vehicle,P04803,Tata Nexon,Grey,Active,C0344,nan
+V01022,MP-69-H-9727,SUV,P04818,Mahindra XUV300,Green,Active,C0345,nan
+V01023,KL-98-Y-6691,Motorcycle,P04819,Mahindra XUV300,Green,Active,C0345,nan
+V01024,GJ-96-R-6675,Commercial Vehicle,P04820,Mahindra XUV300,Green,Active,C0345,nan
+V01025,TN-28-G-8417,SUV,P04828,Honda City,Silver,Active,C0345,nan
+V01026,MP-76-G-1188,Truck,P04829,Mahindra XUV300,Grey,Active,C0345,nan
+V01027,MP-03-I-7037,Truck,P04834,Mahindra XUV300,Maroon,Active,C0345,nan
+V01028,UP-28-U-8670,Car,P04838,Kia Sonet,Maroon,Active,C0345,nan
+V01029,WB-34-I-5350,Car,P04839,Mahindra XUV300,Green,Active,C0346,E03667
+V01030,UP-41-O-3580,Truck,P04840,Mahindra XUV300,Red,Active,C0346,E03668
+V01031,DL-59-D-5080,Van,P04849,Maruti Swift,Green,Active,C0346,E03669
+V01032,UP-40-X-3602,Van,P04851,Tata Nexon,Maroon,Active,C0346,nan
+V01033,MP-79-D-6831,Car,P04854,Honda City,Grey,Active,C0347,nan
+V01034,TN-52-F-8185,Commercial Vehicle,P04859,Mahindra XUV300,Blue,Active,C0347,nan
+V01035,GJ-64-M-2390,Van,P01056,Mahindra XUV300,Silver,Active,C0349,nan
+V01036,MP-53-A-8555,Motorcycle,P01354,Hyundai i20,Black,Active,C0349,E03678
+V01037,KL-24-H-5409,SUV,P04874,Kia Sonet,Grey,Active,C0349,E03689
+V01038,MH-13-P-3157,Van,P04885,Toyota Glanza,Red,Active,C0351,nan
+V01039,KA-66-L-6974,SUV,P04890,Honda City,Grey,Active,C0351,nan
+V01040,GJ-46-Z-7259,Motorcycle,P04893,Toyota Glanza,Green,Active,C0351,E03700
+V01041,UP-28-Z-7581,Truck,P04896,Maruti Swift,Green,Active,C0351,nan
+V01042,GJ-94-T-7785,Van,P04897,Bajaj Pulsar,White,Active,C0351,nan
+V01043,MH-90-R-8056,Commercial Vehicle,P04905,Kia Sonet,White,Active,C0352,nan
+V01044,RJ-95-Q-4701,Van,P04907,Hyundai i20,Black,Active,C0352,nan
+V01045,GJ-35-Y-4943,Truck,P04908,Mahindra XUV300,Maroon,Active,C0352,nan
+V01046,WB-11-K-3957,Van,P04913,Kia Sonet,Black,Active,C0352,nan
+V01047,UP-01-F-3594,Motorcycle,P04914,Honda City,Blue,Active,C0352,nan
+V01048,UP-64-K-5620,Car,P04920,Hyundai i20,Green,Active,C0353,E03724
+V01049,UP-82-X-8555,SUV,P04923,Honda City,Silver,Active,C0353,E03725
+V01050,KL-63-M-1431,Car,P04930,Honda City,Red,Active,C0353,nan
+V01051,RJ-18-O-5527,Commercial Vehicle,P04936,Toyota Glanza,Black,Inactive,C0353,nan
+V01052,MP-77-B-1537,Van,P04944,Honda City,Red,Active,C0355,nan
+V01053,GJ-90-F-2180,Commercial Vehicle,P04945,Hyundai i20,Red,Active,C0355,nan
+V01054,UP-23-X-3841,Van,P04947,Bajaj Pulsar,Silver,Active,C0355,nan
+V01055,MH-28-C-1067,Truck,P04963,Bajaj Pulsar,Maroon,Active,C0356,nan
+V01056,DL-68-Y-6923,SUV,P04966,Bajaj Pulsar,Red,Active,C0356,nan
+V01057,GJ-98-M-5401,Truck,P04971,Maruti Swift,Grey,Inactive,C0356,E03748
+V01058,MP-27-L-2703,Truck,P04973,Toyota Glanza,Blue,Active,C0357,nan
+V01059,MH-64-F-5321,Car,P04974,Honda City,Blue,Active,C0357,nan
+V01060,UP-12-D-8174,Motorcycle,P04981,Maruti Swift,Black,Inactive,C0357,E03784
+V01061,MH-75-Z-6928,Truck,P04989,Maruti Swift,Silver,Active,C0357,E03785
+V01062,TS-12-O-1222,Commercial Vehicle,P04990,Kia Sonet,Blue,Active,C0357,nan
+V01063,UP-33-X-2329,Van,P04993,Maruti Swift,Maroon,Inactive,C0357,nan
+V01064,UP-23-R-2298,Motorcycle,P04997,Toyota Glanza,Red,Active,C0357,E03786
+V01065,GJ-12-P-3522,Truck,P05000,Hyundai i20,Black,Active,C0357,E03787
+V01066,KL-58-P-2624,Van,P05004,Bajaj Pulsar,Grey,Inactive,C0357,nan
+V01067,TS-01-R-4378,Commercial Vehicle,P05011,Maruti Swift,Grey,Active,C0357,E03788
+V01068,UP-57-R-8683,Car,P05019,Kia Sonet,Maroon,Active,C0357,nan
+V01069,DL-36-Y-1307,Motorcycle,P02317,Tata Nexon,Red,Active,C0358,E03789
+V01070,WB-21-L-2026,Car,P02671,Mahindra XUV300,White,Active,C0358,nan
+V01071,MP-49-M-9312,Car,P05022,Maruti Swift,Black,Active,C0359,nan
+V01072,TN-24-A-7580,Commercial Vehicle,P05023,Mahindra XUV300,Black,Active,C0359,nan
+V01073,TN-27-N-7146,Commercial Vehicle,P05030,Honda City,Blue,Active,C0359,nan
+V01074,MH-58-D-5273,Van,P05033,Kia Sonet,White,Active,C0359,nan
+V01075,GJ-66-D-5997,Truck,P05034,Toyota Glanza,White,Inactive,C0359,E03801
+V01076,DL-82-F-6002,Van,P05035,Toyota Glanza,Black,Inactive,C0359,E03802
+V01077,GJ-26-M-1610,SUV,P05040,Honda City,Grey,Active,C0359,E03803
+V01078,KA-39-Z-8007,Car,P05048,Hyundai i20,White,Active,C0360,E03808
+V01079,GJ-45-L-1680,Motorcycle,P01280,Toyota Glanza,Black,Active,C0361,nan
+V01080,HR-36-I-4286,SUV,P05055,Bajaj Pulsar,Blue,Active,C0361,nan
+V01081,GJ-24-V-1882,Van,P05066,Kia Sonet,Black,Inactive,C0363,E03842
+V01082,TS-36-Y-6424,Commercial Vehicle,P05071,Honda City,Maroon,Inactive,C0363,E03843
+V01083,TS-34-U-1416,SUV,P05082,Hyundai i20,Silver,Active,C0363,E03844
+V01084,MP-03-P-4186,Van,P05083,Kia Sonet,Maroon,Active,C0363,nan
+V01085,MH-93-L-3079,Van,P05087,Hyundai i20,Blue,Active,C0363,E03845
+V01086,KA-75-D-5304,Motorcycle,P05088,Kia Sonet,Red,Active,C0363,nan
+V01087,MH-99-H-3256,Van,P05097,Honda City,Grey,Active,C0364,E03868
+V01088,GJ-27-I-5126,Motorcycle,P05098,Tata Nexon,Blue,Active,C0364,nan
+V01089,UP-28-T-9130,SUV,P05103,Hyundai i20,Grey,Inactive,C0364,E03869
+V01090,RJ-36-U-9023,Motorcycle,P05119,Honda City,Grey,Active,C0364,nan
+V01091,RJ-87-M-8613,SUV,P05122,Bajaj Pulsar,Maroon,Active,C0364,E03870
+V01092,MP-93-Y-6987,Car,P05127,Bajaj Pulsar,Silver,Inactive,C0365,E03879
+V01093,GJ-90-L-6910,Car,P05134,Maruti Swift,Silver,Active,C0365,nan
+V01094,MH-50-K-3002,Van,P05137,Toyota Glanza,Grey,Active,C0366,E03892
+V01095,GJ-39-F-7801,Truck,P05146,Hyundai i20,Green,Active,C0366,nan
+V01096,MH-94-C-8582,Truck,P05156,Tata Nexon,Green,Active,C0366,E03893
+V01097,TN-87-Q-7854,Truck,P00133,Toyota Glanza,Silver,Active,C0369,nan
+V01098,TN-69-F-4209,Car,P02147,Honda City,Silver,Active,C0369,nan
+V01099,UP-70-W-7413,Motorcycle,P05165,Tata Nexon,Black,Active,C0369,nan
+V01100,MH-21-H-3392,Motorcycle,P05167,Hyundai i20,Green,Active,C0370,nan
+V01101,TN-86-H-2707,Motorcycle,P05172,Kia Sonet,Grey,Active,C0370,E03915
+V01102,TS-37-Y-7360,Van,P05173,Maruti Swift,Black,Active,C0370,nan
+V01103,UP-56-E-6591,Motorcycle,P05174,Maruti Swift,Green,Active,C0370,nan
+V01104,MP-55-T-5585,Van,P05175,Bajaj Pulsar,Red,Active,C0370,E03916
+V01105,RJ-91-E-4679,SUV,P05177,Kia Sonet,Silver,Active,C0370,nan
+V01106,MP-71-E-1957,Truck,P05181,Toyota Glanza,Blue,Active,C0370,nan
+V01107,GJ-02-Q-5434,Motorcycle,P05182,Tata Nexon,Maroon,Active,C0370,nan
+V01108,GJ-19-X-6049,Commercial Vehicle,P05190,Tata Nexon,White,Active,C0370,nan
+V01109,MH-93-H-9031,Truck,P03328,Mahindra XUV300,Blue,Active,C0371,E03917
+V01110,MH-73-B-1534,Van,P05201,Hyundai i20,Green,Active,C0372,nan
+V01111,MP-66-M-6653,Motorcycle,P05202,Toyota Glanza,Silver,Inactive,C0372,nan
+V01112,HR-25-N-8275,Van,P05203,Bajaj Pulsar,White,Active,C0372,E03938
+V01113,MH-47-C-9979,Van,P05204,Mahindra XUV300,Silver,Active,C0372,E03939
+V01114,KA-51-T-2628,Commercial Vehicle,P05212,Maruti Swift,White,Active,C0372,nan
+V01115,MH-12-Q-7493,Truck,P05223,Hyundai i20,Black,Inactive,C0373,nan
+V01116,MP-63-S-3179,Truck,P05227,Honda City,Grey,Active,C0373,E03947
+V01117,WB-81-R-7240,Truck,P05234,Tata Nexon,Grey,Inactive,C0375,E03959
+V01118,MH-43-G-5075,Commercial Vehicle,P05237,Tata Nexon,Green,Active,C0375,E03960
+V01119,HR-37-I-5257,Truck,P05239,Mahindra XUV300,Silver,Active,C0375,E03961
+V01120,MH-62-B-9003,Car,P05245,Mahindra XUV300,Black,Active,C0375,nan
+V01121,MH-45-Y-8749,Truck,P05247,Kia Sonet,Red,Active,C0375,E03962
+V01122,TS-80-Q-5235,Car,P01488,Kia Sonet,Maroon,Active,C0376,nan
+V01123,DL-76-Z-6843,Van,P05253,Mahindra XUV300,Maroon,Active,C0376,nan
+V01124,HR-53-D-1706,Truck,P05254,Hyundai i20,White,Inactive,C0376,nan
+V01125,MH-04-R-7305,Car,P05255,Toyota Glanza,Maroon,Active,C0376,nan
+V01126,MP-27-U-2132,Commercial Vehicle,P05262,Kia Sonet,White,Active,C0376,E03973
+V01127,MP-62-P-8071,Truck,P05267,Honda City,Green,Active,C0377,nan
+V01128,HR-85-C-5002,SUV,P05269,Toyota Glanza,Green,Active,C0377,E03980
+V01129,KA-79-F-6448,Van,P05275,Honda City,Blue,Active,C0378,E03987
+V01130,TN-59-P-9891,Commercial Vehicle,P04540,Honda City,Red,Inactive,C0379,nan
+V01131,KL-11-I-2665,Car,P05301,Hyundai i20,Silver,Active,C0380,nan
+V01132,KL-53-P-7602,Motorcycle,P00015,Bajaj Pulsar,Black,Active,C0382,nan
+V01133,KL-59-R-4772,Van,P05312,Hyundai i20,Maroon,Active,C0382,E04015
+V01134,TN-39-A-7491,Van,P05315,Bajaj Pulsar,Black,Active,C0382,E04016
+V01135,KA-23-J-7366,Van,P05317,Hyundai i20,Maroon,Active,C0382,nan
+V01136,UP-19-L-6581,SUV,P05320,Honda City,Blue,Active,C0383,E04033
+V01137,KL-13-B-9437,Van,P05328,Tata Nexon,Grey,Active,C0383,E04034
+V01138,MH-46-G-8508,Motorcycle,P05329,Tata Nexon,Silver,Active,C0383,E04035
+V01139,HR-36-Q-2979,SUV,P05335,Hyundai i20,Red,Active,C0383,E04036
+V01140,KL-32-U-2292,Van,P05344,Bajaj Pulsar,Blue,Inactive,C0383,nan
+V01141,MH-82-F-7174,Commercial Vehicle,P05351,Hyundai i20,Silver,Active,C0384,nan
+V01142,TN-65-I-3970,Car,P05358,Hyundai i20,Black,Active,C0384,E04054
+V01143,MH-93-T-5743,Truck,P05375,Hyundai i20,White,Active,C0385,E04064
+V01144,GJ-81-U-5061,Motorcycle,P05378,Tata Nexon,Green,Active,C0385,E04065
+V01145,UP-97-F-4190,Van,P05380,Honda City,Black,Active,C0385,E04066
+V01146,RJ-65-E-1866,Motorcycle,P05383,Honda City,Maroon,Active,C0385,nan
+V01147,MH-28-Q-7539,Motorcycle,P05387,Kia Sonet,Blue,Inactive,C0385,nan
+V01148,RJ-93-Y-4637,SUV,P05389,Honda City,Grey,Inactive,C0385,E04067
+V01149,UP-89-C-3412,SUV,P00149,Hyundai i20,Black,Inactive,C0386,nan
+V01150,TN-95-E-1923,Commercial Vehicle,P05396,Tata Nexon,Black,Active,C0386,nan
+V01151,RJ-84-D-5665,Motorcycle,P05407,Tata Nexon,Grey,Active,C0386,nan
+V01152,UP-15-C-4241,Van,P05409,Hyundai i20,Silver,Active,C0386,E04080
+V01153,DL-28-M-9778,Truck,P05410,Tata Nexon,Blue,Active,C0386,E04081
+V01154,UP-57-G-3144,Van,P05411,Kia Sonet,Maroon,Active,C0386,nan
+V01155,MH-07-M-2381,Car,P05412,Toyota Glanza,Blue,Active,C0387,nan
+V01156,MP-45-S-1574,Motorcycle,P05416,Toyota Glanza,Grey,Active,C0388,nan
+V01157,MH-40-D-5330,Motorcycle,P05417,Hyundai i20,Blue,Active,C0388,nan
+V01158,UP-11-J-5594,Car,P05418,Bajaj Pulsar,Black,Active,C0388,E04090
+V01159,KA-60-D-8999,Motorcycle,P05426,Toyota Glanza,Silver,Active,C0389,nan
+V01160,WB-21-Q-3944,Truck,P05428,Tata Nexon,Black,Active,C0389,E04106
+V01161,MH-41-R-9255,Car,P05457,Tata Nexon,Red,Active,C0390,nan
+V01162,HR-58-C-1652,Motorcycle,P05463,Honda City,Black,Inactive,C0390,E04125
+V01163,MH-77-Z-7730,SUV,P05468,Hyundai i20,Red,Active,C0390,E04126
+V01164,TN-08-A-5139,Truck,P05470,Mahindra XUV300,Black,Active,C0390,E04127
+V01165,KA-20-X-5662,Commercial Vehicle,P05474,Maruti Swift,Blue,Active,C0391,nan
+V01166,GJ-44-J-4228,Truck,P05475,Hyundai i20,Red,Active,C0391,E04132
+V01167,MH-61-F-7710,SUV,P05477,Toyota Glanza,White,Active,C0391,E04133
+V01168,GJ-19-F-3182,Car,P05482,Tata Nexon,Blue,Active,C0392,nan
+V01169,WB-07-C-1411,Car,P05483,Mahindra XUV300,Blue,Active,C0392,nan
+V01170,MP-60-B-1643,Truck,P05496,Honda City,Maroon,Active,C0392,nan
+V01171,TS-57-V-6015,SUV,P05498,Honda City,Maroon,Inactive,C0392,E04155
+V01172,KA-80-K-4673,Motorcycle,P05499,Toyota Glanza,Black,Active,C0392,E04156
+V01173,MH-26-L-5763,Motorcycle,P05516,Tata Nexon,Silver,Active,C0393,E04172
+V01174,KL-71-K-6328,Van,P05519,Bajaj Pulsar,Maroon,Active,C0393,nan
+V01175,MH-91-E-9050,Truck,P05533,Kia Sonet,Silver,Active,C0394,E04192
+V01176,KL-74-H-1805,Car,P05541,Kia Sonet,Silver,Active,C0394,E04193
+V01177,KL-14-S-3419,Car,P05547,Tata Nexon,Green,Inactive,C0394,E04194
+V01178,TN-20-G-5184,Car,P05549,Toyota Glanza,Silver,Active,C0394,nan
+V01179,TN-89-L-8647,Commercial Vehicle,P05550,Maruti Swift,Blue,Active,C0394,E04195
+V01180,KA-68-Z-2284,Car,P05564,Maruti Swift,Grey,Active,C0396,E04212
+V01181,MP-24-A-6376,Car,P05565,Hyundai i20,Maroon,Active,C0396,nan
+V01182,GJ-57-T-5122,SUV,P05567,Mahindra XUV300,Black,Active,C0396,E04213
+V01183,TN-43-W-5986,Van,P05569,Bajaj Pulsar,Grey,Active,C0396,nan
+V01184,HR-60-I-8000,Commercial Vehicle,P01840,Maruti Swift,Red,Active,C0397,nan
+V01185,TS-56-U-3145,Car,P05579,Kia Sonet,Grey,Active,C0397,nan
+V01186,KL-41-N-7747,Car,P05581,Honda City,Grey,Active,C0397,nan
+V01187,HR-78-P-6454,Commercial Vehicle,P05588,Toyota Glanza,Maroon,Active,C0397,nan
+V01188,MP-01-O-5337,SUV,P05596,Hyundai i20,White,Active,C0397,E04235
+V01189,RJ-02-C-5827,Motorcycle,P05597,Tata Nexon,Blue,Active,C0397,E04236
+V01190,MP-09-E-4339,Van,P05598,Toyota Glanza,Silver,Active,C0397,nan
+V01191,MP-31-L-9460,SUV,P05620,Bajaj Pulsar,Red,Active,C0399,nan
+V01192,MH-43-T-9397,Car,P05622,Kia Sonet,Maroon,Active,C0399,nan
+V01193,MH-64-Z-3140,Commercial Vehicle,P05633,Mahindra XUV300,Green,Active,C0400,nan
+V01194,HR-45-E-4403,Van,P00473,Hyundai i20,Black,Active,C0401,nan
+V01195,KA-65-X-2638,Commercial Vehicle,P02269,Toyota Glanza,Blue,Inactive,C0401,nan
+V01196,DL-04-Z-9589,Truck,P05639,Bajaj Pulsar,White,Active,C0402,E04261
+V01197,TS-07-R-1301,Van,P05655,Maruti Swift,Maroon,Active,C0403,E04298
+V01198,TN-70-X-9373,SUV,P05657,Mahindra XUV300,Maroon,Active,C0403,nan
+V01199,MP-67-B-8046,Van,P05667,Hyundai i20,Grey,Active,C0403,E04299
+V01200,HR-62-I-8911,Car,P05672,Kia Sonet,Silver,Active,C0403,nan
+V01201,TS-08-Z-9668,Car,P05674,Mahindra XUV300,Maroon,Active,C0403,nan
+V01202,WB-77-F-3441,Car,P05675,Honda City,Maroon,Active,C0403,E04300
+V01203,DL-87-X-7530,Van,P05683,Honda City,White,Active,C0403,E04301
+V01204,KL-49-A-1583,Truck,P05688,Toyota Glanza,Maroon,Active,C0403,nan
+V01205,KA-58-E-8735,Car,P05692,Hyundai i20,Black,Active,C0403,nan
+V01206,WB-18-C-7906,Car,P05694,Kia Sonet,Green,Inactive,C0403,E04302
+V01207,MH-91-E-3466,SUV,P05705,Hyundai i20,Red,Active,C0403,E04303
+V01208,MP-22-U-5718,SUV,P05710,Honda City,Red,Active,C0404,nan
+V01209,HR-47-A-9056,Car,P05711,Kia Sonet,Green,Active,C0404,nan
+V01210,KL-37-J-2435,Van,P05712,Bajaj Pulsar,Red,Active,C0404,nan
+V01211,KL-55-C-4830,Van,P05716,Mahindra XUV300,Grey,Inactive,C0405,nan
+V01212,WB-27-G-9572,Motorcycle,P05719,Toyota Glanza,Red,Active,C0405,nan
+V01213,MH-38-X-9354,Car,P05726,Maruti Swift,Red,Active,C0406,nan
+V01214,DL-36-B-6911,Commercial Vehicle,P05732,Kia Sonet,Blue,Active,C0407,nan
+V01215,MH-06-V-8191,SUV,P05737,Honda City,White,Active,C0407,nan
+V01216,TN-10-U-4639,Car,P05745,Kia Sonet,White,Active,C0408,nan
+V01217,MH-86-H-5567,Truck,P05746,Bajaj Pulsar,Silver,Active,C0408,nan
+V01218,MH-07-T-9412,Truck,P05749,Tata Nexon,Blue,Active,C0408,nan
+V01219,MH-79-Y-5446,SUV,P05755,Toyota Glanza,Blue,Active,C0408,E04348
+V01220,RJ-96-U-3637,Motorcycle,P05768,Bajaj Pulsar,Green,Active,C0408,E04349
+V01221,MH-97-H-4627,Car,P00095,Toyota Glanza,Grey,Active,C0409,nan
+V01222,MH-53-P-8162,Truck,P05771,Honda City,Green,Inactive,C0409,nan
+V01223,MP-57-Y-8840,Car,P05772,Maruti Swift,Black,Active,C0409,nan
+V01224,TN-76-X-8912,Commercial Vehicle,P05773,Maruti Swift,Red,Active,C0409,E04359
+V01225,UP-13-D-5880,Car,P05775,Maruti Swift,Maroon,Active,C0409,E04360
+V01226,WB-74-Q-1743,Motorcycle,P05779,Mahindra XUV300,Grey,Active,C0409,nan
+V01227,TS-73-Y-6365,Commercial Vehicle,P05801,Bajaj Pulsar,Grey,Inactive,C0411,nan
+V01228,KA-69-C-2548,Van,P05804,Hyundai i20,Red,Active,C0411,E04375
+V01229,MH-55-E-4338,Truck,P05810,Bajaj Pulsar,Green,Active,C0411,E04376
+V01230,WB-72-N-9038,Van,P05815,Toyota Glanza,Grey,Active,C0412,nan
+V01231,UP-29-L-2776,Truck,P05819,Maruti Swift,White,Active,C0412,E04383
+V01232,MH-43-H-9502,Motorcycle,P05822,Maruti Swift,Grey,Active,C0413,nan
+V01233,TN-63-E-7374,SUV,P05824,Honda City,Maroon,Active,C0413,nan
+V01234,MP-91-P-1048,Commercial Vehicle,P05832,Tata Nexon,Red,Inactive,C0414,nan
+V01235,MP-81-T-1394,Truck,P04199,Honda City,Green,Active,C0415,nan
+V01236,MH-72-H-7021,SUV,P05836,Mahindra XUV300,Green,Inactive,C0415,E04396
+V01237,MP-12-M-2582,Car,P05841,Maruti Swift,Red,Active,C0416,nan
+V01238,DL-09-P-4014,Commercial Vehicle,P05849,Maruti Swift,White,Active,C0416,nan
+V01239,MH-74-E-2174,Truck,P05853,Tata Nexon,Red,Active,C0416,nan
+V01240,RJ-86-Y-5726,Motorcycle,P05854,Kia Sonet,Black,Active,C0416,nan
+V01241,WB-36-P-9466,Van,P05859,Bajaj Pulsar,Maroon,Active,C0416,E04415
+V01242,RJ-41-Z-9142,SUV,P05868,Toyota Glanza,Green,Inactive,C0417,nan
+V01243,UP-13-U-6433,Commercial Vehicle,P05870,Mahindra XUV300,Red,Active,C0417,E04434
+V01244,TN-31-P-1065,Motorcycle,P05878,Maruti Swift,White,Inactive,C0417,nan
+V01245,WB-54-O-6299,Van,P05887,Bajaj Pulsar,Grey,Active,C0418,nan
+V01246,KA-04-I-2427,Van,P05889,Honda City,Red,Active,C0418,E04446
+V01247,TN-26-C-9605,Van,P05890,Honda City,White,Active,C0418,nan
+V01248,TN-46-J-5050,Truck,P05894,Hyundai i20,White,Active,C0418,nan
+V01249,MP-22-Z-2518,Car,P05905,Honda City,White,Active,C0419,nan
+V01250,DL-97-L-7261,Commercial Vehicle,P05908,Honda City,Silver,Inactive,C0419,nan
+V01251,KL-98-G-6851,SUV,P05916,Tata Nexon,Grey,Active,C0419,nan
+V01252,MH-66-E-8327,Van,P05919,Toyota Glanza,Grey,Active,C0419,E04466
+V01253,UP-36-D-9024,Truck,P05921,Kia Sonet,Green,Active,C0419,nan
+V01254,TN-29-L-8448,Van,P05923,Kia Sonet,White,Active,C0420,nan
+V01255,MP-25-D-2713,SUV,P05925,Tata Nexon,Green,Active,C0420,E04473
+V01256,GJ-42-G-7262,Car,P05926,Kia Sonet,Red,Active,C0420,E04474
+V01257,WB-75-E-6964,Car,P05928,Toyota Glanza,Green,Active,C0420,nan
+V01258,TN-12-M-3533,Motorcycle,P05932,Maruti Swift,White,Active,C0422,E04498
+V01259,TS-40-M-9571,Van,P05939,Mahindra XUV300,Red,Active,C0422,E04499
+V01260,UP-45-J-3887,Van,P05945,Kia Sonet,Silver,Active,C0422,nan
+V01261,MP-36-K-7966,Truck,P05949,Maruti Swift,Green,Active,C0422,nan
+V01262,MP-07-U-1878,Van,P05950,Hyundai i20,Blue,Active,C0422,nan
+V01263,MH-22-F-6304,Commercial Vehicle,P05910,Maruti Swift,Black,Inactive,C0423,E04500
+V01264,TS-83-L-2769,Commercial Vehicle,P05957,Kia Sonet,Maroon,Active,C0423,nan
+V01265,MH-14-W-7353,Van,P05958,Tata Nexon,Black,Active,C0423,E04510
+V01266,DL-24-N-5879,Van,P05961,Toyota Glanza,Blue,Active,C0423,nan
+V01267,MH-56-V-5698,Truck,P05966,Hyundai i20,Maroon,Active,C0423,nan
+V01268,MP-86-C-9265,Van,P05969,Hyundai i20,Maroon,Active,C0423,E04511
+V01269,UP-51-K-3653,SUV,P05970,Bajaj Pulsar,Red,Active,C0424,E04551
+V01270,HR-88-W-7714,Commercial Vehicle,P05973,Kia Sonet,Red,Active,C0424,nan
+V01271,GJ-81-S-7174,Van,P05974,Toyota Glanza,Blue,Inactive,C0424,nan
+V01272,MP-93-Q-5340,Truck,P05975,Kia Sonet,Blue,Active,C0424,E04552
+V01273,DL-86-L-2682,Commercial Vehicle,P05976,Kia Sonet,Green,Active,C0424,nan
+V01274,MH-90-N-5298,Commercial Vehicle,P05979,Kia Sonet,Red,Active,C0424,E04553
+V01275,KA-90-M-2041,Commercial Vehicle,P05983,Toyota Glanza,Black,Active,C0424,nan
+V01276,GJ-54-P-7813,Commercial Vehicle,P05986,Mahindra XUV300,Blue,Active,C0424,nan
+V01277,GJ-51-Z-8366,Motorcycle,P05992,Maruti Swift,Blue,Active,C0424,E04554
+V01278,DL-92-D-7480,Car,P05993,Mahindra XUV300,Red,Active,C0424,E04555
+V01279,TS-85-Y-8812,Motorcycle,P05994,Hyundai i20,Black,Active,C0424,E04556
+V01280,RJ-83-M-1970,Van,P06005,Maruti Swift,Green,Active,C0424,E04557
+V01281,DL-91-T-7985,Motorcycle,P06031,Honda City,Grey,Active,C0425,E04574
+V01282,MP-81-F-8413,Motorcycle,P00308,Mahindra XUV300,Red,Active,C0426,nan
+V01283,DL-06-X-1689,Van,P06049,Bajaj Pulsar,Black,Active,C0427,nan
+V01284,MP-44-K-3683,Car,P06055,Hyundai i20,Blue,Active,C0427,E04580
+V01285,TN-51-R-4833,Car,P06060,Toyota Glanza,Maroon,Active,C0428,nan
+V01286,MH-51-J-1758,SUV,P06068,Honda City,Black,Active,C0429,nan
+V01287,GJ-29-W-4114,Car,P06074,Bajaj Pulsar,Silver,Active,C0429,nan
+V01288,MH-69-C-7774,Truck,P06077,Bajaj Pulsar,Blue,Active,C0430,nan
+V01289,MH-33-K-6335,Truck,P06088,Toyota Glanza,Black,Active,C0431,nan
+V01290,MH-27-K-2128,Truck,P06092,Honda City,Maroon,Active,C0431,nan
+V01291,MH-38-W-3427,SUV,P06095,Hyundai i20,Blue,Active,C0432,nan
+V01292,MH-51-W-8743,Motorcycle,P06096,Kia Sonet,Grey,Active,C0432,E04612
+V01293,RJ-36-U-7372,SUV,P06108,Kia Sonet,Black,Active,C0433,nan
+V01294,MH-52-F-1938,Truck,P06110,Hyundai i20,White,Active,C0433,nan
+V01295,WB-52-R-5437,SUV,P06121,Mahindra XUV300,White,Active,C0434,nan
+V01296,TN-51-Y-4610,Van,P03825,Mahindra XUV300,Grey,Active,C0436,E04622
+V01297,MH-66-V-4215,Truck,P06126,Tata Nexon,Red,Inactive,C0436,E04628
+V01298,KA-57-T-4114,Motorcycle,P06129,Mahindra XUV300,White,Active,C0436,nan
+V01299,WB-63-Z-2381,Motorcycle,P06134,Kia Sonet,Blue,Active,C0437,E04646
+V01300,TN-59-T-5881,Truck,P06147,Mahindra XUV300,White,Active,C0437,E04647
+V01301,MH-68-W-4032,SUV,P06148,Honda City,Maroon,Active,C0437,E04648
+V01302,TN-33-Q-3880,Motorcycle,P06155,Bajaj Pulsar,Grey,Inactive,C0437,nan
+V01303,WB-71-Y-7005,Truck,P06161,Toyota Glanza,Black,Active,C0437,E04649
+V01304,MP-11-P-6938,Truck,P06170,Bajaj Pulsar,Red,Active,C0439,E04662
+V01305,GJ-75-X-8468,Truck,P06173,Kia Sonet,White,Active,C0439,E04663
+V01306,MP-10-F-1946,Van,P06174,Maruti Swift,White,Active,C0439,E04664
+V01307,GJ-49-M-2117,Car,P06185,Bajaj Pulsar,Green,Active,C0439,nan
+V01308,TN-99-T-5309,Car,P06186,Bajaj Pulsar,White,Active,C0439,E04665
+V01309,MP-20-Z-7771,Van,P01747,Tata Nexon,Grey,Active,C0440,E04666
+V01310,TS-78-Q-2783,SUV,P06188,Hyundai i20,Red,Active,C0440,E04667
+V01311,GJ-75-A-6511,Motorcycle,P06193,Toyota Glanza,Maroon,Active,C0442,nan
+V01312,DL-98-Q-6016,Truck,P06195,Mahindra XUV300,Silver,Active,C0443,E04670
+V01313,MH-48-W-1253,Motorcycle,P06204,Bajaj Pulsar,Silver,Inactive,C0445,E04676
+V01314,MH-06-U-6513,Car,P06205,Maruti Swift,Green,Active,C0445,E04677
+V01315,TS-04-B-2229,Car,P06206,Mahindra XUV300,Silver,Active,C0445,E04678
+V01316,MH-56-J-8188,Van,P06209,Hyundai i20,Maroon,Active,C0446,nan
+V01317,MH-33-C-5267,Van,P06210,Bajaj Pulsar,Red,Active,C0446,E04683
+V01318,MH-73-O-2274,Motorcycle,P06213,Kia Sonet,Green,Active,C0447,nan
+V01319,MH-70-C-8508,Van,P06220,Tata Nexon,Black,Active,C0447,nan
+V01320,RJ-04-R-7545,Truck,P06222,Toyota Glanza,Black,Active,C0447,E04704
+V01321,HR-51-E-8411,Car,P06227,Tata Nexon,Grey,Active,C0447,E04705
+V01322,GJ-81-C-7030,Van,P06239,Bajaj Pulsar,Maroon,Active,C0448,nan
+V01323,MP-66-U-1639,Motorcycle,P06240,Honda City,Maroon,Active,C0448,E04716
+V01324,UP-15-O-8583,Motorcycle,P04186,Maruti Swift,Black,Active,C0449,nan
+V01325,DL-21-Q-3565,Commercial Vehicle,P06248,Tata Nexon,Silver,Active,C0449,E04721
+V01326,HR-59-A-7475,Car,P06258,Bajaj Pulsar,Maroon,Active,C0450,nan
+V01327,MH-80-Z-3691,Commercial Vehicle,P06260,Toyota Glanza,Grey,Active,C0450,E04733
+V01328,UP-16-G-7320,SUV,P06263,Mahindra XUV300,Blue,Active,C0451,E04776
+V01329,UP-08-T-3193,Motorcycle,P06265,Toyota Glanza,Silver,Active,C0451,E04777
+V01330,DL-85-N-6286,Van,P06266,Honda City,Green,Active,C0451,E04778
+V01331,MH-85-J-6217,SUV,P06267,Hyundai i20,Grey,Active,C0451,nan
+V01332,MP-21-L-9775,SUV,P06275,Mahindra XUV300,Blue,Active,C0451,E04779
+V01333,UP-55-I-6408,Commercial Vehicle,P06277,Honda City,Silver,Active,C0451,nan
+V01334,MH-95-V-1077,Truck,P06300,Kia Sonet,Silver,Active,C0451,E04780
+V01335,TS-24-W-6250,Car,P06319,Kia Sonet,Grey,Active,C0452,E04799
+V01336,MP-03-X-2887,SUV,P06325,Mahindra XUV300,Green,Inactive,C0452,E04800
+V01337,MP-33-W-2192,SUV,P06340,Tata Nexon,Black,Active,C0454,nan
+V01338,GJ-61-D-7906,Car,P06345,Kia Sonet,White,Active,C0454,nan
+V01339,MH-24-C-5301,Motorcycle,P06349,Mahindra XUV300,White,Inactive,C0454,E04808
+V01340,RJ-43-K-9216,Commercial Vehicle,P06351,Honda City,Silver,Active,C0454,E04809
+V01341,GJ-97-I-5972,SUV,P06355,Tata Nexon,White,Active,C0455,E04812
+V01342,MH-20-S-4053,Van,P02995,Hyundai i20,Black,Active,C0456,nan
+V01343,TS-49-Y-4148,SUV,P06356,Kia Sonet,White,Inactive,C0456,nan
+V01344,MH-38-W-9935,Motorcycle,P06365,Toyota Glanza,White,Active,C0457,nan
+V01345,TN-80-U-6893,Car,P06368,Tata Nexon,Silver,Inactive,C0457,nan
+V01346,GJ-91-Y-9823,Motorcycle,P06375,Honda City,Red,Active,C0459,nan
+V01347,MH-77-O-9276,SUV,P06378,Kia Sonet,Maroon,Inactive,C0459,nan
+V01348,TN-62-P-4119,Motorcycle,P01948,Mahindra XUV300,Blue,Active,C0460,nan
+V01349,DL-38-U-4768,Truck,P06380,Mahindra XUV300,Blue,Active,C0460,nan
+V01350,UP-71-W-8720,SUV,P06385,Hyundai i20,Maroon,Active,C0460,nan
+V01351,MP-80-L-3465,Truck,P06388,Hyundai i20,White,Active,C0460,E04835
+V01352,HR-56-F-8740,Van,P06390,Mahindra XUV300,Silver,Active,C0460,E04836
+V01353,TN-15-J-1122,Truck,P06395,Toyota Glanza,Silver,Active,C0461,nan
+V01354,DL-48-U-3608,Motorcycle,P06396,Toyota Glanza,Blue,Active,C0461,nan
+V01355,MP-69-U-2181,Van,P06398,Bajaj Pulsar,White,Active,C0461,E04847
+V01356,MP-04-R-3781,Commercial Vehicle,P00308,Maruti Swift,Maroon,Active,C0462,E04848
+V01357,RJ-98-C-5166,Truck,P06410,Mahindra XUV300,Red,Active,C0462,nan
+V01358,MH-44-F-9236,SUV,P06417,Toyota Glanza,Red,Active,C0463,E04862
+V01359,GJ-84-V-1440,SUV,P06418,Bajaj Pulsar,Grey,Active,C0464,E04871
+V01360,KL-43-K-2041,Motorcycle,P05764,Mahindra XUV300,Green,Active,C0465,nan
+V01361,MP-38-X-9461,Motorcycle,P05599,Toyota Glanza,White,Active,C0465,nan
+V01362,MH-61-S-9721,Van,P06432,Tata Nexon,Blue,Inactive,C0466,nan
+V01363,DL-97-A-2925,Commercial Vehicle,P06433,Toyota Glanza,Silver,Active,C0466,E04875
+V01364,GJ-57-F-2846,Van,P06449,Kia Sonet,Grey,Active,C0467,E04885
+V01365,HR-63-P-8235,SUV,P06450,Hyundai i20,Blue,Active,C0467,E04886
+V01366,WB-79-M-9156,Car,P06452,Mahindra XUV300,Maroon,Active,C0468,nan
+V01367,DL-89-E-6314,Van,P06453,Hyundai i20,Green,Active,C0468,nan
+V01368,GJ-81-W-2227,Commercial Vehicle,P06459,Maruti Swift,Black,Active,C0469,E04891
+V01369,KL-95-E-7099,SUV,P00687,Tata Nexon,Grey,Active,C0471,E04895
+V01370,MP-81-I-1847,Van,P06468,Mahindra XUV300,Black,Inactive,C0471,nan
+V01371,MH-19-Q-9800,Commercial Vehicle,P06484,Tata Nexon,White,Active,C0472,E04914
+V01372,KA-25-C-6773,Van,P06492,Hyundai i20,Grey,Active,C0472,E04915
+V01373,DL-81-P-9342,SUV,P06496,Kia Sonet,Green,Active,C0472,nan
+V01374,MP-92-N-3083,Van,P06498,Maruti Swift,Green,Active,C0472,nan
+V01375,WB-51-U-1464,Van,P06500,Mahindra XUV300,Maroon,Active,C0474,E04934
+V01376,UP-59-O-2209,Motorcycle,P06503,Tata Nexon,Black,Active,C0474,nan
+V01377,GJ-62-O-8680,Commercial Vehicle,P06505,Mahindra XUV300,Green,Active,C0474,E04935
+V01378,UP-01-S-1010,Truck,P06511,Honda City,Blue,Active,C0474,nan
+V01379,MP-48-G-1974,Van,P06517,Bajaj Pulsar,Red,Active,C0474,nan
+V01380,TS-75-T-3912,SUV,P06530,Bajaj Pulsar,Green,Active,C0475,E04956
+V01381,MH-55-N-4312,Van,P06534,Kia Sonet,Maroon,Inactive,C0475,E04957
+V01382,HR-99-N-4205,Commercial Vehicle,P06536,Tata Nexon,Silver,Active,C0475,nan
+V01383,MH-86-Q-8118,Car,P06541,Mahindra XUV300,Black,Active,C0475,E04958
+V01384,UP-08-X-4859,Commercial Vehicle,P06544,Toyota Glanza,Silver,Active,C0475,E04959
+V01385,MP-62-R-1302,Commercial Vehicle,P06545,Toyota Glanza,Blue,Active,C0475,nan
+V01386,UP-40-Z-3263,Commercial Vehicle,P06556,Tata Nexon,Silver,Active,C0476,E04976
+V01387,KL-64-G-6312,SUV,P06557,Bajaj Pulsar,Grey,Active,C0476,nan
+V01388,TN-24-W-3538,Van,P06558,Tata Nexon,Blue,Inactive,C0476,E04977
+V01389,RJ-68-B-1577,Commercial Vehicle,P06569,Kia Sonet,Maroon,Active,C0477,E04986
+V01390,WB-29-Z-2491,Motorcycle,P06570,Mahindra XUV300,Black,Inactive,C0477,E04987
+V01391,HR-56-C-8435,Truck,P06576,Honda City,Silver,Active,C0478,nan
+V01392,TS-39-O-9530,SUV,P06583,Toyota Glanza,Green,Active,C0478,nan
+V01393,MH-38-Y-9215,Motorcycle,P06588,Hyundai i20,Red,Active,C0479,E05013
+V01394,MH-15-W-4139,Motorcycle,P06591,Mahindra XUV300,Green,Active,C0479,E05014
+V01395,UP-15-O-8533,Motorcycle,P06593,Kia Sonet,Green,Active,C0479,nan
+V01396,MH-30-W-6725,Commercial Vehicle,P06594,Kia Sonet,Maroon,Active,C0479,E05015
+V01397,UP-31-M-1810,SUV,P06603,Honda City,Red,Active,C0479,nan
+V01398,MH-66-U-5624,Commercial Vehicle,P06611,Hyundai i20,Red,Active,C0480,nan
+V01399,WB-62-R-7417,Truck,P06615,Mahindra XUV300,Silver,Active,C0480,E05029
+V01400,WB-82-C-2571,Commercial Vehicle,P06619,Kia Sonet,Silver,Active,C0480,nan
+V01401,UP-82-I-6156,Van,P06620,Honda City,Grey,Active,C0480,E05030
+V01402,RJ-90-O-2233,Van,P06623,Hyundai i20,Maroon,Active,C0480,nan
+V01403,MP-62-P-2643,Car,P06626,Honda City,White,Active,C0481,nan
+V01404,WB-48-P-3756,SUV,P03494,Kia Sonet,Blue,Active,C0482,E05031
+V01405,MH-49-V-1231,Car,P06633,Bajaj Pulsar,Blue,Active,C0482,nan
+V01406,MP-88-V-7283,SUV,P06638,Hyundai i20,Maroon,Active,C0482,nan
+V01407,KA-47-C-4726,Truck,P06641,Hyundai i20,Grey,Active,C0482,nan
+V01408,MP-15-I-7421,Commercial Vehicle,P06642,Maruti Swift,Blue,Active,C0482,nan
+V01409,MH-75-S-3388,Motorcycle,P06647,Kia Sonet,Black,Inactive,C0482,nan
+V01410,DL-63-Z-6019,Car,P06648,Maruti Swift,Red,Active,C0482,E05044
+V01411,MH-66-F-7805,Truck,P06651,Kia Sonet,Blue,Inactive,C0482,nan
+V01412,MH-38-J-6007,Van,P06654,Kia Sonet,White,Active,C0483,E05048
+V01413,GJ-23-M-8331,SUV,P01546,Mahindra XUV300,Grey,Inactive,C0484,nan
+V01414,KL-31-M-9955,Commercial Vehicle,P06662,Toyota Glanza,Grey,Active,C0484,nan
+V01415,UP-50-L-2522,SUV,P06663,Maruti Swift,Blue,Inactive,C0484,nan
+V01416,DL-27-R-3728,SUV,P00348,Bajaj Pulsar,Green,Active,C0487,nan
+V01417,MH-67-W-9300,SUV,P06135,Mahindra XUV300,Black,Inactive,C0487,nan
+V01418,DL-09-O-6517,SUV,P06675,Hyundai i20,Silver,Inactive,C0487,nan
+V01419,GJ-15-C-6380,Truck,P06679,Honda City,Grey,Active,C0487,E05073
+V01420,MH-09-K-2848,Commercial Vehicle,P06685,Bajaj Pulsar,Maroon,Active,C0488,nan
+V01421,MH-35-P-9285,Motorcycle,P06694,Mahindra XUV300,Grey,Active,C0488,E05095
+V01422,RJ-52-Z-8789,Truck,P06700,Tata Nexon,Silver,Active,C0488,E05096
+V01423,MH-01-T-2664,Motorcycle,P06701,Mahindra XUV300,Red,Active,C0488,E05097
+V01424,MP-31-O-2689,Motorcycle,P06702,Toyota Glanza,Green,Active,C0488,E05098
+V01425,TN-07-Z-7770,Car,P06705,Bajaj Pulsar,Green,Active,C0488,nan
+V01426,RJ-32-O-8150,SUV,P06707,Toyota Glanza,Blue,Active,C0488,nan
+V01427,UP-20-B-7730,Car,P06708,Kia Sonet,White,Active,C0488,nan
+V01428,KA-79-Q-7687,Van,P06709,Kia Sonet,Red,Active,C0488,E05099
+V01429,MH-62-Z-3055,Car,P06712,Hyundai i20,White,Active,C0489,nan
+V01430,UP-45-S-4833,Motorcycle,P06728,Mahindra XUV300,Grey,Active,C0490,E05114
+V01431,KL-56-Z-1158,SUV,P06729,Tata Nexon,Red,Active,C0490,nan
+V01432,UP-70-K-8228,Car,P06731,Kia Sonet,Silver,Active,C0490,E05115
+V01433,MH-75-X-1808,Car,P06732,Maruti Swift,Black,Active,C0490,E05116
+V01434,UP-57-K-3052,Commercial Vehicle,P06733,Maruti Swift,Black,Active,C0491,E05120
+V01435,HR-99-L-6773,Motorcycle,P06740,Bajaj Pulsar,Red,Active,C0492,nan
+V01436,GJ-98-K-7402,Van,P06743,Hyundai i20,Silver,Active,C0492,nan
+V01437,KA-45-C-1137,Motorcycle,P06754,Bajaj Pulsar,Grey,Active,C0493,E05145
+V01438,UP-35-R-3297,SUV,P06756,Kia Sonet,Grey,Active,C0493,E05146
+V01439,WB-20-Q-2724,SUV,P06757,Kia Sonet,Green,Active,C0493,nan
+V01440,WB-86-P-3619,Truck,P06763,Toyota Glanza,White,Active,C0493,nan
+V01441,GJ-67-E-9035,Van,P06768,Hyundai i20,White,Active,C0493,nan
+V01442,TN-97-C-9032,Commercial Vehicle,P06777,Honda City,White,Active,C0496,nan
+V01443,GJ-83-X-6869,Commercial Vehicle,P06779,Mahindra XUV300,Maroon,Active,C0496,nan
+V01444,GJ-38-O-8749,Van,P06781,Toyota Glanza,Maroon,Active,C0496,nan
+V01445,MH-12-H-9111,Van,P06784,Bajaj Pulsar,Black,Inactive,C0496,nan
+V01446,DL-50-G-1218,Van,P06785,Bajaj Pulsar,Black,Active,C0496,nan
+V01447,KL-53-N-3434,Motorcycle,P06787,Hyundai i20,Maroon,Active,C0496,nan
+V01448,TN-02-E-2070,SUV,P06801,Kia Sonet,Green,Inactive,C0496,nan
+V01449,DL-86-Q-2484,Commercial Vehicle,P06809,Bajaj Pulsar,Red,Active,C0497,E05179
+V01450,KL-47-A-6753,Truck,P06812,Maruti Swift,Black,Active,C0497,nan
+V01451,TN-67-C-6785,Truck,P06821,Toyota Glanza,Maroon,Active,C0498,nan
+V01452,MP-99-U-5295,Motorcycle,P06822,Kia Sonet,Blue,Active,C0498,nan
+V01453,DL-37-O-2203,Car,P06824,Toyota Glanza,White,Active,C0498,E05192
+V01454,TS-51-G-7429,Car,P06834,Honda City,Silver,Active,C0499,nan
+V01455,UP-73-B-2699,Truck,P06837,Toyota Glanza,Maroon,Active,C0499,nan
+V01456,MH-65-Q-5112,Truck,P06842,Hyundai i20,Red,Active,C0499,E05206
+V01457,TS-81-S-6228,Commercial Vehicle,P00302,Kia Sonet,Grey,Active,C0500,nan
+V01458,KL-63-H-6862,Van,P06850,Hyundai i20,Blue,Active,C0500,nan
+V01459,MH-99-N-3623,Van,P06859,Kia Sonet,Blue,Active,C0500,E05229
+V01460,GJ-74-U-8807,SUV,P06862,Bajaj Pulsar,White,Active,C0500,nan
+V01461,TN-12-F-2799,Motorcycle,P06867,Honda City,Black,Active,C0500,E05230
+V01462,MP-20-O-9039,Commercial Vehicle,P06868,Maruti Swift,Silver,Inactive,C0500,E05231
+V01463,KA-44-F-6452,Truck,P06876,Toyota Glanza,Black,Active,C0501,E05236
+V01464,MH-46-D-6272,Motorcycle,P06883,Maruti Swift,Maroon,Active,C0504,nan
+V01465,WB-08-A-7905,Van,P06885,Hyundai i20,Grey,Inactive,C0504,E05252
+V01466,RJ-39-G-8417,SUV,P06888,Toyota Glanza,Maroon,Active,C0504,E05253
+V01467,KL-16-K-9596,SUV,P06891,Tata Nexon,Blue,Active,C0504,E05254
+V01468,KL-78-T-6947,Motorcycle,P06892,Kia Sonet,Blue,Active,C0504,E05255
+V01469,WB-44-R-8536,Van,P06902,Mahindra XUV300,Blue,Active,C0504,E05256
+V01470,MP-86-E-7819,Car,P06907,Kia Sonet,Grey,Active,C0504,nan
+V01471,TN-56-O-1882,Commercial Vehicle,P06909,Mahindra XUV300,Maroon,Active,C0504,E05257
+V01472,UP-70-Z-2706,Van,P06916,Maruti Swift,Blue,Active,C0505,E05262
+V01473,UP-97-A-1862,Truck,P06918,Kia Sonet,Black,Inactive,C0505,nan
+V01474,RJ-41-D-8604,SUV,P06926,Mahindra XUV300,Black,Active,C0506,nan
+V01475,RJ-08-E-8419,Motorcycle,P06930,Mahindra XUV300,Green,Active,C0507,E05268
+V01476,RJ-73-E-6114,Commercial Vehicle,P05790,Hyundai i20,Red,Active,C0508,E05269
+V01477,GJ-86-K-2094,Truck,P06935,Mahindra XUV300,White,Active,C0509,nan
+V01478,GJ-49-S-8988,Commercial Vehicle,P06936,Kia Sonet,Maroon,Active,C0509,nan
+V01479,MH-82-O-5915,Van,P06937,Kia Sonet,Black,Active,C0509,E05281
+V01480,RJ-31-F-1296,Truck,P06940,Toyota Glanza,Blue,Active,C0509,nan
+V01481,MH-51-Y-2803,Motorcycle,P06941,Toyota Glanza,Black,Active,C0509,E05282
+V01482,WB-43-K-6742,Motorcycle,P06949,Kia Sonet,Green,Active,C0509,nan
+V01483,WB-51-J-6078,Car,P06951,Hyundai i20,Blue,Inactive,C0510,nan
+V01484,HR-66-X-3464,Motorcycle,P01981,Maruti Swift,Blue,Active,C0511,E05289
+V01485,KA-18-L-7996,Van,P06957,Bajaj Pulsar,Maroon,Active,C0511,nan
+V01486,HR-24-S-7388,Motorcycle,P06963,Hyundai i20,Grey,Active,C0511,nan
+V01487,KL-53-K-5448,SUV,P06964,Hyundai i20,Red,Active,C0511,E05321
+V01488,RJ-42-N-3943,Car,P06967,Kia Sonet,White,Active,C0511,E05322
+V01489,WB-53-G-5861,Motorcycle,P06970,Tata Nexon,White,Active,C0511,nan
+V01490,TN-56-D-3740,Truck,P06974,Hyundai i20,Maroon,Active,C0511,E05323
+V01491,MH-73-Q-9470,SUV,P06975,Maruti Swift,Green,Active,C0511,nan
+V01492,MH-39-M-5046,Motorcycle,P06977,Bajaj Pulsar,Grey,Active,C0511,nan
+V01493,GJ-27-W-8950,Car,P06984,Bajaj Pulsar,Blue,Active,C0511,nan
+V01494,UP-20-E-3600,Commercial Vehicle,P06988,Maruti Swift,Silver,Active,C0511,nan
+V01495,DL-90-U-2793,Motorcycle,P06989,Bajaj Pulsar,Black,Inactive,C0511,nan
+V01496,MH-19-O-9020,SUV,P06995,Maruti Swift,Silver,Active,C0511,nan
+V01497,GJ-07-N-8172,Commercial Vehicle,P06997,Hyundai i20,Grey,Active,C0511,E05324
+V01498,HR-60-J-3500,Motorcycle,P06999,Honda City,White,Active,C0511,nan
+V01499,MH-27-Y-8690,Car,P07000,Mahindra XUV300,Grey,Active,C0511,nan
+V01500,MH-22-R-8702,Commercial Vehicle,P07009,Mahindra XUV300,Blue,Active,C0512,E05338
+V01501,MH-56-R-9644,Car,P07016,Maruti Swift,Red,Active,C0512,nan
+V01502,MH-72-L-7242,Car,P07018,Tata Nexon,Silver,Active,C0512,nan
+V01503,MH-93-Y-4992,Motorcycle,P07019,Honda City,Silver,Active,C0512,nan
+V01504,GJ-12-R-8732,Van,P05066,Honda City,White,Active,C0513,nan
+V01505,DL-05-N-4924,Van,P07026,Mahindra XUV300,Black,Active,C0513,E05344
+V01506,TS-02-X-7012,Truck,P07032,Kia Sonet,Red,Active,C0513,E05345
+V01507,GJ-33-N-7614,SUV,P07033,Toyota Glanza,White,Active,C0513,nan
+V01508,UP-83-B-3386,Van,P07036,Bajaj Pulsar,Blue,Active,C0514,nan
+V01509,MP-60-N-3305,Motorcycle,P07038,Hyundai i20,White,Active,C0514,nan
+V01510,UP-79-F-9400,Motorcycle,P07041,Honda City,Grey,Active,C0515,nan
+V01511,MP-80-U-5743,SUV,P07049,Bajaj Pulsar,Red,Active,C0515,nan
+V01512,TS-11-B-7907,Motorcycle,P07053,Tata Nexon,Green,Active,C0516,nan
+V01513,RJ-33-Q-8818,Motorcycle,P07056,Mahindra XUV300,Green,Active,C0516,E05360
+V01514,MH-01-N-7565,Van,P07058,Kia Sonet,Grey,Active,C0516,E05361
+V01515,GJ-58-G-2602,Truck,P07059,Maruti Swift,Grey,Active,C0517,nan
+V01516,MH-53-C-5270,Commercial Vehicle,P07067,Tata Nexon,White,Active,C0517,nan
+V01517,HR-02-B-4737,Motorcycle,P07075,Honda City,Maroon,Inactive,C0517,nan
+V01518,TN-82-R-3671,Commercial Vehicle,P07086,Toyota Glanza,Silver,Active,C0518,nan
+V01519,MH-29-B-7259,Motorcycle,P07088,Kia Sonet,White,Active,C0518,E05389
+V01520,MH-91-C-8025,Truck,P07097,Toyota Glanza,Green,Active,C0518,nan
+V01521,MP-26-X-5617,Van,P07100,Kia Sonet,Grey,Active,C0518,nan
+V01522,UP-58-U-2664,Commercial Vehicle,P07101,Toyota Glanza,Red,Active,C0519,nan
+V01523,MH-77-G-4657,Motorcycle,P07104,Bajaj Pulsar,Red,Active,C0519,nan
+V01524,TN-57-C-8409,SUV,P07110,Mahindra XUV300,Silver,Active,C0519,nan
+V01525,MH-63-L-1546,Truck,P07111,Tata Nexon,Red,Active,C0519,E05408
+V01526,MH-16-I-1342,SUV,P07119,Honda City,Black,Active,C0519,nan
+V01527,UP-94-G-9973,Commercial Vehicle,P07123,Tata Nexon,Silver,Active,C0519,nan
+V01528,HR-31-J-7624,Motorcycle,P07131,Toyota Glanza,Silver,Active,C0521,E05441
+V01529,TS-30-F-7132,Truck,P07137,Tata Nexon,Black,Active,C0521,E05442
+V01530,MH-29-P-8742,Truck,P07138,Maruti Swift,Maroon,Active,C0521,E05443
+V01531,MH-70-L-3698,Truck,P07141,Mahindra XUV300,Grey,Active,C0521,nan
+V01532,HR-19-N-2907,Truck,P07142,Kia Sonet,Silver,Active,C0521,nan
+V01533,TN-42-Y-1067,SUV,P07144,Tata Nexon,Black,Active,C0521,nan
+V01534,WB-19-F-7033,Truck,P07149,Mahindra XUV300,Silver,Active,C0521,nan
+V01535,TN-59-X-6559,SUV,P07150,Kia Sonet,Maroon,Active,C0521,E05444
+V01536,MH-27-D-8089,Commercial Vehicle,P07151,Honda City,Green,Active,C0521,E05445
+V01537,UP-45-W-1951,Motorcycle,P07154,Mahindra XUV300,Grey,Active,C0521,E05446
+V01538,MH-73-V-8684,Van,P07160,Toyota Glanza,Green,Active,C0521,nan
+V01539,MP-27-Y-8385,Van,P07161,Honda City,Silver,Active,C0521,nan
+V01540,TS-87-R-8830,Motorcycle,P07162,Toyota Glanza,White,Inactive,C0521,nan
+V01541,MH-57-E-3876,Car,P07164,Honda City,Grey,Active,C0521,nan
+V01542,MH-87-B-2911,Commercial Vehicle,P07174,Mahindra XUV300,Green,Active,C0522,nan
+V01543,HR-07-Y-4732,Motorcycle,P07177,Kia Sonet,Blue,Active,C0523,E05472
+V01544,MP-18-G-2557,Truck,P07181,Toyota Glanza,Black,Active,C0523,nan
+V01545,UP-33-W-5396,Van,P07192,Kia Sonet,Red,Active,C0523,E05473
+V01546,DL-61-L-2422,SUV,P07195,Toyota Glanza,Grey,Active,C0523,nan
+V01547,TN-92-B-3368,Commercial Vehicle,P07198,Kia Sonet,Silver,Active,C0523,E05474
+V01548,UP-19-L-4900,Van,P07203,Maruti Swift,White,Active,C0523,nan
+V01549,MH-01-M-6335,SUV,P07209,Toyota Glanza,Red,Active,C0523,nan
+V01550,RJ-13-X-3175,SUV,P07210,Hyundai i20,Silver,Active,C0523,E05475
+V01551,WB-57-P-5600,Truck,P07213,Kia Sonet,Grey,Active,C0524,nan
+V01552,MH-55-G-9572,Commercial Vehicle,P07219,Toyota Glanza,Silver,Inactive,C0525,nan
+V01553,MH-41-M-8963,Motorcycle,P07229,Honda City,Green,Active,C0525,nan
+V01554,MH-68-Y-1402,Truck,P07233,Maruti Swift,Black,Active,C0525,nan
+V01555,MP-17-N-4826,Truck,P07235,Bajaj Pulsar,Blue,Active,C0525,nan
+V01556,RJ-43-J-3027,Commercial Vehicle,P07236,Hyundai i20,Black,Active,C0525,nan
+V01557,KL-37-A-6931,SUV,P07239,Toyota Glanza,Black,Active,C0525,nan
+V01558,GJ-93-V-9429,Van,P07241,Hyundai i20,Blue,Active,C0526,E05493
+V01559,TN-78-C-8466,SUV,P07245,Maruti Swift,White,Active,C0527,E05500
+V01560,MP-01-B-9257,Commercial Vehicle,P07246,Maruti Swift,Silver,Active,C0527,nan
+V01561,MH-72-T-4862,Car,P07249,Tata Nexon,Green,Inactive,C0527,nan
+V01562,KA-04-V-5933,SUV,P07256,Maruti Swift,Maroon,Active,C0528,nan
+V01563,UP-93-G-1801,Truck,P02323,Maruti Swift,Green,Active,C0529,E05505
+V01564,RJ-29-B-4901,SUV,P07270,Hyundai i20,Black,Active,C0531,nan
+V01565,HR-14-B-8257,Commercial Vehicle,P07278,Mahindra XUV300,Black,Active,C0532,nan
+V01566,UP-67-Q-6741,Car,P07287,Hyundai i20,Blue,Active,C0532,nan
+V01567,MP-71-G-9251,Van,P07304,Honda City,Green,Active,C0532,E05550
+V01568,KL-20-B-7563,Motorcycle,P07315,Maruti Swift,Black,Active,C0532,E05551
+V01569,TN-24-Q-4964,Van,P07326,Honda City,Red,Active,C0533,nan
+V01570,TS-03-T-7866,Motorcycle,P07327,Mahindra XUV300,Maroon,Active,C0533,nan
+V01571,MP-14-V-9351,Van,P07329,Toyota Glanza,Grey,Active,C0533,E05556
+V01572,WB-89-L-5801,Truck,P07338,Bajaj Pulsar,White,Active,C0534,E05564
+V01573,MH-63-H-8865,Motorcycle,P07344,Honda City,Silver,Active,C0535,E05567
+V01574,HR-48-M-6371,Truck,P07350,Mahindra XUV300,Grey,Active,C0536,E05570
+V01575,UP-43-G-3079,Car,P07357,Mahindra XUV300,Green,Active,C0536,nan
+V01576,MP-69-H-6396,Car,P07361,Maruti Swift,White,Active,C0537,nan
+V01577,MH-05-Z-2103,Motorcycle,P07368,Tata Nexon,Blue,Active,C0537,nan
+V01578,KA-46-H-6480,Car,P07369,Hyundai i20,Silver,Inactive,C0537,E05587
+V01579,MP-17-A-5576,Car,P07370,Kia Sonet,Red,Active,C0537,E05588
+V01580,KA-58-D-3133,Car,P07389,Kia Sonet,Grey,Inactive,C0539,nan
+V01581,TS-60-O-2311,Commercial Vehicle,P07396,Hyundai i20,White,Active,C0540,nan
+V01582,KL-62-N-1116,Van,P07397,Toyota Glanza,Green,Active,C0540,nan
+V01583,MH-45-B-5006,Truck,P07398,Hyundai i20,Green,Inactive,C0540,E05621
+V01584,MH-47-D-7576,Truck,P07400,Toyota Glanza,Green,Active,C0540,nan
+V01585,UP-96-Z-9021,Van,P07414,Mahindra XUV300,Green,Active,C0540,nan
+V01586,MP-41-T-9070,Van,P07417,Mahindra XUV300,Maroon,Active,C0540,nan
+V01587,TS-41-L-4915,Truck,P07418,Tata Nexon,Red,Active,C0541,nan
+V01588,MH-04-F-4263,Car,P07430,Tata Nexon,Blue,Inactive,C0543,E05656
+V01589,WB-34-W-2936,Van,P07431,Mahindra XUV300,Silver,Active,C0543,E05657
+V01590,HR-64-Z-4614,Motorcycle,P07453,Hyundai i20,Maroon,Active,C0543,E05658
+V01591,MH-03-D-8583,Truck,P07454,Kia Sonet,Grey,Active,C0543,nan
+V01592,KL-09-X-6559,Car,P07456,Mahindra XUV300,Silver,Active,C0543,nan
+V01593,GJ-33-C-4942,SUV,P07465,Tata Nexon,White,Active,C0543,nan
+V01594,GJ-98-K-6585,Truck,P07466,Toyota Glanza,White,Active,C0543,nan
+V01595,DL-45-C-9101,Motorcycle,P07488,Mahindra XUV300,White,Active,C0545,E05680
+V01596,TS-80-H-1313,Van,P07494,Bajaj Pulsar,Maroon,Active,C0545,nan
+V01597,MP-94-U-1181,Van,P07496,Honda City,Black,Inactive,C0545,nan
+V01598,GJ-50-C-6474,Car,P07504,Honda City,Grey,Active,C0546,E05695
+V01599,MH-13-D-7183,SUV,P07511,Tata Nexon,Silver,Active,C0546,nan
+V01600,GJ-29-W-8334,Motorcycle,P07516,Kia Sonet,Grey,Inactive,C0546,nan
+V01601,KA-21-C-9604,SUV,P07518,Bajaj Pulsar,White,Active,C0546,nan
+V01602,MH-26-X-4410,SUV,P04927,Kia Sonet,Green,Active,C0547,nan
+V01603,GJ-34-D-5174,Car,P07523,Mahindra XUV300,White,Active,C0547,nan
+V01604,GJ-50-V-9775,Motorcycle,P07525,Tata Nexon,Silver,Active,C0547,nan
+V01605,GJ-81-F-7521,Commercial Vehicle,P07526,Toyota Glanza,Green,Active,C0547,nan
+V01606,GJ-86-J-1087,SUV,P07528,Kia Sonet,Red,Active,C0547,nan
+V01607,GJ-04-U-6922,Commercial Vehicle,P00551,Maruti Swift,Blue,Active,C0549,E05706
+V01608,DL-01-D-8791,SUV,P07543,Toyota Glanza,White,Active,C0549,nan
+V01609,MH-26-R-3063,Car,P07549,Tata Nexon,Maroon,Active,C0550,nan
+V01610,TN-53-S-6696,Van,P07555,Kia Sonet,Green,Active,C0550,E05742
+V01611,WB-22-A-6990,Truck,P07559,Kia Sonet,Green,Inactive,C0550,nan
+V01612,MH-15-U-3382,Car,P07568,Kia Sonet,Black,Active,C0550,E05743
+V01613,MP-01-F-9473,Car,P07569,Tata Nexon,Grey,Active,C0550,nan
+V01614,GJ-61-A-8199,Car,P07586,Tata Nexon,Blue,Active,C0550,nan
+V01615,GJ-15-Q-6093,Van,P07587,Honda City,Black,Active,C0550,E05744
+V01616,MH-25-Z-4982,Van,P07588,Tata Nexon,Red,Active,C0550,E05745
+V01617,TN-18-L-8512,Car,P07592,Honda City,Maroon,Active,C0550,nan
+V01618,MP-92-S-9660,Motorcycle,P07599,Toyota Glanza,Silver,Active,C0550,nan
+V01619,GJ-81-F-8493,Car,P07600,Hyundai i20,Maroon,Active,C0550,nan
+V01620,KA-57-J-1885,SUV,P07613,Honda City,Grey,Active,C0552,nan
+V01621,MP-07-F-3129,Commercial Vehicle,P07615,Kia Sonet,Red,Active,C0552,nan
+V01622,MH-60-P-9079,Van,P07621,Maruti Swift,Grey,Active,C0552,nan

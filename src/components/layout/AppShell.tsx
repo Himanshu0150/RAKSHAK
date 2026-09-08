@@ -35,6 +35,7 @@ export type NavigationTab =
   | 'knowledge_graph'
   | 'evidence_vault'
   | 'timeline'
+  | 'investigation_story'
   | 'telecom'
   | 'financial'
   | 'anomaly_radar'
@@ -102,6 +103,7 @@ export const AppShell: React.FC<AppShellProps> = ({
     {
       title: 'Analysis & Intel',
       items: [
+        { id: 'investigation_story', label: 'Investigation Story', icon: Sparkles, badge: 'AI' },
         { id: 'financial', label: 'Financial Intel (AML)', icon: CreditCard, badge: summaryData?.transactionsCount ?? (dataset.transactions || []).length },
         { id: 'timeline', label: 'Chronology Timeline', icon: Clock, badge: summaryData?.eventsCount ?? (dataset.timelineEvents || []).length },
         { id: 'telecom', label: 'Telecom / CDR', icon: PhoneCall, badge: summaryData?.cdrsCount ?? (dataset.cdrRecords || []).length },

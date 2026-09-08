@@ -25,6 +25,7 @@ import {
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { CaseRecord } from '../types/investigation';
 import { NavigationTab } from '../components/layout/AppShell';
+import { InvestigationStoryView } from './InvestigationStoryView';
 
 interface CasesViewProps {
   dataset: InvestigationDataset;
@@ -45,7 +46,7 @@ export const CasesView: React.FC<CasesViewProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [unitFilter, setUnitFilter] = useState('ALL');
   const [priorityFilter, setPriorityFilter] = useState('ALL');
-  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'ENTITIES' | 'TIMELINE' | 'EVIDENCE' | 'NOTES'>('OVERVIEW');
+  const [activeTab, setActiveTab] = useState<'OVERVIEW' | 'STORY' | 'ENTITIES' | 'TIMELINE' | 'EVIDENCE' | 'NOTES'>('OVERVIEW');
   const [investigatorNote, setInvestigatorNote] = useState('');
   const [notesList, setNotesList] = useState<Array<{ id: string; timestamp: string; author: string; text: string }>>([]);
 
@@ -381,18 +382,19 @@ CONFIDENTIAL - LAW ENFORCEMENT & JUDICIAL PROCEEDINGS ONLY
               </p>
 
               {/* Sub-tabs for Case workspace */}
-              <div className="flex gap-2 border-t border-slate-200 pt-3 text-xs font-medium">
-                {(['OVERVIEW', 'ENTITIES', 'TIMELINE', 'EVIDENCE', 'NOTES'] as const).map(tab => (
+              <div className="flex flex-wrap gap-2 border-t border-slate-200 pt-3 text-xs font-medium">
+                {(['OVERVIEW', 'STORY', 'ENTITIES', 'TIMELINE', 'EVIDENCE', 'NOTES'] as const).map(tab => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-3 py-1.5 rounded-lg transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 ${
                       activeTab === tab 
                         ? 'bg-blue-600 text-white font-semibold' 
                         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                     }`}
                   >
                     {tab === 'OVERVIEW' && 'Case Overview'}
+                    {tab === 'STORY' && 'Investigation Story ✨'}
                     {tab === 'ENTITIES' && `Entities (${(activeCase.subjects?.length || 0) + (activeCase.observedEntities?.length || 0)})`}
                     {tab === 'TIMELINE' && 'Case Timeline'}
                     {tab === 'EVIDENCE' && `Seized Evidence (${activeCase.evidenceIds?.length || 0})`}
@@ -401,6 +403,16 @@ CONFIDENTIAL - LAW ENFORCEMENT & JUDICIAL PROCEEDINGS ONLY
                 ))}
               </div>
             </div>
+
+            {/* Sub-tab: STORY */}
+            {activeTab === 'STORY' && (
+              <InvestigationStoryView
+                selectedCaseId={activeCase.id}
+                cases={dataset.cases || []}
+                onSelectCaseId={onSelectCaseId}
+                onOpenEntityDossier={onSelectEntity}
+              />
+            )}
 
             {/* Sub-tab: OVERVIEW */}
             {activeTab === 'OVERVIEW' && (

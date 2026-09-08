@@ -8,6 +8,7 @@ coverage/
 .env.*
 backend/.env
 backend/.env.*
+backend/backups/
 !.env.example
 !backend/.env.example
 __pycache__/

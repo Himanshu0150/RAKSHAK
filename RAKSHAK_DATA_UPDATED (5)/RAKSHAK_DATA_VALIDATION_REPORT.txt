@@ -1,0 +1,4 @@
+People: 7621
+Unique names: 7621
+Duplicate names: 0
+Names: curated regional Indian first-name/surname combinations; no religion inferred.

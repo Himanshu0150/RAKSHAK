@@ -25,6 +25,8 @@ from app.api.routes.analytics import router as analytics_router
 from app.api.routes.search import router as search_router
 from app.api.routes.ai import router as ai_router
 from app.api.routes.auth import router as auth_router
+from app.api.routes.investigation_story import router as investigation_story_router
+from app.api.routes.bsa_certificate import router as bsa_certificate_router
 
 from app.core.demo_subset import initialize_demo_subset
 
@@ -53,6 +55,8 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(auth_router)
 app.include_router(cases_router)
+app.include_router(investigation_story_router)
+app.include_router(bsa_certificate_router)
 
 app.include_router(persons_router)
 app.include_router(entities_router)

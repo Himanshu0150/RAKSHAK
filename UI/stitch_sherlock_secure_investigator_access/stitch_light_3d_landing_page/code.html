@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_25 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_25" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_25');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js Interactive 3D Holographic Globe & Crime Intelligence Matrix Node for RAKSHAK Desktop Dashboard
+const width = container.clientWidth || 360;
+const height = container.clientHeight || 260;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(0, 0, 7.8);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+scene.add(ambientLight);
+
+const dirLight = new THREE.DirectionalLight(0x2563eb, 2.5);
+dirLight.position.set(5, 5, 8);
+scene.add(dirLight);
+
+const pointLight = new THREE.PointLight(0x0284c7, 3, 20);
+pointLight.position.set(-4, -2, 5);
+scene.add(pointLight);
+
+// Main Group
+const mainGroup = new THREE.Group();
+scene.add(mainGroup);
+
+// Central Security Core: Wireframe Geodesic Icosahedron
+const coreGeo = new THREE.IcosahedronGeometry(1.8, 1);
+const coreMat = new THREE.MeshPhongMaterial({
+  color: 0x2563eb,
+  wireframe: true,
+  wireframeLinewidth: 1.5,
+  transparent: true,
+  opacity: 0.65
+});
+const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+mainGroup.add(coreMesh);
+
+// Glowing Inner Octahedron / Quantum Node
+const innerGeo = new THREE.OctahedronGeometry(1.0, 0);
+const innerMat = new THREE.MeshStandardMaterial({
+  color: 0x3b82f6,
+  emissive: 0x1d4ed8,
+  emissiveIntensity: 0.5,
+  roughness: 0.2,
+  metalness: 0.1,
+  transparent: true,
+  opacity: 0.85
+});
+const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+mainGroup.add(innerMesh);
+
+// Cryptographic Orbital Rings
+const ringGeo1 = new THREE.TorusGeometry(2.6, 0.035, 16, 80);
+const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x0ea5e9, transparent: true, opacity: 0.55 });
+const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
+ring1.rotation.x = Math.PI / 3;
+mainGroup.add(ring1);
+
+const ringGeo2 = new THREE.TorusGeometry(3.0, 0.025, 16, 80);
+const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x6366f1, transparent: true, opacity: 0.45 });
+const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
+ring2.rotation.y = Math.PI / 3.5;
+mainGroup.add(ring2);
+
+// Satellite Intel Nodes (Suspect, Financial, CDR vectors)
+const nodeCount = 16;
+const nodeGeo = new THREE.SphereGeometry(0.1, 16, 16);
+const nodeMatBlue = new THREE.MeshStandardMaterial({ color: 0x2563eb, emissive: 0x1d4ed8, emissiveIntensity: 0.85 });
+const nodeMatAlert = new THREE.MeshStandardMaterial({ color: 0xef4444, emissive: 0xb91c1c, emissiveIntensity: 0.85 });
+const nodeMatCyan = new THREE.MeshStandardMaterial({ color: 0x06b6d4, emissive: 0x0891b2, emissiveIntensity: 0.85 });
+
+const nodes = [];
+const nodeGroup = new THREE.Group();
+for (let i = 0; i < nodeCount; i++) {
+  const theta = (i / nodeCount) * Math.PI * 2;
+  const phi = Math.acos((Math.random() * 2) - 1);
+  const radius = 2.2 + (Math.random() * 0.7);
+  const mat = (i % 5 === 0) ? nodeMatAlert : (i % 2 === 0 ? nodeMatCyan : nodeMatBlue);
+  const node = new THREE.Mesh(nodeGeo, mat);
+  node.userData = {
+    theta: theta,
+    phi: phi,
+    radius: radius,
+    speed: 0.005 + Math.random() * 0.007
+  };
+  node.position.set(
+    radius * Math.sin(phi) * Math.cos(theta),
+    radius * Math.sin(phi) * Math.sin(theta),
+    radius * Math.cos(phi)
+  );
+  nodeGroup.add(node);
+  nodes.push(node);
+}
+mainGroup.add(nodeGroup);
+
+// Inter-node connection vectors
+const lineMat = new THREE.LineBasicMaterial({ color: 0x93c5fd, transparent: true, opacity: 0.4 });
+const points = [];
+for (let i = 0; i < nodes.length; i += 2) {
+  points.push(nodes[i].position);
+  if (nodes[i + 1]) points.push(nodes[i + 1].position);
+}
+const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+const linesMesh = new THREE.LineSegments(lineGeo, lineMat);
+mainGroup.add(linesMesh);
+
+// Mouse & Touch Reactive Tracking
+let targetRotX = 0;
+let targetRotY = 0;
+let currentRotX = 0;
+let currentRotY = 0;
+
+function onPointerMove(e) {
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  const rect = renderer.domElement.getBoundingClientRect();
+  const x = ((clientX - rect.left) / rect.width) * 2 - 1;
+  const y = -((clientY - rect.top) / rect.height) * 2 + 1;
+  targetRotY = x * 0.55;
+  targetRotX = -y * 0.35;
+}
+
+window.addEventListener('mousemove', onPointerMove);
+window.addEventListener('touchmove', onPointerMove, { passive: true });
+
+function onResize() {
+  const w = container.clientWidth || 360;
+  const h = container.clientHeight || 260;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+}
+window.addEventListener('resize', onResize);
+
+let frameId;
+function animate() {
+  frameId = requestAnimationFrame(animate);
+
+  currentRotX += (targetRotX - currentRotX) * 0.05;
+  currentRotY += (targetRotY - currentRotY) * 0.05;
+
+  mainGroup.rotation.y += 0.004;
+  mainGroup.rotation.x = currentRotX + 0.12;
+  mainGroup.rotation.z = currentRotY * 0.4;
+
+  coreMesh.rotation.y -= 0.003;
+  innerMesh.rotation.y += 0.008;
+  innerMesh.rotation.x += 0.005;
+
+  ring1.rotation.z += 0.005;
+  ring2.rotation.z -= 0.004;
+
+  nodes.forEach(node => {
+    node.userData.theta += node.userData.speed;
+    const r = node.userData.radius;
+    const p = node.userData.phi;
+    const t = node.userData.theta;
+    node.position.set(
+      r * Math.sin(p) * Math.cos(t),
+      r * Math.sin(p) * Math.sin(t),
+      r * Math.cos(p)
+    );
+  });
+
+  lineGeo.setFromPoints(nodes.map(n => n.position));
+
+  renderer.render(scene, camera);
+}
+animate();
+
+return () => {
+  cancelAnimationFrame(frameId);
+  window.removeEventListener('resize', onResize);
+  window.removeEventListener('mousemove', onPointerMove);
+  window.removeEventListener('touchmove', onPointerMove);
+  renderer.dispose();
+  coreGeo.dispose();
+  innerGeo.dispose();
+  ringGeo1.dispose();
+  ringGeo2.dispose();
+  nodeGeo.dispose();
+};
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_25 -->
+</body>
+</html>

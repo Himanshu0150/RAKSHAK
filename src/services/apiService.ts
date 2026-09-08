@@ -1,6 +1,6 @@
 import { Entity, CaseRecord, AnomalySignal } from '../types/investigation';
 
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api').replace(/\/$/, '');
+const API_BASE = (((import.meta as any).env?.VITE_API_BASE_URL) || 'http://localhost:8000/api').replace(/\/$/, '');
 
 const MOCK_SEED_USERS = [
   {
@@ -129,7 +129,7 @@ export async function fetchAnalyticsSummary(caseId?: string, signal?: AbortSigna
   }
 }
 
-export async function fetchRealCases(limit = 100, search?: string, signal?: AbortSignal): Promise<CaseRecord[]> {
+export async function fetchRealCases(limit = 1000, search?: string, signal?: AbortSignal): Promise<CaseRecord[]> {
   try {
     let url = `${API_BASE}/cases?limit=${limit}`;
     if (search) url += `&search=${encodeURIComponent(search)}`;
@@ -360,4 +360,67 @@ export async function fetchAnomalies(limit = 200, caseId?: string, category?: st
     console.error('Failed to fetch anomalies from backend:', err);
     return [];
   }
+}
+
+export async function fetchInvestigationStory(caseId: string, signal?: AbortSignal) {
+  try {
+    const res = await fetch(`${API_BASE}/cases/${encodeURIComponent(caseId)}/investigation-story`, { signal });
+    if (!res.ok) throw new Error(`Fetch story failed: ${res.statusText}`);
+    return await res.json();
+  } catch (err: any) {
+    if (err.name === 'AbortError') return null;
+    console.error('Failed to fetch investigation story:', err);
+    throw err;
+  }
+}
+
+export async function generateInvestigationStory(caseId: string) {
+  try {
+    const res = await fetch(`${API_BASE}/cases/${encodeURIComponent(caseId)}/investigation-story/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ generated_by: 'Lead Investigator' })
+    });
+    if (!res.ok) throw new Error(`Generate story failed: ${res.statusText}`);
+    return await res.json();
+  } catch (err: any) {
+    console.error('Failed to generate investigation story:', err);
+    throw err;
+  }
+}
+
+export async function fetchBSACertificate(evidenceId: string, signal?: AbortSignal) {
+  try {
+    const res = await fetch(`${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/bsa-certificate`, { signal });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (err: any) {
+    if (err.name === 'AbortError') return null;
+    console.error('Failed to fetch BSA certificate:', err);
+    return null;
+  }
+}
+
+export async function generateBSACertificate(evidenceId: string, officerInfo?: any) {
+  try {
+    const token = localStorage.getItem('sherlock_token');
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const res = await fetch(`${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/bsa-certificate/generate`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(officerInfo || {})
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || `Certificate generation failed: ${res.statusText}`);
+    return data;
+  } catch (err: any) {
+    console.error('Failed to generate BSA Certificate:', err);
+    throw err;
+  }
+}
+
+export function getBSACertificateDownloadUrl(evidenceId: string): string {
+  return `${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/bsa-certificate/download`;
 }

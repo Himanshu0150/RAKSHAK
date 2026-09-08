@@ -20,15 +20,38 @@ class GraphTraceRequest(BaseModel):
     case_id: Optional[str] = None
 
 def derive_type(node_id: str) -> str:
-    if node_id.startswith("PERSON"): return "person"
-    if node_id.startswith("ORG"): return "organization"
-    if node_id.startswith("PHONE"): return "phone"
-    if node_id.startswith("ACCT"): return "account"
-    if node_id.startswith("VEH"): return "vehicle"
-    if node_id.startswith("DEVICE"): return "device"
-    if node_id.startswith("CASE"): return "case"
-    if node_id.startswith("LOC"): return "location"
+    if not node_id:
+        return "entity"
+    u = str(node_id).upper()
+    if u.startswith("PERSON") or (u.startswith("P") and not u.startswith("PH") and not u.startswith("PERM")):
+        return "person"
+    if u.startswith("PHONE") or u.startswith("PH"):
+        return "phone"
+    if u.startswith("ACCT") or u.startswith("ACC"):
+        return "account"
+    if u.startswith("ORG") or (u.startswith("O") and not u.startswith("EV")):
+        return "organization"
+    if u.startswith("VEH") or u.startswith("V"):
+        return "vehicle"
+    if u.startswith("DEVICE") or u.startswith("D"):
+        return "device"
+    if u.startswith("LOC") or u.startswith("L"):
+        return "location"
+    if u.startswith("CASE") or u.startswith("C"):
+        return "case"
+    if u.startswith("EVENT") or u.startswith("EV"):
+        return "event"
+    if u.startswith("EVID") or (u.startswith("E") and not u.startswith("EV")):
+        return "evidence"
+    if u.startswith("CRIME"):
+        return "crime"
     return "entity"
+
+def is_person_id(node_id: str) -> bool:
+    if not node_id:
+        return False
+    u = str(node_id).upper()
+    return u.startswith("PERSON") or (u.startswith("P") and not u.startswith("PH") and not u.startswith("PERM"))
 
 async def build_case_scoped_graph(case_id: str):
     """
@@ -135,11 +158,11 @@ async def get_graph_persons(
                     if nxt not in visited:
                         visited.add(nxt)
                         queue.append((nxt, depth + 1))
-            connected_pids = {n for n in visited if n.startswith("PERSON")}
+            connected_pids = {n for n in visited if is_person_id(n)}
         else:
-            connected_pids = {n for n in adj.keys() if n.startswith("PERSON")}
+            connected_pids = {n for n in adj.keys() if is_person_id(n)}
             if not connected_pids:
-                connected_pids = {e for e in case_entities if e.startswith("PERSON")}
+                connected_pids = {e for e in case_entities if is_person_id(e)}
     else:
         rels = await get_scoped_relationships(entity_id=target_focus, limit=2000)
         adj = {}
@@ -161,9 +184,9 @@ async def get_graph_persons(
                     if nxt not in visited:
                         visited.add(nxt)
                         queue.append((nxt, depth + 1))
-            connected_pids = {n for n in visited if n.startswith("PERSON")}
+            connected_pids = {n for n in visited if is_person_id(n)}
         else:
-            connected_pids = {n for n in adj.keys() if n.startswith("PERSON")}
+            connected_pids = {n for n in adj.keys() if is_person_id(n)}
 
     demo_on = is_demo_enabled()
     if demo_on:
@@ -226,7 +249,7 @@ async def trace_graph_path(
     c_id = (req.case_id if req else None) or case_id
 
     if not src or not tgt:
-        return {"found": False, "message": "Source and Target persons are required.", "pathNodeIds": [], "nodes": [], "pathNodes": [], "edges": [], "pathLinks": [], "path": []}
+        return {"found": False, "message": "Source and Target entities are required.", "pathNodeIds": [], "nodes": [], "pathNodes": [], "edges": [], "pathLinks": [], "path": []}
 
     if src == tgt:
         p_doc = await db.persons.find_one({"$or": [{"person_id": src}, {"_id": src}]}, {"_id": 0})
@@ -261,8 +284,10 @@ async def trace_graph_path(
 
     if src not in adj or tgt not in adj:
         logger.info(f"[TRACE] case_id={c_id} source={src} target={tgt} edge_count={len(all_rels)} path_found=False path_length=0")
-        return {"found": False, "message": "No verified relationship path found for this case.", "pathNodeIds": [], "nodes": [], "pathNodes": [], "edges": [], "pathLinks": [], "path": []}
+        msg = f"No valid path found between {src} and {tgt} within Case {c_id}." if c_id else "No verified relationship path found for the selected entities."
+        return {"found": False, "message": msg, "pathNodeIds": [], "nodes": [], "pathNodes": [], "edges": [], "pathLinks": [], "path": []}
 
+    # BFS constrained to 1-4 hops max (max path length = 5 nodes)
     queue = deque([(src, [src], [])])
     visited = {src}
     found_nodes = None
@@ -275,6 +300,9 @@ async def trace_graph_path(
             found_links = curr_links
             break
 
+        if len(curr_path) - 1 >= 4:
+            continue
+
         for nxt_node, link_obj in adj.get(curr_node, []):
             if nxt_node not in visited:
                 visited.add(nxt_node)
@@ -282,52 +310,70 @@ async def trace_graph_path(
 
     if not found_nodes or not found_links:
         logger.info(f"[TRACE] case_id={c_id} source={src} target={tgt} edge_count={len(all_rels)} path_found=False path_length=0")
-        return {"found": False, "message": "No verified relationship path found for this case.", "pathNodeIds": [], "nodes": [], "pathNodes": [], "edges": [], "pathLinks": [], "path": []}
+        msg = f"No valid path found between {src} and {tgt} within Case {c_id} (max 4 hops)." if c_id else "No verified relationship path found."
+        return {"found": False, "message": msg, "pathNodeIds": [], "nodes": [], "pathNodes": [], "edges": [], "pathLinks": [], "path": []}
 
     logger.info(f"[TRACE] case_id={c_id} source={src} target={tgt} edge_count={len(all_rels)} path_found=True path_length={len(found_nodes)}")
 
     path_nodes = []
     for nid in found_nodes:
-        if nid.startswith("PERSON"):
+        if is_person_id(nid):
             p_doc = await db.persons.find_one({"$or": [{"person_id": nid}, {"_id": nid}]}, {"_id": 0})
             if p_doc:
                 path_nodes.append({"id": nid, "name": p_doc.get("name", nid), "type": "person", "attributes": p_doc})
                 continue
 
-        if nid.startswith("ORG"):
+        if nid.startswith("ORG") or nid.startswith("O"):
             o_doc = await db.organizations.find_one({"$or": [{"organization_id": nid}, {"_id": nid}]}, {"_id": 0})
             if o_doc:
                 path_nodes.append({"id": nid, "name": o_doc.get("name", nid), "type": "organization", "attributes": o_doc})
                 continue
 
-        if nid.startswith("PHONE"):
+        if nid.startswith("PHONE") or nid.startswith("PH"):
             ph_doc = await db.phones.find_one({"$or": [{"phone_id": nid}, {"_id": nid}]}, {"_id": 0})
             if ph_doc:
                 path_nodes.append({"id": nid, "name": ph_doc.get("phone_number", nid), "type": "phone", "attributes": ph_doc})
                 continue
 
-        if nid.startswith("ACCT"):
+        if nid.startswith("ACCT") or nid.startswith("ACC"):
             acc_doc = await db.accounts.find_one({"$or": [{"account_id": nid}, {"_id": nid}]}, {"_id": 0})
             if acc_doc:
                 path_nodes.append({"id": nid, "name": acc_doc.get("masked_identifier", nid), "type": "account", "attributes": acc_doc})
                 continue
 
-        if nid.startswith("VEH"):
+        if nid.startswith("VEH") or nid.startswith("V"):
             v_doc = await db.vehicles.find_one({"$or": [{"vehicle_id": nid}, {"_id": nid}]}, {"_id": 0})
             if v_doc:
                 path_nodes.append({"id": nid, "name": f"{v_doc.get('make', '')} {v_doc.get('model', '')} ({nid})".strip(), "type": "vehicle", "attributes": v_doc})
+                continue
+
+        if nid.startswith("DEVICE") or nid.startswith("D"):
+            d_doc = await db.devices.find_one({"$or": [{"device_id": nid}, {"_id": nid}]}, {"_id": 0})
+            if d_doc:
+                path_nodes.append({"id": nid, "name": f"Device ({d_doc.get('device_type', nid)})", "type": "device", "attributes": d_doc})
+                continue
+
+        if nid.startswith("LOC") or nid.startswith("L"):
+            l_doc = await db.locations.find_one({"$or": [{"location_id": nid}, {"_id": nid}]}, {"_id": 0})
+            if l_doc:
+                path_nodes.append({"id": nid, "name": l_doc.get("location_name") or l_doc.get("address") or nid, "type": "location", "attributes": l_doc})
                 continue
 
         path_nodes.append({"id": nid, "name": nid, "type": derive_type(nid)})
 
     formatted_links = []
     for l in found_links:
+        ev_id = l.get("evidence_id")
+        if str(ev_id).lower() in ("nan", "none", "null"):
+            ev_id = None
         formatted_links.append({
             "id": l.get("relationship_id") or l.get("id"),
             "source": l.get("source_entity_id") or l.get("source"),
             "target": l.get("target_entity_id") or l.get("target"),
             "relationType": l.get("relationship_type") or l.get("relationType") or l.get("type") or "LINKED",
-            "confidence": float(l.get("confidence", 0.95))
+            "confidence": float(l.get("confidence", 0.95)),
+            "evidenceId": ev_id,
+            "timestamp": l.get("timestamp") or l.get("observed_at")
         })
 
     return {

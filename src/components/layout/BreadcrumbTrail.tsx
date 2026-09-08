@@ -22,6 +22,7 @@ import {
   GitCompare, 
   GitBranch, 
   LayoutDashboard,
+  Sparkles,
   Check, 
   Copy, 
   X
@@ -49,6 +50,7 @@ const TAB_CONFIG: Record<NavigationTab, { label: string; icon: React.FC<{ classN
   entities: { label: 'Entities Database', icon: Users },
   knowledge_graph: { label: 'Network Graph', icon: GitBranch },
   timeline: { label: 'Chronology Timeline', icon: Clock },
+  investigation_story: { label: 'Investigation Story', icon: Sparkles },
   evidence_vault: { label: 'Evidence Vault', icon: Lock },
   financial: { label: 'Financial Intel (AML)', icon: CreditCard },
   anomaly_radar: { label: 'Anomaly Radar', icon: Activity },
