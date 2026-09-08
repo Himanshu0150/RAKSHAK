@@ -48,23 +48,29 @@ async def initialize_demo_subset():
         # STEP 1: Stratified person selection for crime coverage
         # =========================================================
         crime_types = await db.cases.distinct("crime_type")
-        crime_types = [ct for ct in crime_types if ct]
-        print(f"[SHERLOCK DEMO]   Found {len(crime_types)} crime categories")
+        case_types = await db.cases.distinct("case_type")
+        all_categories = [c for c in (crime_types + case_types) if c]
+        print(f"[SHERLOCK DEMO]   Found {len(all_categories)} crime/case categories")
 
         selected_case_ids: Set[str] = set()
-        cases_per_crime = max(1, person_limit // max(len(crime_types), 1) // 2)
+        cases_per_crime = max(2, person_limit // max(len(all_categories), 1) // 2)
 
-        for ct in crime_types:
+        for ct in all_categories:
             cases_cursor = db.cases.find(
-                {"crime_type": ct},
+                {"$or": [{"crime_type": ct}, {"case_type": ct}]},
                 {"case_id": 1, "_id": 0}
-            ).limit(max(cases_per_crime, 2))
-            ct_cases = await cases_cursor.to_list(length=max(cases_per_crime, 2))
+            ).limit(max(cases_per_crime, 5))
+            ct_cases = await cases_cursor.to_list(length=max(cases_per_crime, 5))
             for c in ct_cases:
                 if c.get("case_id"):
                     selected_case_ids.add(c["case_id"])
 
-        print(f"[SHERLOCK DEMO]   Selected {len(selected_case_ids)} cases across {len(crime_types)} crime categories")
+        # Ensure all cases in MongoDB are included in case selection
+        async for c_doc in db.cases.find({}, {"case_id": 1, "_id": 0}):
+            if c_doc.get("case_id"):
+                selected_case_ids.add(c_doc["case_id"])
+
+        print(f"[SHERLOCK DEMO]   Selected {len(selected_case_ids)} cases across categories")
 
         selected_person_ids: Set[str] = set()
         if selected_case_ids:
@@ -314,7 +320,7 @@ async def initialize_demo_subset():
 
         # Apply maximum caps as requested
         _demo_ids["persons"] = selected_person_ids
-        _demo_ids["cases"] = set(list(selected_case_ids)[:150])
+        _demo_ids["cases"] = selected_case_ids
         _demo_ids["relationships"] = set(list(rel_ids)[:5000])
         _demo_ids["phones"] = set(list(phone_ids)[:800])
         _demo_ids["devices"] = set(list(device_ids)[:800])

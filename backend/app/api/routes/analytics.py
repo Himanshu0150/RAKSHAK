@@ -12,8 +12,13 @@ async def get_analytics_summary(case_id: Optional[str] = None):
     db = get_database()
     cid_str = case_id if isinstance(case_id, str) and case_id.strip() else None
 
+    # Dynamically re-initialize demo subset cache if stale 150 cap is in memory
+    from app.core.demo_subset import _demo_ids, initialize_demo_subset
+    if len(_demo_ids.get("cases", set())) == 150:
+        await initialize_demo_subset()
+
     if is_demo_enabled():
-        crit_q = {"$and": [get_demo_filter("cases", "case_id"), {"$or": [{"severity": "CRITICAL"}, {"priority": "CRITICAL"}]}]}
+        crit_q = {"$or": [{"severity": "CRITICAL"}, {"priority": "CRITICAL"}]}
         (
             cases_cnt,
             persons_cnt,
@@ -29,7 +34,7 @@ async def get_analytics_summary(case_id: Optional[str] = None):
             critical_cases,
             anoms
         ) = await asyncio.gather(
-            db.cases.count_documents(get_demo_filter("cases", "case_id")),
+            db.cases.count_documents({}),
             db.persons.count_documents(get_demo_filter("persons", "person_id")),
             db.organizations.count_documents(get_demo_filter("organizations", "organization_id")),
             db.phones.count_documents(get_demo_filter("phones", "phone_id")),

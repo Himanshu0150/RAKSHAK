@@ -1,5 +1,7 @@
 import uuid
 import hashlib
+import time
+import asyncio
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Header, Depends, status
 from app.db.mongodb import get_database
@@ -7,40 +9,72 @@ from app.schemas.models import LoginRequestSchema, AuthResponseSchema, UserSchem
 
 router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
-# In-memory active tokens cache (backed by MongoDB verification)
+# In-memory active tokens cache (backed by MongoDB verification & expiration timestamps)
+# Structure: { token: { "user": dict, "created_at": float, "expires_at": float } }
 ACTIVE_TOKENS = {}
+SESSION_TTL_SECONDS = 86400  # 24 hours validity
 
 DEFAULT_USERS = [
     {
-        "investigator_id": "ID-4412-01",
+        "investigator_id": "INV-LEAD-001",
         "email": "miller@sherlock.gov",
         "full_name": "Sgt. Miller",
         "badge_number": "Badge #4412",
         "role": "Lead Investigator",
+        "authorized_cases": ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "CASE-000002", "C0001", "C0002"],
+        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+    },
+    {
+        "investigator_id": "ID-4412-01",
+        "email": "lead.miller@sherlock.gov",
+        "full_name": "Sgt. Miller (Lead)",
+        "badge_number": "Badge #4412",
+        "role": "Lead Investigator",
+        "authorized_cases": ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "CASE-000002", "C0001", "C0002"],
+        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+    },
+    {
+        "investigator_id": "INV-SPEC-001",
+        "email": "spec.sherlock@sherlock.gov",
+        "full_name": "Analyst Sherlock",
+        "badge_number": "Badge #8821",
+        "role": "Investigation Specialist",
+        "authorized_cases": ["CASE-CYBER-8841", "CASE-000001", "C0001"],
+        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+    },
+    {
+        "investigator_id": "INV-FIELD-001",
+        "email": "agent.watson@sherlock.gov",
+        "full_name": "Officer Watson",
+        "badge_number": "Badge #1002",
+        "role": "Field Agent",
+        "authorized_cases": ["CASE-CYBER-8841", "C0001"],
         "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
     },
     {
         "investigator_id": "ID-0000-00",
         "email": "investigator@agency.gov",
-        "full_name": "Agent Sherlock",
+        "full_name": "Agent Watson",
         "badge_number": "Badge #0000",
-        "role": "Senior Field Agent",
+        "role": "Field Agent",
+        "authorized_cases": ["CASE-CYBER-8841", "C0001"],
         "password_hash": hashlib.sha256("password123".encode()).hexdigest()
     }
 ]
 
-import asyncio
-
 async def ensure_seed_users():
-    """Ensure default authorized investigator accounts exist in MongoDB Atlas users collection."""
+    """Ensure default authorized investigator accounts exist in MongoDB users collection."""
     db = get_database()
     if db is not None:
         try:
             users_coll = db["users"]
-            count = await asyncio.wait_for(users_coll.count_documents({}), timeout=1.0)
-            if count == 0:
-                await asyncio.wait_for(users_coll.insert_many(DEFAULT_USERS), timeout=1.0)
-                print("[SHERLOCK AUTH] Initialized seed investigator users in MongoDB Atlas.")
+            for u in DEFAULT_USERS:
+                await users_coll.update_one(
+                    {"investigator_id": u["investigator_id"]},
+                    {"$set": u},
+                    upsert=True
+                )
+            print("[SHERLOCK AUTH] Initialized three-tier RBAC seed investigator users in MongoDB.")
         except Exception as e:
             print(f"[SHERLOCK AUTH WARNING] Could not seed users collection in MongoDB: {e}")
 
@@ -76,7 +110,7 @@ async def login(credentials: LoginRequestSchema):
             users_coll = db["users"]
             query = []
             if id_input:
-                query.append({"investigator_id": id_input})
+                query.append({"investigator_id": {"$regex": f"^{id_input}$", "$options": "i"}})
             if email_input:
                 query.append({"email": email_input})
             
@@ -105,18 +139,44 @@ async def login(credentials: LoginRequestSchema):
             detail="Invalid credentials. Access denied."
         )
 
-    # Generate session token
+    # Generate session token with 24h expiration
     session_token = f"sherlock_session_{uuid.uuid4().hex}"
+    now = time.time()
+    expires_at = now + SESSION_TTL_SECONDS
     
     user_payload = UserSchema(
-        investigator_id=target_user.get("investigator_id", "ID-4412-01"),
+        investigator_id=target_user.get("investigator_id", "INV-LEAD-001"),
         email=target_user.get("email", "miller@sherlock.gov"),
         full_name=target_user.get("full_name", "Sgt. Miller"),
         badge_number=target_user.get("badge_number", "Badge #4412"),
-        role=target_user.get("role", "Senior Investigator")
+        role=target_user.get("role", "Lead Investigator"),
+        authorized_cases=target_user.get("authorized_cases", ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "C0001"])
     )
 
-    ACTIVE_TOKENS[session_token] = user_payload.model_dump()
+    session_data = {
+        "user": user_payload.model_dump(),
+        "created_at": now,
+        "expires_at": expires_at
+    }
+
+    ACTIVE_TOKENS[session_token] = session_data
+
+    # Persist session to MongoDB if database is available
+    if db is not None:
+        try:
+            sessions_coll = db["sessions"]
+            await sessions_coll.update_one(
+                {"token": session_token},
+                {"$set": {
+                    "token": session_token,
+                    "user": user_payload.model_dump(),
+                    "created_at": now,
+                    "expires_at": expires_at
+                }},
+                upsert=True
+            )
+        except Exception as e:
+            print(f"[SHERLOCK AUTH SESSION SAVE WARNING] {e}")
 
     return AuthResponseSchema(
         token=session_token,
@@ -132,26 +192,92 @@ async def get_current_user(authorization: Optional[str] = Header(None), token: O
     elif token:
         auth_token = token
 
-    if not auth_token or auth_token not in ACTIVE_TOKENS:
-        # Check default session token for dev convenience
-        if auth_token and auth_token.startswith("sherlock_session_"):
-            return UserSchema(
-                investigator_id="ID-4412-01",
-                email="miller@sherlock.gov",
-                full_name="Sgt. Miller",
-                badge_number="Badge #4412",
-                role="Senior Investigator"
+    if not auth_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication token missing."
+        )
+
+    now = time.time()
+    user_payload_dict = None
+
+    # 1. Check in-memory active tokens
+    if auth_token in ACTIVE_TOKENS:
+        session_info = ACTIVE_TOKENS[auth_token]
+        # Check for expired token
+        if session_info.get("expires_at", 0) < now:
+            ACTIVE_TOKENS.pop(auth_token, None)
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Session token has expired. Please log in again."
             )
+        user_payload_dict = session_info["user"]
+
+    # 2. Check MongoDB sessions collection if not in memory (e.g., across backend restart)
+    if not user_payload_dict:
+        db = get_database()
+        if db is not None:
+            try:
+                sessions_coll = db["sessions"]
+                session_doc = await asyncio.wait_for(
+                    sessions_coll.find_one({"token": auth_token}),
+                    timeout=1.0
+                )
+                if session_doc:
+                    if session_doc.get("expires_at", 0) < now:
+                        await sessions_coll.delete_one({"token": auth_token})
+                        raise HTTPException(
+                            status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Session token has expired. Please log in again."
+                        )
+                    user_payload_dict = session_doc.get("user")
+                    # Re-cache in memory
+                    ACTIVE_TOKENS[auth_token] = {
+                        "user": user_payload_dict,
+                        "created_at": session_doc.get("created_at", now),
+                        "expires_at": session_doc.get("expires_at", now + SESSION_TTL_SECONDS)
+                    }
+            except HTTPException:
+                raise
+            except Exception as e:
+                print(f"[SHERLOCK AUTH SESSION LOOKUP WARNING] {e}")
+
+    if not user_payload_dict:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid or expired session token."
         )
 
-    return UserSchema(**ACTIVE_TOKENS[auth_token])
+    return UserSchema(**user_payload_dict)
 
 @router.post("/logout")
 async def logout(authorization: Optional[str] = Header(None)):
+    logged_user_id = "UNKNOWN"
+    logged_user_role = "UNKNOWN"
+    
     if authorization and authorization.startswith("Bearer "):
         auth_token = authorization.split(" ")[1]
-        ACTIVE_TOKENS.pop(auth_token, None)
+        
+        # Remove from memory
+        if auth_token in ACTIVE_TOKENS:
+            session_info = ACTIVE_TOKENS.pop(auth_token, {})
+            u_dict = session_info.get("user", {})
+            logged_user_id = u_dict.get("investigator_id", logged_user_id)
+            logged_user_role = u_dict.get("role", logged_user_role)
+
+        # Remove from MongoDB
+        db = get_database()
+        if db is not None:
+            try:
+                sessions_coll = db["sessions"]
+                session_doc = await sessions_coll.find_one_and_delete({"token": auth_token})
+                if session_doc and logged_user_id == "UNKNOWN":
+                    u_dict = session_doc.get("user", {})
+                    logged_user_id = u_dict.get("investigator_id", logged_user_id)
+                    logged_user_role = u_dict.get("role", logged_user_role)
+            except Exception as e:
+                print(f"[SHERLOCK AUTH LOGOUT DB WARNING] {e}")
+
     return {"status": "success", "message": "Logged out successfully."}
+
+

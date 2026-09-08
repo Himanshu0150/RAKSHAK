@@ -7,6 +7,37 @@ export interface User {
   full_name: string;
   badge_number: string;
   role: string;
+  authorized_cases?: string[];
+}
+
+export function hasTabPermission(user: User | null, tab: string): boolean {
+  if (!user) return true;
+  const roleLower = (user.role || '').toLowerCase();
+  
+  if (roleLower.includes('lead')) {
+    return true; // Tier 1: Full system access
+  }
+  
+  if (roleLower.includes('specialist')) {
+    // Tier 2: Analytical tools enabled, System Data Health restricted
+    return tab !== 'data_health';
+  }
+  
+  if (roleLower.includes('field') || roleLower.includes('agent')) {
+    // Tier 3: Field Agent access restricted to field operational views
+    const fieldAllowed = ['dashboard', 'investigate', 'cases', 'entities', 'timeline', 'telecom', 'evidence_vault', 'ai_copilot'];
+    return fieldAllowed.includes(tab);
+  }
+  
+  return true;
+}
+
+export function isCaseAuthorized(user: User | null, caseId: string | null): boolean {
+  if (!user || !caseId) return true;
+  const roleLower = (user.role || '').toLowerCase();
+  if (roleLower.includes('lead') || roleLower.includes('admin')) return true;
+  if (!user.authorized_cases || user.authorized_cases.length === 0 || user.authorized_cases.includes('*')) return true;
+  return user.authorized_cases.includes(caseId);
 }
 
 interface AuthContextType {
@@ -16,11 +47,14 @@ interface AuthContextType {
   isLoading: boolean;
   login: (credentials: { investigatorId?: string; email?: string; password?: string; rememberDevice?: boolean }) => Promise<void>;
   logout: () => Promise<void>;
+  hasTabPermission: (tab: string) => boolean;
+  isCaseAuthorized: (caseId: string | null) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const TOKEN_KEY = 'sherlock_auth_token';
+export const TOKEN_KEY = 'sherlock_auth_token';
+export const ACTIVE_CASE_KEY = 'sherlock_active_case_id';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -36,15 +70,48 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (verifiedUser) {
           setToken(storedToken);
           setUser(verifiedUser);
+          // Keep token in localStorage for persistence
+          localStorage.setItem(TOKEN_KEY, storedToken);
         } else {
           localStorage.removeItem(TOKEN_KEY);
           sessionStorage.removeItem(TOKEN_KEY);
+          localStorage.removeItem(ACTIVE_CASE_KEY);
+          setToken(null);
+          setUser(null);
         }
       }
       setIsLoading(false);
     }
     initAuth();
   }, []);
+
+  // Multi-tab logout / login session synchronization
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === TOKEN_KEY) {
+        if (!e.newValue) {
+          // Token removed in another tab (logout)
+          setToken(null);
+          setUser(null);
+          localStorage.removeItem(ACTIVE_CASE_KEY);
+        } else if (e.newValue !== token) {
+          // Token changed in another tab (new login)
+          verifySessionApi(e.newValue).then(verifiedUser => {
+            if (verifiedUser) {
+              setToken(e.newValue);
+              setUser(verifiedUser);
+            } else {
+              setToken(null);
+              setUser(null);
+              localStorage.removeItem(ACTIVE_CASE_KEY);
+            }
+          });
+        }
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [token]);
 
   const login = async (credentials: { investigatorId?: string; email?: string; password?: string; rememberDevice?: boolean }) => {
     const data = await loginApi(credentials);
@@ -54,11 +121,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setToken(authToken);
     setUser(authUser);
 
-    if (credentials.rememberDevice) {
-      localStorage.setItem(TOKEN_KEY, authToken);
-    } else {
-      sessionStorage.setItem(TOKEN_KEY, authToken);
-    }
+    // Save token in localStorage for cross-session and cross-tab persistence
+    localStorage.setItem(TOKEN_KEY, authToken);
+    sessionStorage.removeItem(TOKEN_KEY);
   };
 
   const logout = async () => {
@@ -67,6 +132,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     localStorage.removeItem(TOKEN_KEY);
     sessionStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(ACTIVE_CASE_KEY);
     setToken(null);
     setUser(null);
   };
@@ -79,7 +145,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAuthenticated: !!user && !!token,
         isLoading,
         login,
-        logout
+        logout,
+        hasTabPermission: (tab: string) => hasTabPermission(user, tab),
+        isCaseAuthorized: (caseId: string | null) => isCaseAuthorized(user, caseId)
       }}
     >
       {children}
@@ -94,3 +162,4 @@ export const useAuth = () => {
   }
   return context;
 };
+

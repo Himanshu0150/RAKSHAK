@@ -141,10 +141,9 @@ export const CompareView: React.FC<CompareViewProps> = ({
       };
     }
 
-    // Evaluate shared CDRs or transactions from fetched dossiers
+    // Evaluate shared CDRs from fetched dossiers
     const cdrsA = dossierA?.cdrs || [];
-    const txnsA = dataset.transactions || [];
-    const baseDisambig = disambiguateEntityPair(entityA, entityB, cdrsA, txnsA);
+    const baseDisambig = disambiguateEntityPair(entityA, entityB, cdrsA);
 
     // Check direct relationship between A and B in dossierA or dossierB
     const relsA = dossierA?.relationships || [];
@@ -161,7 +160,7 @@ export const CompareView: React.FC<CompareViewProps> = ({
     }
 
     return baseDisambig;
-  }, [selectedIdA, selectedIdB, entityA, entityB, dossierA, dossierB, dataset.transactions]);
+  }, [selectedIdA, selectedIdB, entityA, entityB, dossierA, dossierB]);
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -327,12 +326,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                 <span className="font-bold text-cyan-700">{dossierA?.cdrs?.length || 0} Calls</span>
               </div>
 
-              {entityA?.attributes && Object.entries(entityA.attributes).map(([k, v]) => (
-                <div key={k} className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 capitalize">{k}:</span>
-                  <span className="text-slate-800">{String(v)}</span>
-                </div>
-              ))}
+              {entityA?.attributes && Object.entries(entityA.attributes)
+                .filter(([k]) => {
+                  const key = k.toLowerCase();
+                  return !['account', 'bank', 'balance', 'ifsc', 'card', 'financial', 'transaction'].some(f => key.includes(f));
+                })
+                .map(([k, v]) => (
+                  <div key={k} className="flex justify-between py-1 border-b border-slate-100">
+                    <span className="text-slate-500 capitalize">{k.replace(/_/g, ' ')}:</span>
+                    <span className="text-slate-800">{String(v)}</span>
+                  </div>
+                ))}
             </div>
           )}
         </div>
@@ -384,12 +388,17 @@ export const CompareView: React.FC<CompareViewProps> = ({
                 <span className="font-bold text-cyan-700">{dossierB?.cdrs?.length || 0} Calls</span>
               </div>
 
-              {entityB?.attributes && Object.entries(entityB.attributes).map(([k, v]) => (
-                <div key={k} className="flex justify-between py-1 border-b border-slate-100">
-                  <span className="text-slate-500 capitalize">{k}:</span>
-                  <span className="text-slate-800">{String(v)}</span>
-                </div>
-              ))}
+              {entityB?.attributes && Object.entries(entityB.attributes)
+                .filter(([k]) => {
+                  const key = k.toLowerCase();
+                  return !['account', 'bank', 'balance', 'ifsc', 'card', 'financial', 'transaction'].some(f => key.includes(f));
+                })
+                .map(([k, v]) => (
+                  <div key={k} className="flex justify-between py-1 border-b border-slate-100">
+                    <span className="text-slate-500 capitalize">{k.replace(/_/g, ' ')}:</span>
+                    <span className="text-slate-800">{String(v)}</span>
+                  </div>
+                ))}
             </div>
           )}
         </div>

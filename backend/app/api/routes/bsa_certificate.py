@@ -125,9 +125,10 @@ async def generate_bsa_certificate(
         "created_at": now_iso
     }
 
+    update_payload = {k: v for k, v in cert_doc.items() if k != "_id"}
     await db.bsa_certificates.update_one(
         {"evidence_id": evidence_id},
-        {"$set": cert_doc},
+        {"$set": update_payload, "$setOnInsert": {"_id": cert_id}},
         upsert=True
     )
 
@@ -136,7 +137,7 @@ async def generate_bsa_certificate(
 @router.get("/{evidence_id}/bsa-certificate", response_model=dict)
 async def get_bsa_certificate_metadata(evidence_id: str):
     """
-    Retrieves Section 63 BSA certificate audit record for evidence_id.
+    Retrieves Section 63 BSA certificate record for evidence_id.
     Verifies current evidence SHA-256 against recorded certificate hash.
     """
     db = get_database()

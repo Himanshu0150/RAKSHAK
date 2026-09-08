@@ -4,20 +4,40 @@ const API_BASE = (((import.meta as any).env?.VITE_API_BASE_URL) || 'http://local
 
 const MOCK_SEED_USERS = [
   {
-    investigator_id: 'ID-4412-01',
+    investigator_id: 'INV-LEAD-001',
     email: 'miller@sherlock.gov',
     password: 'sherlock2026',
     full_name: 'Sgt. Miller',
     badge_number: 'Badge #4412',
-    role: 'Lead Investigator'
+    role: 'Lead Investigator',
+    authorized_cases: ['CASE-CYBER-8841', 'CASE-NARCO-9921', 'CASE-000001', 'CASE-000002', 'C0001', 'C0002']
+  },
+  {
+    investigator_id: 'INV-SPEC-001',
+    email: 'spec.sherlock@sherlock.gov',
+    password: 'sherlock2026',
+    full_name: 'Analyst Sherlock',
+    badge_number: 'Badge #8821',
+    role: 'Investigation Specialist',
+    authorized_cases: ['CASE-CYBER-8841', 'CASE-000001', 'C0001']
+  },
+  {
+    investigator_id: 'INV-FIELD-001',
+    email: 'agent.watson@sherlock.gov',
+    password: 'sherlock2026',
+    full_name: 'Officer Watson',
+    badge_number: 'Badge #1002',
+    role: 'Field Agent',
+    authorized_cases: ['CASE-CYBER-8841', 'C0001']
   },
   {
     investigator_id: 'ID-0000-00',
     email: 'investigator@agency.gov',
     password: 'password123',
-    full_name: 'Agent Sherlock',
+    full_name: 'Agent Watson',
     badge_number: 'Badge #0000',
-    role: 'Senior Field Agent'
+    role: 'Field Agent',
+    authorized_cases: ['CASE-CYBER-8841', 'C0001']
   }
 ];
 
@@ -77,14 +97,11 @@ export async function verifySessionApi(token: string) {
       headers: { Authorization: `Bearer ${token}` }
     });
     if (!res.ok) {
-      if (token.startsWith('sherlock_session_')) {
-        return MOCK_SEED_USERS[0];
-      }
       return null;
     }
     return await res.json();
-  } catch {
-    if (token.startsWith('sherlock_session_')) {
+  } catch (err) {
+    if (token && token.startsWith('sherlock_session_offline_')) {
       return MOCK_SEED_USERS[0];
     }
     return null;
@@ -115,11 +132,19 @@ export async function fetchHealthStatus() {
   }
 }
 
+function getAuthHeaders(extraHeaders: Record<string, string> = {}): Record<string, string> {
+  const token = localStorage.getItem('sherlock_auth_token');
+  if (token) {
+    extraHeaders['Authorization'] = `Bearer ${token}`;
+  }
+  return extraHeaders;
+}
+
 export async function fetchAnalyticsSummary(caseId?: string, signal?: AbortSignal) {
   try {
     let url = `${API_BASE}/analytics/summary`;
     if (caseId) url += `?case_id=${encodeURIComponent(caseId)}`;
-    const res = await fetch(url, { signal });
+    const res = await fetch(url, { headers: getAuthHeaders(), signal });
     if (!res.ok) throw new Error(`Analytics fetch failed: ${res.statusText}`);
     return await res.json();
   } catch (err: any) {
@@ -129,11 +154,11 @@ export async function fetchAnalyticsSummary(caseId?: string, signal?: AbortSigna
   }
 }
 
-export async function fetchRealCases(limit = 1000, search?: string, signal?: AbortSignal): Promise<CaseRecord[]> {
+export async function fetchRealCases(limit = 5000, search?: string, signal?: AbortSignal): Promise<CaseRecord[]> {
   try {
     let url = `${API_BASE}/cases?limit=${limit}`;
     if (search) url += `&search=${encodeURIComponent(search)}`;
-    const res = await fetch(url, { signal });
+    const res = await fetch(url, { headers: getAuthHeaders(), signal });
     if (!res.ok) throw new Error(`Cases fetch failed: ${res.statusText}`);
     return await res.json();
   } catch (err: any) {
@@ -145,7 +170,7 @@ export async function fetchRealCases(limit = 1000, search?: string, signal?: Abo
 
 export async function fetchCaseById(caseId: string, signal?: AbortSignal): Promise<CaseRecord | null> {
   try {
-    const res = await fetch(`${API_BASE}/cases/${caseId}`, { signal });
+    const res = await fetch(`${API_BASE}/cases/${caseId}`, { headers: getAuthHeaders(), signal });
     if (!res.ok) throw new Error(`Case fetch failed: ${res.statusText}`);
     return await res.json();
   } catch (err: any) {
@@ -157,7 +182,7 @@ export async function fetchCaseById(caseId: string, signal?: AbortSignal): Promi
 
 export async function fetchCaseWorkspace(caseId: string, signal?: AbortSignal) {
   try {
-    const res = await fetch(`${API_BASE}/cases/${caseId}/workspace`, { signal });
+    const res = await fetch(`${API_BASE}/cases/${caseId}/workspace`, { headers: getAuthHeaders(), signal });
     if (!res.ok) throw new Error(`Case workspace fetch failed: ${res.statusText}`);
     return await res.json();
   } catch (err: any) {
@@ -167,14 +192,14 @@ export async function fetchCaseWorkspace(caseId: string, signal?: AbortSignal) {
   }
 }
 
-export async function fetchRealEntities(limit = 200, type?: string, q?: string, risk?: string, caseId?: string, signal?: AbortSignal): Promise<Entity[]> {
+export async function fetchRealEntities(limit = 2000, type?: string, q?: string, risk?: string, caseId?: string, signal?: AbortSignal): Promise<Entity[]> {
   try {
     let url = `${API_BASE}/entities?limit=${limit}`;
     if (type && type !== 'ALL') url += `&type=${encodeURIComponent(type)}`;
     if (q && q.trim()) url += `&q=${encodeURIComponent(q.trim())}`;
     if (risk && risk !== 'ALL') url += `&risk=${encodeURIComponent(risk)}`;
     if (caseId) url += `&case_id=${encodeURIComponent(caseId)}`;
-    const res = await fetch(url, { signal });
+    const res = await fetch(url, { headers: getAuthHeaders(), signal });
     if (!res.ok) throw new Error(`Entities fetch failed: ${res.statusText}`);
     return await res.json();
   } catch (err: any) {
@@ -403,7 +428,7 @@ export async function fetchBSACertificate(evidenceId: string, signal?: AbortSign
 
 export async function generateBSACertificate(evidenceId: string, officerInfo?: any) {
   try {
-    const token = localStorage.getItem('sherlock_token');
+    const token = localStorage.getItem('sherlock_auth_token') || sessionStorage.getItem('sherlock_auth_token');
     const headers: Record<string, string> = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
@@ -423,4 +448,32 @@ export async function generateBSACertificate(evidenceId: string, officerInfo?: a
 
 export function getBSACertificateDownloadUrl(evidenceId: string): string {
   return `${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/bsa-certificate/download`;
+}
+
+export async function exportCaseEvidencePdfApi(caseId: string) {
+  try {
+    const token = localStorage.getItem('sherlock_auth_token') || sessionStorage.getItem('sherlock_auth_token');
+    const headers: Record<string, string> = {};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    const res = await fetch(`${API_BASE}/evidence/export-pdf?case_id=${encodeURIComponent(caseId)}`, {
+      headers
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.detail || `Export failed with status ${res.status}`);
+    }
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `RAKSHAK_Evidence_Export_${caseId}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  } catch (err: any) {
+    console.error('Failed to export case evidence PDF:', err);
+    throw err;
+  }
 }

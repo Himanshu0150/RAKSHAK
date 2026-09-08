@@ -247,3 +247,46 @@ export interface InvestigationStory {
   source_record_ids: string[];
   version: number;
 }
+
+export interface SourceRecordRef {
+  record_type: 'cdr' | 'transaction' | 'evidence' | 'event' | 'relationship' | 'person' | 'account' | 'phone' | 'vehicle' | 'device' | 'organization' | 'location';
+  record_id: string;
+  case_id: string;
+  summary?: string;
+}
+
+export interface FactItem {
+  fact: string;
+  supporting_records?: SourceRecordRef[];
+}
+
+export interface InferenceItem {
+  inference: string;
+  confidence: number;
+  rationale: string;
+  supporting_records?: SourceRecordRef[];
+  contradicting_records?: SourceRecordRef[];
+  contradiction_note?: string;
+}
+
+export interface ActionItem {
+  action: string;
+  supporting_records?: SourceRecordRef[];
+}
+
+export interface ContradictionItem {
+  contradiction: string;
+  supporting_records?: SourceRecordRef[];
+}
+
+export interface AIAnalysisResponse {
+  markdownOutput: string;
+  facts: Array<string | FactItem>;
+  inferences: InferenceItem[];
+  recommendedActions: Array<string | ActionItem>;
+  contradictions?: ContradictionItem[];
+  contradictionSummary?: string;
+  isAiGenerated: boolean;
+  modelUsed: string;
+  case_id?: string;
+}

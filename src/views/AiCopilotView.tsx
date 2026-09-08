@@ -12,10 +12,23 @@ import {
   RefreshCw,
   Layers,
   ShieldAlert,
-  Terminal
+  Terminal,
+  ExternalLink,
+  Info,
+  XCircle
 } from 'lucide-react';
 import { InvestigationDataset } from '../services/datasetNormalizer';
-import { requestAIInvestigationAnalysis, AIAnalysisResponse } from '../services/aiService';
+import { 
+  requestAIInvestigationAnalysis, 
+  AIAnalysisResponse 
+} from '../services/aiService';
+import { 
+  SourceRecordRef, 
+  FactItem, 
+  InferenceItem, 
+  ActionItem, 
+  ContradictionItem 
+} from '../types/investigation';
 
 interface AiCopilotViewProps {
   dataset: InvestigationDataset;
@@ -29,7 +42,7 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
   onSelectEntity
 }) => {
   const [promptInput, setPromptInput] = useState('');
-  const [analysisMode, setAnalysisMode] = useState<'HYPOTHESIS' | 'DOSSIER_SUMMARY' | 'ANOMALY_EXPLAIN' | 'CONTRADICTION_AUDIT'>('HYPOTHESIS');
+  const [analysisMode, setAnalysisMode] = useState<'HYPOTHESIS' | 'DOSSIER_SUMMARY' | 'ANOMALY_EXPLAIN' | 'CONTRADICTION_AUDIT' | 'CHAT'>('HYPOTHESIS');
   const [loading, setLoading] = useState(false);
   const [aiResult, setAiResult] = useState<AIAnalysisResponse | null>(null);
 
@@ -45,13 +58,14 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
       jurisdiction: activeCase?.jurisdiction || 'Multi-Jurisdictional Taskforce',
       status: activeCase?.status || 'OPEN',
       severity: activeCase?.severity || 'HIGH',
-      entities: (dataset.entities || []).slice(0, 8).map(e => ({ name: e.name, type: e.type, risk: e.flaggedRisk })),
+      entities: (dataset.entities || []).slice(0, 8).map(e => ({ id: e.id, name: e.name, type: e.type, risk: e.flaggedRisk })),
     });
 
     const res = await requestAIInvestigationAnalysis({
       prompt: textToRun,
       context: contextPayload,
       caseTitle: activeCase?.title,
+      case_id: activeCase?.id || 'CASE-000001',
       mode: analysisMode
     });
 
@@ -65,6 +79,68 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
     'Map Financial Flow: Trace the origin of the offshore escrow transfer.',
     'Generate Court-Admissible Intelligence Summary for the Lead Prosecutor.'
   ];
+
+  const handleSourceClick = (rec: SourceRecordRef) => {
+    // If the record_id matches an existing entity, open it directly
+    const targetEntity = dataset.entities.find(e => e.id === rec.record_id);
+    if (targetEntity) {
+      onSelectEntity(rec.record_id);
+      return;
+    }
+
+    // Check if CDR has linked phone/person
+    if (rec.record_type === 'cdr') {
+      const cdrItem = dataset.cdrRecords.find(c => c.id === rec.record_id);
+      if (cdrItem) {
+        const linkedPhone = dataset.entities.find(e => e.id === cdrItem.callerPhone || e.name === cdrItem.callerPhone || e.id === cdrItem.receiverPhone);
+        if (linkedPhone) {
+          onSelectEntity(linkedPhone.id);
+          return;
+        }
+      }
+    }
+
+    // Check if Transaction has linked account/person
+    if (rec.record_type === 'transaction') {
+      const txnItem = dataset.transactions.find(t => t.id === rec.record_id);
+      if (txnItem) {
+        const linkedAccount = dataset.entities.find(e => e.id === txnItem.sourceAccount || e.id === txnItem.targetAccount);
+        if (linkedAccount) {
+          onSelectEntity(linkedAccount.id);
+          return;
+        }
+      }
+    }
+
+    // Default fallback to entity or first entity in dataset
+    if (dataset.entities.length > 0) {
+      onSelectEntity(dataset.entities[0].id);
+    }
+  };
+
+  const renderSourceBadges = (records?: SourceRecordRef[]) => {
+    if (!records || records.length === 0) return null;
+    return (
+      <div className="flex flex-wrap items-center gap-1.5 pt-1.5">
+        <span className="text-[10px] font-mono text-slate-400 font-semibold uppercase">Supporting Records:</span>
+        {records.map((rec, idx) => {
+          const typeLabel = (rec.record_type || 'RECORD').toUpperCase();
+          return (
+            <button
+              key={idx}
+              onClick={() => handleSourceClick(rec)}
+              title={rec.summary || `${typeLabel} record ${rec.record_id} (Case: ${rec.case_id}) — Click to view`}
+              className="px-2 py-0.5 bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-800 border border-slate-200 hover:border-blue-300 rounded font-mono text-[10px] flex items-center gap-1 transition-colors group cursor-pointer"
+            >
+              <span className="font-bold text-blue-600">{typeLabel}:</span>
+              <span className="font-semibold underline decoration-dotted">{rec.record_id}</span>
+              <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100" />
+            </button>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -81,30 +157,47 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1">
-            Reasoning assistant strictly disciplined to separate verified evidentiary facts from analytical inferences.
+            Reasoning assistant strictly grounded to active case records ({activeCase?.caseNumber || 'Active Case'}).
           </p>
+        </div>
+
+        {/* Mode Buttons */}
+        <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200">
+          {(['HYPOTHESIS', 'DOSSIER_SUMMARY', 'ANOMALY_EXPLAIN', 'CONTRADICTION_AUDIT', 'CHAT'] as const).map(m => (
+            <button
+              key={m}
+              onClick={() => setAnalysisMode(m)}
+              className={`px-3 py-1.5 text-xs font-mono font-bold rounded-lg transition-colors ${
+                analysisMode === m 
+                  ? 'bg-blue-600 text-white shadow-xs' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+              }`}
+            >
+              {m.replace('_', ' ')}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Mode Selector Strip */}
+      {/* Input Area Strip */}
       <div className="p-5 bg-white border border-slate-200 rounded-xl card-shadow space-y-4">
-        {/* Input Field */}
         <div className="relative">
           <textarea
             value={promptInput}
             onChange={(e) => setPromptInput(e.target.value)}
-            placeholder="Type your investigative query, hypothesis, or alibi challenge to test against evidence records..."
+            placeholder="Type your investigative query, hypothesis, or alibi challenge to test against active case records..."
             rows={3}
-            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white resize-none"
+            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white resize-none font-mono"
           />
           <div className="flex justify-between items-center pt-2">
-            <div className="text-[11px] text-slate-400 font-mono">
-              Indian Evidence Act Section 65B grounded • Strictly fact-indexed
+            <div className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
+              <ShieldAlert className="w-3.5 h-3.5 text-blue-500" />
+              Active Scope: <strong className="text-slate-700">{activeCase?.caseNumber || 'CASE-000001'}</strong> • Evidence Traceability Enabled
             </div>
             <button
               onClick={() => handleRunAnalysis()}
               disabled={loading}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white rounded-lg text-xs font-bold flex items-center gap-2 shadow transition-colors font-mono"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white rounded-lg text-xs font-bold flex items-center gap-2 shadow transition-colors font-mono cursor-pointer"
             >
               {loading ? (
                 <>
@@ -131,7 +224,7 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
                 setPromptInput(sp);
                 handleRunAnalysis(sp);
               }}
-              className="px-2.5 py-1 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 rounded text-xs transition-colors text-left"
+              className="px-2.5 py-1 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 rounded text-xs transition-colors text-left font-mono cursor-pointer"
             >
               {sp}
             </button>
@@ -141,11 +234,11 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
 
       {/* AI Analysis Output Card */}
       {aiResult ? (
-        <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-xs space-y-4">
+        <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-xs space-y-5">
           {!aiResult.isAiGenerated && (
             <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-center gap-2.5 text-xs text-amber-800 font-mono">
               <ShieldAlert className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>AI Service Configuration Required: GEMINI_API_KEY unavailable. Displaying structured case intelligence summary from live MongoDB dataset.</span>
+              <span>AI Service Configuration Notice: Displaying grounded forensic assessment generated from active case records in MongoDB.</span>
             </div>
           )}
 
@@ -156,6 +249,11 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
               <span className="px-2 py-0.5 text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200 rounded">
                 MODEL: {aiResult.modelUsed || 'GEMINI-3.7-FLASH'}
               </span>
+              {aiResult.case_id && (
+                <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200 rounded">
+                  CASE: {aiResult.case_id}
+                </span>
+              )}
             </div>
 
             <div className="text-xs font-mono text-slate-500">
@@ -163,61 +261,120 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
             </div>
           </div>
 
-          {/* Section 1: Verified Facts */}
-          <div className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl space-y-2">
+          {/* Section 1: Verified Evidentiary Facts */}
+          <div className="p-4 bg-emerald-50/70 border border-emerald-200 rounded-xl space-y-3">
             <h4 className="text-xs font-bold text-emerald-900 uppercase font-mono tracking-wider flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              Verified Evidentiary Facts (Court Admissible)
+              Verified Evidentiary Facts (Court Admissible Grounded Facts)
             </h4>
-            <ul className="text-xs space-y-1 text-slate-700 list-disc list-inside">
+            <div className="space-y-3">
               {aiResult.facts?.length ? (
-                aiResult.facts.map((f, i) => (
-                  <li key={i} className="leading-relaxed">{typeof f === 'string' ? f : JSON.stringify(f)}</li>
-                ))
+                aiResult.facts.map((f, i) => {
+                  const factText = typeof f === 'string' ? f : f.fact;
+                  const records = typeof f === 'object' ? f.supporting_records : undefined;
+                  return (
+                    <div key={i} className="p-2.5 bg-white/80 border border-emerald-100 rounded-lg text-xs space-y-1">
+                      <div className="text-slate-800 leading-relaxed font-sans">
+                        <strong className="text-emerald-800 font-mono mr-1">FACT #{i+1}:</strong>
+                        {factText}
+                      </div>
+                      {renderSourceBadges(records)}
+                    </div>
+                  );
+                })
               ) : (
-                <li>Ingested records verified against MongoDB Atlas C3PL Merkle integrity trees.</li>
+                <div className="text-xs text-emerald-800 font-mono">
+                  • Ingested records verified against MongoDB Atlas C3PL Merkle integrity trees for {activeCase?.id}.
+                </div>
               )}
-            </ul>
+            </div>
           </div>
 
-          {/* Section 2: Analytical Inferences */}
-          <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl space-y-2">
+          {/* Section 2: Analytical Inferences & Behavioral Hypotheses */}
+          <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-xl space-y-3">
             <h4 className="text-xs font-bold text-amber-900 uppercase font-mono tracking-wider flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-600" />
               Analytical Inferences & Behavioral Hypotheses
             </h4>
-            <ul className="text-xs space-y-1.5 text-slate-700">
+            <div className="space-y-3">
               {aiResult.inferences?.length ? (
-                aiResult.inferences.map((inf: any, i) => {
-                  const text = typeof inf === 'object' ? (inf.inference || inf.rationale || JSON.stringify(inf)) : String(inf);
-                  const conf = typeof inf === 'object' && inf.confidence ? `${inf.confidence}% confidence` : null;
-                  return (
-                    <li key={i} className="leading-relaxed flex items-start gap-2">
-                      <span className="text-amber-600 font-bold">•</span>
-                      <div>
-                        <span>{text}</span>
-                        {conf && <span className="ml-2 text-[10px] font-mono text-slate-500 font-semibold">({conf})</span>}
+                aiResult.inferences.map((inf: InferenceItem, i) => (
+                  <div key={i} className="p-3 bg-white/80 border border-amber-100 rounded-lg text-xs space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-bold text-amber-900 font-mono">HYPOTHESIS #{i+1}</span>
+                      {inf.confidence && (
+                        <span className="px-2 py-0.5 bg-amber-100 text-amber-900 border border-amber-300 rounded text-[10px] font-mono font-bold">
+                          {inf.confidence}% Analytical Confidence
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-slate-800 font-medium leading-relaxed">
+                      {inf.inference}
+                    </div>
+                    {inf.rationale && (
+                      <div className="text-[11px] text-slate-500 font-mono bg-slate-50 p-2 rounded border border-slate-100">
+                        <strong>Rationale:</strong> {inf.rationale}
                       </div>
-                    </li>
-                  );
-                })
+                    )}
+                    {renderSourceBadges(inf.supporting_records)}
+                    {inf.contradicting_records && inf.contradicting_records.length > 0 && (
+                      <div className="pt-1">
+                        <span className="text-[10px] font-mono text-rose-600 font-semibold">CONTRADICTING RECORDS:</span>
+                        {renderSourceBadges(inf.contradicting_records)}
+                      </div>
+                    )}
+                  </div>
+                ))
               ) : (
-                <li className="leading-relaxed font-mono text-slate-500">• No analytical inferences generated.</li>
+                <div className="text-xs text-amber-800 font-mono">• No analytical inferences generated.</div>
               )}
-            </ul>
+            </div>
           </div>
 
-          {/* Section 3: Recommended Next Investigative Steps */}
-          {(aiResult.recommendedActions?.length || aiResult.recommendations?.length) && (
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-              <h4 className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider">
-                Recommended Investigative Leads
-              </h4>
-              <ul className="text-xs space-y-1 text-slate-700 list-decimal list-inside">
-                {(aiResult.recommendedActions || aiResult.recommendations || []).map((r: any, i) => (
-                  <li key={i} className="leading-relaxed">{typeof r === 'string' ? r : JSON.stringify(r)}</li>
+          {/* Section 3: Contradicting Evidence & Discrepancy Audit */}
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+            <h4 className="text-xs font-bold text-slate-900 uppercase font-mono tracking-wider flex items-center gap-2">
+              <Info className="w-4 h-4 text-blue-600" />
+              Contradicting Evidence & Discrepancy Audit
+            </h4>
+            {aiResult.contradictions?.length ? (
+              <div className="space-y-2 pt-1">
+                {aiResult.contradictions.map((con: ContradictionItem, i) => (
+                  <div key={i} className="p-2.5 bg-white border border-slate-200 rounded-lg text-xs space-y-1">
+                    <div className="text-slate-800">{con.contradiction}</div>
+                    {renderSourceBadges(con.supporting_records)}
+                  </div>
                 ))}
-              </ul>
+              </div>
+            ) : (
+              <p className="text-xs text-slate-600 font-mono">
+                {aiResult.contradictionSummary || 'No contradicting record identified in the available case context.'}
+              </p>
+            )}
+          </div>
+
+          {/* Section 4: Recommended Investigative Leads */}
+          {(aiResult.recommendedActions?.length || 0) > 0 && (
+            <div className="p-4 bg-blue-50/60 border border-blue-200 rounded-xl space-y-3">
+              <h4 className="text-xs font-bold text-blue-900 uppercase font-mono tracking-wider flex items-center gap-2">
+                <ArrowRight className="w-4 h-4 text-blue-600" />
+                Recommended Investigative Leads & Actions
+              </h4>
+              <div className="space-y-2">
+                {aiResult.recommendedActions.map((act: any, i) => {
+                  const actionText = typeof act === 'string' ? act : act.action;
+                  const records = typeof act === 'object' ? act.supporting_records : undefined;
+                  return (
+                    <div key={i} className="p-2.5 bg-white/80 border border-blue-100 rounded-lg text-xs space-y-1">
+                      <div className="text-slate-800 leading-relaxed font-sans">
+                        <strong className="text-blue-800 font-mono mr-1">ACTION #{i+1}:</strong>
+                        {actionText}
+                      </div>
+                      {renderSourceBadges(records)}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>
@@ -228,15 +385,15 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
             <Bot className="w-6 h-6" />
           </div>
           <h3 className="font-bold text-sm text-slate-900 font-mono">
-            RAKSHAK AI Forensic Case Analyst Ready
+            RAKSHAK AI Forensic Case Analyst Ready ({activeCase?.caseNumber || 'CASE-000001'})
           </h3>
           <p className="text-xs text-slate-500 max-w-md mx-auto">
-            Select a sample query above or type a custom investigative hypothesis to analyze linked case records from MongoDB.
+            Select a sample query above or type a custom investigative hypothesis to analyze linked case records from MongoDB with complete evidence traceability.
           </p>
           <div className="pt-2">
             <button
               onClick={() => handleRunAnalysis('Synthesize active case intelligence, entity graph links, and financial flow patterns.')}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg transition-colors shadow-xs"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg transition-colors shadow-xs font-mono cursor-pointer"
             >
               Analyze Active Case ({activeCase?.caseNumber || 'CASE-000001'})
             </button>

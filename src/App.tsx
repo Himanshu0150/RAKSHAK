@@ -60,7 +60,7 @@ export function getEntityTypeFromId(id: string): any {
 }
 
 function MainAppContent() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading, hasTabPermission: checkTabPermission, isCaseAuthorized: checkCaseAuth } = useAuth();
   const [currentTab, setCurrentTab] = useState<NavigationTab>('dashboard');
   const [dataset, setDataset] = useState<InvestigationDataset>(createPhantomLedgerDataset());
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
@@ -85,25 +85,87 @@ function MainAppContent() {
         }
       }
     });
-    return () => {
-      controller.abort();
-    };
+    return () => controller.abort();
   }, [isAuthenticated, selectedCaseId]);
 
   // Initial case and entity dataset loading on login
   React.useEffect(() => {
     if (!isAuthenticated) return;
-    fetchRealCases(1000).then(realCases => {
+    fetchRealCases(5000).then(realCases => {
       if (realCases?.length) {
         setDataset(prev => ({ ...prev, cases: realCases }));
       }
     });
-    fetchRealEntities(200).then(realEntities => {
+    fetchRealEntities(3000).then(realEntities => {
       if (realEntities?.length) {
         setDataset(prev => ({ ...prev, entities: realEntities }));
       }
     });
   }, [isAuthenticated]);
+
+  const [activeEntityId, setActiveEntityId] = useState<string | null>(null);
+  const [graphFocusEntityId, setGraphFocusEntityId] = useState<string | null>(null);
+  const [selectedEntityIdForDossier, setSelectedEntityIdForDossier] = useState<string | null>(null);
+  const [compareEntityIdA, setCompareEntityIdA] = useState<string | null>(null);
+  const [compareEntityIdB, setCompareEntityIdB] = useState<string | null>(null);
+  const [tamperSimulated, setTamperSimulated] = useState<boolean>(false);
+  const [datasetModalOpen, setDatasetModalOpen] = useState<boolean>(false);
+  const [notificationsOpen, setNotificationsOpen] = useState<boolean>(false);
+  const [historyStack, setHistoryStack] = useState<Array<{ tab: NavigationTab; caseId: string | null; entityId: string | null }>>([]);
+
+  const recordNavigation = (newTab: NavigationTab, newCaseId: string | null, newEntityId: string | null) => {
+    setHistoryStack(prev => {
+      const last = prev[prev.length - 1];
+      if (last && last.tab === currentTab && last.caseId === selectedCaseId && last.entityId === activeEntityId) {
+        return prev;
+      }
+      return [...prev.slice(-25), { tab: currentTab, caseId: selectedCaseId, entityId: activeEntityId }];
+    });
+  };
+
+  const handleTabChange = (newTab: NavigationTab) => {
+    if (!checkTabPermission(newTab)) {
+      return;
+    }
+    if (newTab !== currentTab) {
+      recordNavigation(newTab, selectedCaseId, activeEntityId);
+      setCurrentTab(newTab);
+    }
+  };
+
+  // Restore and validate active case preference upon session restoration
+  React.useEffect(() => {
+    if (!isAuthenticated || !user) return;
+    const storedCase = localStorage.getItem('sherlock_active_case_id');
+    if (storedCase) {
+      if (checkCaseAuth(storedCase)) {
+        setSelectedCaseId(storedCase);
+      } else {
+        localStorage.removeItem('sherlock_active_case_id');
+        if (user.authorized_cases && user.authorized_cases.length > 0) {
+          const fallback = user.authorized_cases.find(c => c.startsWith('C') || c.startsWith('CASE'));
+          if (fallback) setSelectedCaseId(fallback);
+        }
+      }
+    }
+  }, [isAuthenticated, user]);
+
+  const handleSelectCaseId = (caseId: string | null) => {
+    if (caseId && !checkCaseAuth(caseId)) {
+      return;
+    }
+
+    if (caseId !== selectedCaseId) {
+      setLoadedTabs(new Set());
+      recordNavigation(currentTab, caseId, activeEntityId);
+      setSelectedCaseId(caseId);
+      if (caseId) {
+        localStorage.setItem('sherlock_active_case_id', caseId);
+      } else {
+        localStorage.removeItem('sherlock_active_case_id');
+      }
+    }
+  };
 
   // Lazy per-tab data loading: fetch module data when tab is first opened
   React.useEffect(() => {
@@ -179,24 +241,6 @@ function MainAppContent() {
     }
   }, [isAuthenticated, currentTab, loadedTabs]);
 
-  // Modal & Focus States (Declared unconditionally at top of component per React Rules of Hooks)
-  const [selectedEntityIdForDossier, setSelectedEntityIdForDossier] = useState<string | null>(null);
-  const [activeEntityId, setActiveEntityId] = useState<string | null>(null);
-  const [compareEntityIdA, setCompareEntityIdA] = useState<string | null>(null);
-  const [compareEntityIdB, setCompareEntityIdB] = useState<string | null>(null);
-  const [graphFocusEntityId, setGraphFocusEntityId] = useState<string | null>(null);
-
-  // Navigation History Stack for Back traversal
-  const [historyStack, setHistoryStack] = useState<Array<{
-    tab: NavigationTab;
-    caseId: string | null;
-    entityId: string | null;
-  }>>([]);
-
-  const [tamperSimulated, setTamperSimulated] = useState<boolean>(false);
-  const [datasetModalOpen, setDatasetModalOpen] = useState<boolean>(false);
-  const [notificationsOpen, setNotificationsOpen] = useState<boolean>(false);
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#202833] flex flex-col items-center justify-center text-white font-sans">
@@ -225,32 +269,6 @@ function MainAppContent() {
         linkedCaseIds: []
       })
     : null;
-
-  // Push to history when state changes
-  const recordNavigation = (newTab: NavigationTab, newCaseId: string | null, newEntityId: string | null) => {
-    setHistoryStack(prev => {
-      const last = prev[prev.length - 1];
-      if (last && last.tab === currentTab && last.caseId === selectedCaseId && last.entityId === activeEntityId) {
-        return prev;
-      }
-      return [...prev.slice(-25), { tab: currentTab, caseId: selectedCaseId, entityId: activeEntityId }];
-    });
-  };
-
-  const handleTabChange = (newTab: NavigationTab) => {
-    if (newTab !== currentTab) {
-      recordNavigation(newTab, selectedCaseId, activeEntityId);
-      setCurrentTab(newTab);
-    }
-  };
-
-  const handleSelectCaseId = (caseId: string | null) => {
-    if (caseId !== selectedCaseId) {
-      setLoadedTabs(new Set());
-      recordNavigation(currentTab, caseId, activeEntityId);
-      setSelectedCaseId(caseId);
-    }
-  };
 
   const handleOpenInGraph = (entityId: string) => {
     recordNavigation('knowledge_graph', selectedCaseId, entityId);

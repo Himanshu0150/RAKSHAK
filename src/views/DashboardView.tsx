@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Briefcase, 
   Users, 
@@ -11,10 +11,13 @@ import {
   ArrowRight,
   TrendingUp,
   AlertTriangle,
-  FileText
+  FileText,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { NavigationTab } from '../components/layout/AppShell';
+import { useAuth, isCaseAuthorized } from '../context/AuthContext';
 
 interface DashboardViewProps {
   dataset: InvestigationDataset;
@@ -35,15 +38,37 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   tamperSimulated,
   summaryData
 }) => {
+  const { user } = useAuth();
+  const [attentionPage, setAttentionPage] = useState(1);
+  const pageSize = 4;
+
   const currentCase = selectedCaseId ? dataset.cases.find(c => c.id === selectedCaseId) : null;
 
-  const activeCasesCount = summaryData?.activeCasesCount ?? dataset.cases.filter(c => c.status !== 'CLOSED').length;
-  const criticalCasesCount = summaryData?.criticalCasesCount ?? dataset.cases.filter(c => c.priority === 'CRITICAL').length;
+  const activeCasesCount = summaryData?.activeCasesCount ?? dataset.cases.filter(c => (c.status || '').toUpperCase() !== 'CLOSED').length;
+  const criticalCasesCount = summaryData?.criticalCasesCount ?? dataset.cases.filter(c => (c.priority || '').toUpperCase() === 'CRITICAL').length;
   const indexedEntitiesCount = summaryData?.indexedEntitiesCount ?? dataset.entities.length;
   const relationshipsCount = summaryData?.relationshipsCount ?? dataset.relationships.length;
   const evidenceRecordsCount = summaryData?.evidenceRecordsCount ?? dataset.evidenceRecords.length;
   const anomaliesCount = summaryData?.anomaliesCount ?? dataset.anomalies.length;
-  const criticalAnomaliesCount = summaryData?.criticalCasesCount ?? dataset.anomalies.filter(a => a.severity === 'CRITICAL' || a.severity === 'HIGH').length;
+  const criticalAnomaliesCount = dataset.anomalies.filter(a => a.severity === 'CRITICAL' || a.severity === 'HIGH').length;
+
+  // Cases list for dashboard view sorted by priority
+  const casesNeedingAttention = useMemo(() => {
+    const list = (dataset.cases || []).filter(c => isCaseAuthorized(user, c.id));
+    // Sort CRITICAL first, then HIGH
+    return list.sort((a, b) => {
+      const pA = (a.priority || '').toUpperCase();
+      const pB = (b.priority || '').toUpperCase();
+      if (pA === 'CRITICAL' && pB !== 'CRITICAL') return -1;
+      if (pB === 'CRITICAL' && pA !== 'CRITICAL') return 1;
+      if (pA === 'HIGH' && pB !== 'HIGH') return -1;
+      if (pB === 'HIGH' && pA !== 'HIGH') return 1;
+      return 0;
+    });
+  }, [dataset.cases, user]);
+
+  const totalPages = Math.max(1, Math.ceil(casesNeedingAttention.length / pageSize));
+  const paginatedAttentionCases = casesNeedingAttention.slice((attentionPage - 1) * pageSize, attentionPage * pageSize);
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -139,20 +164,25 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         {/* Question 3: Which cases need attention? (2 Cols) */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-slate-900 font-heading">
-              Cases Needing Attention
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-bold text-slate-900 font-heading">
+                Cases Needing Attention
+              </h2>
+              <span className="px-2 py-0.5 text-xs font-bold bg-amber-100 text-amber-800 rounded-full font-mono">
+                {casesNeedingAttention.length}
+              </span>
+            </div>
             <button
               onClick={() => onNavigateTab('cases')}
               className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 transition-colors"
             >
-              <span>View All ({dataset.cases.length})</span>
+              <span>View All ({casesNeedingAttention.length})</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="space-y-3">
-            {dataset.cases.slice(0, 4).map(c => (
+            {paginatedAttentionCases.map(c => (
               <div 
                 key={c.id} 
                 className={`p-4 rounded-xl border transition-all ${
@@ -164,7 +194,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
                     <span className={`px-2 py-0.5 text-[10px] font-bold rounded uppercase tracking-wide ${
-                      c.priority === 'CRITICAL' 
+                      (c.priority || '').toUpperCase() === 'CRITICAL' 
                         ? 'bg-red-100 text-red-700 border border-red-200' 
                         : 'bg-amber-100 text-amber-800 border border-amber-200'
                     }`}>
@@ -212,6 +242,34 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </div>
             ))}
           </div>
+
+          {/* Attention Cases Pagination Bar */}
+          {casesNeedingAttention.length > pageSize && (
+            <div className="flex items-center justify-between pt-2 text-xs text-slate-500">
+              <span className="font-mono">
+                Showing {(attentionPage - 1) * pageSize + 1}–{Math.min(attentionPage * pageSize, casesNeedingAttention.length)} of {casesNeedingAttention.length} matching cases
+              </span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  disabled={attentionPage <= 1}
+                  onClick={() => setAttentionPage(p => Math.max(1, p - 1))}
+                  className="px-2 py-1 bg-white border border-slate-200 rounded disabled:opacity-40 hover:bg-slate-50 flex items-center text-slate-700 font-medium"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <span className="font-mono text-xs px-2 text-slate-700">
+                  {attentionPage} / {totalPages}
+                </span>
+                <button
+                  disabled={attentionPage >= totalPages}
+                  onClick={() => setAttentionPage(p => Math.min(totalPages, p + 1))}
+                  className="px-2 py-1 bg-white border border-slate-200 rounded disabled:opacity-40 hover:bg-slate-50 flex items-center text-slate-700 font-medium"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Question 4: What are the high-priority targets / leads? (1 Col) */}
@@ -224,13 +282,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               onClick={() => onNavigateTab('entities')}
               className="text-xs text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1 transition-colors"
             >
-              <span>View All ({dataset.entities.length})</span>
+              <span>View All ({indexedEntitiesCount})</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-xl p-4 card-shadow space-y-3">
-            {dataset.entities.slice(0, 5).map(e => (
+            {dataset.entities.slice(0, 6).map(e => (
               <div 
                 key={e.id}
                 onClick={() => onSelectEntity(e.id)}

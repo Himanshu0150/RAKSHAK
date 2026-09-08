@@ -24,16 +24,20 @@ from app.api.routes.accounts import router as accounts_router
 from app.api.routes.analytics import router as analytics_router
 from app.api.routes.search import router as search_router
 from app.api.routes.ai import router as ai_router
+from app.api.routes.search import router as search_router
+from app.api.routes.ai import router as ai_router
 from app.api.routes.auth import router as auth_router
 from app.api.routes.investigation_story import router as investigation_story_router
 from app.api.routes.bsa_certificate import router as bsa_certificate_router
 
 from app.core.demo_subset import initialize_demo_subset
+from app.db.migrate_biographical_data import migrate_biographical_data
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await connect_to_mongo()
     await initialize_demo_subset()
+    await migrate_biographical_data()
     yield
     await close_mongo_connection()
 

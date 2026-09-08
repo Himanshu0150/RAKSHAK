@@ -20,11 +20,12 @@ import {
   Database, 
   ChevronDown,
   Sparkles,
-  LogOut
+  LogOut,
+  ShieldCheck
 } from 'lucide-react';
 import { InvestigationDataset } from '../../services/datasetNormalizer';
 import { BreadcrumbTrail } from './BreadcrumbTrail';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth, hasTabPermission, isCaseAuthorized } from '../../context/AuthContext';
 
 export type NavigationTab = 
   | 'dashboard'
@@ -84,7 +85,8 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [globalSearch, setGlobalSearch] = useState('');
 
-  const selectedCase = dataset.cases.find(c => c.id === selectedCaseId);
+  const authorizedCases = (dataset.cases || []).filter(c => isCaseAuthorized(user, c.id));
+  const selectedCase = authorizedCases.find(c => c.id === selectedCaseId) || dataset.cases.find(c => c.id === selectedCaseId);
 
   // Grouped Navigation Items matching Stitch design structure
   const navGroups: Array<{
@@ -95,7 +97,7 @@ export const AppShell: React.FC<AppShellProps> = ({
       title: 'Intelligence Operations',
       items: [
         { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'cases', label: 'Active Cases', icon: Briefcase, badge: summaryData?.activeCasesCount ?? (dataset.cases || []).length },
+        { id: 'cases', label: 'Active Cases', icon: Briefcase, badge: summaryData?.activeCasesCount ?? authorizedCases.length },
         { id: 'entities', label: 'Entities Database', icon: Users, badge: summaryData?.indexedEntitiesCount ?? (dataset.entities || []).length },
         { id: 'knowledge_graph', label: 'Network Graph', icon: GitBranch },
       ]
@@ -121,6 +123,11 @@ export const AppShell: React.FC<AppShellProps> = ({
       ]
     }
   ];
+
+  const visibleNavGroups = navGroups.map(group => ({
+    ...group,
+    items: group.items.filter(item => hasTabPermission(user, item.id))
+  })).filter(group => group.items.length > 0);
 
   return (
     <div className="min-h-screen bg-[#F8F7F3] text-slate-900 flex flex-col font-sans selection:bg-[#283593] selection:text-white">
@@ -195,10 +202,10 @@ export const AppShell: React.FC<AppShellProps> = ({
                     selectedCaseId === null ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
                   }`}
                 >
-                  <span>All Active Cases</span>
-                  <span className="text-[10px] opacity-80">{(dataset.cases || []).length} Cases</span>
+                  <span>All Authorized Cases</span>
+                  <span className="text-[10px] opacity-80">{authorizedCases.length} Cases</span>
                 </button>
-                {(dataset.cases || []).map(c => (
+                {authorizedCases.map(c => (
                   <button
                     key={c.id}
                     onClick={() => { onSelectCaseId(c.id); setCaseMenuOpen(false); }}
@@ -340,7 +347,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
             {/* Navigation Menu Groups */}
             <div className="space-y-5">
-              {navGroups.map((group, gIdx) => (
+              {visibleNavGroups.map((group, gIdx) => (
                 <div key={gIdx} className="space-y-1">
                   <div className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#B8BEC7]">
                     {group.title}

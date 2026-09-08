@@ -25,7 +25,8 @@ import {
   Sparkles,
   Check, 
   Copy, 
-  X
+  X,
+  ShieldCheck
 } from 'lucide-react';
 import { InvestigationDataset } from '../../services/datasetNormalizer';
 import { EntityType } from '../../types/investigation';

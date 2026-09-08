@@ -90,7 +90,8 @@ class UserSchema(BaseModel):
     email: str
     full_name: str
     badge_number: str
-    role: str = "Senior Investigator"
+    role: str = "Lead Investigator"
+    authorized_cases: List[str] = []
 
 class LoginRequestSchema(BaseModel):
     investigator_id: Optional[str] = None

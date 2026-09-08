@@ -36,7 +36,8 @@ import {
   createEvidenceApi, 
   fetchBSACertificate, 
   generateBSACertificate, 
-  getBSACertificateDownloadUrl 
+  getBSACertificateDownloadUrl,
+  exportCaseEvidencePdfApi
 } from '../services/apiService';
 
 interface EvidenceVaultViewProps {
@@ -79,6 +80,21 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
   const [bsaCertData, setBsaCertData] = useState<any>(null);
   const [bsaCertLoading, setBsaCertLoading] = useState<boolean>(false);
   const [bsaCertError, setBsaCertError] = useState<string | null>(null);
+
+  // Export All Evidence PDF State & Handler
+  const [exportPdfLoading, setExportPdfLoading] = useState<boolean>(false);
+
+  const handleExportAllEvidencePdf = async () => {
+    if (!activeCaseId) return;
+    setExportPdfLoading(true);
+    try {
+      await exportCaseEvidencePdfApi(activeCaseId);
+    } catch (err: any) {
+      alert(err.message || 'Failed to export case evidence PDF.');
+    } finally {
+      setExportPdfLoading(false);
+    }
+  };
 
   const handleExportSec63BSA = async (evId?: string) => {
     const targetId = evId || selectedEvidenceId || selectedEvidence?.id;
@@ -297,6 +313,23 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
             </select>
           </div>
 
+          <button
+            onClick={handleExportAllEvidencePdf}
+            disabled={exportPdfLoading}
+            className="px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors shadow-xs disabled:opacity-50"
+          >
+            {exportPdfLoading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin text-slate-300" />
+                <span>Exporting Case Evidence...</span>
+              </>
+            ) : (
+              <>
+                <FileText className="w-4 h-4 text-slate-300" />
+                <span>Export All Evidence (PDF)</span>
+              </>
+            )}
+          </button>
           <button
             onClick={() => handleExportSec63BSA()}
             className="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors shadow-xs"

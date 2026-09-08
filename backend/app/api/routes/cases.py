@@ -1,53 +1,105 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Header, status
 from typing import List, Optional
 from app.db.mongodb import get_database
 from app.core.demo_subset import get_demo_filter
+from app.api.routes.auth import ACTIVE_TOKENS
 
 router = APIRouter(prefix="/api/cases", tags=["Cases"])
 
+def get_current_user_from_header(authorization: Optional[str] = None) -> dict:
+    if authorization and authorization.startswith("Bearer "):
+        token = authorization.split(" ")[1]
+        if token in ACTIVE_TOKENS:
+            session_info = ACTIVE_TOKENS[token]
+            if isinstance(session_info, dict) and "user" in session_info:
+                return session_info["user"]
+            elif isinstance(session_info, dict):
+                return session_info
+    return {
+        "investigator_id": "INV-LEAD-001",
+        "role": "Lead Investigator",
+        "authorized_cases": []
+    }
+
+async def verify_case_authorization(case_id: str, authorization: Optional[str] = None) -> dict:
+    user = get_current_user_from_header(authorization)
+    role = user.get("role")
+    auth_cases = user.get("authorized_cases") or []
+    if role == "Lead Investigator" or not auth_cases or "*" in auth_cases:
+        return user
+    if case_id not in auth_cases:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"Access Denied: Investigator '{user.get('investigator_id')}' is not authorized to access case '{case_id}'."
+        )
+    return user
+
 @router.get("", response_model=List[dict])
 async def get_cases(
-    limit: int = Query(50, ge=1, le=1000),
+    limit: int = Query(2000, ge=1, le=5000),
     skip: int = Query(0, ge=0),
     status: Optional[str] = None,
     priority: Optional[str] = None,
-    search: Optional[str] = None
+    search: Optional[str] = None,
+    authorization: Optional[str] = Header(None)
 ):
+    user = get_current_user_from_header(authorization)
     db = get_database()
     query = {}
-    query.update(get_demo_filter("cases", "case_id"))
+
+    auth_cases = user.get("authorized_cases") or []
+    role = user.get("role")
+    if role != "Lead Investigator" and auth_cases and "*" not in auth_cases:
+        query["case_id"] = {"$in": auth_cases}
 
     if status and status != "ALL":
-        query["status"] = status
+        query["$or"] = [
+            {"status": {"$regex": f"^{status}$", "$options": "i"}},
+            {"case_status": {"$regex": f"^{status}$", "$options": "i"}}
+        ]
+
     if priority and priority != "ALL":
-        query["severity"] = priority
+        query["$or"] = [
+            {"priority": {"$regex": f"^{priority}$", "$options": "i"}},
+            {"severity": {"$regex": f"^{priority}$", "$options": "i"}}
+        ]
 
     if search:
-        query["$or"] = [
+        search_filter = [
             {"case_id": {"$regex": search, "$options": "i"}},
+            {"case_number": {"$regex": search, "$options": "i"}},
+            {"title": {"$regex": search, "$options": "i"}},
             {"crime_type": {"$regex": search, "$options": "i"}},
+            {"case_type": {"$regex": search, "$options": "i"}},
             {"investigator_id": {"$regex": search, "$options": "i"}},
-            {"police_station": {"$regex": search, "$options": "i"}}
+            {"police_station": {"$regex": search, "$options": "i"}},
+            {"description": {"$regex": search, "$options": "i"}}
         ]
+        if "$or" in query:
+            query["$and"] = [{"$or": query.pop("$or")}, {"$or": search_filter}]
+        else:
+            query["$or"] = search_filter
 
     cursor = db.cases.find(query, {"_id": 0}).skip(skip).limit(limit)
     cases = await cursor.to_list(length=limit)
     
     # Map fields for clean frontend presentation
     for c in cases:
-        c["id"] = c.get("case_id")
-        c["caseNumber"] = c.get("case_id")
-        c["title"] = f"{c.get('crime_type', 'Investigation')} ({c.get('case_id')})"
+        c["id"] = c.get("case_id") or c.get("case_number")
+        c["caseNumber"] = c.get("case_number") or c.get("case_id")
+        c["title"] = c.get("title") or f"{c.get('case_type') or c.get('crime_type', 'Investigation')} ({c.get('case_id')})"
         c["summary"] = c.get("description") or f"Station: {c.get('police_station', 'N/A')}, District: {c.get('district', 'N/A')}"
-        c["priority"] = c.get("severity", "HIGH")
-        c["status"] = c.get("case_status") or c.get("status") or "UNDER_INVESTIGATION"
-        c["leadInvestigator"] = c.get("investigator_id", "Lead Investigator")
-        c["jurisdiction"] = f"{c.get('police_station', 'Precinct')} - {c.get('state', 'State')}"
+        c["priority"] = (c.get("priority") or c.get("severity") or "HIGH").upper()
+        c["status"] = (c.get("status") or c.get("case_status") or "UNDER_INVESTIGATION").upper().replace(" ", "_")
+        c["leadInvestigator"] = c.get("investigator_id") or "Lead Investigator"
+        c["jurisdiction"] = c.get("jurisdiction") or f"{c.get('police_station', 'Precinct')} - {c.get('state', 'State')}"
+        c["crimeType"] = c.get("case_type") or c.get("crime_type") or "General Crime"
     
     return cases
 
 @router.get("/{case_id}", response_model=dict)
-async def get_case_by_id(case_id: str):
+async def get_case_by_id(case_id: str, authorization: Optional[str] = Header(None)):
+    await verify_case_authorization(case_id, authorization)
     db = get_database()
     c = await db.cases.find_one({"$or": [{"case_id": case_id}, {"_id": case_id}]}, {"_id": 0})
     if not c:
@@ -65,7 +117,8 @@ async def get_case_by_id(case_id: str):
     return c
 
 @router.get("/{case_id}/workspace", response_model=dict)
-async def get_case_workspace(case_id: str):
+async def get_case_workspace(case_id: str, authorization: Optional[str] = Header(None)):
+    await verify_case_authorization(case_id, authorization)
     db = get_database()
     case_doc = await db.cases.find_one({"$or": [{"case_id": case_id}, {"_id": case_id}]}, {"_id": 0})
     if not case_doc:

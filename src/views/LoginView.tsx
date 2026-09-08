@@ -340,18 +340,50 @@ export const LoginView: React.FC = () => {
 
                 <div className="relative flex items-center py-1">
                   <div className="flex-grow border-t border-[#E4E5E7]"></div>
-                  <span className="flex-shrink-0 mx-4 text-[10px] font-bold text-[#667085] uppercase tracking-widest">OR</span>
+                  <span className="flex-shrink-0 mx-4 text-[10px] font-bold text-[#667085] uppercase tracking-widest">DEMO ROLE ACCOUNTS</span>
                   <div className="flex-grow border-t border-[#E4E5E7]"></div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={handleOrgLogin}
-                  className="w-full flex items-center justify-center gap-2 bg-[#FFFFFF] border border-[#E4E5E7] text-[#17191F] py-3 px-4 rounded-lg font-semibold text-xs uppercase tracking-wider hover:bg-[#F8F7F3] hover:border-[#667085] transition-colors focus:ring-2 focus:ring-[#283593]/30 focus:outline-none shadow-xs"
-                >
-                  <Building2 className="w-4 h-4 text-[#667085]" />
-                  <span>Use Organization Login</span>
-                </button>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInvestigatorId('INV-LEAD-001');
+                      setOrgEmail('miller@sherlock.gov');
+                      setPassword('sherlock2026');
+                      setErrorMsg(null);
+                    }}
+                    className="px-2 py-2 bg-[#F8F7F3] border border-[#E4E5E7] hover:border-cyan-600 rounded text-[10px] font-mono text-center font-semibold text-slate-800"
+                  >
+                    Tier 1 (Lead)
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInvestigatorId('INV-SPEC-001');
+                      setOrgEmail('spec.sherlock@sherlock.gov');
+                      setPassword('sherlock2026');
+                      setErrorMsg(null);
+                    }}
+                    className="px-2 py-2 bg-[#F8F7F3] border border-[#E4E5E7] hover:border-cyan-600 rounded text-[10px] font-mono text-center font-semibold text-slate-800"
+                  >
+                    Tier 2 (Spec)
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setInvestigatorId('INV-FIELD-001');
+                      setOrgEmail('agent.watson@sherlock.gov');
+                      setPassword('sherlock2026');
+                      setErrorMsg(null);
+                    }}
+                    className="px-2 py-2 bg-[#F8F7F3] border border-[#E4E5E7] hover:border-cyan-600 rounded text-[10px] font-mono text-center font-semibold text-slate-800"
+                  >
+                    Tier 3 (Field)
+                  </button>
+                </div>
               </div>
             </form>
 

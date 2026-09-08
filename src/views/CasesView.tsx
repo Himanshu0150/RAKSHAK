@@ -26,6 +26,7 @@ import { InvestigationDataset } from '../services/datasetNormalizer';
 import { CaseRecord } from '../types/investigation';
 import { NavigationTab } from '../components/layout/AppShell';
 import { InvestigationStoryView } from './InvestigationStoryView';
+import { useAuth, isCaseAuthorized } from '../context/AuthContext';
 
 interface CasesViewProps {
   dataset: InvestigationDataset;
@@ -42,6 +43,7 @@ export const CasesView: React.FC<CasesViewProps> = ({
   onSelectEntity,
   onNavigateTab
 }) => {
+  const { user } = useAuth();
   const [viewMode, setViewMode] = useState<'DIRECTORY' | 'WORKSPACE'>('DIRECTORY');
   const [searchTerm, setSearchTerm] = useState('');
   const [unitFilter, setUnitFilter] = useState('ALL');
@@ -96,21 +98,24 @@ ${(activeCase.evidenceIds || []).map((eid, idx) => {
 }).join('\n')}
 
 ================================================================================
-CRYPTOGRAPHIC AUDIT SEAL: C3PL-SHA256-MERKLE-VALID-STATE
-CONFIDENTIAL - LAW ENFORCEMENT & JUDICIAL PROCEEDINGS ONLY
+CONFIDENTIAL LAW ENFORCEMENT RECORD — NOT FOR PUBLIC DISCLOSURE
 ================================================================================`;
 
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `SHERLOCK_Court_Report_${activeCase.caseNumber}.txt`;
-    link.click();
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `COURT_BRIEF_${activeCase.caseNumber}_${Date.now()}.txt`;
+    a.click();
     URL.revokeObjectURL(url);
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 25;
+
   const filteredCases = useMemo(() => {
     return dataset.cases.filter(c => {
+      if (!isCaseAuthorized(user, c.id)) return false;
       if (priorityFilter !== 'ALL' && c.priority !== priorityFilter) return false;
       if (unitFilter !== 'ALL') {
         const juris = (c.jurisdiction || '').toLowerCase();
@@ -127,7 +132,12 @@ CONFIDENTIAL - LAW ENFORCEMENT & JUDICIAL PROCEEDINGS ONLY
         c.summary.toLowerCase().includes(term)
       );
     });
-  }, [dataset.cases, searchTerm, priorityFilter, unitFilter]);
+  }, [dataset.cases, searchTerm, priorityFilter, unitFilter, user]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredCases.length / pageSize));
+  const paginatedCases = useMemo(() => {
+    return filteredCases.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  }, [filteredCases, currentPage]);
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -238,9 +248,9 @@ CONFIDENTIAL - LAW ENFORCEMENT & JUDICIAL PROCEEDINGS ONLY
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-xs text-slate-800">
-                  {filteredCases.map((caseItem) => {
+                  {paginatedCases.map((caseItem) => {
                     const isClosed = caseItem.status === 'CLOSED';
-                    const isPending = caseItem.status === 'PENDING' || caseItem.status === 'FORENSIC_ANALYSIS';
+                    const isPending = caseItem.status === 'PENDING' || caseItem.status === 'FORENSIC_ANALYSIS' || caseItem.status === 'PENDING_REVIEW';
 
                     return (
                       <tr 
@@ -317,17 +327,28 @@ CONFIDENTIAL - LAW ENFORCEMENT & JUDICIAL PROCEEDINGS ONLY
               </table>
             </div>
 
-            {/* Bottom summary footer */}
-            <div className="p-3.5 bg-[#F8FAFC] border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 font-medium">
-              <span>Showing {filteredCases.length} of {dataset.cases.length} active investigations</span>
-              <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500 inline-block" /> High Priority: {dataset.cases.filter(c => c.priority === 'CRITICAL').length}
+            {/* Bottom summary footer with Pagination */}
+            <div className="p-3.5 bg-[#F8FAFC] border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-medium">
+              <span>Showing {(currentPage - 1) * pageSize + 1}–{Math.min(currentPage * pageSize, filteredCases.length)} of {filteredCases.length} active investigations (Total: {dataset.cases.length})</span>
+              
+              <div className="flex items-center gap-2">
+                <button
+                  disabled={currentPage <= 1}
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  className="px-2.5 py-1 bg-white border border-slate-200 rounded disabled:opacity-40 hover:bg-slate-50 flex items-center text-slate-700 font-medium font-mono"
+                >
+                  Prev
+                </button>
+                <span className="font-mono text-xs px-2 text-slate-700">
+                  Page {currentPage} of {totalPages}
                 </span>
-                <span className="text-slate-300">|</span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> Evidence Vault Connected
-                </span>
+                <button
+                  disabled={currentPage >= totalPages}
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  className="px-2.5 py-1 bg-white border border-slate-200 rounded disabled:opacity-40 hover:bg-slate-50 flex items-center text-slate-700 font-medium font-mono"
+                >
+                  Next
+                </button>
               </div>
             </div>
           </div>

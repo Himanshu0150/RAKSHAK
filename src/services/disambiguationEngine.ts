@@ -1,4 +1,4 @@
-import { Entity, DisambiguationResult, CDRRecord, FinancialTransaction } from '../types/investigation';
+import { Entity, DisambiguationResult, CDRRecord } from '../types/investigation';
 
 function stringSimilarity(str1: string, str2: string): number {
   const s1 = (str1 || '').toLowerCase().trim();
@@ -26,8 +26,7 @@ function stringSimilarity(str1: string, str2: string): number {
 export function compareEntities(
   entityA: Entity, 
   entityB: Entity,
-  cdrRecords?: CDRRecord[],
-  transactions?: FinancialTransaction[]
+  cdrRecords?: CDRRecord[]
 ): DisambiguationResult {
   const supportingFactors: string[] = [];
   const contradictingFactors: string[] = [];
@@ -146,30 +145,7 @@ export function compareEntities(
     }
   }
 
-  // 6. Account / Asset overlaps & Financials
-  const accA = entityA.attributes?.account_number || entityA.attributes?.bank_account;
-  const accB = entityB.attributes?.account_number || entityB.attributes?.bank_account;
-  if (accA && accB) {
-    if (String(accA) === String(accB)) {
-      supportingFactors.push(`Exact bank account identifier match: ${accA}.`);
-      scoreSum += 30;
-      weightSum += 30;
-    }
-  }
-
-  if (transactions && transactions.length > 0) {
-    const directTx = transactions.filter(
-      t => (t.sourceOwnerName?.toLowerCase().includes(entityA.name.toLowerCase()) && t.targetOwnerName?.toLowerCase().includes(entityB.name.toLowerCase())) ||
-           (t.sourceOwnerName?.toLowerCase().includes(entityB.name.toLowerCase()) && t.targetOwnerName?.toLowerCase().includes(entityA.name.toLowerCase()))
-    );
-    if (directTx.length > 0) {
-      supportingFactors.push(`Direct financial flow documented: ${directTx.length} bilateral transaction(s) recorded between accounts.`);
-      scoreSum += 20;
-      weightSum += 20;
-    }
-  }
-
-  // 7. Case linkage overlap
+  // 6. Case linkage overlap
   const commonCases = (entityA.linkedCaseIds || []).filter(c => (entityB.linkedCaseIds || []).includes(c));
   if (commonCases.length > 0) {
     supportingFactors.push(`Concurrent involvement in ${commonCases.length} joint investigation case(s) [${commonCases.join(', ')}].`);
@@ -225,5 +201,6 @@ export function compareEntities(
 }
 
 export const disambiguateEntityPair = compareEntities;
+
 
 
