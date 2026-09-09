@@ -124,7 +124,13 @@ async def export_case_evidence_pdf(
         if case_doc:
             case_title = f"{case_doc.get('crime_type', 'Investigation')} Case ({case_id})"
 
-    evidence_items = await get_scoped_evidence(case_id=case_id, limit=2000)
+    raw_evidence = await get_scoped_evidence(case_id=case_id, limit=10000)
+    # Filter strictly by target case_id to prevent leak of evidence belonging to other cases
+    target_cid_clean = str(case_id).strip().upper()
+    evidence_items = [
+        ev for ev in raw_evidence
+        if str(ev.get("case_id") or ev.get("caseId") or "").strip().upper() == target_cid_clean
+    ]
     
     pdf_bytes = generate_case_evidence_export_pdf(
         case_id=case_id,

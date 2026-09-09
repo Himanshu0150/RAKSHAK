@@ -167,9 +167,25 @@ def generate_case_evidence_export_pdf(
             ev_id = str(ev.get("evidence_id") or ev.get("id") or f"EVID-{idx:04d}")
             ev_type = str(ev.get("evidence_type") or ev.get("evidenceType") or "SURVEILLANCE").upper()
             desc = str(ev.get("description") or ev.get("title") or "N/A")
+            ev_case_id = str(ev.get("case_id") or ev.get("caseId") or case_id)
             sha256 = str(ev.get("integrity_sha256") or ev.get("sha256Hash") or ev.get("hash") or "N/A")
-            collected = str(ev.get("collected_at") or ev.get("collectionTimestamp") or "N/A")
+            collected = str(ev.get("collected_at") or ev.get("collectionTimestamp") or ev.get("collectedAt") or "N/A")
             source = str(ev.get("source") or ev.get("sourceDeviceOrMedium") or "Law Enforcement Intercept")
+            collected_by = str(ev.get("collected_by") or ev.get("collectedBy") or "Lead Investigator")
+            person_id = ev.get("person_id") or ev.get("related_person_id") or ev.get("personId")
+
+            is_tampered = ev.get("tampered") is True
+            is_verified = ev.get("verified", True) and not is_tampered
+            if is_tampered:
+                integrity_status = '<font color="#DC2626"><b>FAILED / TAMPERED</b></font>'
+            elif is_verified:
+                integrity_status = '<font color="#166534"><b>VERIFIED & ANCHORED</b></font>'
+            else:
+                integrity_status = '<font color="#D97706"><b>UNVERIFIED</b></font>'
+
+            meta_details = f"Source: {source} | Custodian: {collected_by}"
+            if person_id:
+                meta_details += f" | Linked Person ID: {person_id}"
 
             item_data = [
                 [
@@ -177,20 +193,28 @@ def generate_case_evidence_export_pdf(
                     Paragraph(f"<b>Type:</b> {ev_type}", body_style)
                 ],
                 [
+                    Paragraph("<b>Case ID:</b>", body_style),
+                    Paragraph(ev_case_id, mono_style)
+                ],
+                [
                     Paragraph("<b>Description:</b>", body_style),
                     Paragraph(desc, body_style)
                 ],
                 [
-                    Paragraph("<b>Collection Source:</b>", body_style),
-                    Paragraph(source, body_style)
-                ],
-                [
-                    Paragraph("<b>Timestamp:</b>", body_style),
+                    Paragraph("<b>Collection Timestamp:</b>", body_style),
                     Paragraph(collected, body_style)
                 ],
                 [
                     Paragraph("<b>SHA-256 Hash:</b>", body_style),
                     Paragraph(sha256, mono_style)
+                ],
+                [
+                    Paragraph("<b>Integrity Status:</b>", body_style),
+                    Paragraph(integrity_status, body_style)
+                ],
+                [
+                    Paragraph("<b>Available Metadata:</b>", body_style),
+                    Paragraph(meta_details, body_style)
                 ]
             ]
 
