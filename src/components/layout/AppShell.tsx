@@ -294,7 +294,7 @@ export const AppShell: React.FC<AppShellProps> = ({
               <div className="absolute top-full mt-1.5 right-0 w-64 bg-white border border-slate-200 rounded-xl shadow-xl z-50 p-2 space-y-1 text-slate-900">
                 <div className="px-3 py-2 border-b border-slate-100 mb-1">
                   <div className="text-xs font-bold text-slate-900">{user?.full_name || 'Sgt. Miller'}</div>
-                  <div className="text-[11px] text-slate-500">{user?.email || 'miller@sherlock.gov'}</div>
+                  <div className="text-[11px] text-slate-500">{user?.email || 'miller@agency.gov'}</div>
                   <div className="text-[10px] font-mono text-blue-600 mt-0.5">{user?.role || 'Senior Investigator'}</div>
                 </div>
                 <button

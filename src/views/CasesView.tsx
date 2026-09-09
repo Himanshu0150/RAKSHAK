@@ -72,7 +72,7 @@ export const CasesView: React.FC<CasesViewProps> = ({
   const handleExportCourtBrief = () => {
     if (!activeCase) return;
     const content = `================================================================================
-SHERLOCK FORENSIC INTELLIGENCE BRIEFING (C3PL AUDITED)
+RAKSHAK FORENSIC INTELLIGENCE BRIEFING (C3PL AUDITED)
 ================================================================================
 CASE IDENTIFIER: ${activeCase.caseNumber}
 CASE TITLE: ${activeCase.title}

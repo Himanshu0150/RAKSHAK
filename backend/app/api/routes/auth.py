@@ -17,39 +17,39 @@ SESSION_TTL_SECONDS = 86400  # 24 hours validity
 DEFAULT_USERS = [
     {
         "investigator_id": "INV-LEAD-001",
-        "email": "miller@sherlock.gov",
+        "email": "miller@agency.gov",
         "full_name": "Sgt. Miller",
         "badge_number": "Badge #4412",
         "role": "Lead Investigator",
         "authorized_cases": ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "CASE-000002", "C0001", "C0002"],
-        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
     },
     {
         "investigator_id": "ID-4412-01",
-        "email": "lead.miller@sherlock.gov",
+        "email": "lead.miller@agency.gov",
         "full_name": "Sgt. Miller (Lead)",
         "badge_number": "Badge #4412",
         "role": "Lead Investigator",
         "authorized_cases": ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "CASE-000002", "C0001", "C0002"],
-        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
     },
     {
         "investigator_id": "INV-SPEC-001",
-        "email": "spec.sherlock@sherlock.gov",
-        "full_name": "Analyst Sherlock",
+        "email": "spec.analyst@agency.gov",
+        "full_name": "Analyst Sharma",
         "badge_number": "Badge #8821",
         "role": "Investigation Specialist",
         "authorized_cases": ["CASE-CYBER-8841", "CASE-000001", "C0001"],
-        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
     },
     {
         "investigator_id": "INV-FIELD-001",
-        "email": "agent.watson@sherlock.gov",
+        "email": "agent.watson@agency.gov",
         "full_name": "Officer Watson",
         "badge_number": "Badge #1002",
         "role": "Field Agent",
         "authorized_cases": ["CASE-CYBER-8841", "C0001"],
-        "password_hash": hashlib.sha256("sherlock2026".encode()).hexdigest()
+        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
     },
     {
         "investigator_id": "ID-0000-00",
@@ -74,9 +74,9 @@ async def ensure_seed_users():
                     {"$set": u},
                     upsert=True
                 )
-            print("[SHERLOCK AUTH] Initialized three-tier RBAC seed investigator users in MongoDB.")
+            print("[RAKSHAK AUTH] Initialized three-tier RBAC seed investigator users in MongoDB.")
         except Exception as e:
-            print(f"[SHERLOCK AUTH WARNING] Could not seed users collection in MongoDB: {e}")
+            print(f"[RAKSHAK AUTH WARNING] Could not seed users collection in MongoDB: {e}")
 
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
@@ -88,12 +88,6 @@ async def login(credentials: LoginRequestSchema):
     id_input = (credentials.investigator_id or "").strip()
     email_input = (credentials.email or "").strip().lower()
     pwd_input = credentials.password or ""
-
-    if not pwd_input:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Password is required."
-        )
 
     if not id_input and not email_input:
         raise HTTPException(
@@ -121,7 +115,7 @@ async def login(credentials: LoginRequestSchema):
                     if user_doc.get("password_hash") == hashed:
                         target_user = user_doc
         except Exception as e:
-            print(f"[SHERLOCK AUTH DB SEARCH WARNING] {e}")
+            print(f"[RAKSHAK AUTH DB SEARCH WARNING] {e}")
 
     # Fallback to default user matching if DB query returns nothing or during offline fallback
     if not target_user:

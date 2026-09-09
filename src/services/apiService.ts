@@ -5,7 +5,7 @@ const API_BASE = (((import.meta as any).env?.VITE_API_BASE_URL) || 'http://local
 const MOCK_SEED_USERS = [
   {
     investigator_id: 'INV-LEAD-001',
-    email: 'miller@sherlock.gov',
+    email: 'miller@agency.gov',
     password: 'sherlock2026',
     full_name: 'Sgt. Miller',
     badge_number: 'Badge #4412',
@@ -14,16 +14,16 @@ const MOCK_SEED_USERS = [
   },
   {
     investigator_id: 'INV-SPEC-001',
-    email: 'spec.sherlock@sherlock.gov',
+    email: 'spec.analyst@agency.gov',
     password: 'sherlock2026',
-    full_name: 'Analyst Sherlock',
+    full_name: 'Analyst Sharma',
     badge_number: 'Badge #8821',
     role: 'Investigation Specialist',
     authorized_cases: ['CASE-CYBER-8841', 'CASE-000001', 'C0001']
   },
   {
     investigator_id: 'INV-FIELD-001',
-    email: 'agent.watson@sherlock.gov',
+    email: 'agent.watson@agency.gov',
     password: 'sherlock2026',
     full_name: 'Officer Watson',
     badge_number: 'Badge #1002',

@@ -163,7 +163,7 @@ export function calculateDatasetHealth(
 export function createEmptyDataset(): InvestigationDataset {
   return {
     id: 'DS-LIVE-MONGODB',
-    name: 'SHERLOCK Live Investigation Dataset',
+    name: 'RAKSHAK Crime Intelligence Dataset',
     codeName: 'LIVE_ATLAS',
     description: 'Live operational investigation dataset synchronized with MongoDB Atlas backend.',
     ingestedAt: new Date().toISOString(),
@@ -492,7 +492,7 @@ export function parseCustomInvestigationData(rawText: string, fileName: string):
       })),
       evidenceIds: Array.isArray(c.evidenceIds) ? c.evidenceIds : [],
       eventIds: Array.isArray(c.eventIds) ? c.eventIds : [],
-      findingsNotes: Array.isArray(c.findingsNotes) ? c.findingsNotes : ['Dataset normalized automatically by SHERLOCK Ingestion Pipeline.']
+      findingsNotes: Array.isArray(c.findingsNotes) ? c.findingsNotes : ['Dataset normalized automatically by RAKSHAK Ingestion Pipeline.']
     })) : [
       {
         id: 'CASE-CUSTOM-01',
@@ -563,7 +563,7 @@ export function parseCustomInvestigationData(rawText: string, fileName: string):
       sha256Hash: syncHashPlaceholder(`CUSTOM-EVIDENCE-ITEM-${idx + 1}`),
       verified: true,
       custodyLogs: [
-        { id: `CUST-CUST-${idx + 1}`, timestamp: new Date().toISOString(), actor: 'SHERLOCK Ingestor', action: 'Custom file ingested and anchored in C3PL Merkle Tree', verificationHash: syncHashPlaceholder(`CUST-CUST-${idx + 1}`), status: 'VERIFIED' }
+        { id: `CUST-CUST-${idx + 1}`, timestamp: new Date().toISOString(), actor: 'RAKSHAK Ingestor', action: 'Custom file ingested and anchored in C3PL Merkle Tree', verificationHash: syncHashPlaceholder(`CUST-CUST-${idx + 1}`), status: 'VERIFIED' }
       ]
     })) : [
       {
@@ -580,7 +580,7 @@ export function parseCustomInvestigationData(rawText: string, fileName: string):
         sha256Hash: syncHashPlaceholder(rawText),
         verified: true,
         custodyLogs: [
-          { id: 'CUST-01', timestamp: new Date().toISOString(), actor: 'SHERLOCK Dynamic Parser', action: 'Custom dataset uploaded & cryptographic fingerprint registered', verificationHash: syncHashPlaceholder('CUST-LOG-CUSTOM'), status: 'VERIFIED' }
+          { id: 'CUST-01', timestamp: new Date().toISOString(), actor: 'RAKSHAK Dynamic Parser', action: 'Custom dataset uploaded & cryptographic fingerprint registered', verificationHash: syncHashPlaceholder('CUST-LOG-CUSTOM'), status: 'VERIFIED' }
         ]
       }
     ];

@@ -45,7 +45,7 @@ async def get_current_user_from_header_async(authorization: Optional[str] = None
         if token.startswith("sherlock_session_offline_"):
             return {
                 "investigator_id": "INV-LEAD-001",
-                "email": "miller@sherlock.gov",
+                "email": "miller@agency.gov",
                 "full_name": "Sgt. Miller",
                 "badge_number": "Badge #4412",
                 "role": "Lead Investigator",

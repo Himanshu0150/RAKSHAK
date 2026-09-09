@@ -24,7 +24,7 @@ export const LoginView: React.FC = () => {
   const { login } = useAuth();
   
   const [investigatorId, setInvestigatorId] = useState('ID-4412-01');
-  const [orgEmail, setOrgEmail] = useState('miller@sherlock.gov');
+  const [orgEmail, setOrgEmail] = useState('miller@agency.gov');
   const [password, setPassword] = useState('sherlock2026');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberDevice, setRememberDevice] = useState(true);
@@ -126,20 +126,7 @@ export const LoginView: React.FC = () => {
                 <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent animate-pulse" />
               </div>
 
-              {/* Status Header */}
-              <div className="relative z-10 p-3 sm:p-4 pb-0">
-                <div className="flex items-center justify-between pb-2 border-b border-[#2A3139]/80 text-[11px] font-mono text-[#94A3B8]">
-                  <div className="flex items-center gap-1.5 text-[#3B82F6]">
-                    <Activity className="w-3.5 h-3.5 animate-pulse text-[#3B82F6]" />
-                    <span className="font-semibold text-white uppercase tracking-wider">LIVE INVESTIGATION MATRIX</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="flex items-center gap-1 text-[10px] text-emerald-400">
-                      <ShieldCheck className="w-3 h-3" /> SECURE
-                    </span>
-                  </div>
-                </div>
-              </div>
+
 
               {/* Actual Three.js Animation Canvas Rendered Directly */}
               <div className="relative z-10 w-full min-h-[260px] sm:min-h-[300px]">
@@ -338,52 +325,7 @@ export const LoginView: React.FC = () => {
                   )}
                 </button>
 
-                <div className="relative flex items-center py-1">
-                  <div className="flex-grow border-t border-[#E4E5E7]"></div>
-                  <span className="flex-shrink-0 mx-4 text-[10px] font-bold text-[#667085] uppercase tracking-widest">DEMO ROLE ACCOUNTS</span>
-                  <div className="flex-grow border-t border-[#E4E5E7]"></div>
-                </div>
 
-                <div className="grid grid-cols-3 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setInvestigatorId('INV-LEAD-001');
-                      setOrgEmail('miller@sherlock.gov');
-                      setPassword('sherlock2026');
-                      setErrorMsg(null);
-                    }}
-                    className="px-2 py-2 bg-[#F8F7F3] border border-[#E4E5E7] hover:border-cyan-600 rounded text-[10px] font-mono text-center font-semibold text-slate-800"
-                  >
-                    Tier 1 (Lead)
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setInvestigatorId('INV-SPEC-001');
-                      setOrgEmail('spec.sherlock@sherlock.gov');
-                      setPassword('sherlock2026');
-                      setErrorMsg(null);
-                    }}
-                    className="px-2 py-2 bg-[#F8F7F3] border border-[#E4E5E7] hover:border-cyan-600 rounded text-[10px] font-mono text-center font-semibold text-slate-800"
-                  >
-                    Tier 2 (Spec)
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setInvestigatorId('INV-FIELD-001');
-                      setOrgEmail('agent.watson@sherlock.gov');
-                      setPassword('sherlock2026');
-                      setErrorMsg(null);
-                    }}
-                    className="px-2 py-2 bg-[#F8F7F3] border border-[#E4E5E7] hover:border-cyan-600 rounded text-[10px] font-mono text-center font-semibold text-slate-800"
-                  >
-                    Tier 3 (Field)
-                  </button>
-                </div>
               </div>
             </form>
 
