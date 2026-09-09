@@ -108,6 +108,13 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
   const [colorByCommunity, setColorByCommunity] = useState<boolean>(false);
   const [selectedRelationType, setSelectedRelationType] = useState<string>('ALL');
   
+  // Investigation-Focused Graph Controls
+  const [hopDepth, setHopDepth] = useState<number>(2);
+  const [minConfidence, setMinConfidence] = useState<number>(0);
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
+  const [renderLimit, setRenderLimit] = useState<number>(150);
+
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(
     focusedEntityId || null
   );
@@ -125,7 +132,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     }
   }, [focusedEntityId]);
 
-  // Dynamic API fetch whenever focus_id / selectedNodeId / selectedCaseId / selectedRelationType changes
+  // Dynamic API fetch whenever focus_id / selectedNodeId / selectedCaseId / filters change
   useEffect(() => {
     const controller = new AbortController();
     
@@ -133,7 +140,6 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     setGraphData({ nodes: [], relationships: [] });
     setDossierData(null);
 
-    // Requirement 4 & 15: If no case is selected, do NOT fetch global graph!
     if (!selectedCaseId) {
       setIsLoadingGraph(false);
       return;
@@ -142,7 +148,17 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     setIsLoadingGraph(true);
 
     Promise.all([
-      fetchGraphTopology(150, selectedNodeId || undefined, selectedCaseId, selectedRelationType !== 'ALL' ? selectedRelationType : undefined, controller.signal),
+      fetchGraphTopology(
+        renderLimit,
+        selectedNodeId || undefined,
+        selectedCaseId,
+        selectedRelationType !== 'ALL' ? selectedRelationType : undefined,
+        hopDepth,
+        minConfidence,
+        startDate || undefined,
+        endDate || undefined,
+        controller.signal
+      ),
       selectedNodeId ? fetchEntityDossier(selectedNodeId, selectedCaseId, controller.signal) : Promise.resolve(null)
     ]).then(([topologyRes, dossierRes]) => {
       if (controller.signal.aborted) return;
@@ -184,7 +200,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
     return () => {
       controller.abort();
     };
-  }, [selectedNodeId, selectedCaseId, selectedRelationType]);
+  }, [selectedNodeId, selectedCaseId, selectedRelationType, hopDepth, minConfidence, startDate, endDate, renderLimit]);
 
   // Available relation types extracted dynamically
   const availableRelationTypes = useMemo(() => {
@@ -250,8 +266,7 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
         setCasePersons(personsList);
 
         if (personsList.length > 0) {
-          const isSelectedValid = selectedNodeId && personsList.some(p => p.id === selectedNodeId);
-          if (!isSelectedValid) {
+          if (!selectedNodeId) {
             setSelectedNodeId(personsList[0].id);
           }
 
@@ -668,45 +683,8 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
           </p>
         </div>
 
-        {/* Analytics Controls & Person Switcher */}
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1.5 bg-white border border-slate-300 px-2.5 py-1 rounded-lg text-xs font-mono">
-            <span className="text-slate-500 font-sans text-[11px]">Focus Person:</span>
-            <select
-              value={selectedNodeId || ''}
-              onChange={(e) => setSelectedNodeId(e.target.value)}
-              className="bg-transparent font-bold text-blue-600 focus:outline-none text-xs"
-            >
-              {casePersons.length > 0 ? (
-                casePersons.map(p => (
-                  <option key={p.id} value={p.id}>
-                    {p.displayName || `${p.name} — ${p.id}`}
-                  </option>
-                ))
-              ) : (
-                <option value="">No related persons</option>
-              )}
-            </select>
-          </div>
-
-          {/* Relationship Type Filter Dropdown */}
-          <div className="flex items-center gap-1.5 bg-white border border-slate-300 px-2.5 py-1 rounded-lg text-xs font-mono">
-            <Filter className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-            <span className="text-slate-500 font-sans text-[11px]">Rel Type:</span>
-            <select
-              value={selectedRelationType}
-              onChange={(e) => setSelectedRelationType(e.target.value)}
-              className="bg-transparent font-bold text-blue-600 focus:outline-none text-xs"
-            >
-              <option value="ALL">All Relationships</option>
-              {availableRelationTypes.map(type => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </div>
-
+        {/* Analytics Mode Toggles */}
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setHighlightBridges(!highlightBridges)}
             className={`px-3 py-1.5 text-xs font-medium rounded-lg border transition-colors flex items-center gap-1.5 ${
@@ -730,6 +708,156 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
             <Layers className="w-3.5 h-3.5" />
             <span>Louvain Clusters</span>
           </button>
+        </div>
+      </div>
+
+      {/* Investigation-Focused Controls Panel */}
+      <div className="p-4 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3 font-sans">
+        <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+          <div className="flex items-center gap-2">
+            <Sliders className="w-4 h-4 text-blue-600" />
+            <h3 className="font-bold text-xs text-slate-900 uppercase tracking-wider font-mono">
+              Investigation Graph Controls
+            </h3>
+          </div>
+          <button
+            onClick={() => {
+              setHopDepth(2);
+              setMinConfidence(0);
+              setStartDate('');
+              setEndDate('');
+              setRenderLimit(150);
+              setSelectedRelationType('ALL');
+            }}
+            className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
+          >
+            <RotateCcw className="w-3 h-3" />
+            <span>Reset Filters</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
+          {/* 1. Focus Entity / Person */}
+          <div className="space-y-1">
+            <label className="block text-[10px] font-mono uppercase text-slate-500 font-semibold">
+              Focus Entity / Person
+            </label>
+            <select
+              value={selectedNodeId || ''}
+              onChange={(e) => setSelectedNodeId(e.target.value || null)}
+              className="w-full py-1.5 px-2.5 bg-slate-50 border border-slate-300 rounded-lg font-bold text-blue-700 focus:outline-none focus:border-blue-600 truncate cursor-pointer"
+            >
+              {casePersons.length > 0 ? (
+                casePersons.map(p => (
+                  <option key={p.id} value={p.id}>
+                    {p.displayName || `${p.name} — ${p.id}`}
+                  </option>
+                ))
+              ) : (
+                <option value="">No related persons</option>
+              )}
+            </select>
+          </div>
+
+          {/* 2. Hop Depth Selector (1-4) */}
+          <div className="space-y-1">
+            <label className="block text-[10px] font-mono uppercase text-slate-500 font-semibold">
+              Hop Depth ({hopDepth} {hopDepth === 1 ? 'Hop' : 'Hops'})
+            </label>
+            <div className="grid grid-cols-4 gap-1 p-0.5 bg-slate-100 border border-slate-300 rounded-lg">
+              {[1, 2, 3, 4].map(h => (
+                <button
+                  key={h}
+                  onClick={() => setHopDepth(h)}
+                  className={`py-1 text-center text-xs font-bold rounded transition-colors cursor-pointer ${
+                    hopDepth === h
+                      ? 'bg-blue-600 text-white shadow-2xs'
+                      : 'text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  {h}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 3. Relationship Type Filter */}
+          <div className="space-y-1">
+            <label className="block text-[10px] font-mono uppercase text-slate-500 font-semibold">
+              Relationship Type
+            </label>
+            <select
+              value={selectedRelationType}
+              onChange={(e) => setSelectedRelationType(e.target.value)}
+              className="w-full py-1.5 px-2.5 bg-slate-50 border border-slate-300 rounded-lg font-semibold text-slate-800 focus:outline-none focus:border-blue-600 cursor-pointer"
+            >
+              <option value="ALL">All Relationship Types</option>
+              {availableRelationTypes.map(type => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* 4. Minimum Confidence Filter */}
+          <div className="space-y-1">
+            <div className="flex justify-between items-center text-[10px] font-mono text-slate-500 font-semibold">
+              <span className="uppercase">Min Confidence</span>
+              <span className="text-blue-700 font-bold">{Math.round(minConfidence * 100)}%</span>
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value={minConfidence}
+              onChange={(e) => setMinConfidence(parseFloat(e.target.value))}
+              className="w-full accent-blue-600 cursor-pointer mt-1"
+            />
+          </div>
+
+          {/* 5. Date Range Filter */}
+          <div className="space-y-1">
+            <label className="block text-[10px] font-mono uppercase text-slate-500 font-semibold">
+              Time / Date Filter
+            </label>
+            <div className="grid grid-cols-2 gap-1">
+              <input
+                type="date"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full py-1 px-1.5 bg-slate-50 border border-slate-300 rounded text-[11px] font-mono text-slate-800 focus:outline-none"
+                placeholder="Start"
+              />
+              <input
+                type="date"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full py-1 px-1.5 bg-slate-50 border border-slate-300 rounded text-[11px] font-mono text-slate-800 focus:outline-none"
+                placeholder="End"
+              />
+            </div>
+          </div>
+
+          {/* 6. Node / Edge Render Limit */}
+          <div className="space-y-1">
+            <label className="block text-[10px] font-mono uppercase text-slate-500 font-semibold">
+              Rendering Limit
+            </label>
+            <select
+              value={renderLimit}
+              onChange={(e) => setRenderLimit(parseInt(e.target.value, 10))}
+              className="w-full py-1.5 px-2.5 bg-slate-50 border border-slate-300 rounded-lg font-semibold text-slate-800 focus:outline-none focus:border-blue-600 cursor-pointer font-mono"
+            >
+              <option value={50}>50 Items</option>
+              <option value={100}>100 Items</option>
+              <option value={150}>150 Items (Default)</option>
+              <option value={200}>200 Items</option>
+              <option value={300}>300 Items</option>
+              <option value={500}>500 Items</option>
+            </select>
+          </div>
         </div>
       </div>
 

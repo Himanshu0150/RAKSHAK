@@ -212,35 +212,7 @@ function MainAppContent() {
         });
         break;
       case 'knowledge_graph':
-        fetchGraphTopology(150, graphFocusEntityId || undefined).then(realGraph => {
-          if (realGraph?.nodes?.length) {
-            setDataset(prev => {
-              const next = { ...prev };
-              next.relationships = realGraph.edges.map((e: any) => ({
-                id: e.id,
-                source: e.source,
-                target: e.target,
-                relationType: e.type || e.relationType || 'LINKED',
-                confidence: e.confidence || 0.95,
-              }));
-              const existingEntityIds = new Set(next.entities.map(e => e.id));
-              realGraph.nodes.forEach((gn: any) => {
-                if (!existingEntityIds.has(gn.id)) {
-                  existingEntityIds.add(gn.id);
-                  next.entities.push({
-                    id: gn.id,
-                    name: gn.name || gn.id,
-                    type: gn.type || getEntityTypeFromId(gn.id),
-                    flaggedRisk: gn.flaggedRisk || 'MEDIUM',
-                    attributes: gn.attributes || { id: gn.id },
-                  });
-                }
-              });
-              return next;
-            });
-          }
-          markLoaded();
-        });
+        markLoaded();
         break;
       default:
         break;
@@ -280,30 +252,6 @@ function MainAppContent() {
     recordNavigation('knowledge_graph', selectedCaseId, entityId);
     setGraphFocusEntityId(entityId);
     setActiveEntityId(entityId);
-    fetchGraphTopology(150, entityId).then(realGraph => {
-      if (realGraph?.nodes?.length) {
-        setDataset(prev => ({
-          ...prev,
-          relationships: realGraph.edges.map((e: any) => ({
-            id: e.id,
-            source: e.source,
-            target: e.target,
-            relationType: e.type || e.relationType || 'LINKED',
-            confidence: e.confidence || 0.95,
-          })),
-          entities: [
-            ...prev.entities,
-            ...realGraph.nodes.filter((gn: any) => !prev.entities.some(e => e.id === gn.id)).map((gn: any) => ({
-              id: gn.id,
-              name: gn.name || gn.id,
-              type: gn.type || getEntityTypeFromId(gn.id),
-              flaggedRisk: gn.flaggedRisk || 'MEDIUM',
-              attributes: gn.attributes || { id: gn.id },
-            }))
-          ]
-        }));
-      }
-    });
     setCurrentTab('knowledge_graph');
   };
 

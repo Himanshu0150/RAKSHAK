@@ -390,58 +390,227 @@ async def trace_graph_path(
 
 @router.get("/api/graph/topology", response_model=dict)
 async def get_graph_topology(
-    limit: int = Query(150, ge=10, le=500),
+    limit: int = Query(150, ge=10, le=1000),
     focus_id: Optional[str] = None,
     case_id: Optional[str] = None,
-    relation_type: Optional[str] = Query(None, alias="type")
+    relation_type: Optional[str] = Query(None, alias="type"),
+    hops: int = Query(2, ge=1, le=4),
+    min_confidence: float = Query(0.0, ge=0.0, le=1.0),
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None
 ):
+    """
+    Returns an investigation-focused case-scoped graph topology centered around an optional focus entity/person,
+    constrained by strict BFS shortest path hop depth (1-4), relationship type multi-filtering, confidence threshold, and date range.
+    Returns bounded subgraph where every returned node satisfies shortest_path_distance(focus_id, node) <= hop_depth.
+    """
     db = get_database()
+    target_focus = focus_id.strip() if focus_id and isinstance(focus_id, str) and focus_id.strip() else None
+    target_case = case_id.strip() if case_id and isinstance(case_id, str) and case_id.strip() else None
+
+    # Defensive extraction of query values
+    limit_val = limit.default if hasattr(limit, "default") else limit
+    limit_val = int(limit_val) if isinstance(limit_val, (int, float, str)) and str(limit_val).isdigit() else 150
+
+    hops_val = hops.default if hasattr(hops, "default") else hops
+    hops_val = int(hops_val) if isinstance(hops_val, (int, float, str)) and str(hops_val).isdigit() else 2
+    hops_val = max(1, min(hops_val, 4))
+
+    min_conf_val = min_confidence.default if hasattr(min_confidence, "default") else min_confidence
+    try:
+        min_conf_val = float(min_conf_val) if min_conf_val is not None else 0.0
+    except (ValueError, TypeError):
+        min_conf_val = 0.0
+    if min_conf_val > 1.0:
+        min_conf_val /= 100.0
+
     if db is None:
-        return {"nodes": [], "edges": [], "totalNodes": 0, "totalEdges": 0}
+        return {
+            "focus_id": target_focus,
+            "hop_depth": hops_val,
+            "nodes": [],
+            "edges": [],
+            "totalNodes": 0,
+            "totalEdges": 0
+        }
 
-    limit_val = limit if isinstance(limit, int) else 150
-    rel_type_str = relation_type if isinstance(relation_type, str) else None
+    # 1. Fetch candidate raw relationships
+    raw_rels = []
+    if target_case:
+        raw_rels, _, _ = await build_case_scoped_graph(target_case)
+    elif target_focus:
+        # Iteratively fetch candidate relationships up to hops_val distance from target_focus in DB
+        visited_eids = {target_focus}
+        current_layer = {target_focus}
+        all_candidate_rels = []
+        seen_rel_ids = set()
 
-    if case_id:
-        rels, _, _ = await build_case_scoped_graph(case_id)
-        if rel_type_str and rel_type_str.upper() != "ALL":
-            import re
-            rgx = re.compile(f"^{rel_type_str}$", re.IGNORECASE)
-            rels = [r for r in rels if rgx.match(r.get("relationship_type", ""))]
-    elif focus_id and isinstance(focus_id, str):
-        rels = await get_scoped_relationships(entity_id=focus_id, limit=limit_val)
-        if rel_type_str and rel_type_str.upper() != "ALL":
-            import re
-            rgx = re.compile(f"^{rel_type_str}$", re.IGNORECASE)
-            rels = [r for r in rels if rgx.match(r.get("relationship_type", ""))]
+        for _ in range(hops_val):
+            if not current_layer:
+                break
+            layer_list = list(current_layer)
+            query = {
+                "$or": [
+                    {"source_entity_id": {"$in": layer_list}},
+                    {"target_entity_id": {"$in": layer_list}}
+                ]
+            }
+            if is_demo_enabled():
+                demo_flt = get_demo_filter("relationships", "relationship_id")
+                if demo_flt:
+                    query = {"$and": [query, demo_flt]}
+
+            cursor = db.relationships.find(query, {"_id": 0}).limit(3000)
+            layer_rels = await cursor.to_list(length=3000)
+
+            next_layer = set()
+            for r in layer_rels:
+                rid = r.get("relationship_id") or f"{r.get('source_entity_id')}_{r.get('target_entity_id')}"
+                if rid not in seen_rel_ids:
+                    seen_rel_ids.add(rid)
+                    all_candidate_rels.append(r)
+
+                s = str(r.get("source_entity_id") or r.get("source") or "")
+                t = str(r.get("target_entity_id") or r.get("target") or "")
+                if s and not s.startswith("CASE-") and s not in visited_eids:
+                    visited_eids.add(s)
+                    next_layer.add(s)
+                if t and not t.startswith("CASE-") and t not in visited_eids:
+                    visited_eids.add(t)
+                    next_layer.add(t)
+            current_layer = next_layer
+
+        raw_rels = all_candidate_rels
     else:
         query = get_demo_filter("relationships", "relationship_id") if is_demo_enabled() else {}
-        if rel_type_str and rel_type_str.upper() != "ALL":
-            query["relationship_type"] = {"$regex": f"^{rel_type_str}$", "$options": "i"}
-        cursor = db.relationships.find(query, {"_id": 0}).limit(limit_val)
-        rels = await cursor.to_list(length=limit_val)
+        cursor = db.relationships.find(query, {"_id": 0}).limit(3000)
+        raw_rels = await cursor.to_list(length=3000)
 
-    node_ids = set()
-    edges = []
+    # 2. Filter candidate relationships by Type, Confidence, and Date Range BEFORE traversal/rendering
+    filtered_rels = []
+    rel_type_str = relation_type if isinstance(relation_type, str) else None
+    allowed_types = set()
+    if rel_type_str and rel_type_str.upper() != "ALL":
+        allowed_types = {t.strip().upper() for t in rel_type_str.split(",") if t.strip()}
 
-    for r in rels:
-        src = r.get("source_entity_id") or r.get("source")
-        tgt = r.get("target_entity_id") or r.get("target")
-        if src and tgt:
-            if str(src).startswith("CASE-") or str(tgt).startswith("CASE-"):
+    s_date = start_date.strip() if start_date and isinstance(start_date, str) and start_date.strip() else None
+    e_date = end_date.strip() if end_date and isinstance(end_date, str) and end_date.strip() else None
+
+    for r in raw_rels:
+        # Relationship Type check
+        if allowed_types:
+            r_type = (r.get("relationship_type") or r.get("relationType") or r.get("type") or "").upper()
+            if r_type not in allowed_types:
                 continue
-            node_ids.add(src)
-            node_ids.add(tgt)
-            edges.append({
+
+        # Confidence check
+        conf = float(r.get("confidence", 0.95))
+        if conf < min_conf_val:
+            continue
+
+        # Date Range check
+        if s_date or e_date:
+            ts_str = str(r.get("timestamp") or r.get("observed_at") or r.get("date") or r.get("collection_date") or "")
+            if ts_str:
+                r_day = ts_str.split("T")[0]
+                if s_date and r_day < s_date:
+                    continue
+                if e_date and r_day > e_date:
+                    continue
+
+        filtered_rels.append(r)
+
+    # 3. Perform strict BFS Shortest Path Traversal if focus_id is specified
+    final_nodes_set = set()
+    final_rels = []
+
+    if target_focus:
+        adj = {}
+        for r in filtered_rels:
+            s = str(r.get("source_entity_id") or r.get("source") or "")
+            t = str(r.get("target_entity_id") or r.get("target") or "")
+            if s and t and not s.startswith("CASE-") and not t.startswith("CASE-"):
+                adj.setdefault(s, []).append((t, r))
+                adj.setdefault(t, []).append((s, r))
+
+        # BFS shortest path distance computation
+        distances = {target_focus: 0}
+        queue = deque([target_focus])
+
+        while queue:
+            curr = queue.popleft()
+            curr_dist = distances[curr]
+            if curr_dist >= hops_val:
+                continue
+            for nxt, r in adj.get(curr, []):
+                if nxt not in distances:
+                    distances[nxt] = curr_dist + 1
+                    queue.append(nxt)
+
+        # STRICT BOUND: Every returned node MUST satisfy shortest_path_distance <= hops_val
+        valid_nodes = {node for node, dist in distances.items() if dist <= hops_val}
+
+        # STRICT BOUND: Every returned edge MUST connect nodes inside that bounded subgraph
+        seen_edges_keys = set()
+        bounded_rels = []
+        for r in filtered_rels:
+            s = str(r.get("source_entity_id") or r.get("source") or "")
+            t = str(r.get("target_entity_id") or r.get("target") or "")
+            if s in valid_nodes and t in valid_nodes:
+                rid = r.get("relationship_id") or f"{s}_{t}"
+                if rid not in seen_edges_keys:
+                    seen_edges_keys.add(rid)
+                    bounded_rels.append(r)
+
+        final_nodes_set = valid_nodes
+        final_rels = bounded_rels
+    else:
+        final_rels = filtered_rels
+        for r in final_rels:
+            s = str(r.get("source_entity_id") or r.get("source") or "")
+            t = str(r.get("target_entity_id") or r.get("target") or "")
+            if s and not s.startswith("CASE-"):
+                final_nodes_set.add(s)
+            if t and not t.startswith("CASE-"):
+                final_nodes_set.add(t)
+
+    # 4. Sort relationships by confidence descending (strongest first) and apply render limit
+    final_rels.sort(key=lambda x: float(x.get("confidence", 0.95)), reverse=True)
+    capped_rels = final_rels[:limit_val]
+
+    # Format edges and collect node IDs strictly within bounded subgraph
+    result_node_ids = set()
+    if target_focus and target_focus in final_nodes_set:
+        result_node_ids.add(target_focus)
+
+    formatted_edges = []
+    seen_formatted = set()
+
+    for r in capped_rels:
+        src = str(r.get("source_entity_id") or r.get("source") or "")
+        tgt = str(r.get("target_entity_id") or r.get("target") or "")
+        if src and tgt and not src.startswith("CASE-") and not tgt.startswith("CASE-"):
+            if target_focus and (src not in final_nodes_set or tgt not in final_nodes_set):
+                continue
+            edge_key = f"{src}_{tgt}_{r.get('relationship_type', 'LINKED')}"
+            if edge_key in seen_formatted:
+                continue
+            seen_formatted.add(edge_key)
+
+            result_node_ids.add(src)
+            result_node_ids.add(tgt)
+            formatted_edges.append({
                 "id": r.get("relationship_id") or f"{src}_{tgt}",
                 "source": src,
                 "target": tgt,
-                "type": r.get("relationship_type", "LINKED"),
-                "relationType": r.get("relationship_type", "LINKED"),
-                "confidence": float(r.get("confidence", 0.95))
+                "type": r.get("relationship_type") or r.get("relationType") or "LINKED",
+                "relationType": r.get("relationship_type") or r.get("relationType") or "LINKED",
+                "confidence": float(r.get("confidence", 0.95)),
+                "timestamp": r.get("timestamp") or r.get("observed_at") or r.get("date")
             })
 
-    node_id_list = list(node_ids)
+    # 5. Populate Node metadata for result_node_ids from MongoDB
+    node_id_list = list(result_node_ids)
     nodes_map = {}
 
     if node_id_list:
@@ -546,11 +715,14 @@ async def get_graph_topology(
                 }
 
     nodes = list(nodes_map.values())
-    logger.info(f"[GRAPH] case_id={case_id} relationship_count={len(rels)} node_count={len(nodes)} edge_count={len(edges)}")
+    logger.info(f"[GRAPH FILTERED] case_id={target_case} focus_id={target_focus} hops={hops_val} min_conf={min_conf_val} dates=({s_date} to {e_date}) rels_returned={len(formatted_edges)} node_count={len(nodes)}")
 
     return {
+        "focus_id": target_focus,
+        "hop_depth": hops_val,
         "nodes": nodes,
-        "edges": edges,
+        "edges": formatted_edges,
         "totalNodes": len(nodes),
-        "totalEdges": len(edges)
+        "totalEdges": len(formatted_edges)
     }
+

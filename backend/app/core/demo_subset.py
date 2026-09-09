@@ -114,7 +114,8 @@ async def initialize_demo_subset():
             ])
 
             try:
-                top_persons = await db.relationships.aggregate(pipeline).to_list(length=remaining_needed)
+                cursor = await db.relationships.aggregate(pipeline)
+                top_persons = await cursor.to_list(length=remaining_needed)
                 for tp in top_persons:
                     if tp.get("_id"):
                         selected_person_ids.add(tp["_id"])

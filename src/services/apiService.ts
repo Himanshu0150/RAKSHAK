@@ -238,12 +238,26 @@ export async function fetchEvidenceList(limit = 100, caseId?: string, evidenceTy
   }
 }
 
-export async function fetchGraphTopology(limit = 150, focusId?: string, caseId?: string, relationType?: string, signal?: AbortSignal) {
+export async function fetchGraphTopology(
+  limit = 150, 
+  focusId?: string, 
+  caseId?: string, 
+  relationType?: string, 
+  hops = 2,
+  minConfidence = 0,
+  startDate?: string,
+  endDate?: string,
+  signal?: AbortSignal
+) {
   try {
     let url = `${API_BASE}/graph/topology?limit=${limit}`;
     if (focusId) url += `&focus_id=${encodeURIComponent(focusId)}`;
     if (caseId) url += `&case_id=${encodeURIComponent(caseId)}`;
     if (relationType && relationType !== 'ALL') url += `&type=${encodeURIComponent(relationType)}`;
+    if (hops) url += `&hops=${hops}`;
+    if (minConfidence) url += `&min_confidence=${minConfidence}`;
+    if (startDate) url += `&start_date=${encodeURIComponent(startDate)}`;
+    if (endDate) url += `&end_date=${encodeURIComponent(endDate)}`;
     const res = await fetch(url, { signal });
     if (!res.ok) throw new Error(`Graph topology fetch failed: ${res.statusText}`);
     return await res.json();
