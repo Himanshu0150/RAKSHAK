@@ -23,9 +23,9 @@ import { RakshakIntelligenceAnimation } from '../components/RakshakIntelligenceA
 export const LoginView: React.FC = () => {
   const { login } = useAuth();
   
-  const [investigatorId, setInvestigatorId] = useState('ID-4412-01');
-  const [orgEmail, setOrgEmail] = useState('miller@agency.gov');
-  const [password, setPassword] = useState('sherlock2026');
+  const [investigatorId, setInvestigatorId] = useState('');
+  const [orgEmail, setOrgEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberDevice, setRememberDevice] = useState(true);
   
@@ -65,36 +65,29 @@ export const LoginView: React.FC = () => {
     }
   };
 
-  const handleOrgLogin = () => {
-    setInvestigatorId('ID-0000-00');
-    setOrgEmail('investigator@agency.gov');
-    setPassword('password123');
-    setErrorMsg(null);
-  };
-
   return (
     <div className="w-full min-h-screen flex bg-[#F8F7F3] text-[#17191F] font-sans selection:bg-[#283593]/20 selection:text-[#283593] overflow-x-hidden">
       <div className="flex flex-col lg:flex-row w-full min-h-screen">
         
         {/* Left Panel: RAKSHAK Branding & Three.js 3D Intelligence Matrix */}
-        <div className="w-full lg:w-[50%] bg-[#151A21] text-white flex flex-col justify-between p-6 sm:p-8 lg:p-12 relative overflow-hidden shrink-0 border-b lg:border-b-0 lg:border-r border-[#2A3139]">
+        <div className="w-full lg:w-[50%] bg-[#F8FAFF] text-[#17191F] flex flex-col justify-between p-6 sm:p-8 lg:p-12 relative overflow-hidden shrink-0 border-b lg:border-b-0 lg:border-r border-[#E2E8F0]">
           
           {/* Background Grid & Abstract Lines */}
           <div className="absolute inset-0 opacity-20 pointer-events-none">
             <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <circle cx="2" cy="2" r="1.5" fill="#FFFFFF" opacity="0.5" />
+                  <circle cx="2" cy="2" r="1.5" fill="#004B73" opacity="0.15" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
-              <path d="M 50 150 L 250 80 L 400 300 L 150 450 Z" fill="none" stroke="#FFFFFF" strokeWidth="0.5" opacity="0.3" />
-              <path d="M 250 80 L 500 120 L 400 300" fill="none" stroke="#FFFFFF" strokeWidth="0.5" opacity="0.3" />
-              <circle cx="50" cy="150" r="3" fill="#FFFFFF" opacity="0.6" />
-              <circle cx="250" cy="80" r="4" fill="#FFFFFF" opacity="0.8" />
-              <circle cx="400" cy="300" r="3" fill="#FFFFFF" opacity="0.6" />
-              <circle cx="150" cy="450" r="3" fill="#FFFFFF" opacity="0.6" />
-              <circle cx="500" cy="120" r="3" fill="#FFFFFF" opacity="0.6" />
+              <path d="M 50 150 L 250 80 L 400 300 L 150 450 Z" fill="none" stroke="#004B73" strokeWidth="0.5" opacity="0.15" />
+              <path d="M 250 80 L 500 120 L 400 300" fill="none" stroke="#004B73" strokeWidth="0.5" opacity="0.15" />
+              <circle cx="50" cy="150" r="3" fill="#004B73" opacity="0.25" />
+              <circle cx="250" cy="80" r="4" fill="#004B73" opacity="0.25" />
+              <circle cx="400" cy="300" r="3" fill="#004B73" opacity="0.25" />
+              <circle cx="150" cy="450" r="3" fill="#004B73" opacity="0.25" />
+              <circle cx="500" cy="120" r="3" fill="#004B73" opacity="0.25" />
             </svg>
           </div>
 
@@ -103,30 +96,28 @@ export const LoginView: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <img src="/rakshak_logo.png" alt="RAKSHAK Logo" className="w-12 h-12 sm:w-14 sm:h-14 object-contain filter drop-shadow-md" />
               <div>
-                <h1 className="font-bold text-3xl sm:text-4xl tracking-tight text-white font-mono">RAKSHAK</h1>
+                <h1 className="font-bold text-3xl sm:text-4xl tracking-tight text-[#004B73] font-mono">RAKSHAK</h1>
                 <span className="text-[10px] font-mono text-[#3B82F6] tracking-widest uppercase bg-[#2563EB]/10 px-2 py-0.5 rounded border border-[#2563EB]/30 inline-block mt-0.5">
                   INTELLIGENCE MATRIX
                 </span>
               </div>
             </div>
-            <h2 className="text-lg sm:text-xl font-semibold text-[#EAE0C8]">
+            <h2 className="text-lg sm:text-xl font-semibold text-[#004B73]">
               National Crime Intelligence Platform
             </h2>
-            <p className="text-xs text-[#94A3B8] mt-1 font-sans">
+            <p className="text-xs text-[#64748B] mt-1 font-sans">
               Connect evidence. Resolve identities. Reconstruct networks.
             </p>
           </div>
 
           {/* Center: Direct 3D Three.js Intelligence Matrix Animation Container */}
           <div className="relative z-10 my-6 lg:my-8 w-full max-w-lg mx-auto">
-            <div className="relative rounded-xl overflow-hidden border border-[#2A3139] bg-[#0E1318]/90 backdrop-blur-md shadow-2xl group transition-all duration-300">
+            <div className="relative rounded-xl overflow-hidden border border-[#E2E8F0] bg-white/90 backdrop-blur-md shadow-xl group transition-all duration-300">
               
               {/* Radar scanline animation */}
               <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden opacity-30 group-hover:opacity-50 transition-opacity">
                 <div className="w-full h-1 bg-gradient-to-r from-transparent via-[#3B82F6] to-transparent animate-pulse" />
               </div>
-
-
 
               {/* Actual Three.js Animation Canvas Rendered Directly */}
               <div className="relative z-10 w-full min-h-[260px] sm:min-h-[300px]">
@@ -135,14 +126,14 @@ export const LoginView: React.FC = () => {
 
               {/* True Non-Numeric System Status Footer */}
               <div className="relative z-10 p-3 sm:p-4 pt-0">
-                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-white/90">
-                  <div className="flex items-center gap-1.5 bg-[#0E1318]/90 border border-[#2A3139] px-2.5 py-1.5 rounded">
-                    <Cpu className="w-3 h-3 text-[#3B82F6] shrink-0" />
-                    <span className="truncate text-[#94A3B8] uppercase">ENTITY RESOLUTION ACTIVE</span>
+                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-[#1E293B]">
+                  <div className="flex items-center gap-1.5 bg-white border border-[#E2E8F0] px-2.5 py-1.5 rounded shadow-xs">
+                    <Cpu className="w-3 h-3 text-[#2563EB] shrink-0" />
+                    <span className="truncate text-[#64748B] uppercase">ENTITY RESOLUTION ACTIVE</span>
                   </div>
-                  <div className="flex items-center gap-1.5 bg-[#0E1318]/90 border border-[#2A3139] px-2.5 py-1.5 rounded">
-                    <Network className="w-3 h-3 text-emerald-400 shrink-0" />
-                    <span className="truncate text-emerald-400 font-medium uppercase">INVESTIGATION GRAPH READY</span>
+                  <div className="flex items-center gap-1.5 bg-white border border-[#E2E8F0] px-2.5 py-1.5 rounded shadow-xs">
+                    <Network className="w-3 h-3 text-emerald-600 shrink-0" />
+                    <span className="truncate text-emerald-600 font-medium uppercase">INVESTIGATION GRAPH READY</span>
                   </div>
                 </div>
               </div>
@@ -153,14 +144,14 @@ export const LoginView: React.FC = () => {
           {/* Bottom Accreditation Footer */}
           <div className="relative z-10 flex justify-between items-end pt-2">
             <div className="flex flex-col gap-0.5">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#B8BEC7] font-sans">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#475569] font-sans">
                 SMART INDIA HACKATHON 2026
               </span>
-              <span className="text-[10px] font-mono text-[#94A3B8]">
+              <span className="text-[10px] font-mono text-[#64748B]">
                 PROBLEM STATEMENT ID: SIH26189
               </span>
             </div>
-            <div className="text-[#B8BEC7]">
+            <div className="text-[#475569]">
               <Share2 className="w-4 h-4" />
             </div>
           </div>
@@ -299,7 +290,7 @@ export const LoginView: React.FC = () => {
                 <button 
                   type="button" 
                   onClick={() => setErrorMsg('For password reset, contact your Agency Security Administrator.')}
-                  className="text-xs text-[#283593] hover:text-[#202833] font-semibold transition-colors"
+                  className="text-xs text-[#283593] hover:text-[#004B73] font-semibold transition-colors"
                 >
                   Forgot password?
                 </button>
@@ -310,7 +301,7 @@ export const LoginView: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 bg-[#202833] text-[#FFFFFF] py-3 px-4 rounded-lg font-semibold text-xs uppercase tracking-wider hover:bg-[#303945] active:bg-[#303945] transition-colors focus:ring-2 focus:ring-[#283593]/50 focus:outline-none disabled:opacity-50 shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 bg-[#004B73] text-[#FFFFFF] py-3 px-4 rounded-lg font-semibold text-xs uppercase tracking-wider hover:bg-[#003857] active:bg-[#003857] transition-colors focus:ring-2 focus:ring-[#004B73]/50 focus:outline-none disabled:opacity-50 shadow-sm"
                 >
                   {isSubmitting ? (
                     <>

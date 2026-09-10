@@ -321,7 +321,7 @@ def clean_row_data(coll_name: str, row: dict, id_field: str, idx: int = 0) -> di
 async def run_reset_and_seed():
     print("=" * 80)
     print("RAKSHAK CONTROLLED DATABASE RESET AND SEEDING PIPELINE")
-    print(f"Connecting to MongoDB URI : {settings.mongodb_uri}")
+    print("Connecting to MongoDB Atlas...")
     print(f"Target Database           : {settings.mongodb_database}")
     print(f"Data Directory            : {DATA_DIR}")
     print("=" * 80)
@@ -335,12 +335,11 @@ async def run_reset_and_seed():
         db = client[settings.mongodb_database]
         await client.admin.command('ping')
         print(f"Connected to MongoDB Atlas database '{settings.mongodb_database}'")
+
     except Exception as e:
-        print(f"Could not connect to MongoDB Atlas ({e}). Trying local MongoDB...")
-        client = AsyncMongoClient("mongodb://127.0.0.1:27017", serverSelectionTimeoutMS=3000)
-        db = client[settings.mongodb_database]
-        await client.admin.command('ping')
-        print(f"Connected to local MongoDB database '{settings.mongodb_database}'")
+        print(f"Could not connect to MongoDB Atlas: {e}")
+        print("STOPPING — local MongoDB fallback is disabled.")
+        raise SystemExit(1)
 
     # STEP 3: RESET OLD DATABASE DATA (drop application data collections)
     print("\n[STEP 3] Dropping old application data collections...")

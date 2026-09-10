@@ -16,11 +16,11 @@
     --color-bg-base: #F8F7F3;
     --color-bg-surface: #FFFFFF;
     --color-bg-elevated: #F8F7F3;
-    --color-sidebar-bg: #202833;
-    --color-sidebar-hover: #303945;
-    --color-sidebar-active: #303945;
+    --color-sidebar-bg: #004B73;
+    --color-sidebar-hover: #003857;
+    --color-sidebar-active: #003857;
     --color-sidebar-text: #FFFFFF;
-    --color-sidebar-secondary: #B8BEC7;
+    --color-sidebar-secondary: #D0E2EC;
     --color-sidebar-active-text: #EAE0C8;
     --color-border-subtle: #E4E5E7;
     --color-border-strong: #E4E5E7;
@@ -28,7 +28,7 @@
     --color-text-secondary: #667085;
     --color-text-muted: #667085;
     --color-primary: #283593;
-    --color-primary-hover: #202833;
+    --color-primary-hover: #003857;
     --color-accent: #B56A45;
     --color-pearl: #EAE0C8;
     --color-accent-green: #10B981;
@@ -61,8 +61,8 @@
 }
 
 .tactical-grid-dark {
-  background-color: #202833;
-  background-image: radial-gradient(#303945 1px, transparent 1px);
+  background-color: #004B73;
+  background-image: radial-gradient(#005A8B 1px, transparent 1px);
   background-size: 24px 24px;
 }
 

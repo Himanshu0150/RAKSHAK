@@ -333,15 +333,15 @@ export const AppShell: React.FC<AppShellProps> = ({
         {/* Left Sidebar Navigation */}
         <aside 
           id="main-sidebar-navigation"
-          className="w-64 shrink-0 bg-[#202833] flex flex-col justify-between py-4 overflow-y-auto hidden md:flex text-[#B8BEC7] select-none shadow-md"
+          className="w-64 shrink-0 bg-[#004B73] flex flex-col justify-between py-4 overflow-y-auto hidden md:flex text-[#D0E2EC] select-none shadow-md"
         >
           <div className="space-y-6 px-3">
             {/* Header Brand Badge inside Sidebar */}
-            <div className="px-3 py-2 bg-[#303945]/60 border border-[#303945] rounded-xl flex items-center gap-3">
+            <div className="px-3 py-2 bg-[#003857]/60 border border-[#003857] rounded-xl flex items-center gap-3">
               <img src="/rakshak_logo.jpg" alt="RAKSHAK" className="w-9 h-9 object-contain rounded-lg" />
               <div className="leading-tight">
                 <div className="font-bold text-sm text-[#FFFFFF] tracking-tight font-mono">RAKSHAK</div>
-                <div className="text-[11px] text-[#B8BEC7] font-medium">Crime Records & Intel</div>
+                <div className="text-[11px] text-[#D0E2EC] font-medium">Crime Records & Intel</div>
               </div>
             </div>
 
@@ -349,7 +349,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             <div className="space-y-5">
               {visibleNavGroups.map((group, gIdx) => (
                 <div key={gIdx} className="space-y-1">
-                  <div className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#B8BEC7]">
+                  <div className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#D0E2EC]">
                     {group.title}
                   </div>
                   {group.items.map(item => {
@@ -363,20 +363,20 @@ export const AppShell: React.FC<AppShellProps> = ({
                         onClick={() => onTabChange(item.id)}
                         className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                           isActive
-                            ? 'bg-[#303945] text-[#EAE0C8] font-semibold shadow-xs'
-                            : 'text-[#B8BEC7] hover:text-[#FFFFFF] hover:bg-[#303945]/50'
+                            ? 'bg-[#003857] text-[#EAE0C8] font-semibold shadow-xs'
+                            : 'text-[#D0E2EC] hover:text-[#FFFFFF] hover:bg-[#003857]/50'
                         }`}
                       >
                         <div className="flex items-center gap-3 truncate">
-                          <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#EAE0C8]' : 'text-[#B8BEC7]'}`} />
+                          <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#EAE0C8]' : 'text-[#D0E2EC]'}`} />
                           <span className="truncate">{item.label}</span>
                         </div>
 
                         {item.badge !== undefined && (
                           <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full font-semibold ${
                             isActive 
-                              ? 'bg-[#202833] text-[#EAE0C8] border border-[#303945]' 
-                              : 'bg-[#303945]/40 text-[#B8BEC7] border border-[#303945]/60'
+                              ? 'bg-[#004B73] text-[#EAE0C8] border border-[#003857]' 
+                              : 'bg-[#003857]/40 text-[#D0E2EC] border border-[#003857]/60'
                           }`}>
                             {item.badge}
                           </span>
@@ -390,20 +390,20 @@ export const AppShell: React.FC<AppShellProps> = ({
           </div>
 
           {/* Quick System Status Footer */}
-          <div className="px-3 pt-3 mt-6 border-t border-[#303945] text-[11px] text-[#B8BEC7] space-y-2">
-            <div className="p-3 bg-[#303945]/30 rounded-xl border border-[#303945] space-y-1.5">
+          <div className="px-3 pt-3 mt-6 border-t border-[#003857] text-[11px] text-[#D0E2EC] space-y-2">
+            <div className="p-3 bg-[#003857]/30 rounded-xl border border-[#003857] space-y-1.5">
               <div className="flex justify-between items-center text-[10px]">
-                <span className="text-[#B8BEC7] uppercase font-semibold">SYSTEM STATUS</span>
+                <span className="text-[#D0E2EC] uppercase font-semibold">SYSTEM STATUS</span>
                 <span className="text-[#EAE0C8] font-semibold flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#EAE0C8] animate-pulse" />
                   ONLINE
                 </span>
               </div>
-              <div className="flex justify-between text-[11px] text-[#B8BEC7]">
+              <div className="flex justify-between text-[11px] text-[#D0E2EC]">
                 <span>Ingested Feeds:</span>
                 <span className="text-[#FFFFFF] font-mono font-semibold">{dataset.healthReport.totalRecords}</span>
               </div>
-              <div className="flex justify-between text-[11px] text-[#B8BEC7]">
+              <div className="flex justify-between text-[11px] text-[#D0E2EC]">
                 <span>Active Targets:</span>
                 <span className="text-[#FFFFFF] font-mono font-semibold">{dataset.entities.length}</span>
               </div>
@@ -412,13 +412,13 @@ export const AppShell: React.FC<AppShellProps> = ({
         </aside>
 
         {/* Mobile Horizontal Navigation Tabs */}
-        <div className="md:hidden flex overflow-x-auto bg-[#202833] border-b border-[#303945] px-2 py-2 gap-1.5 shrink-0">
+        <div className="md:hidden flex overflow-x-auto bg-[#004B73] border-b border-[#003857] px-2 py-2 gap-1.5 shrink-0">
           {navGroups.flatMap(g => g.items).map(item => (
             <button
               key={item.id}
               onClick={() => onTabChange(item.id)}
               className={`px-3 py-1.5 text-xs whitespace-nowrap rounded-lg font-medium transition-colors ${
-                currentTab === item.id ? 'bg-[#303945] text-[#EAE0C8] font-semibold' : 'text-[#B8BEC7] bg-[#303945]/50'
+                currentTab === item.id ? 'bg-[#003857] text-[#EAE0C8] font-semibold' : 'text-[#D0E2EC] bg-[#003857]/50'
               }`}
             >
               {item.label}
