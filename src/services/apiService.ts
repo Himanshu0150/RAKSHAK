@@ -1,6 +1,9 @@
 import { Entity, CaseRecord, AnomalySignal } from '../types/investigation';
 
-const API_BASE = (((import.meta as any).env?.VITE_API_BASE_URL) || 'http://localhost:8000/api').replace(/\/$/, '');
+export const API_BASE = (
+  ((import.meta as any).env?.VITE_API_BASE_URL) ||
+  (((import.meta as any).env?.PROD || (import.meta as any).env?.MODE === 'production') ? '/api' : 'http://localhost:8000/api')
+).replace(/\/$/, '');
 
 const MOCK_SEED_USERS = [
   {

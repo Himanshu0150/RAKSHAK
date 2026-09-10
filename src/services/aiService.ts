@@ -1,3 +1,4 @@
+import { API_BASE } from './apiService';
 import { 
   AIAnalysisResponse, 
   FactItem, 
@@ -19,19 +20,11 @@ export type { AIAnalysisResponse };
 
 export async function requestAIInvestigationAnalysis(request: AIAnalysisRequest): Promise<AIAnalysisResponse> {
   try {
-    let res = await fetch('http://localhost:8000/api/gemini/analyze', {
+    const res = await fetch(`${API_BASE}/gemini/analyze`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(request)
     });
-
-    if (!res.ok) {
-      res = await fetch('/api/gemini/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(request)
-      });
-    }
 
     if (res.ok) {
       const data = await res.json();

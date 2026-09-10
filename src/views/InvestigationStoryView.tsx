@@ -20,7 +20,7 @@ import {
   Compass
 } from 'lucide-react';
 import { InvestigationStory, InvestigationStoryItem, CaseRecord } from '../types/investigation';
-import { fetchInvestigationStory, generateInvestigationStory } from '../services/apiService';
+import { fetchInvestigationStory, generateInvestigationStory, API_BASE } from '../services/apiService';
 
 interface InvestigationStoryViewProps {
   selectedCaseId: string | null;
@@ -379,7 +379,7 @@ export const InvestigationStoryView: React.FC<InvestigationStoryViewProps> = ({
                           item.evidence_ids.map(evId => (
                             <a
                               key={evId}
-                              href={`http://localhost:8000/api/evidence/${encodeURIComponent(evId)}/bsa-certificate/download`}
+                              href={`${API_BASE}/evidence/${encodeURIComponent(evId)}/bsa-certificate/download`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-[11px] font-semibold flex items-center gap-1.5 shadow-2xs transition-colors"
@@ -390,7 +390,7 @@ export const InvestigationStoryView: React.FC<InvestigationStoryViewProps> = ({
                           ))
                         ) : (
                           <a
-                            href={`http://localhost:8000/api/evidence/${encodeURIComponent(item.source_record_id)}/bsa-certificate/download`}
+                            href={`${API_BASE}/evidence/${encodeURIComponent(item.source_record_id)}/bsa-certificate/download`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-[11px] font-semibold flex items-center gap-1.5 shadow-2xs transition-colors"
