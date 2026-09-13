@@ -164,8 +164,8 @@ export function createEmptyDataset(): InvestigationDataset {
   return {
     id: 'DS-LIVE-MONGODB',
     name: 'RAKSHAK Crime Intelligence Dataset',
-    codeName: 'LIVE_ATLAS',
-    description: 'Live operational investigation dataset synchronized with MongoDB Atlas backend.',
+    codeName: 'RAKSHAK_DB',
+    description: 'Live operational investigation dataset synchronized with MongoDB backend.',
     ingestedAt: new Date().toISOString(),
     version: '2.0.0-LIVE',
     entities: [],

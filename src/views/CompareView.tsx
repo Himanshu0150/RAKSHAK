@@ -20,6 +20,7 @@ import {
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { disambiguateEntityPair } from '../services/disambiguationEngine';
 import { fetchEntityDossier } from '../services/apiService';
+import { getEntityDisplayInfo } from '../utils/entityDisplay';
 
 interface CompareViewProps {
   dataset: InvestigationDataset;
@@ -192,11 +193,14 @@ export const CompareView: React.FC<CompareViewProps> = ({
               onChange={(e) => setSelectedIdA(e.target.value)}
               className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:border-blue-600 font-mono"
             >
-              {(dataset.entities || []).map(e => (
-                <option key={e.id} value={e.id}>
-                  {e.name} ({e.type.toUpperCase()} • ID: {e.id})
-                </option>
-              ))}
+              {(dataset.entities || []).map(e => {
+                const info = getEntityDisplayInfo(e, dataset);
+                return (
+                  <option key={e.id} value={e.id}>
+                    {info.title} ({info.subtitle || info.type.toUpperCase()})
+                  </option>
+                );
+              })}
             </select>
           </div>
 
@@ -210,11 +214,14 @@ export const CompareView: React.FC<CompareViewProps> = ({
               onChange={(e) => setSelectedIdB(e.target.value)}
               className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-900 focus:outline-none focus:border-purple-600 font-mono"
             >
-              {(dataset.entities || []).map(e => (
-                <option key={e.id} value={e.id}>
-                  {e.name} ({e.type.toUpperCase()} • ID: {e.id})
-                </option>
-              ))}
+              {(dataset.entities || []).map(e => {
+                const info = getEntityDisplayInfo(e, dataset);
+                return (
+                  <option key={e.id} value={e.id}>
+                    {info.title} ({info.subtitle || info.type.toUpperCase()})
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>

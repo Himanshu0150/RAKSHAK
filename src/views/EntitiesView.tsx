@@ -26,6 +26,7 @@ import {
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { Entity, EntityType } from '../types/investigation';
 import { fetchEntityDossier } from '../services/apiService';
+import { getEntityDisplayInfo } from '../utils/entityDisplay';
 
 interface EntitiesViewProps {
   dataset: InvestigationDataset;
@@ -131,7 +132,8 @@ export const EntitiesView: React.FC<EntitiesViewProps> = ({
   };
 
   const attributes = activeEntityData.attributes || {};
-  const entityName = activeEntityData.name || 'Not available';
+  const activeInfo = getEntityDisplayInfo(activeEntityData, dataset);
+  const entityName = activeInfo.title;
   const entityType = activeEntityData.type || 'person';
   const entityRisk = activeEntityData.flaggedRisk || (attributes.role ? attributes.role.toUpperCase() : 'ASSOCIATE');
   const entityAliases = activeEntityData.aliases || (attributes.alias ? [attributes.alias] : []);
@@ -232,6 +234,7 @@ export const EntitiesView: React.FC<EntitiesViewProps> = ({
               {filteredEntities.map((entity) => {
                 const isSelected = entity.id === selectedEntityId;
                 const isWarrant = entity.flaggedRisk === 'CRITICAL';
+                const displayInfo = getEntityDisplayInfo(entity, dataset);
 
                 return (
                   <div
@@ -251,10 +254,10 @@ export const EntitiesView: React.FC<EntitiesViewProps> = ({
 
                       <div className="min-w-0">
                         <div className="font-bold text-xs text-slate-900 truncate">
-                          {entity.name}
+                          {displayInfo.title}
                         </div>
-                        <div className="text-[11px] font-mono text-slate-500 truncate">
-                          ID: {entity.id}
+                        <div className="text-[11px] text-slate-500 truncate font-medium">
+                          {displayInfo.subtitle || entity.type}
                         </div>
                       </div>
                     </div>
@@ -294,7 +297,7 @@ export const EntitiesView: React.FC<EntitiesViewProps> = ({
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <h2 className="text-lg font-bold text-slate-900 font-heading">
-                        {entityName}
+                        {activeInfo.title}
                       </h2>
                       {loadingDossier && (
                         <span className="flex items-center text-xs text-blue-600 space-x-1 font-mono">
@@ -308,7 +311,7 @@ export const EntitiesView: React.FC<EntitiesViewProps> = ({
                       {entityRisk}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 font-mono">TARGET ID: {selectedEntityId}</p>
+                  <p className="text-xs text-slate-500 font-medium">{activeInfo.subtitle || String(entityType).toUpperCase()}</p>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-xs text-slate-600">
                     <div>

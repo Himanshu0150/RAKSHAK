@@ -145,14 +145,14 @@ export const LoginView: React.FC = () => {
           <div className="relative z-10 flex justify-between items-end pt-2">
             <div className="flex flex-col gap-0.5">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#475569] font-sans">
-                SMART INDIA HACKATHON 2026
+                RAKSHAK INTELLIGENCE SYSTEM
               </span>
               <span className="text-[10px] font-mono text-[#64748B]">
-                PROBLEM STATEMENT ID: SIH26189
+                SECURE LAW ENFORCEMENT PORTAL
               </span>
             </div>
             <div className="text-[#475569]">
-              <Share2 className="w-4 h-4" />
+              <ShieldCheck className="w-4 h-4 text-[#004B73]" />
             </div>
           </div>
 

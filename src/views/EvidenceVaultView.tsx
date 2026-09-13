@@ -545,8 +545,8 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
                       </div>
                       <div className="min-w-0">
                         <div className="font-bold text-xs text-slate-900 truncate">{ev.title}</div>
-                        <div className="text-[11px] font-mono text-slate-500 truncate mt-0.5">
-                          ID: {ev.id} • SHA256: {ev.sha256Hash?.slice(0, 16)}...
+                        <div className="text-[11px] text-slate-500 font-medium truncate mt-0.5">
+                          {ev.sourceDeviceOrMedium || ev.evidenceType || 'EXHIBIT'} • SHA256: {ev.sha256Hash?.slice(0, 16)}...
                         </div>
                       </div>
                     </div>

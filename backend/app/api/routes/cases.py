@@ -171,3 +171,7 @@ async def get_case_workspace(case_id: str, authorization: Optional[str] = Header
         "totalEvidence": len(evidence_list),
         "totalEvents": len(events_list)
     }
+
+
+
+

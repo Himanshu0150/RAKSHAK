@@ -26,7 +26,8 @@ import {
   Check, 
   Copy, 
   X,
-  ShieldCheck
+  ShieldCheck,
+  UserCheck
 } from 'lucide-react';
 import { InvestigationDataset } from '../../services/datasetNormalizer';
 import { EntityType } from '../../types/investigation';
@@ -59,7 +60,8 @@ const TAB_CONFIG: Record<NavigationTab, { label: string; icon: React.FC<{ classN
   investigate: { label: 'Deep Query / Filter', icon: Search },
   compare: { label: 'Cross-Entity Compare', icon: GitCompare },
   data_health: { label: 'System Data Health', icon: HeartPulse },
-  ai_copilot: { label: 'AI Case Copilot', icon: Bot }
+  ai_copilot: { label: 'AI Case Copilot', icon: Bot },
+  time_machine: { label: 'Investigation Time Machine', icon: Clock }
 };
 
 const getEntityIcon = (type?: EntityType | string) => {

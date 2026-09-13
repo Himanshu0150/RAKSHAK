@@ -18,14 +18,14 @@ export function hasTabPermission(user: User | null, tab: string): boolean {
     return true; // Tier 1: Full system access
   }
   
-  if (roleLower.includes('specialist')) {
-    // Tier 2: Analytical tools enabled, System Data Health restricted
+  if (roleLower.includes('specialist') || roleLower.includes('forensic') || roleLower.includes('analyst')) {
+    // Tier 2: Forensic / Specialist Analyst (Analytical tools enabled)
     return tab !== 'data_health';
   }
   
   if (roleLower.includes('field') || roleLower.includes('agent')) {
-    // Tier 3: Field Agent access restricted to field operational views
-    const fieldAllowed = ['dashboard', 'investigate', 'cases', 'entities', 'timeline', 'telecom', 'evidence_vault', 'ai_copilot'];
+    // Tier 3: Field Investigator access restricted to field operational views
+    const fieldAllowed = ['dashboard', 'investigate', 'cases', 'entities', 'timeline', 'telecom', 'evidence_vault', 'ai_copilot', 'time_machine'];
     return fieldAllowed.includes(tab);
   }
   

@@ -16,49 +16,31 @@ SESSION_TTL_SECONDS = 86400  # 24 hours validity
 
 DEFAULT_USERS = [
     {
-        "investigator_id": "INV-LEAD-001",
-        "email": "miller@agency.gov",
-        "full_name": "Sgt. Miller",
-        "badge_number": "Badge #4412",
+        "investigator_id": "RAKSHAK-LEAD-001",
+        "email": "lead.investigator@rakshak.gov.in",
+        "full_name": "Lead Investigator",
+        "badge_number": "Badge #RK-001",
         "role": "Lead Investigator",
+        "authorized_cases": ["*"],
+        "password_hash": hashlib.sha256("Rakshak@Lead2026".encode()).hexdigest()
+    },
+    {
+        "investigator_id": "RAKSHAK-SPEC-001",
+        "email": "forensic.analyst@rakshak.gov.in",
+        "full_name": "Forensic Analyst",
+        "badge_number": "Badge #RK-002",
+        "role": "Forensic Analyst",
         "authorized_cases": ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "CASE-000002", "C0001", "C0002"],
-        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
+        "password_hash": hashlib.sha256("Rakshak@Forensic2026".encode()).hexdigest()
     },
     {
-        "investigator_id": "ID-4412-01",
-        "email": "lead.miller@agency.gov",
-        "full_name": "Sgt. Miller (Lead)",
-        "badge_number": "Badge #4412",
-        "role": "Lead Investigator",
-        "authorized_cases": ["CASE-CYBER-8841", "CASE-NARCO-9921", "CASE-000001", "CASE-000002", "C0001", "C0002"],
-        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
-    },
-    {
-        "investigator_id": "INV-SPEC-001",
-        "email": "spec.analyst@agency.gov",
-        "full_name": "Analyst Sharma",
-        "badge_number": "Badge #8821",
-        "role": "Investigation Specialist",
-        "authorized_cases": ["CASE-CYBER-8841", "CASE-000001", "C0001"],
-        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
-    },
-    {
-        "investigator_id": "INV-FIELD-001",
-        "email": "agent.watson@agency.gov",
-        "full_name": "Officer Watson",
-        "badge_number": "Badge #1002",
-        "role": "Field Agent",
+        "investigator_id": "RAKSHAK-FIELD-001",
+        "email": "field.investigator@rakshak.gov.in",
+        "full_name": "Field Investigator",
+        "badge_number": "Badge #RK-003",
+        "role": "Field Investigator",
         "authorized_cases": ["CASE-CYBER-8841", "C0001"],
-        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
-    },
-    {
-        "investigator_id": "ID-0000-00",
-        "email": "investigator@agency.gov",
-        "full_name": "Agent Watson",
-        "badge_number": "Badge #0000",
-        "role": "Field Agent",
-        "authorized_cases": ["CASE-CYBER-8841", "C0001"],
-        "password_hash": hashlib.sha256("password123".encode()).hexdigest()
+        "password_hash": hashlib.sha256("Rakshak@Field2026".encode()).hexdigest()
     }
 ]
 

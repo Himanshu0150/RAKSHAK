@@ -20,13 +20,15 @@ import {
   Search,
   Filter,
   Layers,
-  ArrowUpRight
+  ArrowUpRight,
+  Sparkles
 } from 'lucide-react';
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { CaseRecord } from '../types/investigation';
 import { NavigationTab } from '../components/layout/AppShell';
 import { InvestigationStoryView } from './InvestigationStoryView';
 import { useAuth, isCaseAuthorized } from '../context/AuthContext';
+import { getEntityDisplayInfo, getCaseDisplayInfo } from '../utils/entityDisplay';
 
 interface CasesViewProps {
   dataset: InvestigationDataset;
@@ -174,7 +176,7 @@ CONFIDENTIAL LAW ENFORCEMENT RECORD — NOT FOR PUBLIC DISCLOSURE
               </>
             )}
           </button>
-          
+
           <button
             onClick={handleExportCourtBrief}
             className="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-medium flex items-center gap-2 shadow-xs transition-colors"
@@ -448,6 +450,7 @@ CONFIDENTIAL LAW ENFORCEMENT RECORD — NOT FOR PUBLIC DISCLOSURE
                     <div className="space-y-2.5">
                       {(activeCase.subjects || []).map(s => {
                         const entity = dataset.entities.find(e => e.id === s.entityId);
+                        const info = getEntityDisplayInfo(entity || s.entityId, dataset);
                         return (
                           <div 
                             key={s.entityId}
@@ -459,8 +462,11 @@ CONFIDENTIAL LAW ENFORCEMENT RECORD — NOT FOR PUBLIC DISCLOSURE
                                   onClick={() => onSelectEntity(s.entityId)}
                                   className="font-bold text-sm text-slate-900 hover:text-blue-600 cursor-pointer"
                                 >
-                                  {entity?.name || s.entityId}
+                                  {info.title}
                                 </span>
+                                {info.subtitle && (
+                                  <span className="text-xs text-slate-500 font-medium">• {info.subtitle}</span>
+                                )}
                                 <span className="px-2 py-0.5 text-[10px] font-semibold bg-red-50 text-red-700 border border-red-200 rounded-full">
                                   {s.role}
                                 </span>
@@ -493,6 +499,7 @@ CONFIDENTIAL LAW ENFORCEMENT RECORD — NOT FOR PUBLIC DISCLOSURE
                       {(activeCase.observedEntities || []).length > 0 ? (
                         (activeCase.observedEntities || []).map(o => {
                           const entity = dataset.entities.find(e => e.id === o.entityId);
+                          const info = getEntityDisplayInfo(entity || o.entityId, dataset);
                           return (
                             <div 
                               key={o.entityId}
@@ -504,8 +511,11 @@ CONFIDENTIAL LAW ENFORCEMENT RECORD — NOT FOR PUBLIC DISCLOSURE
                                     onClick={() => onSelectEntity(o.entityId)}
                                     className="font-bold text-sm text-slate-900 hover:text-blue-600 cursor-pointer"
                                   >
-                                    {entity?.name || o.entityId}
+                                    {info.title}
                                   </span>
+                                  {info.subtitle && (
+                                    <span className="text-xs text-slate-500 font-medium">• {info.subtitle}</span>
+                                  )}
                                   <span className="px-2 py-0.5 text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 rounded-full">
                                     OBSERVED
                                   </span>

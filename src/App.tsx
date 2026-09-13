@@ -24,6 +24,7 @@ import { AnomalyRadarView } from './views/AnomalyRadarView';
 import { DataHealthView } from './views/DataHealthView';
 import { AiCopilotView } from './views/AiCopilotView';
 import { InvestigationStoryView } from './views/InvestigationStoryView';
+import { InvestigationTimeMachineView } from './views/InvestigationTimeMachineView';
 
 // Modals
 import { EntityDossierModal } from './components/modals/EntityDossierModal';
@@ -194,6 +195,7 @@ function MainAppContent() {
         });
         break;
       case 'timeline':
+      case 'time_machine':
         fetchTimelineEvents(200).then(data => {
           if (data?.length) setDataset(prev => ({ ...prev, timelineEvents: data }));
           markLoaded();
@@ -444,6 +446,16 @@ function MainAppContent() {
           onSelectEntity={handleSelectEntity}
         />
       )}
+
+      {currentTab === 'time_machine' && (
+        <InvestigationTimeMachineView
+          dataset={dataset}
+          selectedCaseId={selectedCaseId}
+          onSelectCaseId={handleSelectCaseId}
+          onSelectEntity={handleSelectEntity}
+          onNavigateTab={handleTabChange}
+        />
+      )}
     </AppShell>
 
       {/* Entity Dossier Modal */}
@@ -462,6 +474,7 @@ function MainAppContent() {
           onSelectEntity={handleSelectEntity}
           onOpenInGraph={handleOpenInGraph}
           onOpenInCompare={handleOpenInCompare}
+          onNavigateTab={handleTabChange}
         />
       )}
 

@@ -29,6 +29,7 @@ import {
   ActionItem, 
   ContradictionItem 
 } from '../types/investigation';
+import { getEntityDisplayInfo, getCaseDisplayInfo } from '../utils/entityDisplay';
 
 interface AiCopilotViewProps {
   dataset: InvestigationDataset;
@@ -125,15 +126,17 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
         <span className="text-[10px] font-mono text-slate-400 font-semibold uppercase">Supporting Records:</span>
         {records.map((rec, idx) => {
           const typeLabel = (rec.record_type || 'RECORD').toUpperCase();
+          const info = getEntityDisplayInfo(rec.record_id, dataset);
+          const displayLabel = info.title && info.title !== 'Unknown Entity' ? info.title : 'Investigation Record';
           return (
             <button
               key={idx}
               onClick={() => handleSourceClick(rec)}
-              title={rec.summary || `${typeLabel} record ${rec.record_id} (Case: ${rec.case_id}) — Click to view`}
+              title={rec.summary || `${typeLabel} record — Click to view`}
               className="px-2 py-0.5 bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-800 border border-slate-200 hover:border-blue-300 rounded font-mono text-[10px] flex items-center gap-1 transition-colors group cursor-pointer"
             >
               <span className="font-bold text-blue-600">{typeLabel}:</span>
-              <span className="font-semibold underline decoration-dotted">{rec.record_id}</span>
+              <span className="font-semibold underline decoration-dotted">{displayLabel}</span>
               <ExternalLink className="w-2.5 h-2.5 opacity-60 group-hover:opacity-100" />
             </button>
           );
@@ -156,44 +159,35 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
               Fact vs. Inference Engine
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-1">
-            Reasoning assistant strictly grounded to active case records ({activeCase?.caseNumber || 'Active Case'}).
+          <p className="text-xs text-slate-500 font-medium mt-1">
+            LLM intelligence synthesis, Merkled court fact extraction & hypothesis generation.
           </p>
-        </div>
-
-        {/* Mode Buttons */}
-        <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl border border-slate-200">
-          {(['HYPOTHESIS', 'DOSSIER_SUMMARY', 'ANOMALY_EXPLAIN', 'CONTRADICTION_AUDIT', 'CHAT'] as const).map(m => (
-            <button
-              key={m}
-              onClick={() => setAnalysisMode(m)}
-              className={`px-3 py-1.5 text-xs font-mono font-bold rounded-lg transition-colors ${
-                analysisMode === m 
-                  ? 'bg-blue-600 text-white shadow-xs' 
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
-              }`}
-            >
-              {m.replace('_', ' ')}
-            </button>
-          ))}
         </div>
       </div>
 
-      {/* Input Area Strip */}
+      {/* Query Bar */}
       <div className="p-5 bg-white border border-slate-200 rounded-xl card-shadow space-y-4">
-        <div className="relative">
-          <textarea
-            value={promptInput}
-            onChange={(e) => setPromptInput(e.target.value)}
-            placeholder="Type your investigative query, hypothesis, or alibi challenge to test against active case records..."
-            rows={3}
-            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white resize-none font-mono"
-          />
-          <div className="flex justify-between items-center pt-2">
-            <div className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
-              <ShieldAlert className="w-3.5 h-3.5 text-blue-500" />
-              Active Scope: <strong className="text-slate-700">{activeCase?.caseNumber || 'CASE-000001'}</strong> • Evidence Traceability Enabled
-            </div>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <Cpu className="w-5 h-5 text-blue-600" />
+            <span className="font-bold text-sm text-slate-900 font-mono">TARGET SCOPE:</span>
+            <span className="px-2.5 py-1 bg-slate-100 text-slate-800 text-xs font-bold rounded border border-slate-200 font-mono">
+              {getCaseDisplayInfo(activeCase, dataset).title}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <select
+              value={analysisMode}
+              onChange={(e) => setAnalysisMode(e.target.value as any)}
+              className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 font-mono focus:outline-none"
+            >
+              <option value="HYPOTHESIS">Hypothesis Testing</option>
+              <option value="DOSSIER_SUMMARY">Dossier Summary</option>
+              <option value="ANOMALY_EXPLAIN">Anomaly Explanation</option>
+              <option value="CONTRADICTION_AUDIT">Contradiction Audit</option>
+            </select>
+
             <button
               onClick={() => handleRunAnalysis()}
               disabled={loading}
@@ -212,6 +206,16 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
               )}
             </button>
           </div>
+        </div>
+
+        <div className="relative">
+          <textarea
+            value={promptInput}
+            onChange={(e) => setPromptInput(e.target.value)}
+            placeholder="Type your investigative query, hypothesis, or alibi challenge to test against active case records..."
+            rows={3}
+            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white resize-none font-mono"
+          />
         </div>
 
         {/* Sample Prompt Chips */}
@@ -242,8 +246,9 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
             </div>
           )}
 
-          <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-            <div className="flex items-center gap-2 font-mono">
+          {/* Header Status Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">
+            <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-blue-600" />
               <h3 className="font-bold text-sm text-slate-900">Intelligence Synthesis Output</h3>
               <span className="px-2 py-0.5 text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200 rounded">
@@ -251,7 +256,7 @@ export const AiCopilotView: React.FC<AiCopilotViewProps> = ({
               </span>
               {aiResult.case_id && (
                 <span className="px-2 py-0.5 text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200 rounded">
-                  CASE: {aiResult.case_id}
+                  CASE: {getCaseDisplayInfo(aiResult.case_id, dataset).title}
                 </span>
               )}
             </div>

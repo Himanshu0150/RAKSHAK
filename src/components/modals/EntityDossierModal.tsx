@@ -15,10 +15,13 @@ import {
   Lock,
   Layers,
   ArrowUpRight,
-  Loader2
+  Loader2,
+  UserCheck,
+  Users
 } from 'lucide-react';
 import { Entity, Relationship, CaseRecord, EvidenceRecord, CDRRecord, FinancialTransaction } from '../../types/investigation';
 import { fetchEntityDossier } from '../../services/apiService';
+import { getEntityDisplayInfo, getCaseDisplayInfo } from '../../utils/entityDisplay';
 
 interface EntityDossierModalProps {
   entity: Entity | null;
@@ -32,6 +35,7 @@ interface EntityDossierModalProps {
   onSelectEntity: (entityId: string) => void;
   onOpenInGraph?: (entityId: string) => void;
   onOpenInCompare?: (entityId: string) => void;
+  onNavigateTab?: (tab: string) => void;
 }
 
 export const EntityDossierModal: React.FC<EntityDossierModalProps> = ({
@@ -45,7 +49,8 @@ export const EntityDossierModal: React.FC<EntityDossierModalProps> = ({
   allTransactions,
   onSelectEntity,
   onOpenInGraph,
-  onOpenInCompare
+  onOpenInCompare,
+  onNavigateTab
 }) => {
   const [dossier, setDossier] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -72,6 +77,7 @@ export const EntityDossierModal: React.FC<EntityDossierModalProps> = ({
   } : entity;
 
   // Fallbacks if dossier fetch is loading or pending
+  const displayInfo = getEntityDisplayInfo(currentEntity);
   const directLinks = dossier?.relationships || (allRelationships || []).filter(r => r.source === currentEntity.id || r.target === currentEntity.id);
   const linkedCases = dossier?.cases || (allCases || []).filter(c => currentEntity.linkedCaseIds?.includes(c.id));
   const linkedEvidence = dossier?.evidence || (allEvidence || []).filter(e => directLinks.some((l: any) => l.evidenceId === e.id));
@@ -121,7 +127,7 @@ export const EntityDossierModal: React.FC<EntityDossierModalProps> = ({
             </div>
             <div className="min-w-0">
               <div className="flex items-center space-x-2 flex-wrap">
-                <h2 className="text-lg font-semibold text-slate-900 truncate">{currentEntity.name}</h2>
+                <h2 className="text-lg font-semibold text-slate-900 truncate">{displayInfo.title}</h2>
                 {getRiskBadge(currentEntity.flaggedRisk)}
                 {loading && (
                   <span className="flex items-center text-xs text-blue-600 space-x-1 shrink-0">
@@ -130,7 +136,7 @@ export const EntityDossierModal: React.FC<EntityDossierModalProps> = ({
                   </span>
                 )}
               </div>
-              <p className="text-xs text-slate-500 font-mono truncate">TARGET ID: {currentEntity.id} • TYPE: {String(currentEntity.type).toUpperCase()}</p>
+              <p className="text-xs text-slate-500 font-medium truncate">{displayInfo.subtitle || `TYPE: ${String(displayInfo.type).toUpperCase()}`}</p>
             </div>
           </div>
           <div className="flex items-center space-x-2 shrink-0">
@@ -224,13 +230,17 @@ export const EntityDossierModal: React.FC<EntityDossierModalProps> = ({
               <div className="space-y-2">
                 {directLinks.map((r: any) => {
                   const targetId = r.source === currentEntity.id ? r.target : (r.target_id || r.source);
+                  const targetDisplay = getEntityDisplayInfo(targetId, { entities: allEntities } as any);
                   const confVal = r.confidence != null ? (r.confidence <= 1 ? Math.round(r.confidence * 100) : r.confidence) : 90;
                   return (
                     <div key={r.id || `${r.source}-${r.target}`} className="flex items-center justify-between p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs">
                       <div className="flex items-center space-x-2.5 min-w-0">
                         <GitBranch className="w-4 h-4 text-blue-600 shrink-0" />
-                        <span className="font-bold text-slate-900 font-mono truncate">{targetId}</span>
-                        <span className="px-2 py-0.5 bg-blue-50 text-blue-700 font-mono text-[10px] font-semibold border border-blue-200 rounded uppercase">{r.type || r.relationType || r.relationship_type}</span>
+                        <div className="min-w-0">
+                          <span className="font-bold text-slate-900 block truncate">{targetDisplay.title}</span>
+                          <span className="text-[10px] text-slate-500 font-mono block">Ref: {targetId}</span>
+                        </div>
+                        <span className="px-2 py-0.5 bg-blue-50 text-blue-700 font-mono text-[10px] font-semibold border border-blue-200 rounded uppercase shrink-0">{r.type || r.relationType || r.relationship_type}</span>
                       </div>
                       <div className="flex items-center space-x-3 shrink-0 text-slate-500 font-mono">
                         <span className="text-[11px]">Conf: <strong className="text-emerald-700">{confVal}%</strong></span>

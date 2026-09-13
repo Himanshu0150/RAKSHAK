@@ -50,6 +50,7 @@ import {
 } from '../services/graphEngine';
 import { Entity, Relationship } from '../types/investigation';
 import { fetchGraphTopology, fetchEntityDossier, fetchCaseRelatedPersons, traceGraphPath } from '../services/apiService';
+import { getEntityDisplayInfo } from '../utils/entityDisplay';
 
 interface KnowledgeGraphViewProps {
   dataset: InvestigationDataset;
@@ -625,16 +626,16 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
       .attr('font-weight', '700')
       .attr('font-family', 'sans-serif')
       .attr('fill', (d: any) => (d.id === selectedNodeId ? '#1E3A8A' : '#1E293B'))
-      .text((d: any) => d.name);
+      .text((d: any) => getEntityDisplayInfo(d, dataset).title);
 
-    // Node ID Subtext
+    // Node Type Subtext
     node.append('text')
       .attr('dy', 41)
       .attr('text-anchor', 'middle')
       .attr('font-size', '8px')
-      .attr('font-family', 'ui-monospace, monospace')
+      .attr('font-family', 'sans-serif')
       .attr('fill', '#64748B')
-      .text((d: any) => d.id);
+      .text((d: any) => getEntityDisplayInfo(d, dataset).subtitle || (d.type || 'Entity').toUpperCase());
 
     // Simulation Ticks
     simulation.on('tick', () => {
@@ -1196,20 +1197,25 @@ export const KnowledgeGraphView: React.FC<KnowledgeGraphViewProps> = ({
 
             <div className="p-4 space-y-4 text-slate-800">
               {/* Selected Entity Card */}
-              <div className="flex items-start justify-between pb-3 border-b border-slate-200">
-                <div>
-                  <h3 className="font-bold text-base text-slate-900">
-                    {dossierData?.entity?.name || selectedEntity?.name || 'Not available'}
-                  </h3>
-                  <div className="text-xs font-mono text-slate-500">
-                    ID: {selectedNodeId || 'Not available'}
-                  </div>
-                </div>
+              {(() => {
+                const selInfo = getEntityDisplayInfo(dossierData?.entity || selectedEntity || selectedNodeId, dataset);
+                return (
+                  <div className="flex items-start justify-between pb-3 border-b border-slate-200">
+                    <div>
+                      <h3 className="font-bold text-base text-slate-900">
+                        {selInfo.title}
+                      </h3>
+                      <div className="text-xs text-slate-500 font-medium">
+                        {selInfo.subtitle || (selInfo.type).toUpperCase()}
+                      </div>
+                    </div>
 
-                <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-red-100 text-red-700 border border-red-200 rounded">
-                  RISK: {dossierData?.entity?.flaggedRisk || selectedEntity?.flaggedRisk || 'Not available'}
-                </span>
-              </div>
+                    <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-red-100 text-red-700 border border-red-200 rounded">
+                      RISK: {dossierData?.entity?.flaggedRisk || selectedEntity?.flaggedRisk || 'Not available'}
+                    </span>
+                  </div>
+                );
+              })()}
 
               {/* Metric Boxes */}
               <div className="grid grid-cols-2 gap-3">

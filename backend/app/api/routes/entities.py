@@ -493,3 +493,5 @@ async def get_entity_dossier(entity_id: str, case_id: Optional[str] = None):
             "confidenceScore": round(avg_conf, 1)
         }
     }
+
+

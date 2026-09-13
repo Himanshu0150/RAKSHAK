@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   LayoutDashboard, 
   Search, 
@@ -21,10 +21,12 @@ import {
   ChevronDown,
   Sparkles,
   LogOut,
-  ShieldCheck
+  ShieldCheck,
+  UserCheck
 } from 'lucide-react';
 import { InvestigationDataset } from '../../services/datasetNormalizer';
 import { BreadcrumbTrail } from './BreadcrumbTrail';
+import { getEntityDisplayInfo, getCaseDisplayInfo } from '../../utils/entityDisplay';
 import { useAuth, hasTabPermission, isCaseAuthorized } from '../../context/AuthContext';
 
 export type NavigationTab = 
@@ -41,7 +43,8 @@ export type NavigationTab =
   | 'financial'
   | 'anomaly_radar'
   | 'data_health'
-  | 'ai_copilot';
+  | 'ai_copilot'
+  | 'time_machine';
 
 interface AppShellProps {
   currentTab: NavigationTab;
@@ -69,7 +72,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   selectedCaseId,
   onSelectCaseId,
   activeEntityId = null,
-  onSelectEntity = () => {},
+  onSelectEntity = (_id?: string | null) => {},
   onOpenEntityDossier,
   onGoBack,
   canGoBack = false,
@@ -85,41 +88,85 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [globalSearch, setGlobalSearch] = useState('');
 
+  const searchResults = useMemo(() => {
+    if (!globalSearch.trim() || globalSearch.trim().length < 2) return [];
+    const term = globalSearch.toLowerCase().trim();
+
+    const cases = (dataset.cases || [])
+      .filter(c => c.caseNumber.toLowerCase().includes(term) || c.title.toLowerCase().includes(term) || c.id.toLowerCase().includes(term))
+      .slice(0, 3)
+      .map(c => {
+        const info = getCaseDisplayInfo(c, dataset);
+        return {
+          id: c.id,
+          title: info.title,
+          sub: info.caseNumber && info.caseNumber !== info.title ? `Case Number: ${info.caseNumber}` : 'Investigation Case',
+          type: 'Case',
+          action: () => {
+            onSelectCaseId(c.id);
+            onTabChange('cases');
+            setGlobalSearch('');
+          }
+        };
+      });
+
+    const entities = (dataset.entities || [])
+      .filter(e => e.name.toLowerCase().includes(term) || e.id.toLowerCase().includes(term) || Object.values(e.attributes || {}).some(v => String(v).toLowerCase().includes(term)))
+      .slice(0, 6)
+      .map(e => {
+        const info = getEntityDisplayInfo(e, dataset);
+        return {
+          id: e.id,
+          title: info.title,
+          sub: info.subtitle || (e.type || 'Entity').toUpperCase(),
+          type: (e.type || 'Entity').toUpperCase(),
+          action: () => {
+            if (onOpenEntityDossier) onOpenEntityDossier(e.id);
+            else if (onSelectEntity) onSelectEntity(e.id);
+            setGlobalSearch('');
+          }
+        };
+      });
+
+    return [...cases, ...entities];
+  }, [globalSearch, dataset, onSelectCaseId, onSelectEntity, onOpenEntityDossier, onTabChange]);
+
   const authorizedCases = (dataset.cases || []).filter(c => isCaseAuthorized(user, c.id));
   const selectedCase = authorizedCases.find(c => c.id === selectedCaseId) || dataset.cases.find(c => c.id === selectedCaseId);
 
-  // Grouped Navigation Items matching Stitch design structure
+  // Grouped Navigation Items matching updated operational hierarchy
   const navGroups: Array<{
     title: string;
     items: Array<{ id: NavigationTab; label: string; icon: React.FC<{ className?: string }>; badge?: string | number }>;
   }> = [
     {
-      title: 'Intelligence Operations',
+      title: 'COMMAND',
       items: [
         { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'cases', label: 'Active Cases', icon: Briefcase, badge: summaryData?.activeCasesCount ?? authorizedCases.length },
-        { id: 'entities', label: 'Entities Database', icon: Users, badge: summaryData?.indexedEntitiesCount ?? (dataset.entities || []).length },
-        { id: 'knowledge_graph', label: 'Network Graph', icon: GitBranch },
       ]
     },
     {
-      title: 'Analysis & Intel',
+      title: 'INVESTIGATION',
       items: [
-        { id: 'investigation_story', label: 'Investigation Story', icon: Sparkles, badge: 'AI' },
-        { id: 'financial', label: 'Financial Intel (AML)', icon: CreditCard, badge: summaryData?.transactionsCount ?? (dataset.transactions || []).length },
-        { id: 'timeline', label: 'Chronology Timeline', icon: Clock, badge: summaryData?.eventsCount ?? (dataset.timelineEvents || []).length },
-        { id: 'telecom', label: 'Telecom / CDR', icon: PhoneCall, badge: summaryData?.cdrsCount ?? (dataset.cdrRecords || []).length },
-        { id: 'anomaly_radar', label: 'Anomaly Radar', icon: Activity, badge: summaryData?.anomaliesCount ?? (dataset.anomalies || []).length },
+        { id: 'cases', label: 'Cases', icon: Briefcase, badge: summaryData?.activeCasesCount ?? authorizedCases.length },
+        { id: 'knowledge_graph', label: 'Network Graph', icon: GitBranch },
+        { id: 'entities', label: 'Entities', icon: Users, badge: summaryData?.indexedEntitiesCount ?? (dataset.entities || []).length },
       ]
     },
     {
-      title: 'Evidence & Tools',
+      title: 'INTELLIGENCE',
+      items: [
+        { id: 'time_machine', label: 'Investigation Time Machine', icon: Clock },
+        { id: 'financial', label: 'Financial Intelligence', icon: CreditCard, badge: summaryData?.transactionsCount ?? (dataset.transactions || []).length },
+        { id: 'telecom', label: 'Telecom / CDR', icon: PhoneCall, badge: summaryData?.cdrsCount ?? (dataset.cdrRecords || []).length },
+        { id: 'ai_copilot', label: 'AI Case Copilot', icon: Bot },
+      ]
+    },
+    {
+      title: 'EVIDENCE',
       items: [
         { id: 'evidence_vault', label: 'Evidence Vault', icon: Lock, badge: summaryData?.evidenceRecordsCount ?? (dataset.evidenceRecords || []).length },
         { id: 'investigate', label: 'Deep Query / Filter', icon: Search },
-        { id: 'compare', label: 'Cross-Entity Compare', icon: GitCompare },
-        { id: 'data_health', label: 'System Data Health', icon: HeartPulse },
-        { id: 'ai_copilot', label: 'AI Case Copilot', icon: Bot },
       ]
     }
   ];
@@ -166,6 +213,29 @@ export const AppShell: React.FC<AppShellProps> = ({
                 placeholder="Search cases, entities, evidence, phone, accounts..."
                 className="w-full pl-8 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600/20 transition-all"
               />
+
+              {searchResults.length > 0 && (
+                <div className="absolute top-full mt-1 left-0 right-0 bg-white border border-slate-200 rounded-xl shadow-xl z-50 p-2 space-y-1 text-slate-900 max-h-80 overflow-y-auto">
+                  <div className="px-2.5 py-1 text-[10px] font-semibold text-slate-400 uppercase tracking-wider font-mono">
+                    Global Search Results ({searchResults.length})
+                  </div>
+                  {searchResults.map((res, idx) => (
+                    <button
+                      key={idx}
+                      onClick={res.action}
+                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors flex items-center justify-between gap-2 border border-transparent hover:border-blue-100"
+                    >
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-slate-900 truncate">{res.title}</div>
+                        <div className="text-[11px] font-mono text-slate-500 truncate">{res.sub}</div>
+                      </div>
+                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 uppercase shrink-0 border border-slate-200">
+                        {res.type}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

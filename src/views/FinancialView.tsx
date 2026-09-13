@@ -18,6 +18,7 @@ import {
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { FinancialTransaction } from '../types/investigation';
 import { fetchTransactions } from '../services/apiService';
+import { getEntityDisplayInfo, getFinancialDisplayInfo } from '../utils/entityDisplay';
 
 interface FinancialViewProps {
   dataset: InvestigationDataset;
@@ -201,38 +202,52 @@ export const FinancialView: React.FC<FinancialViewProps> = ({
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 font-mono">
-                {filteredTxns.map(tx => (
-                  <tr key={tx.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="py-3 px-3 text-slate-600">{tx.timestamp}</td>
-                    <td className="py-3 px-3">
-                      <div className="font-bold text-slate-900">{tx.sourceOwnerName || 'Unknown Entity'}</div>
-                      <div className="text-[11px] text-slate-500">{tx.sourceAccount} ({tx.bankName || 'Bank'})</div>
-                    </td>
-                    <td className="py-3 px-3">
-                      <div className="font-bold text-slate-900">{tx.targetOwnerName || 'Unknown Beneficiary'}</div>
-                      <div className="text-[11px] text-blue-700">{tx.targetAccount}</div>
-                    </td>
-                    <td className="py-3 px-3 font-bold text-slate-900 text-sm">
-                      {tx.currency || '₹'} {Number(tx.amount || 0).toLocaleString()}
-                    </td>
-                    <td className="py-3 px-3 text-slate-600">{tx.txnType || tx.transactionType}</td>
-                    <td className="py-3 px-3">
-                      {tx.flaggedLayering ? (
-                        <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-red-100 text-red-700 border border-red-200">
-                          RAPID LAYERING
-                        </span>
-                      ) : tx.flaggedStructuring ? (
-                        <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-amber-100 text-amber-800 border border-amber-200">
-                          STRUCTURING
-                        </span>
-                      ) : (
-                        <span className="px-2 py-0.5 text-[9px] rounded bg-slate-100 text-slate-600 border border-slate-200">
-                          CLEARED
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                {filteredTxns.map(tx => {
+                  const srcInfo = getEntityDisplayInfo(tx.sourceAccount, dataset);
+                  const tgtInfo = getEntityDisplayInfo(tx.targetAccount, dataset);
+                  const srcOwner = tx.sourceOwnerName && !tx.sourceOwnerName.startsWith('ACC') ? tx.sourceOwnerName : srcInfo.title;
+                  const tgtOwner = tx.targetOwnerName && !tx.targetOwnerName.startsWith('ACC') ? tx.targetOwnerName : tgtInfo.title;
+                  const refId = tx.txnReference || tx.id;
+
+                  return (
+                    <tr key={tx.id} className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 px-3 text-slate-600">
+                        <div>{tx.timestamp}</div>
+                      </td>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-slate-900">{srcOwner}</div>
+                        <div className="text-[11px] text-slate-500">
+                          {tx.sourceAccount && !tx.sourceAccount.startsWith('ACC') ? tx.sourceAccount : 'Account'} ({tx.bankName || 'Bank'})
+                        </div>
+                      </td>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-slate-900">{tgtOwner}</div>
+                        <div className="text-[11px] text-blue-700">
+                          {tx.targetAccount && !tx.targetAccount.startsWith('ACC') ? tx.targetAccount : 'Account'}
+                        </div>
+                      </td>
+                      <td className="py-3 px-3 font-bold text-slate-900 text-sm">
+                        {tx.currency || '₹'} {Number(tx.amount || 0).toLocaleString()}
+                      </td>
+                      <td className="py-3 px-3 text-slate-600">{tx.txnType || tx.transactionType}</td>
+                      <td className="py-3 px-3">
+                        {tx.flaggedLayering ? (
+                          <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-red-100 text-red-700 border border-red-200">
+                            RAPID LAYERING
+                          </span>
+                        ) : tx.flaggedStructuring ? (
+                          <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-amber-100 text-amber-800 border border-amber-200">
+                            STRUCTURING
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 text-[9px] rounded bg-slate-100 text-slate-600 border border-slate-200">
+                            CLEARED
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

@@ -19,6 +19,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from 
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { CDRRecord } from '../types/investigation';
 import { fetchCDRs } from '../services/apiService';
+import { getCDRDisplayInfo, getEntityDisplayInfo } from '../utils/entityDisplay';
 
 interface TelecomViewProps {
   dataset: InvestigationDataset;
@@ -252,39 +253,46 @@ export const TelecomView: React.FC<TelecomViewProps> = ({
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {filteredCdrs.map(c => (
-                  <tr key={c.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="py-3 px-3 text-slate-600">{c.timestamp ? c.timestamp.replace('T', ' ').slice(0, 16) : 'N/A'}</td>
-                    <td className="py-3 px-3">
-                      <div className="font-bold text-slate-900">{c.callerName || 'Unknown Contact'}</div>
-                      <div className="text-[11px] text-slate-500">{c.callerPhone}</div>
-                    </td>
-                    <td className="py-3 px-3">
-                      <div className="font-bold text-slate-900">{c.receiverName || 'Unknown Contact'}</div>
-                      <div className="text-[11px] text-cyan-700">{c.receiverPhone}</div>
-                    </td>
-                    <td className="py-3 px-3 font-bold text-slate-800">
-                      {c.durationSeconds}s
-                    </td>
-                    <td className="py-3 px-3 text-slate-600">
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-slate-400" />
-                        {c.cellTowerLocation || 'Sector 4 Tower-A'}
-                      </span>
-                    </td>
-                    <td className="py-3 px-3">
-                      {c.flaggedAnomaly ? (
-                        <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-amber-100 text-amber-800 border border-amber-200">
-                          NIGHT BURST
+                {filteredCdrs.map(c => {
+                  const callerInfo = getEntityDisplayInfo(c.callerPhone, dataset);
+                  const receiverInfo = getEntityDisplayInfo(c.receiverPhone, dataset);
+                  const callerDisplay = c.callerName && !c.callerName.startsWith('PH00') ? `${c.callerName} (${callerInfo.title})` : callerInfo.title;
+                  const receiverDisplay = c.receiverName && !c.receiverName.startsWith('PH00') ? `${c.receiverName} (${receiverInfo.title})` : receiverInfo.title;
+
+                  return (
+                    <tr key={c.id} className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 px-3 text-slate-600">
+                        <div>{c.timestamp ? c.timestamp.replace('T', ' ').slice(0, 16) : 'N/A'}</div>
+                      </td>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-slate-900">{callerDisplay}</div>
+                      </td>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-cyan-800">{receiverDisplay}</div>
+                      </td>
+                      <td className="py-3 px-3 font-bold text-slate-800">
+                        {c.durationSeconds}s
+                      </td>
+                      <td className="py-3 px-3 text-slate-600">
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3 text-slate-400" />
+                          {c.cellTowerLocation || 'Sector 4 Tower-A'}
                         </span>
-                      ) : (
-                        <span className="px-2 py-0.5 text-[9px] rounded bg-slate-100 text-slate-600 border border-slate-200">
-                          NORMAL
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                      <td className="py-3 px-3">
+                        {c.flaggedAnomaly ? (
+                          <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-amber-100 text-amber-800 border border-amber-200">
+                            NIGHT BURST
+                          </span>
+                        ) : (
+                          <span className="px-2 py-0.5 text-[9px] rounded bg-slate-100 text-slate-600 border border-slate-200">
+                            NORMAL
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
