@@ -81,6 +81,16 @@ def format_evidence_response(ev: dict, fallback_case_id: Optional[str] = None) -
     res["tampered"] = ev.get("tampered") is True
     res["custodyLogs"] = chain
     res["chainOfCustody"] = chain
+    res["blockchain_status"] = ev.get("blockchain_status") or "Not Anchored"
+    res["blockchainStatus"] = ev.get("blockchain_status") or "Not Anchored"
+    res["blockchain_tx_hash"] = ev.get("blockchain_tx_hash")
+    res["blockchainTxHash"] = ev.get("blockchain_tx_hash")
+    res["blockchain_network"] = ev.get("blockchain_network")
+    res["blockchainNetwork"] = ev.get("blockchain_network")
+    res["blockchain_timestamp"] = ev.get("blockchain_timestamp")
+    res["blockchainTimestamp"] = ev.get("blockchain_timestamp")
+    res["anchored_hash"] = ev.get("anchored_hash")
+    res["anchoredHash"] = ev.get("anchored_hash")
     return res
 
 

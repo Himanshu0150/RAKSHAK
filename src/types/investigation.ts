@@ -127,6 +127,16 @@ export interface EvidenceRecord {
     verificationHash: string;
     status: 'VERIFIED' | 'FLAGGED';
   }>;
+  blockchain_status?: string;
+  blockchainStatus?: string;
+  blockchain_tx_hash?: string;
+  blockchainTxHash?: string;
+  blockchain_network?: string;
+  blockchainNetwork?: string;
+  blockchain_timestamp?: string;
+  blockchainTimestamp?: string;
+  anchored_hash?: string;
+  anchoredHash?: string;
 }
 
 export interface TimelineEvent {

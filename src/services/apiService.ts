@@ -489,6 +489,57 @@ export async function exportCaseEvidencePdfApi(caseId: string) {
   }
 }
 
+export async function anchorBlockchainEvidenceApi(evidenceId: string) {
+  try {
+    const res = await fetch(`${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/blockchain-anchor`, {
+      method: 'POST',
+      headers: getAuthHeaders({ 'Content-Type': 'application/json' })
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.detail || data.message || `Blockchain anchoring failed: ${res.statusText}`);
+    }
+    return data;
+  } catch (err: any) {
+    console.error('Error anchoring evidence to blockchain:', err);
+    throw err;
+  }
+}
+
+export async function fetchBlockchainStatusApi(evidenceId: string, signal?: AbortSignal) {
+  try {
+    const res = await fetch(`${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/blockchain-status`, {
+      headers: getAuthHeaders(),
+      signal
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (err: any) {
+    if (err.name === 'AbortError') return null;
+    console.error('Error fetching blockchain status:', err);
+    return null;
+  }
+}
+
+export async function verifyBlockchainEvidenceApi(evidenceId: string, payload?: { current_hash?: string; tampered?: boolean }) {
+  try {
+    const res = await fetch(`${API_BASE}/evidence/${encodeURIComponent(evidenceId)}/verify-blockchain`, {
+      method: 'POST',
+      headers: getAuthHeaders({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(payload || {})
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.detail || data.message || `Blockchain verification failed: ${res.statusText}`);
+    }
+    return data;
+  } catch (err: any) {
+    console.error('Error verifying blockchain evidence:', err);
+    throw err;
+  }
+}
+
+
 
 
 

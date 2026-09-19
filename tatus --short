@@ -1,0 +1,9 @@
+warning: in the working copy of 'backend/app/api/routes/evidence.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/app/main.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/scripts/test_evidence_vault_persistence.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/services/apiService.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/types/investigation.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/views/EvidenceVaultView.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/RAKSHAK project detail.docx b/RAKSHAK project detail.docx[m
+[1mdeleted file mode 100644[m
+[1mindex 819c8e9..0000000[m

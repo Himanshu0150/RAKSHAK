@@ -34,7 +34,7 @@ async def run_evidence_vault_tests():
         "expires_at": 9999999999
     }
     ACTIVE_TOKENS[field_token] = {
-        "user": DEFAULT_USERS[3], # Officer Watson (Field Agent) -> Authorized: ['CASE-CYBER-8841', 'C0001']
+        "user": DEFAULT_USERS[2], # Officer Watson (Field Agent) -> Authorized: ['CASE-CYBER-8841', 'C0001']
         "created_at": 1000000,
         "expires_at": 9999999999
     }

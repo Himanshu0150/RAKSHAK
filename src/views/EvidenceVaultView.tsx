@@ -25,9 +25,10 @@ import {
   ExternalLink,
   ChevronLeft,
   ChevronRight,
-  Shield,
-  X,
-  Loader2
+  Shield, 
+  X, 
+  Loader2,
+  Link2
 } from 'lucide-react';
 import { InvestigationDataset } from '../services/datasetNormalizer';
 import { EvidenceRecord } from '../types/investigation';
@@ -37,7 +38,10 @@ import {
   fetchBSACertificate, 
   generateBSACertificate, 
   getBSACertificateDownloadUrl,
-  exportCaseEvidencePdfApi
+  exportCaseEvidencePdfApi,
+  anchorBlockchainEvidenceApi,
+  fetchBlockchainStatusApi,
+  verifyBlockchainEvidenceApi
 } from '../services/apiService';
 
 import { useAuth, isCaseAuthorized } from '../context/AuthContext';
@@ -159,6 +163,112 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
   }, [activeCaseId, typeFilter]);
 
   const selectedEvidence = localEvidence.find(e => e.id === selectedEvidenceId) || localEvidence[0];
+
+  // Blockchain Integrity State
+  const [bcStatus, setBcStatus] = useState<string>('Not Anchored');
+  const [bcTxHash, setBcTxHash] = useState<string | null>(null);
+  const [bcNetwork, setBcNetwork] = useState<string | null>(null);
+  const [bcTimestamp, setBcTimestamp] = useState<string | null>(null);
+  const [bcAnchoredHash, setBcAnchoredHash] = useState<string | null>(null);
+  const [bcVerificationResult, setBcVerificationResult] = useState<{
+    verified: boolean;
+    header: string;
+    message: string;
+  } | null>(null);
+  const [bcLoading, setBcLoading] = useState<boolean>(false);
+  const [bcError, setBcError] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (!selectedEvidence?.id) {
+      setBcStatus('Not Anchored');
+      setBcTxHash(null);
+      setBcNetwork(null);
+      setBcTimestamp(null);
+      setBcAnchoredHash(null);
+      setBcVerificationResult(null);
+      return;
+    }
+    const controller = new AbortController();
+    fetchBlockchainStatusApi(selectedEvidence.id, controller.signal)
+      .then(res => {
+        if (controller.signal.aborted) return;
+        if (res) {
+          setBcStatus(res.blockchain_status || 'Not Anchored');
+          setBcTxHash(res.blockchain_tx_hash || null);
+          setBcNetwork(res.blockchain_network || null);
+          setBcTimestamp(res.blockchain_timestamp || null);
+          setBcAnchoredHash(res.anchored_hash || null);
+        } else {
+          setBcStatus(selectedEvidence.blockchainStatus || selectedEvidence.blockchain_status || 'Not Anchored');
+          setBcTxHash(selectedEvidence.blockchainTxHash || selectedEvidence.blockchain_tx_hash || null);
+          setBcNetwork(selectedEvidence.blockchainNetwork || selectedEvidence.blockchain_network || null);
+          setBcTimestamp(selectedEvidence.blockchainTimestamp || selectedEvidence.blockchain_timestamp || null);
+          setBcAnchoredHash(selectedEvidence.anchoredHash || selectedEvidence.anchored_hash || null);
+        }
+        setBcVerificationResult(null);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) {
+          setBcStatus('Not Anchored');
+        }
+      });
+
+    return () => controller.abort();
+  }, [selectedEvidence?.id]);
+
+  const handleAnchorBlockchain = async () => {
+    if (!selectedEvidence?.id) return;
+    setBcLoading(true);
+    setBcError(null);
+    try {
+      const res = await anchorBlockchainEvidenceApi(selectedEvidence.id);
+      if (res.blockchain_status === 'Blockchain service unavailable') {
+        setBcStatus('Blockchain service unavailable');
+        setBcError(res.message || 'Blockchain service unavailable');
+      } else {
+        setBcStatus(res.blockchain_status || 'Anchored');
+        setBcTxHash(res.blockchain_tx_hash || null);
+        setBcNetwork(res.blockchain_network || null);
+        setBcTimestamp(res.blockchain_timestamp || null);
+        setBcAnchoredHash(res.anchored_hash || null);
+        setLocalEvidence(prev => prev.map(e => e.id === selectedEvidence.id ? { ...e, blockchain_status: 'Anchored', blockchainStatus: 'Anchored' } : e));
+      }
+    } catch (err: any) {
+      setBcError(err.message || 'Failed to anchor evidence to blockchain.');
+    } finally {
+      setBcLoading(false);
+    }
+  };
+
+  const handleVerifyBlockchain = async () => {
+    if (!selectedEvidence?.id) return;
+    setBcLoading(true);
+    setBcError(null);
+    try {
+      const res = await verifyBlockchainEvidenceApi(selectedEvidence.id, { tampered: tamperSimulated });
+      if (res.status === 'Blockchain service unavailable') {
+        setBcStatus('Blockchain service unavailable');
+        setBcError('Blockchain service unavailable');
+        setBcVerificationResult(null);
+      } else {
+        setBcStatus(res.status || (res.verified ? 'Verified' : 'Integrity Mismatch'));
+        if (res.blockchain_tx_hash) setBcTxHash(res.blockchain_tx_hash);
+        if (res.blockchain_network) setBcNetwork(res.blockchain_network);
+        if (res.blockchain_timestamp) setBcTimestamp(res.blockchain_timestamp);
+        if (res.anchored_hash) setBcAnchoredHash(res.anchored_hash);
+
+        setBcVerificationResult({
+          verified: res.verified,
+          header: res.header || (res.verified ? '✓ Evidence Integrity Verified' : '✕ Evidence Integrity Mismatch'),
+          message: res.message || (res.verified ? 'Hash matches blockchain record.' : 'Current evidence hash does not match the anchored blockchain hash.')
+        });
+      }
+    } catch (err: any) {
+      setBcError(err.message || 'Blockchain verification failed.');
+    } finally {
+      setBcLoading(false);
+    }
+  };
 
   const filteredEvidence = useMemo(() => {
     return localEvidence.filter(e => {
@@ -562,46 +672,190 @@ export const EvidenceVaultView: React.FC<EvidenceVaultViewProps> = ({
             </div>
           </div>
 
-          {/* Selected Evidence Custody Log Drawer */}
+          {/* Selected Evidence Custody Log & Blockchain Detail Area */}
           {selectedEvidence && (
-            <div className="p-4 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3">
-              <div className="flex items-center justify-between pb-2 border-b border-slate-200">
-                <div>
-                  <h4 className="font-bold text-xs text-slate-900 font-mono">
-                    CHAIN OF CUSTODY LOG: {selectedEvidence.title}
-                  </h4>
-                  <div className="text-[10px] text-slate-500 font-mono">
-                    Vault Bay: {selectedEvidence.chainOfCustodyLocation || 'Precinct-7 Secure Bay'} • Lead: {selectedEvidence.collectedBy || 'Lead Investigator'}
+            <div className="space-y-4 font-sans">
+              {/* 1. Evidence Metadata & SHA-256 Digest Header Card */}
+              <div className="p-4 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <div>
+                    <h4 className="font-bold text-xs text-slate-900 font-mono">
+                      EXHIBIT DETAILS: {selectedEvidence.title}
+                    </h4>
+                    <div className="text-[10px] text-slate-500 font-mono mt-0.5">
+                      Vault Bay: {selectedEvidence.chainOfCustodyLocation || 'Precinct-7 Secure Bay'} • Lead: {selectedEvidence.collectedBy || 'Lead Investigator'}
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full">
+                    LEAF VALIDATED
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg">
+                    <span className="text-[10px] font-semibold text-slate-500 block uppercase">Source Medium</span>
+                    <span className="font-medium text-slate-800">{selectedEvidence.sourceDeviceOrMedium || selectedEvidence.source || 'Law Enforcement Intercept'}</span>
+                  </div>
+                  <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg">
+                    <span className="text-[10px] font-semibold text-slate-500 block uppercase">Collection Date</span>
+                    <span className="font-medium text-slate-800">{(selectedEvidence.collectionTimestamp || selectedEvidence.collectedAt || '').replace('T', ' ').slice(0, 16)}</span>
                   </div>
                 </div>
-                <span className="px-2 py-0.5 text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 rounded">
-                  LEAF VALIDATED
-                </span>
+
+                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg font-mono text-xs flex items-center justify-between gap-2">
+                  <span className="text-[11px] text-slate-500 font-semibold shrink-0">SHA-256 Digest:</span>
+                  <span className="font-bold text-slate-900 text-[11px] truncate">{selectedEvidence.sha256Hash}</span>
+                  <button 
+                    onClick={() => handleCopy(selectedEvidence.sha256Hash)}
+                    className="p-1 hover:bg-slate-200 text-slate-500 rounded transition-colors shrink-0"
+                    title="Copy SHA-256 Hash"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
 
-              <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
-                {(selectedEvidence.chainOfCustody || []).map((c, idx) => (
-                  <div key={idx} className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs space-y-0.5">
-                    <div className="flex justify-between items-center text-[10px] font-mono text-slate-500">
-                      <span className="font-bold text-slate-800">{c.custodianName} ({c.action})</span>
-                      <span>{c.timestamp.replace('T', ' ').slice(0, 16)} UTC</span>
-                    </div>
-                    <p className="text-slate-600 text-[11px]">{c.notes}</p>
+              {/* 2. BLOCKCHAIN INTEGRITY CARD (Native RAKSHAK Card Style) */}
+              <div className="p-4 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3 font-sans">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <Link2 className="w-4 h-4 text-blue-600" />
+                    <h4 className="font-bold text-xs uppercase tracking-wider text-slate-900">
+                      BLOCKCHAIN INTEGRITY
+                    </h4>
                   </div>
-                ))}
+                  <span className={`px-2.5 py-0.5 text-[10px] font-bold rounded-full border uppercase ${
+                    bcStatus === 'Verified' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                    bcStatus === 'Anchored' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                    (bcStatus === 'Integrity Mismatch' || bcStatus === 'Integrity Check Failed') ? 'bg-red-50 text-red-700 border-red-200' :
+                    bcStatus === 'Blockchain service unavailable' ? 'bg-amber-50 text-amber-800 border-amber-200' :
+                    'bg-slate-100 text-slate-600 border-slate-200'
+                  }`}>
+                    {bcStatus === 'Verified' ? 'VERIFIED' : bcStatus === 'Anchored' ? 'ANCHORED' : bcStatus}
+                  </span>
+                </div>
+
+                {bcStatus === 'Blockchain service unavailable' && (
+                  <div className="p-3 bg-amber-50 border border-amber-200 text-amber-900 rounded-lg text-xs font-sans">
+                    Blockchain service unavailable
+                  </div>
+                )}
+
+                {(bcStatus === 'Anchored' || bcStatus === 'Verified' || bcStatus === 'Integrity Mismatch' || bcTxHash) && (
+                  <div className="space-y-2 text-xs bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono">
+                    <div className="grid grid-cols-3 gap-2">
+                      <span className="text-slate-500 uppercase text-[10px]">Evidence ID:</span>
+                      <span className="col-span-2 font-bold text-slate-900">{selectedEvidence.id}</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <span className="text-slate-500 uppercase text-[10px]">SHA-256 Hash:</span>
+                      <span className="col-span-2 font-bold text-blue-700 truncate">{bcAnchoredHash || selectedEvidence.sha256Hash}</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <span className="text-slate-500 uppercase text-[10px]">Network:</span>
+                      <span className="col-span-2 text-slate-800">{bcNetwork || 'Local EVM Testnet'}</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <span className="text-slate-500 uppercase text-[10px]">Transaction Ref:</span>
+                      <span className="col-span-2 font-mono text-slate-800 font-semibold truncate">{bcTxHash}</span>
+                    </div>
+                    {bcTimestamp && (
+                      <div className="grid grid-cols-3 gap-2">
+                        <span className="text-slate-500 uppercase text-[10px]">Timestamp:</span>
+                        <span className="col-span-2 text-slate-700">{bcTimestamp}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Verification Output Box */}
+                {bcVerificationResult && (
+                  <div className={`p-3 rounded-lg border text-xs space-y-1 font-sans ${
+                    bcVerificationResult.verified
+                      ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
+                      : 'bg-red-50 border-red-200 text-red-900'
+                  }`}>
+                    <div className="font-bold flex items-center gap-1.5 text-xs">
+                      {bcVerificationResult.verified ? (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      ) : (
+                        <AlertTriangle className="w-4 h-4 text-red-600 shrink-0" />
+                      )}
+                      <span>{bcVerificationResult.header}</span>
+                    </div>
+                    <p className="text-[11px] leading-relaxed pl-5 font-medium">
+                      {bcVerificationResult.message}
+                    </p>
+                  </div>
+                )}
+
+                {bcError && (
+                  <div className="p-2.5 bg-red-50 border border-red-200 text-red-800 rounded-lg text-xs font-sans">
+                    {bcError}
+                  </div>
+                )}
+
+                {/* Action Buttons */}
+                <div className="flex items-center gap-2 pt-1 font-sans">
+                  <button
+                    onClick={handleAnchorBlockchain}
+                    disabled={bcLoading}
+                    className="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-semibold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+                  >
+                    {bcLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <GitCommit className="w-3.5 h-3.5" />}
+                    <span>Anchor Hash</span>
+                  </button>
+                  <button
+                    onClick={handleVerifyBlockchain}
+                    disabled={bcLoading}
+                    className="flex-1 py-2 px-3 bg-slate-800 hover:bg-slate-900 border border-slate-800 disabled:opacity-50 text-white font-semibold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+                  >
+                    {bcLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShieldCheck className="w-3.5 h-3.5 text-slate-300" />}
+                    <span>Verify Integrity</span>
+                  </button>
+                </div>
               </div>
 
-              {/* BSA Certificate Action Bar */}
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
-                <div className="text-[11px] text-slate-500 font-mono">
-                  SHA-256 Digest: <span className="font-bold text-slate-800">{selectedEvidence.sha256Hash?.slice(0, 16)}...</span>
+              {/* 3. Chain of Custody Log Card */}
+              <div className="p-4 bg-white border border-slate-200 rounded-xl shadow-xs space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <h4 className="font-bold text-xs text-slate-900 font-mono uppercase">
+                    CHAIN OF CUSTODY LOG
+                  </h4>
+                  <span className="text-[10px] text-slate-500 font-mono">
+                    {(selectedEvidence.chainOfCustody || []).length} Audit Entries
+                  </span>
+                </div>
+
+                <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
+                  {(selectedEvidence.chainOfCustody || []).map((c, idx) => (
+                    <div key={idx} className="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-xs space-y-0.5">
+                      <div className="flex justify-between items-center text-[10px] font-mono text-slate-500">
+                        <span className="font-bold text-slate-800">{c.custodianName} ({c.action})</span>
+                        <span>{c.timestamp.replace('T', ' ').slice(0, 16)} UTC</span>
+                      </div>
+                      <p className="text-slate-600 text-[11px]">{c.notes}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 4. Section 63 BSA Certificate Action Card */}
+              <div className="p-4 bg-white border border-slate-200 rounded-xl shadow-xs flex items-center justify-between gap-3">
+                <div>
+                  <h4 className="font-bold text-xs text-slate-900 font-mono">
+                    Section 63 BSA Certificate
+                  </h4>
+                  <p className="text-[11px] text-slate-500 mt-0.5 font-sans">
+                    Generate judicial digital evidence certificate for court submission.
+                  </p>
                 </div>
                 <button
                   onClick={() => handleExportSec63BSA(selectedEvidence.id)}
-                  className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-colors shrink-0"
                 >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Export Sec 63 BSA Certificate (PDF)</span>
+                  <Download className="w-3.5 h-3.5 text-blue-600" />
+                  <span>Export BSA Cert (PDF)</span>
                 </button>
               </div>
             </div>

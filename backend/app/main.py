@@ -29,6 +29,7 @@ from app.api.routes.ai import router as ai_router
 from app.api.routes.auth import router as auth_router
 from app.api.routes.investigation_story import router as investigation_story_router
 from app.api.routes.bsa_certificate import router as bsa_certificate_router
+from app.api.routes.evidence_blockchain import router as evidence_blockchain_router
 
 from app.core.demo_subset import initialize_demo_subset
 from app.db.migrate_biographical_data import migrate_biographical_data
@@ -65,6 +66,7 @@ app.include_router(bsa_certificate_router)
 app.include_router(persons_router)
 app.include_router(entities_router)
 app.include_router(evidence_router)
+app.include_router(evidence_blockchain_router)
 app.include_router(cdrs_router)
 app.include_router(transactions_router)
 app.include_router(relationships_router)
